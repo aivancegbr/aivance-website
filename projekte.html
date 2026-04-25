@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projekte & Case Studies – AIVANCE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-1 { transition-delay:.07s; }
+    .reveal-2 { transition-delay:.14s; }
+    .reveal-3 { transition-delay:.21s; }
+
+    /* animated bar chart */
+    .stat-bar { transform-origin: bottom; transform: scaleY(0); transition: transform .8s cubic-bezier(.34,1.56,.64,1); }
+    .stat-bar.animate { transform: scaleY(1); }
+
+    /* radial progress */
+    .radial-progress { transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1); }
+
+    /* counter */
+    .counter { display:inline-block; }
+
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    .float { animation: float 4s ease-in-out infinite; }
+
+    /* star rating */
+    .star { color: #f59e0b; }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="logo.jpg" alt="AIVANCE" class="h-8 w-8 rounded-lg object-cover" />
+        <span class="font-black text-lg tracking-tight text-slate-900">AIVANCE</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="index.html#features" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Features</a>
+        <a href="index.html#integrations" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Integrations</a>
+        <a href="projekte.html" class="text-sm font-semibold text-slate-900">Projekte</a>
+      </div>
+      <a href="index.html#contact" class="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">Projekt anfragen</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-slate-50 border-b border-slate-100 py-16 reveal">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Referenzen</p>
+      <h1 class="text-5xl font-black text-slate-900 mb-4">Projekte &amp; Case Studies</h1>
+      <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">Echte Projekte, messbare Ergebnisse. Wir zeigen Ihnen konkret, was KI-Automatisierung in der Praxis leistet.</p>
+
+      <!-- Quick stats -->
+      <div class="flex flex-wrap justify-center gap-8 mt-10 pt-10 border-t border-slate-200">
+        <div>
+          <p class="text-3xl font-black text-slate-900 counter" data-target="2">0</p>
+          <p class="text-xs text-slate-400 mt-1">Abgeschlossene Projekte</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-slate-900">96%</p>
+          <p class="text-xs text-slate-400 mt-1">Kundenzufriedenheit</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-slate-900">−79%</p>
+          <p class="text-xs text-slate-400 mt-1">Manuelle Arbeit (Ø)</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-slate-900">17 Tage</p>
+          <p class="text-xs text-slate-400 mt-1">Ø Zeit bis Go-Live</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CASE STUDY 1 — GASTRONOMIE
+  ══════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-5">
+
+      <!-- Label -->
+      <div class="flex items-center gap-3 mb-10 reveal">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black">01</div>
+        <div class="h-px flex-1 bg-slate-100"></div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Gastronomie · Rhein-Neckar</span>
+        <div class="h-px flex-1 bg-slate-100"></div>
+        <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ Abgeschlossen</span>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start mb-12">
+        <!-- Left: info -->
+        <div class="reveal">
+          <h2 class="text-3xl font-black text-slate-900 mb-2">Gastronomie Chatbot<br/>&amp; Kundenservice</h2>
+          <p class="text-sm text-blue-600 font-semibold mb-5">Vollautomatisierter KI-Assistent · Rhein-Neckar Region</p>
+
+          <p class="text-slate-500 leading-relaxed mb-6 text-sm">
+            Ein wachsendes Restaurant im Rhein-Neckar-Gebiet kämpfte täglich mit hunderten manuell bearbeiteten Anfragen zu Reservierungen, Öffnungszeiten und Speisekarten. Das Team verlor wertvolle Zeit — besonders in Stoßzeiten.
+          </p>
+          <p class="text-slate-500 leading-relaxed mb-8 text-sm">
+            AIVANCE implementierte einen RAG-basierten KI-Assistenten, der nahtlos in die bestehende Infrastruktur integriert wurde — über WhatsApp Business API und die Website. Der Agent indexiert Speisekarte, Verfügbarkeiten und Unternehmensrichtlinien in Echtzeit.
+          </p>
+
+          <!-- What we built -->
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Was wir gebaut haben</p>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">RAG-System mit Echtzeit-Indexierung der Speisekarte und Reservierungsdaten</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">WhatsApp Business API Integration mit automatischer Reservierungsbestätigung</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">Manager-Dashboard mit Echtzeit-Auslastung, Umsatz und Bewertungsanalyse</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">Automatisches Eskalations-Routing an menschliche Mitarbeiter bei komplexen Anfragen</p>
+            </div>
+          </div>
+
+          <!-- Tech stack pills -->
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold">RAG System</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold">WhatsApp API</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold">n8n Automation</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold">OpenAI GPT-4o</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold">Pinecone Vector DB</span>
+          </div>
+        </div>
+
+        <!-- Right: Dashboard image -->
+        <div class="reveal float">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+            <img src="gastrodashboard.jpeg" alt="GASTRO Dashboard" class="w-full object-cover" />
+            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur rounded-xl px-4 py-2.5 border border-slate-100 shadow-lg">
+              <p class="text-[10px] text-slate-400 mb-0.5">Live Dashboard</p>
+              <p class="text-xs font-bold text-slate-800">AIVANCE GASTRO System</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics section -->
+      <div class="bg-slate-50 rounded-3xl border border-slate-100 p-8 reveal">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8 text-center">Messbare Ergebnisse nach 90 Tagen</p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Bar chart: Anfragen vor/nach -->
+          <div>
+            <p class="text-sm font-bold text-slate-700 mb-5">Manuelle Anfragen pro Woche</p>
+            <div class="flex items-end gap-6 h-36" id="barChart1">
+              <div class="flex flex-col items-center gap-2 flex-1">
+                <span class="text-xs font-black text-slate-700">340</span>
+                <div class="w-full rounded-t-lg bg-slate-200 stat-bar" style="height:100%" data-height="100"></div>
+                <span class="text-[10px] text-slate-400">Vorher</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 flex-1">
+                <span class="text-xs font-black text-slate-700">75</span>
+                <div class="w-full rounded-t-lg bg-blue-500 stat-bar" style="height:22%" data-height="22"></div>
+                <span class="text-[10px] text-slate-400">Nachher</span>
+              </div>
+              <div class="flex-1"></div>
+              <div class="flex flex-col gap-1.5 text-[10px]">
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded bg-slate-200"></div><span class="text-slate-500">Vor AIVANCE</span></div>
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded bg-blue-500"></div><span class="text-slate-500">Mit AIVANCE</span></div>
+              </div>
+            </div>
+            <p class="text-xs text-emerald-600 font-semibold mt-3">↓ 78% weniger manuelle Bearbeitung</p>
+          </div>
+
+          <!-- Radial: Kundenzufriedenheit -->
+          <div class="flex flex-col items-center">
+            <p class="text-sm font-bold text-slate-700 mb-5 self-start">Kundenzufriedenheit</p>
+            <div class="relative w-36 h-36">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e2e8f0" stroke-width="2.5"/>
+                <circle id="radial1" cx="18" cy="18" r="15.9" fill="none" stroke="#2563eb" stroke-width="2.5"
+                  stroke-dasharray="100" stroke-dashoffset="100" stroke-linecap="round"
+                  class="radial-progress" style="transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-2xl font-black text-slate-900" id="radialNum1">0%</span>
+                <span class="text-[10px] text-slate-400">Zufrieden</span>
+              </div>
+            </div>
+            <!-- Stars -->
+            <div class="flex gap-0.5 mt-4">
+              <span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">Basierend auf 48 Bewertungen</p>
+          </div>
+        </div>
+
+        <!-- Timeline response improvement -->
+        <div class="mt-8 pt-6 border-t border-slate-200">
+          <p class="text-sm font-bold text-slate-700 mb-4">Antwortzeit-Entwicklung</p>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1"><span class="text-slate-500">Vorher (manuell)</span><span class="font-semibold text-slate-700">2–6 Stunden</span></div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-slate-300 h-2 rounded-full stat-bar" style="width:95%;transform:scaleX(0);transform-origin:left" id="bar1a"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1"><span class="text-slate-500">Mit AIVANCE</span><span class="font-semibold text-blue-600">0.3 Sekunden</span></div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width:2%;transform:scaleX(0);transform-origin:left;transition:transform .8s ease .3s" id="bar1b"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Example -->
+      <div class="mt-8 grid sm:grid-cols-2 gap-4 reveal">
+        <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-4">Beispiel-Konversation</p>
+          <div class="space-y-3">
+            <div class="flex justify-end"><div class="bg-slate-900 text-white text-xs px-3 py-2 rounded-2xl rounded-tr-sm max-w-[80%]">Habt ihr vegane Optionen?</div></div>
+            <div class="flex justify-start"><div class="bg-slate-50 border border-slate-100 text-slate-700 text-xs px-3 py-2 rounded-2xl rounded-tl-sm max-w-[85%] leading-relaxed">Ja! Unsere Speisekarte bietet <strong>8 vegane Gerichte</strong>, darunter unser beliebtes Gemüse-Risotto und den Buddha Bowl. Alle veganen Optionen sind mit 🌱 markiert. Soll ich Ihnen die Karte zusenden?</div></div>
+            <div class="flex justify-end"><div class="bg-slate-900 text-white text-xs px-3 py-2 rounded-2xl rounded-tr-sm max-w-[80%]">Und kann ich für Samstag Abend reservieren?</div></div>
+            <div class="flex justify-start"><div class="bg-slate-50 border border-slate-100 text-slate-700 text-xs px-3 py-2 rounded-2xl rounded-tl-sm max-w-[85%] leading-relaxed">Samstag Abend haben wir noch <strong>freie Tische ab 19:00 Uhr</strong> für bis zu 6 Personen. Für wieviele Personen soll ich reservieren?</div></div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="bg-slate-900 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex gap-0.5 mb-4">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="text-white text-sm leading-relaxed italic">
+              "Seit AIVANCE können wir uns endlich auf das Wesentliche konzentrieren: unsere Gäste. Die KI beantwortet Anfragen schneller und präziser als wir es je manuell konnten. Ein echter Gamechanger für unser Team."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10">
+            <p class="text-white/80 text-xs font-semibold">Inhaber, Restaurant</p>
+            <p class="text-white/40 text-xs">Rhein-Neckar Region · Gastronomie</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="bg-white"><svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="display:block;width:100%;height:48px"><path d="M0,16 C480,48 960,0 1440,32 L1440,48 L0,48 Z" fill="#f8fafc"/></svg></div>
+
+  <!-- ══════════════════════════════════════════
+       CASE STUDY 2 — ONBOARDING
+  ══════════════════════════════════════════ -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-10 reveal">
+        <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xs font-black">02</div>
+        <div class="h-px flex-1 bg-slate-200"></div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Mittelstand · Rhein-Neckar</span>
+        <div class="h-px flex-1 bg-slate-200"></div>
+        <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ Abgeschlossen</span>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start mb-12">
+        <!-- Left: image / mockup -->
+        <div class="reveal order-2 lg:order-1">
+          <!-- Illustrated dashboard mockup -->
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
+            <!-- Topbar -->
+            <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50">
+              <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center text-white text-[9px] font-black">A</div>
+                <span class="text-xs font-bold text-slate-700">Onboarding Assistant</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-semibold">● Live</span>
+            </div>
+            <!-- Content -->
+            <div class="p-5">
+              <!-- Progress bar: Onboarding status -->
+              <div class="mb-5">
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="font-semibold text-slate-700">Max Mustermann · Tag 3</span>
+                  <span class="text-blue-600 font-semibold">60% abgeschlossen</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                  <div class="bg-blue-500 h-2 rounded-full" style="width:60%"></div>
+                </div>
+              </div>
+              <!-- Checklist -->
+              <div class="space-y-2 mb-5">
+                <div class="flex items-center gap-2.5 p-2.5 bg-emerald-50 rounded-lg border border-emerald-100">
+                  <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span class="text-xs text-slate-700">Arbeitsvertrag unterzeichnet</span>
+                </div>
+                <div class="flex items-center gap-2.5 p-2.5 bg-emerald-50 rounded-lg border border-emerald-100">
+                  <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span class="text-xs text-slate-700">IT-Zugänge eingerichtet</span>
+                </div>
+                <div class="flex items-center gap-2.5 p-2.5 bg-emerald-50 rounded-lg border border-emerald-100">
+                  <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span class="text-xs text-slate-700">Einführung Team abgeschlossen</span>
+                </div>
+                <div class="flex items-center gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="w-4 h-4 rounded border-2 border-slate-300 flex-shrink-0"></div>
+                  <span class="text-xs text-slate-500">Richtlinien-Schulung</span>
+                </div>
+                <div class="flex items-center gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="w-4 h-4 rounded border-2 border-slate-300 flex-shrink-0"></div>
+                  <span class="text-xs text-slate-500">Erstgespräch mit HR</span>
+                </div>
+              </div>
+              <!-- AI Q&A preview -->
+              <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2">KI-Agent Fragen & Antworten</p>
+                <div class="space-y-2">
+                  <div class="flex justify-end"><div class="bg-blue-600 text-white text-[10px] px-2.5 py-1.5 rounded-xl rounded-tr-sm">Wie viele Urlaubstage habe ich?</div></div>
+                  <div class="flex justify-start"><div class="bg-white border border-slate-200 text-slate-700 text-[10px] px-2.5 py-1.5 rounded-xl rounded-tl-sm leading-relaxed">Als Vollzeitkraft stehen Ihnen <strong>28 Urlaubstage</strong> pro Jahr zu. Im ersten Jahr anteilig ab Eintrittsdatum. Details im HR-Portal unter "Mein Urlaub".</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: info -->
+        <div class="reveal order-1 lg:order-2">
+          <h2 class="text-3xl font-black text-slate-900 mb-2">Onboarding System<br/>für Mittelständler</h2>
+          <p class="text-sm text-blue-600 font-semibold mb-5">RAG-System · Rhein-Neckar Region · B2B / HR</p>
+
+          <p class="text-slate-500 leading-relaxed mb-5 text-sm">
+            Mittelständische Unternehmen im Rhein-Neckar-Gebiet verloren pro neuen Mitarbeitenden durchschnittlich 3–4 Arbeitstage durch manuelles Onboarding — vom HR-Team bis zur Führungskraft. Repetitive Fragen zu Prozessen, Tools und Richtlinien blockierten das Team täglich.
+          </p>
+          <p class="text-slate-500 leading-relaxed mb-7 text-sm">
+            AIVANCE baute ein intelligentes Onboarding-RAG-System, das die gesamte Wissensbasis des Unternehmens indexiert. Neue Mitarbeitende erhalten sofort präzise Antworten — über Slack, Teams oder Web — ohne ein Ticket zu öffnen.
+          </p>
+
+          <div class="space-y-2 mb-6">
+            <p class="text-xs font-semibold text-slate-700 uppercase tracking-wide mb-3">Was wir gebaut haben</p>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">RAG-Index über alle Unternehmensrichtlinien, Prozesse und HR-Dokumente</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">Slack-Bot mit personalisiertem Onboarding-Plan und automatischer Fortschriftsverfolgung</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">Notion-Integration: Wissensbasis synchron und immer aktuell</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <p class="text-sm text-slate-600">HR-Dashboard: Überblick über alle laufenden Onboardings und offene Aufgaben</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-slate-600 text-xs font-semibold">RAG System</span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-slate-600 text-xs font-semibold">Notion API</span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-slate-600 text-xs font-semibold">Slack Bot</span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-slate-600 text-xs font-semibold">Claude 3.5</span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-slate-600 text-xs font-semibold">n8n Workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats for project 2 -->
+      <div class="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm reveal">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8 text-center">Messbare Ergebnisse nach 60 Tagen</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- KPI 1: HR Anfragen -->
+          <div class="text-center">
+            <div class="relative w-28 h-28 mx-auto mb-3">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e2e8f0" stroke-width="2.5"/>
+                <circle id="radial2" cx="18" cy="18" r="15.9" fill="none" stroke="#2563eb" stroke-width="2.5"
+                  stroke-dasharray="80 20" stroke-dashoffset="100" stroke-linecap="round"
+                  style="transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .2s"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-xl font-black text-slate-900">−80%</span>
+              </div>
+            </div>
+            <p class="text-sm font-bold text-slate-800">HR-Anfragen</p>
+            <p class="text-xs text-slate-400 mt-1">Self-Service durch KI-Agent</p>
+          </div>
+
+          <!-- KPI 2: Onboarding-Zeit -->
+          <div class="text-center">
+            <div class="relative w-28 h-28 mx-auto mb-3">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e2e8f0" stroke-width="2.5"/>
+                <circle id="radial3" cx="18" cy="18" r="15.9" fill="none" stroke="#10b981" stroke-width="2.5"
+                  stroke-dasharray="60 40" stroke-dashoffset="100" stroke-linecap="round"
+                  style="transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .4s"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-xl font-black text-slate-900">−3T</span>
+              </div>
+            </div>
+            <p class="text-sm font-bold text-slate-800">Onboarding-Zeit</p>
+            <p class="text-xs text-slate-400 mt-1">Von 7 auf 4 Tage reduziert</p>
+          </div>
+
+          <!-- KPI 3: Zufriedenheit -->
+          <div class="text-center">
+            <div class="relative w-28 h-28 mx-auto mb-3">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e2e8f0" stroke-width="2.5"/>
+                <circle id="radial4" cx="18" cy="18" r="15.9" fill="none" stroke="#f59e0b" stroke-width="2.5"
+                  stroke-dasharray="96 4" stroke-dashoffset="100" stroke-linecap="round"
+                  style="transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .6s"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-xl font-black text-slate-900">96%</span>
+              </div>
+            </div>
+            <p class="text-sm font-bold text-slate-800">Zufriedenheit</p>
+            <p class="text-xs text-slate-400 mt-1">Neue Mitarbeiter-Feedback</p>
+          </div>
+
+        </div>
+
+        <!-- Horizontal comparison bars -->
+        <div class="mt-8 pt-6 border-t border-slate-100 grid sm:grid-cols-2 gap-6">
+          <div>
+            <p class="text-xs font-semibold text-slate-600 mb-3">Fragen pro neuem Mitarbeiter (erste Woche)</p>
+            <div class="space-y-2">
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Vorher</span><span class="font-semibold text-slate-600">~42 HR-Anfragen</span></div>
+                <div class="bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width:95%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Mit AIVANCE</span><span class="font-semibold text-blue-600">~8 Anfragen</span></div>
+                <div class="bg-slate-100 rounded-full h-1.5"><div class="bg-blue-500 h-1.5 rounded-full" style="width:19%"></div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-slate-600 mb-3">Antwortgeschwindigkeit</p>
+            <div class="space-y-2">
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Vorher (HR-Team)</span><span class="font-semibold text-slate-600">2–48 Stunden</span></div>
+                <div class="bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width:98%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Mit AIVANCE KI</span><span class="font-semibold text-blue-600">Sofort</span></div>
+                <div class="bg-slate-100 rounded-full h-1.5"><div class="bg-blue-500 h-1.5 rounded-full" style="width:1%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="mt-6 bg-slate-900 rounded-2xl p-7 reveal">
+        <div class="flex gap-0.5 mb-4">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="text-white leading-relaxed italic mb-6">
+          "Unser HR-Team wurde täglich mit denselben Fragen überflutet. AIVANCE hat das vollständig gelöst. Neue Kollegen fühlen sich ab Tag 1 gut betreut und wir können uns auf strategische Aufgaben konzentrieren. Die Implementierung war professionell und schneller als erwartet."
+        </p>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-white/80 text-sm font-semibold">HR-Leitung</p>
+            <p class="text-white/40 text-xs">Mittelständisches Unternehmen · Rhein-Neckar Region</p>
+          </div>
+          <div class="flex gap-0.5">
+            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold">SR</div>
+            <div class="w-8 h-8 rounded-full bg-slate-600 -ml-1 flex items-center justify-center text-white text-xs font-bold">TH</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-white border-t border-slate-100">
+    <div class="max-w-3xl mx-auto px-5 text-center reveal">
+      <h2 class="text-3xl font-black text-slate-900 mb-3">Ihr Projekt als Nächstes?</h2>
+      <p class="text-slate-500 text-sm mb-8 max-w-md mx-auto">Wir analysieren Ihre Prozesse kostenlos und zeigen Ihnen konkret, wo KI-Automatisierung den größten Mehrwert bringt.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="index.html#contact" class="px-6 py-3 rounded-xl bg-slate-900 text-white font-semibold text-sm hover:bg-slate-700 transition-colors">
+          Kostenloses Erstgespräch →
+        </a>
+        <a href="index.html" class="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors">
+          Zurück zur Startseite
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-8">
+    <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+      <div class="flex items-center gap-2">
+        <img src="logo.jpg" alt="AIVANCE" class="h-5 w-5 rounded object-cover opacity-60" />
+        <span>© 2024 AIVANCE. Alle Rechte vorbehalten.</span>
+      </div>
+      <div class="flex gap-5">
+        <a href="index.html" class="hover:text-white transition-colors">Startseite</a>
+        <a href="projekte.html" class="text-white/70 font-medium">Projekte</a>
+        <a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a>
+        <a href="index.html#contact" class="hover:text-white transition-colors">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Radial + bar animations on scroll
+    const animIo = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        // Radial 1 (98% satisfaction)
+        const r1 = document.getElementById('radial1');
+        if (r1) { r1.style.strokeDashoffset = 100 - 95; }
+        const rn1 = document.getElementById('radialNum1');
+        if (rn1) animateNum(rn1, 95, '%');
+        // Radial 2,3,4 (project 2)
+        const r2 = document.getElementById('radial2');
+        const r3 = document.getElementById('radial3');
+        const r4 = document.getElementById('radial4');
+        if (r2) r2.style.strokeDashoffset = 20;
+        if (r3) r3.style.strokeDashoffset = 40;
+        if (r4) r4.style.strokeDashoffset = 4;
+        // Bar chart animation
+        document.querySelectorAll('.stat-bar').forEach(b => b.classList.add('animate'));
+        // Horizontal bars
+        const b1a = document.getElementById('bar1a');
+        const b1b = document.getElementById('bar1b');
+        if (b1a) b1a.style.transform = 'scaleX(1)';
+        if (b1b) b1b.style.transform = 'scaleX(1)';
+        animIo.disconnect();
+      });
+    }, { threshold: 0.2 });
+    animIo.observe(document.querySelector('section'));
+
+    function animateNum(el, target, suffix='') {
+      let cur = 0;
+      const step = target / 60;
+      const t = setInterval(() => {
+        cur += step;
+        if (cur >= target) { el.textContent = target + suffix; clearInterval(t); }
+        else el.textContent = Math.floor(cur) + suffix;
+      }, 16);
+    }
+
+    // Counter in hero
+    document.querySelectorAll('.counter').forEach(el => {
+      const t = parseInt(el.dataset.target);
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animateNum(el, t); obs.disconnect(); }
+        });
+      }, { threshold: 0.5 });
+      obs.observe(el);
+    });
+  </script>
+</body>
+</html>

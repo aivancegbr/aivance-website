@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIVANCE – Your AI. Your Data. Zero Limits.</title>
+  <meta name="description" content="AIVANCE entwickelt RAG-Systeme und Voice Agents für Unternehmen aller Branchen." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: { 600: '#2563eb', 700: '#1d4ed8' },
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            card: '0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06)',
+            phone: '0 32px 80px rgba(0,0,0,.18)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* floating animation for phone cards */
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .float { animation: float 4s ease-in-out infinite; }
+    .float-slow { animation: float 5.5s ease-in-out infinite 1s; }
+
+    /* fade in on scroll */
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* typing indicator */
+    @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+    .dot { width:5px; height:5px; border-radius:50%; background:#6b7280; display:inline-block; }
+    .dot:nth-child(1){animation:blink 1.2s ease infinite 0s}
+    .dot:nth-child(2){animation:blink 1.2s ease infinite .2s}
+    .dot:nth-child(3){animation:blink 1.2s ease infinite .4s}
+
+    /* waveform bars (voice) */
+    @keyframes wave { 0%,100%{height:4px} 50%{height:18px} }
+    .bar { width:3px; border-radius:2px; background:#2563eb; display:inline-block; margin:0 1px; }
+    .bar:nth-child(1){animation:wave 1s ease infinite 0s}
+    .bar:nth-child(2){animation:wave 1s ease infinite .1s}
+    .bar:nth-child(3){animation:wave 1s ease infinite .2s}
+    .bar:nth-child(4){animation:wave 1s ease infinite .3s}
+    .bar:nth-child(5){animation:wave 1s ease infinite .15s}
+    .bar:nth-child(6){animation:wave 1s ease infinite .05s}
+
+    /* pill badge */
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:99px; font-size:11px; font-weight:600; letter-spacing:.02em; }
+
+    /* active nav underline */
+    .nav-link { position:relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#2563eb; border-radius:2px; transition:width .2s; }
+    .nav-link:hover::after { width:100%; }
+
+    /* staggered reveal */
+    .reveal-1 { transition-delay:.05s; }
+    .reveal-2 { transition-delay:.12s; }
+    .reveal-3 { transition-delay:.19s; }
+    .reveal-4 { transition-delay:.26s; }
+    .reveal-5 { transition-delay:.33s; }
+    .reveal-6 { transition-delay:.40s; }
+
+    /* marquee ticker */
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-inner { animation: marquee 28s linear infinite; display:flex; width:max-content; }
+    .marquee-wrap { overflow:hidden; }
+    .marquee-wrap:hover .marquee-inner { animation-play-state:paused; }
+
+    /* dashboard toggle switch */
+    .toggle { position:relative; width:32px; height:18px; border-radius:99px; background:#e2e8f0; cursor:pointer; transition:background .2s; flex-shrink:0; }
+    .toggle.on { background:#2563eb; }
+    .toggle::after { content:''; position:absolute; top:3px; left:3px; width:12px; height:12px; border-radius:50%; background:white; transition:transform .2s; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+    .toggle.on::after { transform:translateX(14px); }
+
+    /* chart bar hover */
+    .chart-bar { transition: height .6s ease, opacity .3s; }
+    .chart-bar:hover { opacity:.7; }
+
+    /* flow line pulse */
+    @keyframes flowDash { to { stroke-dashoffset: -24; } }
+    .flow-dash { stroke-dasharray: 6 6; animation: flowDash 1s linear infinite; }
+
+    /* section divider wave */
+    .wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+
+    /* counter number */
+    .counter-num { display:inline-block; }
+
+    /* active agent highlight */
+    .agent-row { cursor:pointer; border-radius:12px; padding:8px 10px; transition:background .15s; }
+    .agent-row:hover { background:#f8fafc; }
+    .agent-row.active-agent { background:#eff6ff; }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- ═══════════ TOP BANNER ═══════════ -->
+<div class="bg-slate-900 text-white text-center py-2 text-xs font-medium tracking-wide">
+  AI that actually knows your business. &nbsp;·&nbsp;
+  <a href="#contact" class="underline underline-offset-2 hover:text-blue-300 transition-colors">Get started free →</a>
+</div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="navbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-shadow">
+  <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2.5">
+      <img src="logo.jpg" alt="AIVANCE" class="h-8 w-8 rounded-lg object-cover" />
+      <span class="font-black text-lg tracking-tight text-slate-900">AIVANCE</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#features" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Features</a>
+      <a href="#usecases" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Use Cases</a>
+      <a href="#integrations" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Integrations</a>
+      <a href="#projects" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Projekte</a>
+      <a href="#faq" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">FAQ</a>
+      <a href="#team" class="nav-link text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Team</a>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="#contact" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
+      <a href="#contact" class="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">Get Started</a>
+    </div>
+
+    <!-- Mobile burger -->
+    <button id="menuBtn" class="md:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-5 py-4 flex flex-col gap-3">
+    <a href="#features" class="text-sm font-medium text-slate-600 py-1">Features</a>
+    <a href="#usecases" class="text-sm font-medium text-slate-600 py-1">Use Cases</a>
+    <a href="#integrations" class="text-sm font-medium text-slate-600 py-1">Integrations</a>
+    <a href="#projects" class="text-sm font-medium text-slate-600 py-1">Projekte</a>
+    <a href="#faq" class="text-sm font-medium text-slate-600 py-1">FAQ</a>
+    <a href="#team" class="text-sm font-medium text-slate-600 py-1">Team</a>
+    <a href="#contact" class="mt-1 py-2 px-4 rounded-lg bg-slate-900 text-white text-sm font-semibold text-center">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="bg-white pt-16 pb-20 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Left -->
+    <div class="reveal">
+      <div class="pill bg-blue-50 text-blue-700 mb-5 border border-blue-100">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+        RAG Systems & Voice Agents
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl font-black leading-[1.08] tracking-tight text-slate-900 mb-5">
+        Your knowledge,<br/>
+        always<br/>
+        <span class="text-blue-600">on call.</span>
+      </h1>
+
+      <p class="text-lg text-slate-500 leading-relaxed mb-8 max-w-md">
+        AIVANCE builds RAG systems and Voice Agents that answer from your real business data — precise, secure, and live 24/7.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <a href="#contact" class="px-5 py-3 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors shadow-sm">
+          Book a free demo
+        </a>
+        <a href="#features" class="px-5 py-3 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-50 transition-colors">
+          Explore features →
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="flex gap-8 pt-8 border-t border-slate-100">
+        <div>
+          <p class="text-2xl font-black text-slate-900">98.2%</p>
+          <p class="text-xs text-slate-400 mt-0.5">Answer accuracy</p>
+        </div>
+        <div>
+          <p class="text-2xl font-black text-slate-900">&lt;0.4s</p>
+          <p class="text-xs text-slate-400 mt-0.5">Response time</p>
+        </div>
+        <div>
+          <p class="text-2xl font-black text-slate-900">24/7</p>
+          <p class="text-xs text-slate-400 mt-0.5">Always available</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Phone mockup -->
+    <div class="relative flex justify-center lg:justify-end reveal">
+
+      <!-- Phone frame -->
+      <div class="relative" style="width:270px">
+        <div class="relative rounded-[42px] bg-slate-900 p-[10px] shadow-phone">
+          <!-- Dynamic island -->
+          <div class="absolute top-[18px] left-1/2 -translate-x-1/2 w-[90px] h-[26px] bg-black rounded-full z-10"></div>
+          <!-- Screen -->
+          <div class="rounded-[34px] bg-slate-50 overflow-hidden" style="height:550px">
+            <!-- Status bar -->
+            <div class="flex items-center justify-between px-5 pt-10 pb-3">
+              <span class="text-[10px] font-semibold text-slate-400">9:41</span>
+              <div class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                <svg class="w-3 h-3 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33C16.4 22 17 21.4 17 20.67V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+              </div>
+            </div>
+            <!-- Chat header -->
+            <div class="flex items-center gap-2.5 px-4 pb-3 border-b border-slate-200">
+              <div class="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-slate-800">AIVANCE Assistant</p>
+                <div class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span class="text-[10px] text-emerald-600 font-medium">Online</span>
+                </div>
+              </div>
+            </div>
+            <!-- Chat messages -->
+            <div class="px-3 py-4 space-y-3 overflow-hidden" style="height:360px">
+              <!-- User msg -->
+              <div class="flex justify-end">
+                <div class="bg-blue-600 text-white text-[11px] px-3 py-2 rounded-2xl rounded-tr-sm max-w-[75%] leading-relaxed">
+                  Find all contracts with Müller GmbH from 2024.
+                </div>
+              </div>
+              <!-- AI response -->
+              <div class="flex justify-start">
+                <div class="bg-white border border-slate-100 text-slate-700 text-[11px] px-3 py-2 rounded-2xl rounded-tl-sm max-w-[85%] leading-relaxed shadow-sm">
+                  Found <strong>3 contracts</strong> with Müller GmbH from 2024: Framework agreement (valid until 12/2025), Monthly supply contract, Holiday special agreement. Total volume: €45,200. Show details?
+                </div>
+              </div>
+              <!-- User msg 2 -->
+              <div class="flex justify-end">
+                <div class="bg-blue-600 text-white text-[11px] px-3 py-2 rounded-2xl rounded-tr-sm max-w-[75%] leading-relaxed">
+                  How did our revenue change vs last month?
+                </div>
+              </div>
+              <!-- AI response 2 -->
+              <div class="flex justify-start">
+                <div class="bg-white border border-slate-100 text-slate-700 text-[11px] px-3 py-2 rounded-2xl rounded-tl-sm max-w-[85%] leading-relaxed shadow-sm">
+                  Revenue is up <strong>+12.4%</strong> (€48,320 → €54,315). Main drivers: +23% evening bookings, +15% lunch. Recommendation: expand evening capacity.
+                </div>
+              </div>
+              <!-- Typing indicator -->
+              <div class="flex justify-start">
+                <div class="bg-white border border-slate-100 px-3 py-2.5 rounded-2xl rounded-tl-sm shadow-sm flex gap-1 items-center">
+                  <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Input bar -->
+            <div class="px-3">
+              <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-3 py-2 shadow-sm">
+                <input class="flex-1 bg-transparent text-[11px] text-slate-400 outline-none" placeholder="Ask anything…" readonly />
+                <div class="w-6 h-6 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge 1 -->
+        <div class="float absolute -right-12 top-16 bg-white rounded-2xl shadow-card px-3 py-2.5 border border-slate-100 w-40">
+          <p class="text-[10px] text-slate-400 mb-1">Knowledge retrieved</p>
+          <div class="flex items-center gap-1.5">
+            <div class="w-5 h-5 rounded-md bg-emerald-100 flex items-center justify-center">
+              <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-xs font-bold text-slate-800">0 hallucinations</span>
+          </div>
+        </div>
+
+        <!-- Floating badge 2 -->
+        <div class="float-slow absolute -left-12 bottom-32 bg-white rounded-2xl shadow-card px-3 py-2.5 border border-slate-100 w-36">
+          <p class="text-[10px] text-slate-400 mb-1.5">Response time</p>
+          <p class="text-xl font-black text-slate-900">0.3s</p>
+          <div class="w-full bg-slate-100 rounded-full h-1 mt-1.5">
+            <div class="bg-blue-500 h-1 rounded-full" style="width:30%"></div>
+          </div>
+        </div>
+
+        <!-- Floating badge 3 -->
+        <div class="float absolute -right-10 bottom-20 bg-white rounded-2xl shadow-card px-3 py-2.5 border border-slate-100">
+          <p class="text-[10px] text-slate-400 mb-1">Voice Agent</p>
+          <div class="flex items-end gap-0.5 h-5">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUSTED BY / PARTNERS ═══════════ -->
+<section class="border-y border-slate-100 bg-slate-50 py-10">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="text-center text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6">Trusted technology partners</p>
+    <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+      <!-- Logos as styled text, matching template's logo-bar -->
+      <span class="text-sm font-bold text-slate-300 tracking-wide">OpenAI</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">Anthropic</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">LangChain</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">Pinecone</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">n8n</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">Supabase</span>
+      <span class="text-slate-200">·</span>
+      <span class="text-sm font-bold text-slate-300 tracking-wide">Twilio</span>
+    </div>
+  </div>
+</section>
+
+<!-- wave divider -->
+<div class="wave-divider bg-slate-50" style="height:48px;background:white">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="display:block;width:100%;height:48px"><path d="M0,32 C360,0 1080,48 1440,16 L1440,48 L0,48 Z" fill="#f8fafc"/></svg>
+</div>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section id="features" class="py-20 bg-slate-50/50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Core Technology</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Streamline operations<br/>with smart AI features</h2>
+      <p class="text-slate-500 max-w-md mx-auto text-sm leading-relaxed">RAG prevents wrong answers by grounding every response in your real company data — no guessing, no hallucinations.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- F1: RAG Engine -->
+      <div class="reveal reveal-1 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 mb-1.5 text-sm">RAG Knowledge Engine</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Retrieval-Augmented Generation. Every answer is pulled from your documents, PDFs, databases and wikis — not from generic model knowledge.</p>
+        <!-- Mini UI -->
+        <div class="bg-slate-50 rounded-xl p-3 space-y-1.5">
+          <div class="flex items-center justify-between text-[10px]">
+            <span class="text-slate-400">Sources scanned</span>
+            <span class="font-bold text-slate-700">1,240 docs</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-blue-500 h-1 rounded-full" style="width:92%"></div>
+          </div>
+          <p class="text-[10px] text-slate-400">Confidence: 98.2%</p>
+        </div>
+      </div>
+
+      <!-- F2: Voice Agent -->
+      <div class="reveal reveal-2 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 mb-1.5 text-sm">Voice Agents</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Natural-sounding AI phone agents that handle calls, answer questions, and route conversations — powered by your knowledge base.</p>
+        <div class="bg-slate-50 rounded-xl p-3 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <div class="flex items-end gap-0.5 h-4">
+              <span class="bar" style="background:#7c3aed"></span>
+              <span class="bar" style="background:#7c3aed"></span>
+              <span class="bar" style="background:#7c3aed"></span>
+              <span class="bar" style="background:#7c3aed"></span>
+              <span class="bar" style="background:#7c3aed"></span>
+              <span class="bar" style="background:#7c3aed"></span>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-1">Live call · 00:42</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- F3: Smart Routing -->
+      <div class="reveal reveal-3 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 mb-1.5 text-sm">Automated Reporting</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Weekly KPI reports, CRM summaries, and status updates delivered automatically via Email or Slack — no manual effort.</p>
+        <div class="bg-slate-50 rounded-xl p-3 space-y-1.5">
+          <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div><span class="text-[10px] text-slate-600">Weekly report sent · Slack</span></div>
+          <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div><span class="text-[10px] text-slate-600">CRM sync complete · HubSpot</span></div>
+          <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div><span class="text-[10px] text-slate-600">Next report in 6h</span></div>
+        </div>
+      </div>
+
+      <!-- F4: Data Privacy -->
+      <div class="reveal reveal-4 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 mb-1.5 text-sm">Data Privacy</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Your data is never used for model training. Everything stays inside your secure environment. GDPR-compliant by design.</p>
+        <div class="flex gap-2">
+          <span class="pill bg-emerald-50 text-emerald-700 border border-emerald-100 text-[10px]">GDPR</span>
+          <span class="pill bg-blue-50 text-blue-700 border border-blue-100 text-[10px]">ISO 27001</span>
+          <span class="pill bg-slate-50 text-slate-600 border border-slate-100 text-[10px]">SOC 2</span>
+        </div>
+      </div>
+
+      <!-- F5: No Hallucinations -->
+      <div class="reveal reveal-5 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 mb-1.5 text-sm">No Hallucinations</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">RAG prevents AI from making up answers. If the answer isn't in your data, AIVANCE says so — instead of guessing wrong.</p>
+        <div class="bg-slate-50 rounded-xl p-3">
+          <div class="flex justify-between text-[10px] mb-1">
+            <span class="text-slate-400">Grounded responses</span>
+            <span class="font-bold text-slate-700">100%</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-emerald-500 h-1 rounded-full" style="width:100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F6: Setup -->
+      <div class="reveal reveal-6 bg-slate-900 text-white rounded-2xl p-6 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-bold mb-1.5 text-sm">Live in 2–4 Weeks</h3>
+        <p class="text-xs text-white/60 leading-relaxed mb-4">From kickoff to production in weeks, not months. We handle deployment, integration, and team training.</p>
+        <div class="bg-white/10 rounded-xl p-3">
+          <p class="text-[10px] text-white/50 mb-1">Average time to value</p>
+          <p class="text-2xl font-black">17 days</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INTEGRATIONS ═══════════ -->
+<section id="integrations" class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Integrations</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Powerful integrations,<br/>effortless setup</h2>
+      <p class="text-slate-500 max-w-md mx-auto text-sm leading-relaxed">Connect AIVANCE to the tools your team already uses. Our open API and pre-built connectors make integration seamless.</p>
+    </div>
+
+    <!-- Marquee ticker of integrations -->
+    <div class="marquee-wrap mb-10 reveal">
+      <div class="marquee-inner gap-4 py-2">
+        <!-- Set 1 -->
+        <div class="flex gap-4 mr-4">
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Slack real logo -->
+            <svg class="w-8 h-8" viewBox="0 0 124 124" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.3 78.5a13.15 13.15 0 01-13.1 13.1A13.15 13.15 0 010 78.5a13.15 13.15 0 0113.2-13.1h13.1v13.1zm6.6 0a13.15 13.15 0 0113.1-13.1 13.15 13.15 0 0113.1 13.1v32.8a13.15 13.15 0 01-13.1 13.1 13.15 13.15 0 01-13.1-13.1V78.5z" fill="#E01E5A"/><path d="M46 26.3a13.15 13.15 0 01-13.1-13.1A13.15 13.15 0 0146 0a13.15 13.15 0 0113.1 13.2v13.1H46zm0 6.6a13.15 13.15 0 0113.1 13.1A13.15 13.15 0 0146 59.1H13.2A13.15 13.15 0 010 46a13.15 13.15 0 0113.2-13.1H46z" fill="#36C5F0"/><path d="M98.5 46a13.15 13.15 0 0113.1-13.1A13.15 13.15 0 01124.7 46a13.15 13.15 0 01-13.1 13.1H98.5V46zm-6.6 0a13.15 13.15 0 01-13.1 13.1A13.15 13.15 0 0165.7 46V13.2A13.15 13.15 0 0178.8 0a13.15 13.15 0 0113.1 13.2V46z" fill="#2EB67D"/><path d="M78.8 98.5a13.15 13.15 0 0113.1 13.1 13.15 13.15 0 01-13.1 13.1 13.15 13.15 0 01-13.1-13.1V98.5h13.1zm0-6.6a13.15 13.15 0 01-13.1-13.1 13.15 13.15 0 0113.1-13.1h32.8a13.15 13.15 0 0113.1 13.1 13.15 13.15 0 01-13.1 13.1H78.8z" fill="#ECB22E"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Slack</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- HubSpot real logo -->
+            <svg class="w-8 h-8" viewBox="0 0 512 512" fill="none"><path d="M267.4 188.2V127c19.3-8 32.9-26.9 32.9-48.9C300.3 50.6 277.8 28 250.3 28s-50 22.6-50 50.1c0 22 13.6 40.9 32.9 48.9v61.2c-23.9 3.7-45.5 13.7-62.6 28.5l-168-126c1.2-4.4 1.9-9 1.9-13.8C4.5 51.7-16.2 31-41.4 31S-87.3 51.7-87.3 77s20.7 46 46 46c11.9 0 22.8-4.6 30.9-12l165.1 123.7c-8.2 15.6-12.9 33.4-12.9 52.2 0 61.1 49.5 110.7 110.6 110.7 61 0 110.5-49.6 110.5-110.7-.1-57.8-44.3-105.4-100.5-109.7zm-17 166.3c-31.1 0-56.3-25.2-56.3-56.3s25.2-56.3 56.3-56.3 56.3 25.2 56.3 56.3-25.2 56.3-56.3 56.3z" fill="#FF7A59"/></svg>
+            <span class="text-sm font-semibold text-slate-700">HubSpot</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Notion real N -->
+            <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="18" fill="black"/><path d="M20 22c0-3.3 2.6-5.8 5.9-6l41.4-3.1c5.1-.4 7.7 3 7.7 7.3v49.4c0 4.2-2.8 7.4-7.7 7.4H25.9c-5.1 0-5.9-3.2-5.9-7.4V22z" fill="white"/><path d="M45 33l17.5-1.3c1.6-.1 2 .4 2 1.6v24.8c0 1.6-.4 2.5-2 2.6L36 62c-2.4.2-3.4-.6-3.4-2.4V38c0-2.4.8-4 3.4-4.4L45 33z" fill="#1A1A1A"/><path d="M37 40.2l-.6-.4c-.7-.5-.5-1.2.6-1.2l18-.4c1.4 0 1.6.8.6 1.3l-1 .6c-.7.4-1.8.5-2.5.2L45 38.5l-5.7 1.8c-.7.2-1.7.2-2.3-.1z" fill="white"/><path d="M37 51v-7.5l15 .3v7.5L37 51z" fill="#F5F5F5"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Notion</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Google colorful G -->
+            <svg class="w-8 h-8" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Google Workspace</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Salesforce cloud -->
+            <svg class="w-8 h-8" viewBox="0 0 60 42" fill="none"><path d="M24.9 4.4a13.1 13.1 0 019.7-4.4C39.5 0 43.9 3 46.3 7.4a12.4 12.4 0 014.2-.7c6.4 0 11.5 5.2 11.5 11.5S57 29.7 50.5 29.7H10.3C4.6 29.7 0 25.1 0 19.4c0-5.1 3.6-9.4 8.5-10.3a10.4 10.4 0 0116.4-4.7z" fill="#00A1E0"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Salesforce</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- MS Teams T -->
+            <svg class="w-8 h-8" viewBox="0 0 2228.833 2073.333" fill="none"><path d="M1554.637 777.5h575.713c54.391 0 98.483 44.092 98.483 98.483v524.398c0 199.901-162.051 361.952-361.952 361.952h-1.711c-199.901.028-361.975-162.023-361.975-361.924V828.971a51.47 51.47 0 0151.442-51.471z" fill="#5059C9"/><circle cx="1943.75" cy="440.583" r="233.25" fill="#5059C9"/><circle cx="1218.083" cy="336.917" r="336.917" fill="#7B83EB"/><path d="M1667.323 777.5H717.01c-53.743 1.33-96.257 45.931-94.927 99.675v598.399c-7.825 322.914 247.766 590.812 570.681 598.638 322.914-7.826 578.505-275.724 570.68-598.638V877.175c1.33-53.744-41.185-98.345-94.927-99.675z" fill="#7B83EB"/><path opacity=".1" d="M1243 777.5v838.145c-.38 44.966-27.667 85.378-69.383 103.118a110.5 110.5 0 01-42.617 8.632H838.145c-6.667-17.333-12.772-34.667-17.638-52.5-19.502-69.065-29.502-140.498-29.833-212.5V877.097c-1.33-53.685 41.13-98.24 94.815-99.597H1243z" fill="black"/><path opacity=".2" d="M1190.5 777.5v891.042c0 20.567-2.873 40.999-8.632 60.5a110.5 110.5 0 01-103.118 80.958H862.638a341.498 341.498 0 01-24.13-52.5 353.9 353.9 0 01-17.638-52.5c-19.502-69.065-29.502-140.498-29.833-212.5V877.097c-1.33-53.685 41.13-98.24 94.815-99.597H1190.5z" fill="black"/><path d="M1192.167 777.5V1668.542c0 56.401-45.715 102.115-102.115 102.115H885.77c-50.153-119.443-56.918-252.24-18.981-376.279V877.097c-1.33-53.685 41.13-98.24 94.815-99.597h230.563z" fill="#7B83EB"/><rect x=".5" y="777.5" width="1191.667" height="1191.667" rx="109.15" fill="#4B53BC"/><path d="M715.073 1081.017H630.5v517.642H524.143v-517.642H440.5v-98.883h274.573v98.883z" fill="white"/></svg>
+            <span class="text-sm font-semibold text-slate-700">MS Teams</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- WhatsApp -->
+            <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#25D366"/><path fill="white" d="M34.5 13.4C31.8 10.7 28.1 9.2 24.2 9.2c-8.1 0-14.7 6.6-14.7 14.7 0 2.6.7 5.1 2 7.3L9.3 38.8l7.8-2c2.1 1.1 4.5 1.8 6.9 1.8h.1c8.1 0 14.7-6.6 14.7-14.7.1-3.9-1.5-7.6-4.3-10.5zm-10.3 22.6c-2.2 0-4.4-.6-6.3-1.7l-.4-.3-4.6 1.2 1.2-4.5-.3-.5c-1.2-2-1.8-4.2-1.8-6.5 0-6.8 5.5-12.3 12.3-12.3 3.3 0 6.4 1.3 8.7 3.6 2.3 2.3 3.6 5.4 3.6 8.7-.1 6.7-5.6 12.3-12.4 12.3zm6.7-9.2c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.4-.2.2-.4.2-.8 0-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.2-.4.4-.7.1-.2 0-.5-.1-.7-.2-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.3 3.4 1.4 3.6c.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z"/></svg>
+            <span class="text-sm font-semibold text-slate-700">WhatsApp API</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Pipedrive -->
+            <svg class="w-8 h-8" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#1A1A2E"/><text x="13" y="38" font-size="28" font-weight="900" fill="#26C840" font-family="Arial">P</text></svg>
+            <span class="text-sm font-semibold text-slate-700">Pipedrive</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Airtable -->
+            <svg class="w-8 h-8" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="30" fill="#FCB400"/><path d="M97 47l-71.5 28.5c-3 1.2-3 5.5 0 6.7L97 110.7c2 .8 4.2.8 6.2 0l71.5-28.5c3-1.2 3-5.5 0-6.7L103.2 47c-2-.8-4.2-.8-6.2 0z" fill="white"/><path d="M106 120.5V174c0 2.8 2.9 4.7 5.5 3.6l72-29.6c1.5-.6 2.5-2.1 2.5-3.6v-53.5c0-2.8-2.9-4.7-5.5-3.6l-72 29.6c-1.5.6-2.5 2.1-2.5 3.6z" fill="white" opacity=".8"/><path d="M89.5 123.3l-24 11.5-10.5 4.7-28.5-13.7c-2.4-1.1-4.5.7-4.5 3.3v49.5c0 2 1.3 3.7 3.2 4.2.5.2 1 .2 1.5.1l62.8-24.3c2.1-.8 3.5-2.8 3.5-5.1v-27.5c0-2.5-2.3-4.3-4.5-3.3l2 .6z" fill="white" opacity=".5"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Airtable</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- n8n -->
+            <svg class="w-8 h-8" viewBox="0 0 60 60" fill="none"><rect width="60" height="60" rx="14" fill="#EA4B35"/><text x="10" y="42" font-size="22" font-weight="900" fill="white" font-family="monospace">n8n</text></svg>
+            <span class="text-sm font-semibold text-slate-700">n8n</span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0 hover:-translate-y-0.5 transition-transform">
+            <!-- Twilio -->
+            <svg class="w-8 h-8" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="#F22F46"/><circle cx="22" cy="22" r="5" fill="white"/><circle cx="38" cy="22" r="5" fill="white"/><circle cx="22" cy="38" r="5" fill="white"/><circle cx="38" cy="38" r="5" fill="white"/></svg>
+            <span class="text-sm font-semibold text-slate-700">Twilio</span>
+          </div>
+
+        </div>
+        <!-- Set 2 (duplicate for infinite loop) -->
+        <div class="flex gap-4 mr-4" aria-hidden="true">
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 124 124" fill="none"><path d="M26.3 78.5a13.15 13.15 0 01-13.1 13.1A13.15 13.15 0 010 78.5a13.15 13.15 0 0113.2-13.1h13.1v13.1zm6.6 0a13.15 13.15 0 0113.1-13.1 13.15 13.15 0 0113.1 13.1v32.8a13.15 13.15 0 01-13.1 13.1 13.15 13.15 0 01-13.1-13.1V78.5z" fill="#E01E5A"/><path d="M46 26.3a13.15 13.15 0 01-13.1-13.1A13.15 13.15 0 0146 0a13.15 13.15 0 0113.1 13.2v13.1H46zm0 6.6a13.15 13.15 0 0113.1 13.1A13.15 13.15 0 0146 59.1H13.2A13.15 13.15 0 010 46a13.15 13.15 0 0113.2-13.1H46z" fill="#36C5F0"/><path d="M98.5 46a13.15 13.15 0 0113.1-13.1A13.15 13.15 0 01124.7 46a13.15 13.15 0 01-13.1 13.1H98.5V46zm-6.6 0a13.15 13.15 0 01-13.1 13.1A13.15 13.15 0 0165.7 46V13.2A13.15 13.15 0 0178.8 0a13.15 13.15 0 0113.1 13.2V46z" fill="#2EB67D"/><path d="M78.8 98.5a13.15 13.15 0 0113.1 13.1 13.15 13.15 0 01-13.1 13.1 13.15 13.15 0 01-13.1-13.1V98.5h13.1zm0-6.6a13.15 13.15 0 01-13.1-13.1 13.15 13.15 0 0113.1-13.1h32.8a13.15 13.15 0 0113.1 13.1 13.15 13.15 0 01-13.1 13.1H78.8z" fill="#ECB22E"/></svg><span class="text-sm font-semibold text-slate-700">Slack</span></div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span class="text-sm font-semibold text-slate-700">Google</span></div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="#F22F46"/><circle cx="22" cy="22" r="5" fill="white"/><circle cx="38" cy="22" r="5" fill="white"/><circle cx="22" cy="38" r="5" fill="white"/><circle cx="38" cy="38" r="5" fill="white"/></svg><span class="text-sm font-semibold text-slate-700">Twilio</span></div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 60 60" fill="none"><rect width="60" height="60" rx="14" fill="#EA4B35"/><text x="10" y="42" font-size="22" font-weight="900" fill="white" font-family="monospace">n8n</text></svg><span class="text-sm font-semibold text-slate-700">n8n</span></div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#25D366"/><path fill="white" d="M34.5 13.4C31.8 10.7 28.1 9.2 24.2 9.2c-8.1 0-14.7 6.6-14.7 14.7 0 2.6.7 5.1 2 7.3L9.3 38.8l7.8-2c2.1 1.1 4.5 1.8 6.9 1.8h.1c8.1 0 14.7-6.6 14.7-14.7.1-3.9-1.5-7.6-4.3-10.5z"/></svg><span class="text-sm font-semibold text-slate-700">WhatsApp</span></div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-4 flex items-center gap-3 flex-shrink-0"><svg class="w-8 h-8" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="30" fill="#FCB400"/><path d="M97 47l-71.5 28.5c-3 1.2-3 5.5 0 6.7L97 110.7c2 .8 4.2.8 6.2 0l71.5-28.5c3-1.2 3-5.5 0-6.7L103.2 47c-2-.8-4.2-.8-6.2 0z" fill="white"/><path d="M106 120.5V174c0 2.8 2.9 4.7 5.5 3.6l72-29.6c1.5-.6 2.5-2.1 2.5-3.6v-53.5c0-2.8-2.9-4.7-5.5-3.6l-72 29.6c-1.5.6-2.5 2.1-2.5 3.6z" fill="white" opacity=".8"/></svg><span class="text-sm font-semibold text-slate-700">Airtable</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- API hint -->
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-card p-6 max-w-2xl mx-auto text-center reveal">
+      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">REST API & Webhooks</p>
+      <p class="text-sm text-slate-600 mb-4">Don't see your tool? Our open REST API and webhook system connects AIVANCE to any platform. Full documentation included.</p>
+      <div class="bg-slate-900 rounded-xl p-4 text-left font-mono text-xs text-emerald-400 overflow-x-auto">
+        <span class="text-slate-500">POST</span> <span class="text-white">/api/v1/query</span><br/>
+        <span class="text-slate-500">Authorization:</span> <span class="text-amber-400">Bearer YOUR_API_KEY</span><br/>
+        <span class="text-slate-500">Content-Type:</span> <span class="text-white">application/json</span><br/><br/>
+        <span class="text-slate-400">{"query": "What is our Q1 revenue?", "context": "finance"}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DASHBOARD / CONTROL CENTER ═══════════ -->
+<section id="usecases" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Control Center</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">One dashboard.<br/>All your agents.</h2>
+      <p class="text-slate-500 text-sm max-w-md mx-auto">Deploy, monitor and control every RAG system and Voice Agent from a single, clean interface — in real time.</p>
+    </div>
+
+    <!-- Dashboard mockup -->
+    <div class="reveal bg-white rounded-3xl border border-slate-200 shadow-phone overflow-hidden">
+
+      <!-- Dashboard topbar -->
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 bg-slate-50">
+        <div class="flex items-center gap-2">
+          <img src="logo.jpg" alt="AIVANCE" class="h-5 w-5 rounded object-cover" />
+          <span class="text-xs font-bold text-slate-700">AIVANCE Control Center</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] text-slate-500 font-medium">All systems live</span>
+          </div>
+          <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] font-bold">AK</div>
+        </div>
+      </div>
+
+      <div class="flex" style="min-height:500px">
+
+        <!-- Left sidebar: agent list -->
+        <div class="w-52 border-r border-slate-100 bg-slate-50 p-3 flex flex-col gap-1 flex-shrink-0">
+          <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest px-2 mb-2 mt-1">Active Agents</p>
+
+          <div class="agent-row active-agent flex items-center gap-2.5" onclick="selectAgent(this,'cs')" id="agent-cs">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate">Customer Service</p>
+              <p class="text-[10px] text-slate-400">RAG · Chat</p>
+            </div>
+            <div class="toggle on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+          </div>
+
+          <div class="agent-row flex items-center gap-2.5" onclick="selectAgent(this,'sales')" id="agent-sales">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate">Sales Qualifier</p>
+              <p class="text-[10px] text-slate-400">Voice · Outbound</p>
+            </div>
+            <div class="toggle on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+          </div>
+
+          <div class="agent-row flex items-center gap-2.5" onclick="selectAgent(this,'hr')" id="agent-hr">
+            <div class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate">HR Onboarding</p>
+              <p class="text-[10px] text-slate-400">RAG · Chat + Voice</p>
+            </div>
+            <div class="toggle" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+          </div>
+
+          <div class="agent-row flex items-center gap-2.5" onclick="selectAgent(this,'legal')" id="agent-legal">
+            <div class="w-2 h-2 rounded-full bg-slate-300 flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate">Legal RAG</p>
+              <p class="text-[10px] text-slate-400">RAG · Internal</p>
+            </div>
+            <div class="toggle" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+          </div>
+
+          <div class="agent-row flex items-center gap-2.5" onclick="selectAgent(this,'fin')" id="agent-fin">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate">Finance Analyst</p>
+              <p class="text-[10px] text-slate-400">RAG · Reports</p>
+            </div>
+            <div class="toggle on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+          </div>
+
+          <div class="mt-auto px-2 pb-1">
+            <button class="w-full py-2 rounded-xl border border-dashed border-slate-300 text-[10px] text-slate-400 font-semibold hover:border-blue-400 hover:text-blue-500 transition-colors">
+              + Add Agent
+            </button>
+          </div>
+        </div>
+
+        <!-- Main panel -->
+        <div class="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
+
+          <!-- KPI row -->
+          <div class="grid grid-cols-4 gap-3">
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <p class="text-[10px] text-slate-400 mb-1">Queries today</p>
+              <p class="text-xl font-black text-slate-900 counter-num" data-target="1247">0</p>
+              <p class="text-[10px] text-emerald-500 font-semibold mt-0.5">↑ 14% vs yesterday</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <p class="text-[10px] text-slate-400 mb-1">Avg. response</p>
+              <p class="text-xl font-black text-slate-900">0.31s</p>
+              <p class="text-[10px] text-emerald-500 font-semibold mt-0.5">↓ 8ms faster</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <p class="text-[10px] text-slate-400 mb-1">Accuracy</p>
+              <p class="text-xl font-black text-slate-900">98.2%</p>
+              <p class="text-[10px] text-blue-500 font-semibold mt-0.5">— stable</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <p class="text-[10px] text-slate-400 mb-1">Active agents</p>
+              <p class="text-xl font-black text-slate-900">3 / 5</p>
+              <p class="text-[10px] text-slate-400 font-semibold mt-0.5">2 in training</p>
+            </div>
+          </div>
+
+          <!-- Chart + Chat split -->
+          <div class="grid grid-cols-5 gap-4 flex-1">
+
+            <!-- Bar chart (7-day query volume) -->
+            <div class="col-span-3 bg-slate-50 rounded-xl border border-slate-100 p-4 flex flex-col">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-bold text-slate-700">Query volume – last 7 days</p>
+                <span class="pill bg-blue-50 text-blue-600 border border-blue-100 text-[10px]">Customer Service</span>
+              </div>
+              <!-- SVG bar chart -->
+              <div class="flex-1 flex items-end gap-2 px-1" style="min-height:90px">
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-200 chart-bar" style="height:55%"></div>
+                  <span class="text-[9px] text-slate-400">Mon</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-300 chart-bar" style="height:70%"></div>
+                  <span class="text-[9px] text-slate-400">Tue</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-400 chart-bar" style="height:62%"></div>
+                  <span class="text-[9px] text-slate-400">Wed</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-300 chart-bar" style="height:80%"></div>
+                  <span class="text-[9px] text-slate-400">Thu</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-500 chart-bar" style="height:90%"></div>
+                  <span class="text-[9px] text-slate-400">Fri</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-200 chart-bar" style="height:45%"></div>
+                  <span class="text-[9px] text-slate-400">Sat</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 flex-1">
+                  <div class="w-full rounded-t-md bg-blue-600 chart-bar" style="height:100%"></div>
+                  <span class="text-[9px] text-slate-700 font-semibold">Sun</span>
+                </div>
+              </div>
+              <!-- Live feed -->
+              <div class="mt-3 pt-3 border-t border-slate-200 space-y-1.5" id="liveFeed">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] text-slate-500 truncate">"What is our return policy?"</span>
+                  <span class="text-[10px] text-slate-400 flex-shrink-0 ml-2">0.28s</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] text-slate-500 truncate">"Track order #4821"</span>
+                  <span class="text-[10px] text-slate-400 flex-shrink-0 ml-2">0.31s</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] text-slate-500 truncate">"Escalate to human agent"</span>
+                  <span class="text-[10px] text-emerald-500 flex-shrink-0 ml-2 font-semibold">routed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live chat preview (interactive) -->
+            <div class="col-span-2 bg-white rounded-xl border border-slate-200 flex flex-col overflow-hidden">
+              <div class="flex items-center gap-2 px-3 py-2.5 border-b border-slate-100 bg-slate-50">
+                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                <p class="text-[10px] font-bold text-slate-700">Live Preview · Customer Service</p>
+              </div>
+              <div class="flex-1 px-3 py-3 space-y-2 overflow-y-auto" id="chatWindow" style="max-height:200px">
+                <div class="flex justify-end"><div class="bg-blue-600 text-white text-[10px] px-2.5 py-1.5 rounded-xl rounded-tr-sm max-w-[80%]">What's your refund policy?</div></div>
+                <div class="flex justify-start"><div class="bg-slate-50 border border-slate-100 text-slate-700 text-[10px] px-2.5 py-1.5 rounded-xl rounded-tl-sm max-w-[85%] leading-relaxed">Our refund policy allows returns within <strong>30 days</strong> of purchase. Items must be unused and in original packaging. Refunds are processed within 3–5 business days.</div></div>
+                <div class="flex justify-end"><div class="bg-blue-600 text-white text-[10px] px-2.5 py-1.5 rounded-xl rounded-tr-sm max-w-[80%]">What about digital products?</div></div>
+                <div class="flex justify-start" id="typingRow"><div class="bg-slate-50 border border-slate-100 px-2.5 py-2 rounded-xl rounded-tl-sm flex gap-1 items-center"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+              </div>
+              <!-- Chat input -->
+              <div class="p-2 border-t border-slate-100">
+                <form onsubmit="sendChatMsg(event)" class="flex items-center gap-2 bg-slate-50 rounded-lg px-2 py-1.5 border border-slate-200">
+                  <input id="chatInput" type="text" placeholder="Test your agent…" class="flex-1 bg-transparent text-[10px] text-slate-600 outline-none placeholder-slate-300" />
+                  <button type="submit" class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA below dashboard -->
+    <div class="text-center mt-8 reveal">
+      <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+        Book a live demo →
+      </a>
+      <p class="text-xs text-slate-400 mt-3">No credit card required · Setup in 17 days on average</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJEKTE (nur CTA zur Unterseite) ═══════════ -->
+<section id="projects" class="py-16 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Referenzen</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Echte Ergebnisse für echte Unternehmen</h2>
+      <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed mb-8">
+        Wir haben bereits erfolgreich zusammengearbeitet und messbare Verbesserungen erzielt — Gastronomie, Mittelstand, und mehr.
+      </p>
+      <a href="projekte.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+        Alle Case Studies ansehen →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ TEAM ═══════════ -->
+<section id="team" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">The Team</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">The minds behind AIVANCE</h2>
+      <p class="text-slate-500 text-sm max-w-md mx-auto">We're your partner for intelligent automation and digital transformation — with real AI expertise, not just buzzwords.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto reveal">
+
+      <!-- Ayman Karim -->
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 overflow-hidden">
+          <img src="profileayman.jpeg" alt="Ayman Karim" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Ayman Karim</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Founder & CEO / COO</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Responsible for strategic direction and operational excellence at AIVANCE. Extensive experience in AI integration and business process optimization.</p>
+          <a href="mailto:ayman.karim@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">ayman.karim@ai-vance.de</a>
+        </div>
+      </div>
+
+      <!-- Ajay Nagulendran -->
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 flex items-center justify-center">
+          <span class="text-4xl font-black text-slate-300">AN</span>
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Ajay Nagulendran</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Co-Founder & CTO / CCO</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Leads technology development and cloud infrastructure. Expert for scalable AI systems and modern software architecture.</p>
+          <a href="mailto:ajay.nagulendran@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">ajay.nagulendran@ai-vance.de</a>
+        </div>
+      </div>
+
+      <!-- Cyrus Lang -->
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 flex items-center justify-center">
+          <span class="text-4xl font-black text-slate-300">CL</span>
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Cyrus Lang</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Head of Expansion & US Markets</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Drives AIVANCE's international growth with a focus on the North American market. Builds strategic partnerships and leads client acquisition in the US.</p>
+          <a href="mailto:cyrus.lang@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">cyrus.lang@ai-vance.de</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq" class="py-20 bg-slate-50">
+  <div class="max-w-2xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">All you need to know</h2>
+    </div>
+    <div class="space-y-2 reveal">
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">What exactly is a RAG system?</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">Retrieval-Augmented Generation (RAG) is an AI architecture that answers questions by first retrieving relevant information from your own documents, databases or knowledge bases — and then generating a response based on that data. This means no hallucinations, no generic answers — only verified, grounded responses from your business data.</p></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">How long does implementation take?</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">On average 17 days from kickoff to go-live. We handle everything: system design, integration, testing, and team training. You get a dedicated point of contact throughout the entire process.</p></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">Is my data used to train AI models?</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">Never. Your data stays in your secure environment and is never used for model training. We are fully GDPR-compliant and operate under the highest data protection standards.</p></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">Which industries can benefit from AIVANCE?</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">Any industry where employees ask repetitive questions, customers need fast answers, or knowledge is scattered across documents. Top use cases: legal, finance, consulting, e-commerce, HR, healthcare, and real estate.</p></div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">What makes Voice Agents different from a regular chatbot?</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">Voice Agents handle real phone calls with natural-sounding speech, context memory, and live integration to your knowledge base. They go far beyond scripted chatbots — they can handle complex questions, escalate to humans, and learn from every conversation.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+
+      <div class="reveal">
+        <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Get in touch</p>
+        <h2 class="text-4xl font-black text-slate-900 mb-4 leading-tight">Let's build something<br/>remarkable.</h2>
+        <p class="text-slate-500 text-sm leading-relaxed mb-8 max-w-sm">No commitment, no pressure. We'll listen, ask good questions, and tell you honestly if and how AIVANCE can help.</p>
+        <div class="space-y-3">
+          <a href="mailto:info@ai-vance.de" class="flex items-center gap-3 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            info@ai-vance.de
+          </a>
+          <a href="tel:+4917631537382" class="flex items-center gap-3 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            +49 176 315 37382
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card p-8 reveal">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1.5">Name *</label>
+              <input type="text" name="name" required placeholder="Your full name" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm placeholder-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1.5">Company</label>
+              <input type="text" name="company" placeholder="Company name" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm placeholder-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all" />
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Email *</label>
+            <input type="email" name="email" required placeholder="you@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm placeholder-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Industry</label>
+            <select name="industry" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-white">
+              <option value="">Select your industry…</option>
+              <option>Legal & Compliance</option>
+              <option>Finance & Accounting</option>
+              <option>Consulting</option>
+              <option>E-Commerce</option>
+              <option>Healthcare</option>
+              <option>Real Estate</option>
+              <option>HR & Recruiting</option>
+              <option>Manufacturing</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">What would you like to automate?</label>
+            <textarea name="message" rows="3" placeholder="Describe the processes or use cases you have in mind…" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm placeholder-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-700 transition-colors">
+            Book a consultation →
+          </button>
+        </form>
+        <div id="successMsg" class="hidden text-center py-6">
+          <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <p class="font-bold text-slate-800 mb-1">Thanks, we'll be in touch!</p>
+          <p class="text-sm text-slate-400">Usually within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="bg-slate-900 text-white pt-14 pb-8">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-3">
+          <img src="logo.jpg" alt="AIVANCE" class="h-7 w-7 rounded-lg object-cover" />
+          <span class="font-black text-lg tracking-tight">AIVANCE</span>
+        </div>
+        <p class="text-sm text-white/50 leading-relaxed max-w-xs">RAG Systems & Voice Agents for the future of your business.</p>
+        <a href="mailto:info@ai-vance.de" class="inline-block mt-4 text-sm text-white/40 hover:text-white transition-colors">info@ai-vance.de</a>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Product</p>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#features" class="hover:text-white transition-colors">RAG System</a></li>
+          <li><a href="#features" class="hover:text-white transition-colors">Voice Agents</a></li>
+          <li><a href="#integrations" class="hover:text-white transition-colors">Integrations</a></li>
+          <li><a href="projekte.html" class="hover:text-white transition-colors">Projekte</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">Company</p>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#team" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Impressum</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/30">
+      <p>© 2024 AIVANCE. All rights reserved.</p>
+      <p>Built for businesses that think ahead.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Mobile menu ── */
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('hidden'));
+  });
+
+  /* ── Scroll reveal with stagger ── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.07 });
+  // observe both .reveal and .reveal-N cards individually
+  document.querySelectorAll('.reveal, [class*="reveal-"]').forEach(el => io.observe(el));
+
+  /* ── Counter animation ── */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1400;
+    const step = 16;
+    const increment = target / (duration / step);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { el.textContent = target.toLocaleString(); clearInterval(timer); }
+      else el.textContent = Math.floor(current).toLocaleString();
+    }, step);
+  }
+  const counterIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.counter-num').forEach(animateCounter);
+        counterIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.counter-num').forEach(el => {
+    counterIo.observe(el.closest('section') || el.parentElement);
+  });
+
+  /* ── Scroll-triggered section accent line ── */
+  // Adds a thin progress bar at the very top that grows as user scrolls
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = 'position:fixed;top:0;left:0;height:2px;background:#2563eb;z-index:9999;transition:width .1s linear;width:0;pointer-events:none;';
+  document.body.prepend(progressBar);
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    progressBar.style.width = (scrolled * 100) + '%';
+  }, { passive: true });
+
+  /* ── FAQ toggle ── */
+  function toggleFaq(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    body.classList.toggle('hidden');
+    icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+  }
+
+  /* ── Form submit → Formspree ── */
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    const res = await fetch('https://formspree.io/f/mdayjekj', {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' }
+    });
+
+    if (res.ok) {
+      form.classList.add('hidden');
+      document.getElementById('successMsg').classList.remove('hidden');
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  }
+
+  /* ── Dashboard: agent selector ── */
+  const agentData = {
+    cs:    { label: 'Customer Service', type: 'RAG · Chat',        color: 'bg-emerald-400', queries: 1247, resp: '0.31s', acc: '98.2%', active: '3 / 5' },
+    sales: { label: 'Sales Qualifier',  type: 'Voice · Outbound',  color: 'bg-emerald-400', queries: 843,  resp: '0.41s', acc: '97.1%', active: '3 / 5' },
+    hr:    { label: 'HR Onboarding',    type: 'RAG · Chat + Voice',color: 'bg-amber-400',   queries: 312,  resp: '0.29s', acc: '99.1%', active: '3 / 5' },
+    legal: { label: 'Legal RAG',        type: 'RAG · Internal',    color: 'bg-slate-300',   queries: 0,    resp: '—',     acc: '—',     active: '3 / 5' },
+    fin:   { label: 'Finance Analyst',  type: 'RAG · Reports',     color: 'bg-emerald-400', queries: 589,  resp: '0.36s', acc: '98.7%', active: '3 / 5' },
+  };
+  const chatResponses = {
+    cs:    "Based on your knowledge base: Our refund policy allows returns within 30 days. All items must be in original condition.",
+    sales: "I'll qualify this lead now. Connecting to your CRM to pull context…",
+    hr:    "You have 14 remaining vacation days. Requests up to 7 days are auto-approved. Shall I start the request?",
+    legal: "Legal RAG is currently offline. Enable it in the sidebar to start answering queries.",
+    fin:   "Q1 revenue is €183,420 — up 12.4% vs Q4. Main drivers: enterprise contracts (+23%) and renewal rate (94%).",
+  };
+
+  let currentAgent = 'cs';
+
+  function selectAgent(el, key) {
+    document.querySelectorAll('.agent-row').forEach(r => r.classList.remove('active-agent'));
+    el.classList.add('active-agent');
+    currentAgent = key;
+    const d = agentData[key];
+    // Update KPIs
+    const kpi = document.querySelectorAll('.counter-num');
+    if (kpi[0]) { kpi[0].dataset.target = d.queries; animateCounter(kpi[0]); }
+    const kpiCells = document.querySelectorAll('[data-kpi]');
+    // Update chart label pill
+    const pill = document.querySelector('#usecases .pill');
+    if (pill) pill.textContent = d.label;
+    // Update live chat
+    resetChat(key);
+  }
+
+  function resetChat(key) {
+    const win = document.getElementById('chatWindow');
+    win.innerHTML = `
+      <div class="flex justify-end"><div class="bg-blue-600 text-white text-[10px] px-2.5 py-1.5 rounded-xl rounded-tr-sm max-w-[80%]">Tell me what you can help with.</div></div>
+      <div class="flex justify-start"><div class="bg-slate-50 border border-slate-100 text-slate-700 text-[10px] px-2.5 py-1.5 rounded-xl rounded-tl-sm max-w-[85%] leading-relaxed">${chatResponses[key]}</div></div>
+      <div class="flex justify-start" id="typingRow"></div>
+    `;
+  }
+
+  /* ── Dashboard: interactive chat ── */
+  function sendChatMsg(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    const win = document.getElementById('chatWindow');
+
+    // User bubble
+    const userBubble = document.createElement('div');
+    userBubble.className = 'flex justify-end';
+    userBubble.innerHTML = `<div class="bg-blue-600 text-white text-[10px] px-2.5 py-1.5 rounded-xl rounded-tr-sm max-w-[80%]">${msg}</div>`;
+    win.appendChild(userBubble);
+
+    // Typing indicator
+    const typingBubble = document.createElement('div');
+    typingBubble.className = 'flex justify-start';
+    typingBubble.innerHTML = `<div class="bg-slate-50 border border-slate-100 px-2.5 py-2 rounded-xl rounded-tl-sm flex gap-1 items-center"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`;
+    win.appendChild(typingBubble);
+    win.scrollTop = win.scrollHeight;
+
+    // Simulated reply
+    const replies = [
+      "Based on your indexed documents, here's what I found: " + (chatResponses[currentAgent] || "I have the answer ready from your knowledge base."),
+      "Great question. I've retrieved the relevant data from your knowledge base and processed it in 0.3s.",
+      "I searched 1,240 documents and found a precise match with 98.2% confidence.",
+    ];
+    const reply = replies[Math.floor(Math.random() * replies.length)];
+    setTimeout(() => {
+      win.removeChild(typingBubble);
+      const aiBubble = document.createElement('div');
+      aiBubble.className = 'flex justify-start';
+      aiBubble.innerHTML = `<div class="bg-slate-50 border border-slate-100 text-slate-700 text-[10px] px-2.5 py-1.5 rounded-xl rounded-tl-sm max-w-[85%] leading-relaxed">${reply}</div>`;
+      win.appendChild(aiBubble);
+      win.scrollTop = win.scrollHeight;
+    }, 1000);
+  }
+
+  /* ── Live feed ticker (simulates new queries arriving) ── */
+  const queries = [
+    '"What are the payment terms?"',
+    '"Find Q3 report for Müller GmbH"',
+    '"How many days until contract renewal?"',
+    '"Summarize last meeting notes"',
+    '"Check employee vacation balance"',
+    '"What is the cancellation policy?"',
+    '"Analyze competitor pricing data"',
+  ];
+  let qIndex = 0;
+  setInterval(() => {
+    const feed = document.getElementById('liveFeed');
+    if (!feed) return;
+    const rows = feed.querySelectorAll('div');
+    if (rows.length > 2) rows[0].remove();
+    const row = document.createElement('div');
+    row.className = 'flex items-center justify-between';
+    const t = (Math.random() * 0.2 + 0.2).toFixed(2) + 's';
+    row.innerHTML = `<span class="text-[10px] text-slate-500 truncate">${queries[qIndex % queries.length]}</span><span class="text-[10px] text-slate-400 flex-shrink-0 ml-2">${t}</span>`;
+    row.style.opacity = '0';
+    row.style.transition = 'opacity .4s';
+    feed.appendChild(row);
+    requestAnimationFrame(() => { row.style.opacity = '1'; });
+    qIndex++;
+  }, 3200);
+</script>
+</body>
+</html>
