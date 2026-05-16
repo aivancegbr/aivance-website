@@ -28,7 +28,9 @@ const translations = {
     heroBadge1Sub: '0 hallucinations',
     heroBadge2Title: 'Response time',
 
+    heroAwsLabel: 'Supported by',
     trustedLabel: 'Trusted technology partners',
+    awsCardSub: 'AIVANCE is part of the AWS Activate Startup Program — sponsored with cloud infrastructure, credits, and technical support by Amazon Web Services.',
 
     featuresLabel: 'Core Technology',
     featuresHeadline: 'Streamline operations<br/>with smart AI features',
@@ -149,7 +151,9 @@ const translations = {
     heroBadge1Sub: '0 Halluzinationen',
     heroBadge2Title: 'Reaktionszeit',
 
+    heroAwsLabel: 'Gefördert durch',
     trustedLabel: 'Vertrauensvolle Technologiepartner',
+    awsCardSub: 'AIVANCE ist Mitglied im AWS Activate Startup-Programm — gefördert mit Cloud-Infrastruktur, Credits und technischem Support durch Amazon Web Services.',
 
     featuresLabel: 'Kerntechnologie',
     featuresHeadline: 'Abläufe optimieren<br/>mit smarten KI-Funktionen',

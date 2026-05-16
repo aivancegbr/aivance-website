@@ -286,30 +286,85 @@
       }
     }
 
-    /* AWS badge */
-    .aws-badge {
-      display: inline-flex;
+    /* ─── AWS HERO BADGE ─── */
+    .hero-aws-row {
+      display: flex;
       align-items: center;
       gap: 10px;
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 8px 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      flex-wrap: wrap;
     }
-    .aws-logo-text {
-      font-size: 18px;
+    .hero-aws-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero-aws-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 9px;
+      padding: 5px 13px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      text-decoration: none;
+    }
+    .aws-pill-logo {
+      font-size: 15px;
       font-weight: 900;
       letter-spacing: -0.04em;
       color: #232F3E;
-      font-family: 'Inter', sans-serif;
+      line-height: 1;
     }
-    .aws-logo-bar {
+    .aws-pill-sep { width: 1px; height: 16px; background: #e5e7eb; flex-shrink: 0; }
+    .aws-pill-text { font-size: 11px; font-weight: 600; color: #6b7280; }
+
+    /* ─── AWS SECTION CARD ─── */
+    .aws-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, #fffbf5 0%, #fff 60%);
+      border: 1px solid #fde68a;
+      border-left: 4px solid #FF9900;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .aws-card-logo { flex-shrink: 0; }
+    .aws-card-logotext {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: #232F3E;
+      line-height: 1;
+    }
+    .aws-card-logobar {
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, #FF9900 60%, transparent 100%);
+      background: #FF9900;
       border-radius: 2px;
-      margin-top: -4px;
+      margin-top: 3px;
+    }
+    .aws-card-divider { width: 1px; height: 44px; background: #fde68a; flex-shrink: 0; }
+    .aws-card-body { flex: 1; min-width: 200px; }
+    .aws-card-title { font-size: 14px; font-weight: 800; color: #1a1a1a; }
+    .aws-card-sub { font-size: 12px; color: #6b7280; margin-top: 3px; line-height: 1.5; }
+    .aws-card-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #c2410c;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 99px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
     }
 
     /* ─── LANG TOGGLE ─── */
@@ -437,6 +492,16 @@
         <span class="stat-label" data-i18n="heroStat3Label">Always available</span>
       </div>
     </div>
+
+    <!-- AWS Activate hero badge -->
+    <div class="hero-aws-row" style="opacity:0;animation:fadeSlideUp .7s .95s ease forwards;">
+      <span class="hero-aws-label" data-i18n="heroAwsLabel">Supported by</span>
+      <div class="hero-aws-pill">
+        <span class="aws-pill-logo">aws</span>
+        <span class="aws-pill-sep"></span>
+        <span class="aws-pill-text">Activate Program</span>
+      </div>
+    </div>
   </div>
 
   <!-- RIGHT – Phone -->
@@ -508,22 +573,22 @@
       <span class="text-sm font-bold text-slate-300 tracking-wide">Supabase</span>
       <span class="text-slate-200">·</span>
       <span class="text-sm font-bold text-slate-300 tracking-wide">Twilio</span>
-      <span class="text-slate-200">·</span>
-      <span class="text-sm font-bold text-slate-300 tracking-wide">Amazon Web Services</span>
     </div>
 
-    <!-- AWS Activate badge -->
-    <div class="flex justify-center mt-6">
-      <div class="aws-badge">
-        <div>
-          <div class="aws-logo-text">aws</div>
-          <div class="aws-logo-bar"></div>
-        </div>
-        <div style="width:1px;height:28px;background:#e2e8f0;flex-shrink:0;"></div>
-        <div>
-          <p style="font-size:11px;font-weight:700;color:#374151;line-height:1.2;">AWS Activate Member</p>
-          <p style="font-size:10px;color:#9ca3af;line-height:1.2;">AWS Startup Program</p>
-        </div>
+    <!-- AWS Activate prominent card -->
+    <div class="aws-card">
+      <div class="aws-card-logo">
+        <div class="aws-card-logotext">aws</div>
+        <div class="aws-card-logobar"></div>
+      </div>
+      <div class="aws-card-divider"></div>
+      <div class="aws-card-body">
+        <p class="aws-card-title">AWS Activate Member</p>
+        <p class="aws-card-sub" data-i18n="awsCardSub">AIVANCE is part of the AWS Activate Startup Program — sponsored with cloud infrastructure, credits, and technical support by Amazon Web Services.</p>
+      </div>
+      <div class="aws-card-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+        AWS Activate
       </div>
     </div>
   </div>
