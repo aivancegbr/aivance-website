@@ -282,12 +282,16 @@ function applyTranslation(lang) {
   if (wrapper) {
     const texts = wrapper.querySelectorAll('.cycling-text');
     const activeIdx = [...texts].findIndex(t => t.classList.contains('active'));
+    // Reset width before measuring so the inline-block wrapper can expand freely
+    wrapper.style.width = '';
     let maxW = 0;
     texts.forEach(t => {
       t.style.position = 'relative';
-      t.style.opacity = '1';
+      t.style.opacity = '0';
       t.style.transform = 'none';
-      const w = t.offsetWidth;
+      // Measure the wrapper (which expands to fit the relative-positioned child)
+      // rather than the child itself, which may be constrained by a stale parent width
+      const w = wrapper.offsetWidth;
       if (w > maxW) maxW = w;
       t.style.position = 'absolute';
       t.style.opacity = '0';
