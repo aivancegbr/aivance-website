@@ -31,6 +31,8 @@ const translations = {
     heroAwsLabel: 'Supported by',
     trustedLabel: 'Trusted by & verified with',
     awsCardSub: 'AIVANCE is part of the AWS Activate Startup Program — sponsored with cloud infrastructure, credits, and technical support by Amazon Web Services.',
+    nvidiaCardSub: 'AIVANCE is a member of NVIDIA Inception — supported with AI expertise, technology, and go-to-market resources by NVIDIA.',
+    msCardSub: 'AIVANCE is part of Microsoft for Startups Founders Hub — backed with Azure infrastructure, credits, and technical support by Microsoft.',
     techPartnersLabel: 'Technology stack & partners',
 
     featuresLabel: 'Core Technology',
@@ -155,6 +157,8 @@ const translations = {
     heroAwsLabel: 'Gefördert durch',
     trustedLabel: 'Zertifiziert & unterstützt von',
     awsCardSub: 'AIVANCE ist Mitglied im AWS Activate Startup-Programm — gefördert mit Cloud-Infrastruktur, Credits und technischem Support durch Amazon Web Services.',
+    nvidiaCardSub: 'AIVANCE ist Mitglied bei NVIDIA Inception — unterstützt mit KI-Expertise, Technologie und Go-to-Market-Ressourcen durch NVIDIA.',
+    msCardSub: 'AIVANCE ist Teil des Microsoft for Startups Founders Hub — unterstützt mit Azure-Infrastruktur, Credits und technischem Support durch Microsoft.',
     techPartnersLabel: 'Technologie-Stack & Partner',
 
     featuresLabel: 'Kerntechnologie',
