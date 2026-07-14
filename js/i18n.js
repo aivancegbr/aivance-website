@@ -13,7 +13,7 @@ const translations = {
     langToggleMobile: '🇬🇧 English',
 
     heroBadge: 'RAG Systems &amp; Voice Agents',
-    heroHeadline: 'Your knowledge,<br>always',
+    heroHeadline: 'RAG systems &amp; AI Voice Agents —<br>your knowledge, always',
     heroCycling0: 'on call.',
     heroCycling1: 'at work.',
     heroCycling2: 'precise.',
@@ -139,7 +139,7 @@ const translations = {
     langToggleMobile: '🇬🇧 English',
 
     heroBadge: 'RAG-Systeme &amp; Sprachassistenten',
-    heroHeadline: 'Ihr Wissen,<br>immer',
+    heroHeadline: 'RAG-Systeme &amp; KI Voice Agents —<br>Ihr Wissen, immer',
     heroCycling0: 'verfügbar.',
     heroCycling1: 'im Einsatz.',
     heroCycling2: 'präzise.',
