@@ -90,7 +90,7 @@ const translations = {
     ajay_role: 'Co-Founder',
     ajay_bio: 'Leads technology development and cloud infrastructure. Expert for scalable AI systems and modern software architecture.',
     cyrus_role: 'Co-Founder',
-    cyrus_bio: "Leads AI agent deployment and system integration across AIVANCE's North American operations. Specializes in conversational AI, cloud infrastructure, and end-to-end automation pipelines from architecture to production rollout.",
+    cyrus_bio: "Drives growth and delivers client-facing AI solutions at AIVANCE. Bridges business strategy and applied AI — from RAG systems and voice agents to end-to-end automation pipelines from architecture to production rollout.",
 
     faqLabel: 'FAQ',
     faqHeadline: 'All you need to know',
@@ -230,7 +230,7 @@ const translations = {
     ajay_role: 'Co-Gründer',
     ajay_bio: 'Leitet die Technologieentwicklung und Cloud-Infrastruktur. Experte für skalierbare KI-Systeme und moderne Softwarearchitektur.',
     cyrus_role: 'Co-Gründer',
-    cyrus_bio: 'Leitet die Bereitstellung von KI-Agenten und die Systemintegration im nordamerikanischen Geschäft von AIVANCE. Spezialisiert auf konversationelle KI, Cloud-Infrastruktur und durchgängige Automatisierungs-Pipelines von der Architektur bis zum Produktiv-Rollout.',
+    cyrus_bio: 'Verantwortet Wachstum und kundennahe KI-Lösungen bei AIVANCE. Verbindet Unternehmensstrategie und angewandte KI — von RAG-Systemen und Voice Agents bis zu durchgängigen Automatisierungs-Pipelines, von der Architektur bis zum Produktiv-Rollout.',
 
     faqLabel: 'Häufige Fragen',
     faqHeadline: 'Alles, was Sie wissen müssen',
