@@ -1,4 +1,6 @@
 {% set t = i18n[lang or 'de'] %}
+{% set isEnPage = lang == 'en' %}
+{% set urlBase = '/en' if isEnPage else '' %}
 <footer class="bg-slate-900 text-white pt-14 pb-8">
   <div class="max-w-6xl mx-auto px-5">
     <div class="grid md:grid-cols-4 gap-10 mb-10">
@@ -14,26 +16,26 @@
         <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerLeistungen }}</p>
         <ul class="space-y-2 text-sm text-white/50">
           {% for cluster in clusters %}
-          <li><a href="/leistungen/{{ cluster.slug }}/" class="hover:text-white transition-colors">{{ cluster.title }}</a></li>
+          <li><a href="{{ urlBase }}/leistungen/{{ cluster.slug }}/" class="hover:text-white transition-colors">{{ cluster.en.title if isEnPage else cluster.title }}</a></li>
           {% endfor %}
-          <li><a href="/leistungen/" class="hover:text-white transition-colors">{{ t.footerAlleLeistungen }}</a></li>
+          <li><a href="{{ t.urlLeistungen }}" class="hover:text-white transition-colors">{{ t.footerAlleLeistungen }}</a></li>
         </ul>
       </div>
       <div>
         <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerBranchen }}</p>
         <ul class="space-y-2 text-sm text-white/50">
           {% for branche in industries %}
-          <li><a href="/branchen/{{ branche.slug }}/" class="hover:text-white transition-colors">{{ branche.title }}</a></li>
+          <li><a href="{{ urlBase }}/branchen/{{ branche.slug }}/" class="hover:text-white transition-colors">{{ branche.en.title if isEnPage else branche.title }}</a></li>
           {% endfor %}
         </ul>
       </div>
       <div>
         <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerUnternehmen }}</p>
         <ul class="space-y-2 text-sm text-white/50">
-          <li><a href="/projekte/" class="hover:text-white transition-colors">{{ t.footerProjekte }}</a></li>
-          <li><a href="/ueber-uns/" class="hover:text-white transition-colors">{{ t.footerUeberUns }}</a></li>
-          <li><a href="/kontakt/" class="hover:text-white transition-colors">{{ t.footerKontakt }}</a></li>
-          <li><a href="/datensicherheit/" class="hover:text-white transition-colors">{{ t.footerDatensicherheit }}</a></li>
+          <li><a href="{{ t.urlProjekte }}" class="hover:text-white transition-colors">{{ t.footerProjekte }}</a></li>
+          <li><a href="{{ t.urlUeberUns }}" class="hover:text-white transition-colors">{{ t.footerUeberUns }}</a></li>
+          <li><a href="{{ t.urlKontakt }}" class="hover:text-white transition-colors">{{ t.footerKontakt }}</a></li>
+          <li><a href="{{ t.urlDatensicherheit }}" class="hover:text-white transition-colors">{{ t.footerDatensicherheit }}</a></li>
           <li><a href="/datenschutz/" class="hover:text-white transition-colors">{{ t.footerDatenschutz }}</a></li>
           <li><a href="/impressum/" class="hover:text-white transition-colors">{{ t.footerImpressum }}</a></li>
         </ul>

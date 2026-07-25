@@ -1,5 +1,16 @@
 {# Foto/Video-Portfolio (§ 12: neuer Seitentyp) — Platzhalter, bis echtes Material vorliegt.
    Filter nach Branche, Lightbox tastaturbedienbar (Escape schließt, Pfeiltasten navigieren). #}
+{% set isEn = lang == 'en' %}
+{% if isEn %}
+{% set portfolioItems = [
+  { branche: "gastronomie", label: "Hospitality", alt: "Placeholder: restaurant interior" },
+  { branche: "medizin", label: "Medical", alt: "Placeholder: medical practice reception area" },
+  { branche: "mittelstand", label: "SMB", alt: "Placeholder: team at work" },
+  { branche: "gastronomie", label: "Hospitality", alt: "Placeholder: dish on a plate" },
+  { branche: "steuer-finanzberatung", label: "Tax advisory", alt: "Placeholder: consultation meeting" },
+  { branche: "mittelstand", label: "SMB", alt: "Placeholder: workshop shot" }
+] %}
+{% else %}
 {% set portfolioItems = [
   { branche: "gastronomie", label: "Gastronomie", alt: "Platzhalter: Innenaufnahme Restaurant" },
   { branche: "medizin", label: "Medizin", alt: "Platzhalter: Empfangsbereich Arztpraxis" },
@@ -8,25 +19,26 @@
   { branche: "steuer-finanzberatung", label: "Steuerberatung", alt: "Platzhalter: Beratungsgespräch" },
   { branche: "mittelstand", label: "Mittelstand", alt: "Platzhalter: Werkstattaufnahme" }
 ] %}
-<section class="py-16 bg-slate-50/50" aria-label="Foto- und Videoportfolio">
+{% endif %}
+<section class="py-16 bg-slate-50/50" aria-label="{{ 'Photo and video portfolio' if isEn else 'Foto- und Videoportfolio' }}">
   <div class="max-w-6xl mx-auto px-5">
     <div class="text-center mb-10 reveal">
       <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Portfolio</p>
-      <h2 class="text-2xl font-black text-slate-900 mb-3">Beispiele aus bisherigen Terminen</h2>
-      <p class="text-sm text-slate-400 max-w-md mx-auto">Platzhalterbilder — echtes Portfoliomaterial folgt mit den ersten Foto-/Videoterminen (siehe § 15, offener Punkt 7 des Briefings).</p>
+      <h2 class="text-2xl font-black text-slate-900 mb-3">{{ 'Examples from past sessions' if isEn else 'Beispiele aus bisherigen Terminen' }}</h2>
+      <p class="text-sm text-slate-400 max-w-md mx-auto">{{ 'Placeholder images — real portfolio material will follow with the first photo/video sessions.' if isEn else 'Platzhalterbilder — echtes Portfoliomaterial folgt mit den ersten Foto-/Videoterminen (siehe § 15, offener Punkt 7 des Briefings).' }}</p>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2 mb-8" role="group" aria-label="Nach Branche filtern">
-      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">Alle</button>
+    <div class="flex flex-wrap justify-center gap-2 mb-8" role="group" aria-label="{{ 'Filter by industry' if isEn else 'Nach Branche filtern' }}">
+      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">{{ 'All' if isEn else 'Alle' }}</button>
       {% for branche in industries %}
-      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.kurz }}</button>
+      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.en.kurz if isEn else branche.kurz }}</button>
       {% endfor %}
     </div>
 
     <div class="portfolio-grid" id="portfolioGrid">
       {% for item in portfolioItems %}
-      <button type="button" class="portfolio-item block w-full text-left rounded-2xl overflow-hidden border border-slate-100 bg-slate-200 aspect-square relative group" data-branche="{{ item.branche }}" data-index="{{ loop.index0 }}" aria-label="{{ item.alt }} vergrößern">
-        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 text-slate-400 text-xs font-semibold" aria-hidden="true">Platzhalter</div>
+      <button type="button" class="portfolio-item block w-full text-left rounded-2xl overflow-hidden border border-slate-100 bg-slate-200 aspect-square relative group" data-branche="{{ item.branche }}" data-index="{{ loop.index0 }}" aria-label="{{ (item.alt + ' — enlarge') if isEn else (item.alt + ' vergrößern') }}">
+        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 text-slate-400 text-xs font-semibold" aria-hidden="true">{{ 'Placeholder' if isEn else 'Platzhalter' }}</div>
         <span class="absolute bottom-2 left-2 text-[10px] font-semibold text-white bg-slate-900/70 px-2 py-1 rounded-md">{{ item.label }}</span>
       </button>
       {% endfor %}
@@ -34,11 +46,11 @@
   </div>
 </section>
 
-<div class="lightbox" id="portfolioLightbox" role="dialog" aria-modal="true" aria-label="Bildvorschau">
-  <button type="button" class="lightbox-nav" style="left:16px" id="lightboxPrev" aria-label="Vorheriges Bild">‹</button>
-  <div class="flex items-center justify-center bg-slate-800 text-slate-300 text-sm rounded-xl" style="width:min(90vw,640px);height:min(70vh,480px)" id="lightboxContent">Platzhalter</div>
-  <button type="button" class="lightbox-nav" style="right:16px" id="lightboxNext" aria-label="Nächstes Bild">›</button>
-  <button type="button" class="lightbox-nav" style="top:16px;right:16px;transform:none" id="lightboxClose" aria-label="Schließen">✕</button>
+<div class="lightbox" id="portfolioLightbox" role="dialog" aria-modal="true" aria-label="{{ 'Image preview' if isEn else 'Bildvorschau' }}">
+  <button type="button" class="lightbox-nav" style="left:16px" id="lightboxPrev" aria-label="{{ 'Previous image' if isEn else 'Vorheriges Bild' }}">‹</button>
+  <div class="flex items-center justify-center bg-slate-800 text-slate-300 text-sm rounded-xl" style="width:min(90vw,640px);height:min(70vh,480px)" id="lightboxContent">{{ 'Placeholder' if isEn else 'Platzhalter' }}</div>
+  <button type="button" class="lightbox-nav" style="right:16px" id="lightboxNext" aria-label="{{ 'Next image' if isEn else 'Nächstes Bild' }}">›</button>
+  <button type="button" class="lightbox-nav" style="top:16px;right:16px;transform:none" id="lightboxClose" aria-label="{{ 'Close' if isEn else 'Schließen' }}">✕</button>
 </div>
 
 <script>

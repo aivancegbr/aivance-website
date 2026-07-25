@@ -57,6 +57,58 @@ module.exports = [
     meta: {
       title: "Digitalisierung für Praxen — AIVANCE",
       description: "Telefonentlastung, Website und Dokumentenabläufe für Arztpraxen im Rhein-Main-Gebiet — konform mit § 203 StGB und Art. 9 DSGVO."
+    },
+    en: {
+      title: "Medical & Healthcare",
+      kurz: "Practices",
+      hero: "Digitalization for medical practices",
+      heroSatz: "Less phone-ringing at the front desk, less paperwork — and patient data stays where it belongs.",
+      schmerzpunkte: [
+        {
+          titel: "The front desk takes appointment requests between two patients",
+          text: "The phone rings into the middle of treatment. Whoever doesn't get through calls the next doctor — or shows up unannounced at the door."
+        },
+        {
+          titel: "Test results, forms and mail pile up",
+          text: "Incoming documents are reviewed, scanned and filed by hand — work that is left over after consultation hours end."
+        },
+        {
+          titel: "The practice website doesn't answer a single patient question",
+          text: "Outdated opening hours, no online appointment request, services impossible to find. Patients call — see point one."
+        },
+        {
+          titel: "New employees struggle to find their way",
+          text: "Procedures, hygiene plans and responsibilities live in binders or nowhere. Onboarding ties up your most experienced staff."
+        }
+      ],
+      rechtsrahmen: {
+        intro: "Physicians are bound by professional confidentiality under Section 203 of the German Criminal Code (StGB). Health data is a special category of personal data under Art. 9 GDPR. Service providers may only be involved under extended conditions — and that shapes every technical decision in our practice projects.",
+        punkte: [
+          "We ensure that every data processing operation is based on a data processing agreement under Art. 28 GDPR and that we commit to confidentiality as contributors within the meaning of Section 203 (3) StGB.",
+          "We ensure that systems handling patient data run on servers in Germany or the EU and that health data never leaves your environment.",
+          "We ensure that no patient data is used to train AI models — contractually secured through the provider clauses we name on our Data Security page.",
+          "We document technical and organizational measures under Art. 32 GDPR and provide them for your record of processing activities."
+        ],
+        hinweis: "These statements describe our technical and contractual measures. They are not legal advice."
+      },
+      faq: [
+        {
+          q: "As a practice, are we even allowed to use an external service provider?",
+          a: "Yes, under the conditions of Section 203 (3) StGB and the GDPR: a written confidentiality commitment, a data processing agreement and documented safeguards. We bring exactly these documents to the first meeting."
+        },
+        {
+          q: "Does the phone assistant also record health data?",
+          a: "Only what is needed for appointment scheduling and callbacks — and only with an announcement and the caller's consent. You define what the assistant may record and what not."
+        },
+        {
+          q: "What does getting started cost?",
+          a: "The introductory call and the process review are free. After that you receive a fixed-price offer for a clearly scoped first step — usually phone relief or the website."
+        }
+      ],
+      meta: {
+        title: "Digitalization for Medical Practices — AIVANCE",
+        description: "Phone relief, website and document workflows for medical practices in the Rhine-Main region — compliant with Section 203 StGB and Art. 9 GDPR."
+      }
     }
   },
   {
@@ -108,6 +160,54 @@ module.exports = [
     meta: {
       title: "Digitalisierung für Steuerkanzleien — AIVANCE",
       description: "Automatisierter Posteingang, Wissenssysteme und Reporting für Kanzleien im Rhein-Main-Gebiet — konform mit § 62 StBerG und § 203 StGB."
+    },
+    en: {
+      title: "Tax & Financial Advisory",
+      kurz: "Firms",
+      hero: "Digitalization for tax firms",
+      heroSatz: "Client mail sorts itself, routine questions answer themselves — your team works on cases instead of filing.",
+      schmerzpunkte: [
+        {
+          titel: "Incoming client mail ties up a professional every morning",
+          text: "Receipts, notices and contracts arrive by email, post and portal — and are reviewed and filed into the right client folder by hand."
+        },
+        {
+          titel: "The same client questions, every week",
+          text: "Where do I submit receipts? What is still missing? By when? Every answer costs minutes — in total, days per month."
+        },
+        {
+          titel: "Deadlines and responsibilities live in heads and Excel",
+          text: "If an experienced employee is out, nobody knows for sure what is open for which client."
+        }
+      ],
+      rechtsrahmen: {
+        intro: "Tax advisors are bound by professional secrecy under Section 57 of the German Tax Advisory Act (StBerG) and Section 203 (1) no. 3 StGB. Section 62 StBerG governs the use of service providers and obliges them to confidentiality. Our systems are designed for exactly that.",
+        punkte: [
+          "We ensure that we commit to confidentiality in writing under Section 62 StBerG and that a data processing agreement under Art. 28 GDPR is concluded before we receive access to client data.",
+          "We ensure that client data is processed on servers in Germany or the EU and that no data is used to train AI models.",
+          "We ensure that access is logged and that a permissions concept governs which employee sees which engagements.",
+          "We document the technical and organizational measures under Art. 32 GDPR for your own accountability obligations."
+        ],
+        hinweis: "These statements describe our technical and contractual measures. They are not legal advice."
+      },
+      faq: [
+        {
+          q: "Are we allowed to give client data to an IT service provider?",
+          a: "Section 62 StBerG permits it if the provider is carefully selected and bound to confidentiality. We bring the written commitment and the data processing agreement with us — you don't have to hunt for templates."
+        },
+        {
+          q: "Does this replace our practice management software?",
+          a: "No — we build around DATEV & co.: inbound mail, client communication and analyses your specialist software doesn't cover. What you have stays."
+        },
+        {
+          q: "How quickly will we see an effect?",
+          a: "The automated mail intake is the usual first step and is live after 2–4 weeks. We quantify the time saved beforehand in the process review."
+        }
+      ],
+      meta: {
+        title: "Digitalization for Tax Firms — AIVANCE",
+        description: "Automated mail intake, knowledge systems and reporting for firms in the Rhine-Main region — compliant with Section 62 StBerG and Section 203 StGB."
+      }
     }
   },
   {
@@ -154,6 +254,49 @@ module.exports = [
     meta: {
       title: "Digitalisierung für Gastronomie — AIVANCE",
       description: "Reservierungen automatisieren, Gästefragen beantworten, Zahlen live sehen — Digitalisierung für Restaurants im Rhein-Main- und Rhein-Neckar-Gebiet."
+    },
+    en: {
+      title: "Hospitality",
+      kurz: "Hospitality",
+      hero: "Digitalization for hospitality",
+      heroSatz: "Reservations, guest questions and your numbers run automatically — your team stays with the guests.",
+      schmerzpunkte: [
+        {
+          titel: "Reservation requests come in mid-service",
+          text: "Phone, Instagram message, email — answered whenever someone happens to have time. By then, the guest has booked elsewhere."
+        },
+        {
+          titel: "The same questions, every day",
+          text: "Do you have vegan dishes? How late is the kitchen open? Is there parking? Every answer costs service time."
+        },
+        {
+          titel: "The numbers arrive weeks too late",
+          text: "Cost of goods, revenue per night, occupancy — what goes wrong today, you only see in the monthly report."
+        }
+      ],
+      rechtsrahmen: {
+        intro: "Clear rules apply in hospitality too: reservation and guest data are personal data under the GDPR, and where POS systems are connected, the German Cash Register Security Ordinance (KassenSichV) applies.",
+        punkte: [
+          "We ensure that guest and reservation data is processed in compliance with the GDPR — with a data processing agreement, a deletion concept and servers in Germany or the EU.",
+          "We ensure that connections to your POS system do not affect its compliance: we read analytics data, we never alter register transactions.",
+          "We ensure that guest communication via WhatsApp & co. is implemented with consent and privacy notices."
+        ],
+        hinweis: "These statements describe our technical and contractual measures. They are not legal advice."
+      },
+      faq: [
+        {
+          q: "Our guests are a mixed crowd — does an AI work for older callers?",
+          a: "The assistant speaks natural language and hands over to your team at any time if the caller wants that. In our reference project, manually handled inquiries dropped by 78% — with no complaints about the channel."
+        },
+        {
+          q: "What does this concretely do for me on a packed Saturday night?",
+          a: "Reservation requests and routine questions answer themselves instead of drowning in service. Your team only picks up the phone when a human is needed."
+        }
+      ],
+      meta: {
+        title: "Digitalization for Hospitality — AIVANCE",
+        description: "Automate reservations, answer guest questions, see your numbers live — digitalization for restaurants in the Rhine-Main and Rhine-Neckar regions."
+      }
     }
   },
   {
@@ -204,6 +347,53 @@ module.exports = [
     meta: {
       title: "Digitalisierung für Handwerk & Mittelstand — AIVANCE",
       description: "Büroabläufe automatisieren, Wissen sichern, Mitarbeiter finden: Digitalisierung für Betriebe im Rhein-Main-Gebiet und an der Bergstraße."
+    },
+    en: {
+      title: "Trades & SMBs",
+      kurz: "SMBs",
+      hero: "Digitalization for trades & SMBs",
+      heroSatz: "Quotes, staffing and knowledge: we digitize the workflows that strain growing businesses first.",
+      schmerzpunkte: [
+        {
+          titel: "The back office is the bottleneck",
+          text: "Quotes, invoices and scheduling run through a few people — the work happens outside, the paper piles up inside."
+        },
+        {
+          titel: "Knowledge depends on individuals",
+          text: "How a job is priced and which customer has which special arrangement — the boss knows, and hardly anyone else."
+        },
+        {
+          titel: "New employees cost weeks of onboarding",
+          text: "Whoever starts new asks their way through. The experienced staff answer the same questions for the twentieth time."
+        },
+        {
+          titel: "Applicants can't find you — or you can't find the applicants",
+          text: "Without a visible presence, chance decides whether good people notice you."
+        }
+      ],
+      rechtsrahmen: {
+        intro: "For small and mid-sized businesses, the GDPR is the main framework — for customer, employee and applicant data. What sounds obvious often fails in practice due to missing agreements and unclear responsibilities.",
+        punkte: [
+          "We ensure that every processing of customer and employee data is based on a data processing agreement under Art. 28 GDPR.",
+          "We ensure that systems run on servers in Germany or the EU and that your data is never used for AI training.",
+          "We deliver the documentation of the technical and organizational measures under Art. 32 GDPR — also for your insurer or your auditors."
+        ],
+        hinweis: "These statements describe our technical and contractual measures. They are not legal advice."
+      },
+      faq: [
+        {
+          q: "We are 12 people — is this even worth it for us?",
+          a: "Especially then: in small teams every saved office hour has a direct impact. We start with a process review that quantifies the savings before you commission anything."
+        },
+        {
+          q: "We have no IT department. Who maintains this later?",
+          a: "We do. Operation, maintenance and a dedicated contact are part of the offer — with contractually agreed response times instead of an anonymous hotline."
+        }
+      ],
+      meta: {
+        title: "Digitalization for Trades & SMBs — AIVANCE",
+        description: "Automate office workflows, secure knowledge, find employees: digitalization for businesses in the Rhine-Main region and along the Bergstrasse."
+      }
     }
   }
 ];

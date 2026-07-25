@@ -26,7 +26,7 @@
   <meta property="og:image" content="{{ site.url }}/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="AIVANCE — Digitalisierungsagentur Rhein-Main" />
+  <meta property="og:image:alt" content="{{ 'AIVANCE — Digital Agency Rhine-Main' if lang == 'en' else 'AIVANCE — Digitalisierungsagentur Rhein-Main' }}" />
   <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
   <meta property="og:site_name" content="AIVANCE" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@
     "name": "AIVANCE",
     "url": "{{ site.url }}",
     "logo": "{{ site.url }}/images/logo.jpg",
-    "description": "Digitalisierungsagentur im Rhein-Main-Gebiet: Website, Foto & Video, Software und Automatisierung aus einer Hand.",
+    "description": {{ ('Digital agency in the Rhine-Main region, Germany: website, photo & video, software and automation from a single source.' if lang == 'en' else 'Digitalisierungsagentur im Rhein-Main-Gebiet: Website, Foto & Video, Software und Automatisierung aus einer Hand.') | dump | safe }},
     "email": "{{ site.email }}",
     "telephone": "{{ site.phoneHref }}",
     "address": {

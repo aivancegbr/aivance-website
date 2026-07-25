@@ -50,6 +50,51 @@ module.exports = [
     meta: {
       title: "Website & Webdesign für Unternehmen — AIVANCE",
       description: "Websites für Praxen, Kanzleien und Betriebe im Rhein-Main-Gebiet: schnell, mobil, selbst pflegbar. Livegang realistisch in 4–6 Wochen."
+    },
+    en: {
+      title: "Website & Web Design",
+      navTitle: "Website & Web Design",
+      card: "A website that generates inquiries — fast, accessible and easy to maintain yourself.",
+      heroSatz: "We build websites that load fast, get found and generate inquiries — not just look good.",
+      fuerWen: [
+        "Your website is several years old, hard to use on a phone, or brings in no inquiries.",
+        "You are founding or repositioning your business and need a presence that matches your offering.",
+        "You want to edit texts and images yourself in future, without commissioning an agency for every line."
+      ],
+      umfang: [
+        "Concept and page structure based on your target audience",
+        "Design and implementation, mobile first",
+        "Copy created together with you — in your customers' language",
+        "SEO fundamentals: meta tags, structured data, sitemap",
+        "Load-time optimization: compressed images, self-hosted fonts",
+        "GDPR-compliant integration of forms and maps",
+        "Training so you can maintain content yourself"
+      ],
+      ablauf: [
+        { phase: "Introductory call & concept", dauer: "Week 1", text: "Goals, audience, page structure. You receive a concrete fixed-price offer." },
+        { phase: "Design & content", dauer: "Weeks 2–3", text: "We design, you provide content — or we create it together, photos included." },
+        { phase: "Implementation & testing", dauer: "Weeks 3–5", text: "Development, testing on all devices, a revision loop with you." },
+        { phase: "Launch & handover", dauer: "from week 5", text: "Migration to your domain, training, 30 days of post-launch support included." }
+      ],
+      zeitrahmen: "Realistically, 4–6 weeks to launch. The most common cause of delay is missing content — which is why we create copy and photos with you on request.",
+      faq: [
+        {
+          q: "What happens to my existing website and domain?",
+          a: "Your domain stays yours. We handle the migration, set up redirects from old URLs and make sure your search engine rankings are not lost."
+        },
+        {
+          q: "Can I edit content myself later?",
+          a: "Yes. We build the site so you can maintain texts, images and opening hours yourself, and we show you how. For bigger changes we remain available."
+        },
+        {
+          q: "How long does it really take?",
+          a: "4–6 weeks, if content arrives on time. We tell you in the first week which launch date is realistic — and we keep it."
+        }
+      ],
+      meta: {
+        title: "Website & Web Design for Businesses — AIVANCE",
+        description: "Websites for practices, firms and businesses in the Rhine-Main region: fast, mobile, easy to maintain yourself. Launch realistically in 4–6 weeks."
+      }
     }
   },
   {
@@ -92,6 +137,44 @@ module.exports = [
     meta: {
       title: "Foto, Video & Schnitt für Unternehmen — AIVANCE",
       description: "Foto- und Videoproduktion vor Ort im Rhein-Main-Gebiet: Team, Räume, Arbeitsalltag. Material für Website, Social Media und Personalgewinnung."
+    },
+    en: {
+      title: "Photo, Video & Editing",
+      navTitle: "Photo, Video & Editing",
+      card: "Real images from your business instead of stock photos — for your website, social media and recruiting.",
+      heroSatz: "We photograph and film on site at your business — and deliver material your website and social media can use right away.",
+      fuerWen: [
+        "Your website shows stock photos that every competitor uses too.",
+        "You need regular material for social media, but have nobody to produce it.",
+        "You are hiring and want to show what working at your business is really like."
+      ],
+      umfang: [
+        "Photo sessions on site at your business: team, premises, work situations, products",
+        "Video recordings including sound — from image films to short social media clips",
+        "Editing, color grading and subtitles",
+        "Formats matched to each channel: website header, Instagram, LinkedIn, careers page",
+        "Handover of all files with usage rights — the material belongs to you"
+      ],
+      ablauf: [
+        { phase: "Briefing", dauer: "Week 1", text: "What should the material show, where will it be used? We plan motifs and locations." },
+        { phase: "Shoot day", dauer: "by arrangement", text: "Half a day to a full day on site — planned so your business keeps running." },
+        { phase: "Selection & editing", dauer: "1–2 weeks after", text: "You choose from a pre-selection, we do the final editing and cut." }
+      ],
+      zeitrahmen: "From briefing to handover usually takes 2–3 weeks — depending on a shoot date that fits your business.",
+      faq: [
+        {
+          q: "Who owns the photos and videos?",
+          a: "You do. You receive all final files with unrestricted usage rights for your corporate communications."
+        },
+        {
+          q: "What about consent from employees and patients?",
+          a: "We bring consent form templates and shoot so that nobody is identifiable without consent — in practices and firms we schedule shoots outside consultation hours."
+        }
+      ],
+      meta: {
+        title: "Photo, Video & Editing for Businesses — AIVANCE",
+        description: "On-site photo and video production in the Rhine-Main region: team, premises, everyday work. Material for your website, social media and recruiting."
+      }
     }
   },
   {
@@ -132,6 +215,43 @@ module.exports = [
     meta: {
       title: "Social-Media-Management für Unternehmen — AIVANCE",
       description: "Planung, Produktion und Veröffentlichung Ihrer Social-Media-Beiträge mit echtem Material aus Ihrem Betrieb. Für Unternehmen im Rhein-Main-Gebiet."
+    },
+    en: {
+      title: "Social Media Management",
+      navTitle: "Social Media",
+      card: "Regular, planned posts with real material from your business — without you having to post daily.",
+      heroSatz: "We plan, produce and publish your social media posts — you approve them, that's all.",
+      fuerWen: [
+        "Your last post is months old, because nobody has time for it in the daily routine.",
+        "You want to be visible where your customers and applicants are looking — without producing content yourself.",
+        "You already have channels but no consistent line: offers one day, photos the next, then nothing for weeks."
+      ],
+      umfang: [
+        "Channel strategy: which platforms are worth it for your audience — and which are not",
+        "Monthly editorial plan, approved by you",
+        "Production of the posts with material from our photo/video sessions",
+        "Publishing and community management with agreed response times",
+        "Monthly report: reach, inquiries, what worked"
+      ],
+      ablauf: [
+        { phase: "Strategy & setup", dauer: "Weeks 1–2", text: "Define channels, tidy up profiles, create the first editorial plan." },
+        { phase: "Ongoing operation", dauer: "monthly", text: "Production, your approval, publishing, report at the end of each month." }
+      ],
+      zeitrahmen: "Start within 2 weeks. Social media works over months, not overnight — we tell you honestly what is achievable in which timeframe.",
+      faq: [
+        {
+          q: "Do I have to do anything myself?",
+          a: "One approval per month and occasionally five minutes for alignment. Footage is captured during scheduled on-site sessions — your everyday work provides the content, we do the rest."
+        },
+        {
+          q: "Which platforms do you manage?",
+          a: "Instagram, Facebook, LinkedIn and Google Business Profile. Which of them make sense depends on your audience — we clarify that in the introductory call, before any costs arise."
+        }
+      ],
+      meta: {
+        title: "Social Media Management for Businesses — AIVANCE",
+        description: "Planning, production and publishing of your social media posts with real material from your business. For companies in the Rhine-Main region."
+      }
     }
   },
 
@@ -175,6 +295,44 @@ module.exports = [
     meta: {
       title: "Individualsoftware für Unternehmen — AIVANCE",
       description: "Maßgeschneiderte Anwendungen statt Excel-Chaos: Analyse, Prototyp, Entwicklung in Etappen. Betrieb auf Servern in Deutschland oder der EU."
+    },
+    en: {
+      title: "Custom Software",
+      navTitle: "Custom Software",
+      card: "Tailor-made applications for the cases no off-the-shelf software covers.",
+      heroSatz: "When spreadsheets and standard software are no longer enough, we build the tool that fits your workflow.",
+      fuerWen: [
+        "A core process in your company lives in Excel sheets that only one person understands.",
+        "Your standard software covers 80% — and the remaining 20% costs hours of manual work every week.",
+        "You need an internal tool: planning, administration, a portal for customers or employees."
+      ],
+      umfang: [
+        "Requirements gathering on your actual workflow — we watch before we build",
+        "Clickable prototype before development, so you see early what is being built",
+        "Development in manageable stages with interim releases",
+        "Integration with your existing systems",
+        "Operation on servers in Germany or the EU, maintenance and further development"
+      ],
+      ablauf: [
+        { phase: "Analysis & prototype", dauer: "Weeks 1–3", text: "We map the workflow, build a clickable prototype and define the scope of the first version." },
+        { phase: "Development", dauer: "from week 4", text: "Implementation in stages of 2–3 weeks. After each stage you see a usable interim version." },
+        { phase: "Rollout & operation", dauer: "project-dependent", text: "Test phase with your team, training, handover into ongoing operation with agreed response times." }
+      ],
+      zeitrahmen: "A first usable version is ready after 4–10 weeks, depending on scope. We give you the concrete timeframe after the analysis — not before.",
+      faq: [
+        {
+          q: "Do I own the software in the end?",
+          a: "Yes. You receive the source code and the documentation. You are not tied to us — even though most clients keep further development with us."
+        },
+        {
+          q: "What does custom software cost?",
+          a: "That depends on the scope. After the analysis phase you receive a fixed-price offer for the first version — no open-ended hourly billing without a cap."
+        }
+      ],
+      meta: {
+        title: "Custom Software for Businesses — AIVANCE",
+        description: "Tailor-made applications instead of Excel chaos: analysis, prototype, development in stages. Hosted on servers in Germany or the EU."
+      }
     }
   },
   {
@@ -221,6 +379,49 @@ module.exports = [
     meta: {
       title: "Wissenssysteme (RAG/DMS) für Unternehmen — AIVANCE",
       description: "Firmenwissen durchsuchbar machen: KI-Suche mit Quellenangabe aus Ihren Dokumenten. DSGVO-konform, Ø 17 Tage bis Go-Live."
+    },
+    en: {
+      title: "Knowledge Systems (RAG/DMS)",
+      navTitle: "Knowledge Systems",
+      card: "Your documents, contracts and policies — searchable in seconds instead of in filing cabinets.",
+      heroSatz: "We make your company knowledge accessible: employees ask in plain language, the system answers from your actual documents.",
+      fuerWen: [
+        "Your team answers the same questions again and again — about contracts, policies, procedures.",
+        "Knowledge is buried in PDF folders, email inboxes and the heads of individual employees.",
+        "New employees need weeks before they know where anything is."
+      ],
+      umfang: [
+        "Connection of your sources: file shares, DMS, wikis, email archives",
+        "AI-powered search that answers from your documents — with a source citation for every answer",
+        "Answers only from your data: if the answer is not in your documents, the system says so",
+        "Permissions and role concept: who is allowed to see what",
+        "Admin dashboard: usage, quality and sources at a glance",
+        "Operation in your environment or on EU servers — your data never trains AI models"
+      ],
+      ablauf: [
+        { phase: "Introductory call & data check", dauer: "Week 1", text: "Which sources, which questions, which users? We check whether your data is ready for it." },
+        { phase: "Setup & indexing", dauer: "Weeks 2–3", text: "Connecting the sources, building the system, first test questions with your team." },
+        { phase: "Testing & go-live", dauer: "Weeks 3–4", text: "Your team tests with real questions, we fine-tune. Then go-live and training." }
+      ],
+      zeitrahmen: "17 days on average to go-live in our projects so far. With many source systems or a complex permissions concept, more like 4–6 weeks — we tell you after the data check.",
+      faq: [
+        {
+          q: "What is a RAG system?",
+          a: "Retrieval-Augmented Generation: the system first finds the relevant passages in your documents and only then formulates an answer — with a source citation. It doesn't invent content, it backs up every answer."
+        },
+        {
+          q: "Will my data be used for AI training?",
+          a: "No. Your data stays in your environment and is not used for model training. We use providers with contractual no-training clauses — details on our Data Security page."
+        },
+        {
+          q: "What happens when the system doesn't know an answer?",
+          a: "It says so. Answers come only from your documents. If the system finds no reliable source, it doesn't answer with a guess — it refers you to a human."
+        }
+      ],
+      meta: {
+        title: "Knowledge Systems (RAG/DMS) for Businesses — AIVANCE",
+        description: "Make company knowledge searchable: AI search with source citations from your documents. GDPR-compliant, 17 days on average to go-live."
+      }
     }
   },
   {
@@ -262,6 +463,44 @@ module.exports = [
     meta: {
       title: "Voice Agents für Unternehmen — AIVANCE",
       description: "KI-Telefon-Assistent für Praxen, Kanzleien und Betriebe: nimmt Anrufe an, beantwortet Standardfragen, leitet weiter. Pilotbetrieb in 2–4 Wochen."
+    },
+    en: {
+      title: "Voice Agents",
+      navTitle: "Voice Agents",
+      card: "A phone assistant that answers calls, handles questions and takes appointment requests — even when nobody has time.",
+      heroSatz: "Your phone rings while everyone is busy. Our voice agent picks up, answers routine questions and forwards what humans need to decide.",
+      fuerWen: [
+        "Calls come in exactly when your team has no hands free — and get lost.",
+        "A large share of the calls are routine questions: opening hours, appointments, availability.",
+        "You want to be reachable without adding front-desk staff."
+      ],
+      umfang: [
+        "Phone assistant with natural language, connected to your knowledge base",
+        "Appointment and inquiry capture with handover into your systems",
+        "Forwarding to staff based on clear rules — the agent never decides over your head",
+        "Transcript of every call, transparently accessible",
+        "Privacy-compliant implementation including announcement and consent logic"
+      ],
+      ablauf: [
+        { phase: "Introductory call & conversation logic", dauer: "Week 1", text: "Which calls come in, what may the agent do, what not? We define the rules together." },
+        { phase: "Setup & training", dauer: "Weeks 2–3", text: "Connection to your phone system and knowledge base, test calls with your team." },
+        { phase: "Pilot operation", dauer: "Weeks 3–4", text: "Start with limited hours (e.g. outside opening hours), then gradual expansion." }
+      ],
+      zeitrahmen: "2–4 weeks to pilot operation. You decide on expanding to full operation after the first weeks — not us.",
+      faq: [
+        {
+          q: "Do callers notice they are talking to an AI?",
+          a: "Yes, and that is deliberate: the agent introduces itself as a digital assistant. Covert AI calls are legally risky and damage trust."
+        },
+        {
+          q: "What happens with questions the agent cannot answer?",
+          a: "It takes down name, request and callback number, or forwards directly to a staff member — following rules that you define."
+        }
+      ],
+      meta: {
+        title: "Voice Agents for Businesses — AIVANCE",
+        description: "AI phone assistant for practices, firms and businesses: answers calls, handles routine questions, forwards the rest. Pilot operation in 2–4 weeks."
+      }
     }
   },
 
@@ -305,6 +544,44 @@ module.exports = [
     meta: {
       title: "Prozessautomatisierung für Unternehmen — AIVANCE",
       description: "Wiederkehrende Abläufe automatisieren: Posteingang, Dokumentenablage, Datenübertragung. Erster Ablauf produktiv in 2–4 Wochen."
+    },
+    en: {
+      title: "Process Automation",
+      navTitle: "Process Automation",
+      card: "Recurring workflows run automatically — from inbound mail to filing.",
+      heroSatz: "Incoming mail lands in the right folder automatically, inquiries in the right inbox, data in the right system — without retyping.",
+      fuerWen: [
+        "Your team transfers data by hand between email, Excel and your line-of-business software.",
+        "Documents are touched multiple times before they end up in the right place.",
+        "Workflows depend on individuals — if someone is out sick, work piles up."
+      ],
+      umfang: [
+        "Process review: we document the current workflow before we change anything",
+        "Automation with clear rules — traceable, not a black box",
+        "Document processing: incoming mail is recognized, assigned and filed",
+        "Notifications and approval steps wherever humans need to decide",
+        "Documentation of every workflow, so you are not dependent on us"
+      ],
+      ablauf: [
+        { phase: "Process review", dauer: "Week 1", text: "We look at 2–3 workflows and quantify what automation saves there." },
+        { phase: "Implementation", dauer: "Weeks 2–4", text: "Building the workflows, testing with real cases alongside day-to-day business." },
+        { phase: "Handover & expansion", dauer: "from week 4", text: "Your team works with the new workflows; further processes follow by priority." }
+      ],
+      zeitrahmen: "The first automated workflow is live after 2–4 weeks. We start with the process that eats the most time — not with the easiest one.",
+      faq: [
+        {
+          q: "How do I know whether automation pays off for us?",
+          a: "From the process review: we quantify the hours saved per week for each workflow before you commit. If it is not worth it, we say so."
+        },
+        {
+          q: "What happens if the automation makes a mistake?",
+          a: "Critical steps get human approvals, and every run is logged. Error cases land in a review list instead of disappearing."
+        }
+      ],
+      meta: {
+        title: "Process Automation for Businesses — AIVANCE",
+        description: "Automate recurring workflows: inbound mail, document filing, data transfer. First workflow live in 2–4 weeks."
+      }
     }
   },
   {
@@ -346,6 +623,44 @@ module.exports = [
     meta: {
       title: "KPI & Reporting für Unternehmen — AIVANCE",
       description: "Automatische Dashboards und Berichte aus Buchhaltung, Kasse und CRM. Eine Zahl, eine Quelle — erstes Dashboard in 2–3 Wochen."
+    },
+    en: {
+      title: "KPIs & Reporting",
+      navTitle: "KPIs & Reporting",
+      card: "Your key figures come to you automatically — instead of being pieced together at month-end.",
+      heroSatz: "Revenue, utilization, open items: we build reports that update themselves and arrive where you actually read them.",
+      fuerWen: [
+        "Your monthly figures are compiled by hand from several Excel files.",
+        "You only see weeks later when something goes off track.",
+        "Different systems show different truths — nobody knows which number is right."
+      ],
+      umfang: [
+        "KPI definition together with you: who needs to see what, how often?",
+        "Connection of your data sources: accounting, POS, CRM, line-of-business software",
+        "Dashboards with live data and automated reports by email",
+        "One number, one source: a defined origin for every KPI",
+        "Alerts on deviations — you don't have to check every day"
+      ],
+      ablauf: [
+        { phase: "KPIs & sources", dauer: "Week 1", text: "Which numbers drive your business? We check where they live today and how reliable they are." },
+        { phase: "Setup", dauer: "Weeks 2–3", text: "Connecting the sources, building dashboard and reports, reconciling with your existing figures." },
+        { phase: "Operation", dauer: "ongoing", text: "Reports arrive automatically; we add new KPIs as needed." }
+      ],
+      zeitrahmen: "The first dashboard is ready after 2–3 weeks. The prerequisite is access to your data sources — we clarify that in week 1.",
+      faq: [
+        {
+          q: "Which systems can you connect?",
+          a: "Common accounting, POS and CRM systems, plus anything with an export or an API. Whether your systems are covered, we clarify in the introductory call — free of charge."
+        },
+        {
+          q: "Do you see our business figures in the process?",
+          a: "Only as far as needed for the setup, governed by a data processing agreement under Art. 28 GDPR. Ongoing operation runs in your environment — we only look in for maintenance and on request."
+        }
+      ],
+      meta: {
+        title: "KPIs & Reporting for Businesses — AIVANCE",
+        description: "Automated dashboards and reports from accounting, POS and CRM. One number, one source — first dashboard in 2–3 weeks."
+      }
     }
   },
   {
@@ -387,6 +702,44 @@ module.exports = [
     meta: {
       title: "Integrationen & API für Unternehmen — AIVANCE",
       description: "Systeme verbinden statt Daten abtippen: Schnittstellen, Datenmigration, Überwachung. Einzelne Verbindungen oft in 1–2 Wochen."
+    },
+    en: {
+      title: "Integrations & API",
+      navTitle: "Integrations & API",
+      card: "Your systems talk to each other — data flows automatically instead of copy-and-paste.",
+      heroSatz: "Calendar, accounting, CRM, line-of-business software: we connect what runs side by side today.",
+      fuerWen: [
+        "The same data is maintained by hand in several systems.",
+        "A system switch fails because legacy data won't come along.",
+        "Your software vendor offers an API — but nobody has ever connected it."
+      ],
+      umfang: [
+        "Inventory: which systems exist, which data flows where?",
+        "Connection via existing interfaces (REST, webhooks) or import/export",
+        "Data migration for system switches — including deduplication",
+        "Custom interfaces when your software doesn't come with one",
+        "Monitoring: you notice before a connection goes down"
+      ],
+      ablauf: [
+        { phase: "Inventory", dauer: "Week 1", text: "Map the system landscape and data flows, clarify feasibility per connection." },
+        { phase: "Connection", dauer: "Weeks 2–4", text: "Implementing the connections, test run with real data alongside the legacy setup." },
+        { phase: "Operation", dauer: "ongoing", text: "Monitoring and adjustments whenever one of your systems changes." }
+      ],
+      zeitrahmen: "A single connection is often up in 1–2 weeks. Migrations of entire systems take 4–8 weeks depending on the data — we give you the timeframe after the inventory.",
+      faq: [
+        {
+          q: "Our line-of-business software is a niche product — is this still possible?",
+          a: "Usually yes. Almost every software offers export, import or an API. What is possible, we check during the inventory — before any costs arise."
+        },
+        {
+          q: "What happens if a connection fails?",
+          a: "Monitoring alerts us and you before errors propagate into your data. Response times are agreed contractually."
+        }
+      ],
+      meta: {
+        title: "Integrations & API for Businesses — AIVANCE",
+        description: "Connect systems instead of retyping data: interfaces, data migration, monitoring. Single connections often in 1–2 weeks."
+      }
     }
   }
 ];

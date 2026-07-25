@@ -1,0 +1,175 @@
+---
+layout: layouts/base.njk
+lang: en
+title: Data Security — AIVANCE
+metaTitle: Data Security — AIVANCE
+metaDescription: "Where your data lives: hosting locations, DPA under Art. 28 GDPR, TOMs under Art. 32, no-training clauses, deletion concept — all evidence on one page."
+breadcrumb: Data Security
+permalink: /en/data-security/
+deUrl: /datensicherheit/
+---
+
+{# English mirror of /datensicherheit/ — substantive data security page, separate from the legal privacy policy at /datenschutz/. #}
+
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Data security</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">Where your data lives —<br/>and who has access</h1>
+    <p class="text-slate-500 leading-relaxed">Everyone writes "GDPR-compliant". Here is what that concretely means at AIVANCE — with locations, contracts and retention periods instead of claims.</p>
+  </div>
+</section>
+
+<!-- Hosting locations -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Hosting locations, by name</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">Your data stays in its jurisdiction: clients based in Germany and the EU are hosted on European servers, clients based in the USA on US servers. No processing takes place outside the respective region.</p>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <p class="font-bold text-slate-800 mb-1">Hetzner Online GmbH</p>
+        <p class="text-sm text-slate-500">Data centers in Nuremberg &amp; Falkenstein, Germany. The default for client systems with personal data from the EU.</p>
+      </div>
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <p class="font-bold text-slate-800 mb-1">Amazon Web Services (EU)</p>
+        <p class="text-sm text-slate-500">Region <code class="text-xs bg-white border border-slate-200 rounded px-1.5 py-0.5">eu-central-1</code> (Frankfurt am Main). For systems that require AWS services — data stays in the EU.</p>
+      </div>
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <p class="font-bold text-slate-800 mb-1">Amazon Web Services (USA)</p>
+        <p class="text-sm text-slate-500">US region, exclusively for clients based in the USA. Contracts and safeguards follow US law instead of the GDPR.</p>
+      </div>
+    </div>
+    <p class="text-sm text-slate-400 mt-4">We only use other locations at your explicit request — never silently.</p>
+  </div>
+</section>
+
+<!-- DPA -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">Data processing under Art. 28 GDPR</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">Before we receive access to personal data, we conclude a data processing agreement (DPA) with you. It governs purpose, duration, sub-processors and your rights of control.</p>
+    <a href="mailto:{{ site.email }}?subject=Request%20DPA%20template" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+      Request DPA template →
+    </a>
+    <p class="text-xs text-slate-400 mt-3">You receive the template in advance for review by your data protection officer — before any engagement.</p>
+  </div>
+</section>
+
+<!-- TOMs as expandable list -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Technical and organizational measures (Art. 32 GDPR)</h2>
+    {% set toms = [
+      { t: "Access control", a: "Access to client systems only via personal accounts with two-factor authentication. Rights on a need-to-know basis; access is logged." },
+      { t: "Encryption", a: "Transmission exclusively via TLS. Storage on encrypted volumes. Backups are encrypted as well." },
+      { t: "Separation control", a: "Every client gets their own, isolated environment. No shared database across clients." },
+      { t: "Availability control", a: "Daily backups with defined retention, restore tests, monitoring with alerting." },
+      { t: "Sub-processor control", a: "Sub-processors (e.g. hosting) are named in the DPA and are themselves contractually bound under Art. 28 GDPR." },
+      { t: "Organizational measures", a: "Confidentiality commitment of all contributors, documented offboarding processes, principle of minimal data collection in every project." }
+    ] %}
+    <div class="space-y-2">
+      {% for tom in toms %}
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+        <button type="button" data-faq-toggle aria-expanded="false" class="w-full text-left px-6 py-4 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">{{ tom.t }}</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4"><p class="text-sm text-slate-500 leading-relaxed">{{ tom.a }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="text-xs text-slate-400 mt-4">We provide the full TOM documentation together with the DPA — also for your record of processing activities.</p>
+  </div>
+</section>
+
+<!-- No model training -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">No model training on client data</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">Where we use AI models, we choose access routes where the provider contractually guarantees not to use your data for training its models:</p>
+    <div class="space-y-3">
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">Anthropic (Claude) — Commercial Terms</p>
+        <p class="text-xs text-slate-500 leading-relaxed">No training on customer content via the commercial API. Processing on the basis of a Data Processing Agreement.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">OpenAI — API / Enterprise terms</p>
+        <p class="text-xs text-slate-500 leading-relaxed">Under the Business Terms, API data is not used for model training. We use the API only, never consumer products.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">AWS Bedrock (EU region)</p>
+        <p class="text-xs text-slate-500 leading-relaxed">Model calls never leave the chosen region and are not used for training — governed by the AWS Service Terms.</p>
+      </div>
+    </div>
+    <p class="text-xs text-slate-400 mt-4">Which providers are concretely used in your project is named in the DPA — including the respective contract clause.</p>
+  </div>
+</section>
+
+<!-- Deletion concept -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Deletion concept and retention</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead>
+          <tr class="border-b border-slate-200">
+            <th class="py-3 pr-4 font-semibold text-slate-700">Type of data</th>
+            <th class="py-3 font-semibold text-slate-700">Period</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-500">
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Contact inquiries without an engagement</td><td class="py-3">Deleted after conclusion, at the latest after 24 months</td></tr>
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Project data after contract end</td><td class="py-3">Return or deletion, your choice — proof on request</td></tr>
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Backups</td><td class="py-3">Automatically overwritten after a defined cycle (project-dependent, set out in the DPA)</td></tr>
+          <tr><td class="py-3 pr-4">Invoice-relevant data</td><td class="py-3">Statutory retention periods (German HGB/AO)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Professionals bound by confidentiality law -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">For professionals bound by confidentiality law: Section 203 StGB and Section 62 StBerG</h2>
+    <div class="text-sm text-slate-500 leading-relaxed space-y-4">
+      <p>Physicians and tax advisors in Germany may only involve service providers under extended conditions: professional confidentiality under Section 203 StGB also applies towards IT providers, and Section 62 StBerG requires the provider's written commitment to secrecy.</p>
+      <p>That is why every practice and firm project at AIVANCE includes:</p>
+    </div>
+    <ul class="mt-4 space-y-2">
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Written confidentiality commitment of all contributors under Section 203 (3) StGB or Section 62 StBerG — before we receive access
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Data processing agreement under Art. 28 GDPR with named sub-processors
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Processing of patient or client data exclusively on servers in Germany or the EU
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Documented safeguards for your own accountability obligations (Art. 9, Art. 32 GDPR)
+      </li>
+    </ul>
+    <p class="text-xs text-slate-400 mt-6">These statements describe our technical and contractual measures. They are not legal advice.</p>
+  </div>
+</section>
+
+<!-- Contact person -->
+<section class="py-16 bg-white border-t border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-2xl font-black text-slate-900 mb-3">Contact for data protection</h2>
+    <p class="text-sm text-slate-500 mb-6">Questions about data processing, the DPA or TOMs are answered directly by:</p>
+    <div class="inline-block bg-slate-50 rounded-2xl border border-slate-100 px-8 py-6">
+      <p class="font-bold text-slate-800">Ajay Nagulendran</p>
+      <p class="text-xs text-slate-400 mb-2">Co-founder · Engineering &amp; operations</p>
+      <a href="mailto:ajay.nagulendran@ai-vance.de" class="text-sm text-blue-600 hover:underline">ajay.nagulendran@ai-vance.de</a>
+    </div>
+  </div>
+</section>
+
+{% set ctaHeadline = "Data protection questions first?" %}
+{% set ctaText = "Especially for practices and firms: we're happy to answer the compliance questions before the first conversation about technology." %}
+{% include "partials/cta.njk" %}

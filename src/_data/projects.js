@@ -47,6 +47,44 @@ module.exports = [
     meta: {
       title: "Gastronomie: −78 % manuelle Anfragen — AIVANCE",
       description: "Case Study: KI-Assistent für ein Restaurant im Rhein-Neckar-Gebiet — 78 % weniger manuelle Anfragen, Antwortzeit von Stunden auf 0,3 Sekunden."
+    },
+    en: {
+      title: "Hospitality Chatbot & Customer Service",
+      untertitel: "Fully automated AI assistant · Rhine-Neckar region",
+      brancheLabel: "Hospitality · Rhine-Neckar",
+      status: "Completed",
+      teaser: {
+        zahl: "−78 %",
+        zahlLabel: "manual inquiries per week",
+        text: "A restaurant answers reservations and guest questions automatically — via WhatsApp and its website."
+      },
+      ausgangslage:
+        "A growing restaurant in the Rhine-Neckar region struggled daily with hundreds of manually handled inquiries about reservations, opening hours and menus. The team lost valuable time — especially at peak hours.",
+      loesung:
+        "AIVANCE implemented an AI assistant built on a knowledge system and integrated it into the existing infrastructure — via the WhatsApp Business API and the website. The assistant knows the menu, availability and house rules in real time.",
+      gebaut: [
+        "Knowledge system with real-time indexing of the menu and reservation data",
+        "WhatsApp Business API integration with automatic reservation confirmation",
+        "Manager dashboard with real-time occupancy, revenue and review analytics",
+        "Automatic escalation routing to staff for complex inquiries"
+      ],
+      tech: ["RAG system", "WhatsApp API", "n8n automation", "OpenAI GPT-4o", "Vector database"],
+      ergebnisse: [
+        { wert: "−78 %", label: "manual inquiries", detail: "from 340 to 75 per week" },
+        { wert: "95 %", label: "guest satisfaction", detail: "based on 48 reviews" },
+        { wert: "0.3 s", label: "response time", detail: "previously 2–6 hours manually" }
+      ],
+      ergebnisZeitraum: "Measurable results after 90 days",
+      zitat: {
+        text: "Since AIVANCE, we can finally focus on what matters: our guests. The AI answers inquiries faster and more precisely than we ever could manually.",
+        autor: "Owner, restaurant",
+        ort: "Rhine-Neckar region · Hospitality"
+      },
+      bildAlt: "Manager dashboard of the AIVANCE hospitality system with real-time occupancy and revenue",
+      meta: {
+        title: "Hospitality: −78 % Manual Inquiries — AIVANCE",
+        description: "Case study: AI assistant for a restaurant in the Rhine-Neckar region — 78% fewer manual inquiries, response time down from hours to 0.3 seconds."
+      }
     }
   },
   {
@@ -91,6 +129,43 @@ module.exports = [
     meta: {
       title: "Mittelstand: Onboarding-Zeit −3 Tage — AIVANCE",
       description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding von 7 auf 4 Tage verkürzt."
+    },
+    en: {
+      title: "Onboarding System for a Mid-Sized Company",
+      untertitel: "Knowledge system · Rhine-Neckar region · HR",
+      brancheLabel: "SMB · Rhine-Neckar",
+      status: "Completed",
+      teaser: {
+        zahl: "−3 days",
+        zahlLabel: "onboarding time per employee",
+        text: "New hires get answers instantly — instead of tying up the HR team with the same questions."
+      },
+      ausgangslage:
+        "A mid-sized company in the Rhine-Neckar region lost an average of 3–4 working days per new hire to manual onboarding — from the HR team up to the line manager. Repetitive questions about processes, tools and policies blocked the team daily.",
+      loesung:
+        "AIVANCE built an onboarding knowledge system that indexes the company's entire knowledge base. New employees get precise answers instantly — via Slack, Teams or the web — without opening a ticket.",
+      gebaut: [
+        "Knowledge index across all company policies, processes and HR documents",
+        "Slack bot with a personalized onboarding plan and automatic progress tracking",
+        "Notion integration: knowledge base always in sync and up to date",
+        "HR dashboard: overview of all ongoing onboardings and open tasks"
+      ],
+      tech: ["RAG system", "Notion API", "Slack bot", "Claude", "n8n workflows"],
+      ergebnisse: [
+        { wert: "−80 %", label: "HR inquiries", detail: "self-service via AI assistant" },
+        { wert: "−3 days", label: "onboarding time", detail: "reduced from 7 to 4 days" },
+        { wert: "96 %", label: "satisfaction", detail: "feedback from new employees" }
+      ],
+      ergebnisZeitraum: "Measurable results after 60 days",
+      zitat: {
+        text: "Our HR team was flooded with the same questions every day. AIVANCE solved that completely. New colleagues feel well looked after from day one, and the implementation was faster than expected.",
+        autor: "Head of HR",
+        ort: "Mid-sized company · Rhine-Neckar region"
+      },
+      meta: {
+        title: "SMB: Onboarding Time Cut by 3 Days — AIVANCE",
+        description: "Case study: onboarding knowledge system for a mid-sized company — 80% fewer HR inquiries, onboarding cut from 7 to 4 days."
+      }
     }
   },
   {
@@ -130,6 +205,38 @@ module.exports = [
     meta: {
       title: "Gesundheitspraxis: +128 % Google-Klicks — AIVANCE",
       description: "Case Study: Website-Relaunch & SEO für eine Praxis in New York — +128 % Suchklicks, +32 % Patientenanrufe, +233 % Chat-Anfragen."
+    },
+    en: {
+      title: "Online Visibility for a Healthcare Practice",
+      untertitel: "Website relaunch, SEO & live dashboard · New York, USA",
+      brancheLabel: "Healthcare · USA",
+      status: "Ongoing engagement",
+      teaser: {
+        zahl: "+128 %",
+        zahlLabel: "clicks from Google Search",
+        text: "An acupuncture & sports medicine practice is finally found online the way its reputation deserves — more calls, more inquiries, more patients."
+      },
+      ausgangslage:
+        "A renowned acupuncture and sports medicine practice in the New York area — with professional athletes among its patients — was practically invisible online. The website consisted of a single page, key services had no dedicated subpages, and Google reported indexing errors. Anyone searching for the practice's core services found the competition.",
+      loesung:
+        "AIVANCE rebuilt the website technically and editorially: dedicated, search-optimized pages for every core service, all indexing errors fixed in Google Search Console, structured data (FAQ schema), and a blog with a CMS the practice publishes through without a developer. The monthly Google metrics flow into a live dashboard that updates automatically.",
+      gebaut: [
+        "Five search-optimized service pages with local SEO focus and FAQ schema",
+        "Technical SEO: indexing errors fixed, canonicals, sitemap, redirects",
+        "Blog with CMS — new articles go live without a developer",
+        "Live performance dashboard with automatically updated monthly Google metrics"
+      ],
+      tech: ["React", "Technical SEO", "FAQ schema", "Headless CMS", "Google Search Console"],
+      ergebnisse: [
+        { wert: "+128 %", label: "Google clicks", detail: "organic search, month over month" },
+        { wert: "+32 %", label: "patient calls", detail: "via the Google Business Profile" },
+        { wert: "+233 %", label: "chat inquiries", detail: "inquiry rate per visitor doubled" }
+      ],
+      ergebnisZeitraum: "Measurable results within 3 months",
+      meta: {
+        title: "Healthcare Practice: +128 % Google Clicks — AIVANCE",
+        description: "Case study: website relaunch & SEO for a practice in New York — +128% search clicks, +32% patient calls, +233% chat inquiries."
+      }
     }
   }
 ];

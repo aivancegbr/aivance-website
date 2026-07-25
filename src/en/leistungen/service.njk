@@ -1,39 +1,42 @@
 ---
 layout: layouts/base.njk
+lang: en
 pagination:
   data: services
   size: 1
   alias: service
   addAllPagesToCollections: true
-permalink: "/leistungen/{{ service.slug }}/"
+permalink: "/en/leistungen/{{ service.slug }}/"
 eleventyComputed:
-  enUrl: "/en/leistungen/{{ service.slug }}/"
-  title: "{{ service.meta.title }}"
-  metaTitle: "{{ service.meta.title }}"
-  metaDescription: "{{ service.meta.description }}"
-  breadcrumb: "{{ service.title }}"
+  deUrl: "/leistungen/{{ service.slug }}/"
+  title: "{{ service.en.meta.title or service.meta.title }}"
+  metaTitle: "{{ service.en.meta.title or service.meta.title }}"
+  metaDescription: "{{ service.en.meta.description or service.meta.description }}"
+  breadcrumb: "{{ service.en.title or service.title }}"
 ---
 
-{# Template T2 — Leistungsdetailseite (§ 7) #}
+{# Template T2 — service detail page, English mirror of /leistungen/[slug]/ #}
+{% set d = service.en %}
 {% set parentCluster = clusters | findBySlug(service.cluster) %}
+{% set pc = parentCluster.en %}
 
-<!-- 1 · Hero (kompakt) -->
+<!-- 1 · Hero (compact) -->
 <section class="py-16 bg-slate-50 border-b border-slate-100">
   <div class="max-w-4xl mx-auto px-5 text-center">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">
-      <a href="/leistungen/{{ parentCluster.slug }}/" class="hover:underline">{{ parentCluster.title }}</a>
+      <a href="/en/leistungen/{{ parentCluster.slug }}/" class="hover:underline">{{ pc.title or parentCluster.title }}</a>
     </p>
-    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ service.title }}</h1>
-    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">{{ service.heroSatz }}</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ d.title or service.title }}</h1>
+    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">{{ d.heroSatz or service.heroSatz }}</p>
   </div>
 </section>
 
-<!-- 2 · Für wen das ist -->
+<!-- 2 · Who this is for -->
 <section class="py-16 bg-white">
   <div class="max-w-3xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6">Für wen das ist</h2>
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Who this is for</h2>
     <ul class="space-y-3">
-      {% for punkt in service.fuerWen %}
+      {% for punkt in d.fuerWen or service.fuerWen %}
       <li class="reveal reveal-{{ loop.index }} flex items-start gap-3">
         <span class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden="true">
           <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -45,13 +48,13 @@ eleventyComputed:
   </div>
 </section>
 
-<!-- 3 · Leistungsumfang -->
+<!-- 3 · What's included -->
 <section class="py-16 bg-slate-50/50">
   <div class="max-w-3xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6">Leistungsumfang</h2>
+    <h2 class="text-2xl font-black text-slate-900 mb-6">What's included</h2>
     <div class="bg-white rounded-2xl border border-slate-100 p-6">
       <ul class="space-y-2.5">
-        {% for punkt in service.umfang %}
+        {% for punkt in d.umfang or service.umfang %}
         <li class="flex items-start gap-3 text-sm text-slate-600">
           <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
           {{ punkt }}
@@ -62,12 +65,12 @@ eleventyComputed:
   </div>
 </section>
 
-<!-- 4 · Ablauf und Zeitrahmen (§ 8 Geschwindigkeit konkret) -->
+<!-- 4 · Process and timeline -->
 <section class="py-16 bg-white">
   <div class="max-w-3xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6">Ablauf und Zeitrahmen</h2>
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Process and timeline</h2>
     <div class="space-y-2 mb-8">
-      {% for schritt in service.ablauf %}
+      {% for schritt in d.ablauf or service.ablauf %}
       <div class="reveal reveal-{{ loop.index }} flex gap-4 bg-slate-50 rounded-2xl border border-slate-100 p-5">
         <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black flex-shrink-0" aria-hidden="true">{{ loop.index }}</div>
         <div>
@@ -82,17 +85,17 @@ eleventyComputed:
     </div>
     <div class="bg-amber-50 border border-amber-100 rounded-2xl p-5 flex items-start gap-3">
       <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <p class="text-sm text-slate-700 leading-relaxed"><span class="font-bold">Realistischer Zeitrahmen:</span> {{ service.zeitrahmen }}</p>
+      <p class="text-sm text-slate-700 leading-relaxed"><span class="font-bold">Realistic timeline:</span> {{ d.zeitrahmen or service.zeitrahmen }}</p>
     </div>
   </div>
 </section>
 
 {% if service.portfolio %}
-<!-- Foto/Video-Portfolio (§ 12: neuer Seitentyp, nur bei foto-video eingebunden) -->
+<!-- Photo/video portfolio (only included for foto-video) -->
 {% include "partials/portfolio.njk" %}
 {% endif %}
 
-<!-- 5 · Eine Referenz zu genau dieser Leistung -->
+<!-- 5 · One case study for exactly this service area -->
 {% set serviceProjekt = null %}
 {% for projekt in projects %}
   {% if not serviceProjekt and parentCluster.slug in projekt.cluster %}
@@ -100,26 +103,28 @@ eleventyComputed:
   {% endif %}
 {% endfor %}
 {% if serviceProjekt %}
+{% set spd = serviceProjekt.en %}
 <section class="py-16 bg-slate-50/50">
   <div class="max-w-3xl mx-auto px-5">
-    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4 text-center">Referenz</p>
-    <a href="/projekte/{{ serviceProjekt.slug }}/" class="reveal block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
-      <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ serviceProjekt.brancheLabel }}</p>
-      <p class="text-4xl font-black text-slate-900">{{ serviceProjekt.teaser.zahl }}</p>
-      <p class="text-sm text-blue-600 font-semibold mb-3">{{ serviceProjekt.teaser.zahlLabel }}</p>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ serviceProjekt.teaser.text }}</p>
-      <span class="text-sm font-semibold text-blue-600">Zur Case Study →</span>
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4 text-center">Case study</p>
+    <a href="/en/projekte/{{ serviceProjekt.slug }}/" class="reveal block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+      <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ spd.brancheLabel or serviceProjekt.brancheLabel }}</p>
+      <p class="text-4xl font-black text-slate-900">{{ spd.teaser.zahl or serviceProjekt.teaser.zahl }}</p>
+      <p class="text-sm text-blue-600 font-semibold mb-3">{{ spd.teaser.zahlLabel or serviceProjekt.teaser.zahlLabel }}</p>
+      <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ spd.teaser.text or serviceProjekt.teaser.text }}</p>
+      <span class="text-sm font-semibold text-blue-600">View case study →</span>
     </a>
   </div>
 </section>
 {% endif %}
 
-<!-- 6 · FAQ (dient dem Rich Snippet) -->
+<!-- 6 · FAQ (feeds the rich snippet) -->
+{% set faqItems = d.faq or service.faq %}
 <section class="py-16 bg-white">
   <div class="max-w-2xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Häufige Fragen</h2>
+    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Frequently asked questions</h2>
     <div class="space-y-2">
-      {% for item in service.faq %}
+      {% for item in faqItems %}
       <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
         <button type="button" data-faq-toggle aria-expanded="false" class="w-full text-left px-6 py-5 flex items-center justify-between">
           <span class="font-semibold text-slate-800 text-sm">{{ item.q }}</span>
@@ -132,17 +137,18 @@ eleventyComputed:
   </div>
 </section>
 
-<!-- 7 · Querverweise: wird oft kombiniert mit -->
+<!-- 7 · Cross-references: often combined with -->
 {% if service.kombiniert.length %}
 <section class="py-16 bg-slate-50/50">
   <div class="max-w-4xl mx-auto px-5">
-    <h2 class="text-xl font-black text-slate-900 mb-6 text-center">Wird oft kombiniert mit</h2>
+    <h2 class="text-xl font-black text-slate-900 mb-6 text-center">Often combined with</h2>
     <div class="grid sm:grid-cols-3 gap-4">
       {% for kombiSlug in service.kombiniert %}
       {% set kombiService = services | findBySlug(kombiSlug) %}
-      <a href="/leistungen/{{ kombiService.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-xl border border-slate-100 p-5 hover:border-blue-200 transition-colors">
-        <p class="font-semibold text-slate-800 text-sm mb-1">{{ kombiService.title }}</p>
-        <p class="text-xs text-slate-400 leading-relaxed">{{ kombiService.card | truncate(70) }}</p>
+      {% set kd = kombiService.en %}
+      <a href="/en/leistungen/{{ kombiService.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-xl border border-slate-100 p-5 hover:border-blue-200 transition-colors">
+        <p class="font-semibold text-slate-800 text-sm mb-1">{{ kd.title or kombiService.title }}</p>
+        <p class="text-xs text-slate-400 leading-relaxed">{{ (kd.card or kombiService.card) | truncate(70) }}</p>
       </a>
       {% endfor %}
     </div>
@@ -150,20 +156,20 @@ eleventyComputed:
 </section>
 {% endif %}
 
-<!-- 8 · CTA-Block -->
-{% set ctaHeadline = service.title + " — passt das zu Ihnen?" %}
-{% set ctaSecondaryUrl = "/leistungen/" + parentCluster.slug + "/" %}
-{% set ctaSecondaryLabel = "Zurück zu " + parentCluster.title %}
+<!-- 8 · CTA block -->
+{% set ctaHeadline = (d.title or service.title) + " — is this a fit for you?" %}
+{% set ctaSecondaryUrl = "/en/leistungen/" + parentCluster.slug + "/" %}
+{% set ctaSecondaryLabel = "Back to " + (pc.title or parentCluster.title) %}
 {% include "partials/cta.njk" %}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": {{ service.title | dump | safe }},
+  "serviceType": {{ (d.title or service.title) | dump | safe }},
   "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
-  "areaServed": "Rhein-Main, Bergstraße, Rhein-Neckar",
-  "description": {{ service.meta.description | dump | safe }}
+  "areaServed": "Rhine-Main, Bergstrasse, Rhine-Neckar",
+  "description": {{ (d.meta.description or service.meta.description) | dump | safe }}
 }
 </script>
 <script type="application/ld+json">
@@ -171,7 +177,7 @@ eleventyComputed:
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {% for item in service.faq %}
+    {% for item in faqItems %}
     { "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{{ "," if not loop.last }}
     {% endfor %}
   ]

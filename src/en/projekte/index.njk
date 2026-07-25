@@ -1,0 +1,130 @@
+---
+layout: layouts/base.njk
+lang: en
+title: Projects & Case Studies — AIVANCE
+metaTitle: Projects & Case Studies — AIVANCE
+metaDescription: "Real projects, measurable results: case studies from hospitality and mid-sized businesses in the Rhine-Main region — filterable by industry and service cluster."
+breadcrumb: Projects
+permalink: /en/projekte/
+deUrl: /projekte/
+---
+
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Case studies</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">Projects &amp; case studies</h1>
+    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">Real projects, measurable results. We show you concretely what digitalization delivers in practice.</p>
+
+    <div class="flex flex-wrap justify-center gap-8 mt-10 pt-10 border-t border-slate-200">
+      <div>
+        <p class="text-3xl font-black text-slate-900 counter-num" data-target="{{ projects.length }}">{{ projects.length }}</p>
+        <p class="text-xs text-slate-400 mt-1">Completed projects</p>
+      </div>
+      <div>
+        <p class="text-3xl font-black text-slate-900">96%</p>
+        <p class="text-xs text-slate-400 mt-1">Client satisfaction</p>
+      </div>
+      <div>
+        <p class="text-3xl font-black text-slate-900">−79%</p>
+        <p class="text-xs text-slate-400 mt-1">Manual work (avg.)</p>
+      </div>
+      <div>
+        <p class="text-3xl font-black text-slate-900">17 days</p>
+        <p class="text-xs text-slate-400 mt-1">Avg. time to go-live</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 bg-white border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Filter projects">
+      <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest mr-2">Industry:</span>
+      <button type="button" class="project-filter-branche px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">All</button>
+      {% for branche in industries %}
+      <button type="button" class="project-filter-branche px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.en.kurz or branche.kurz }}</button>
+      {% endfor %}
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-2 mt-3" role="group" aria-label="Filter by service cluster">
+      <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest mr-2">Area:</span>
+      <button type="button" class="project-filter-cluster px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">All</button>
+      {% for cluster in clusters %}
+      <button type="button" class="project-filter-cluster px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ cluster.slug }}" aria-pressed="false">{{ cluster.en.title or cluster.title }}</button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-6" id="projectGrid">
+      {% for projekt in projects %}
+      {% set pd = projekt.en %}
+      <a href="/en/projekte/{{ projekt.slug }}/" class="project-card reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform"
+         data-branche="{{ projekt.branche }}" data-cluster="{{ projekt.cluster | join(',') }}">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black flex-shrink-0" aria-hidden="true">{{ projekt.nummer }}</div>
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">{{ pd.brancheLabel or projekt.brancheLabel }}</span>
+          <span class="ml-auto px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">{{ pd.status or projekt.status }}</span>
+        </div>
+        <h2 class="text-xl font-black text-slate-900 mb-2">{{ pd.title or projekt.title }}</h2>
+        <p class="text-xs text-blue-600 font-semibold mb-4">{{ pd.untertitel or projekt.untertitel }}</p>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          {% for erg in pd.ergebnisse or projekt.ergebnisse %}
+          <div class="bg-slate-50 rounded-lg border border-slate-100 p-2.5 text-center">
+            <p class="text-base font-black text-slate-900">{{ erg.wert }}</p>
+            <p class="text-[10px] text-slate-400">{{ erg.label }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        <span class="text-sm font-semibold text-blue-600">View case study →</span>
+      </a>
+      {% endfor %}
+    </div>
+    <p id="projectEmptyState" class="hidden text-center text-sm text-slate-400 py-10">No case study for this combination yet — <a href="/en/contact/" class="text-blue-600 hover:underline">get in touch</a>, we're working on it.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var brancheBtns = document.querySelectorAll(".project-filter-branche");
+  var clusterBtns = document.querySelectorAll(".project-filter-cluster");
+  var cards = document.querySelectorAll(".project-card");
+  var empty = document.getElementById("projectEmptyState");
+  var activeBranche = "all", activeCluster = "all";
+
+  function setActive(btns, target) {
+    btns.forEach(function (b) {
+      var on = b === target;
+      b.setAttribute("aria-pressed", String(on));
+      b.classList.toggle("bg-slate-900", on);
+      b.classList.toggle("text-white", on);
+      b.classList.toggle("bg-white", !on);
+      b.classList.toggle("border", !on);
+      b.classList.toggle("border-slate-200", !on);
+      b.classList.toggle("text-slate-600", !on);
+    });
+  }
+
+  function applyFilter() {
+    var visibleCount = 0;
+    cards.forEach(function (card) {
+      var matchBranche = activeBranche === "all" || card.dataset.branche === activeBranche;
+      var matchCluster = activeCluster === "all" || card.dataset.cluster.split(",").indexOf(activeCluster) !== -1;
+      var visible = matchBranche && matchCluster;
+      card.style.display = visible ? "" : "none";
+      if (visible) visibleCount++;
+    });
+    empty.classList.toggle("hidden", visibleCount > 0);
+  }
+
+  brancheBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () { activeBranche = btn.dataset.filter; setActive(brancheBtns, btn); applyFilter(); });
+  });
+  clusterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () { activeCluster = btn.dataset.filter; setActive(clusterBtns, btn); applyFilter(); });
+  });
+})();
+</script>
+
+{% include "partials/cta.njk" %}

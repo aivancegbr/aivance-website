@@ -1,32 +1,34 @@
-{# Leitplanken-Streifen (§ 8): kompakte Komponente auf jeder Cluster-, Leistungs- und Branchenseite #}
-<section class="py-10 bg-slate-50 border-y border-slate-100" aria-label="Unsere drei Leitplanken">
+{# Leitplanken-Streifen (§ 8): kompakte Komponente auf jeder Cluster-, Leistungs- und Branchenseite — sprachabhängig #}
+{% set t = i18n[lang or 'de'] %}
+{% set isEn = lang == 'en' %}
+<section class="py-10 bg-slate-50 border-y border-slate-100" aria-label="{{ 'Our three guardrails' if isEn else 'Unsere drei Leitplanken' }}">
   <div class="max-w-6xl mx-auto px-5">
     <div class="leitplanken reveal">
-      <a href="/datensicherheit/" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
+      <a href="{{ t.urlDatensicherheit }}" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
         <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0" aria-hidden="true">
           <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
         <div>
-          <p class="text-sm font-bold text-slate-800">Datenschutz</p>
-          <p class="text-xs text-slate-400 mt-0.5">Hosting in DE/EU, AVV nach Art. 28 DSGVO — alle Belege auf einer Seite.</p>
+          <p class="text-sm font-bold text-slate-800">{{ 'Data protection' if isEn else 'Datenschutz' }}</p>
+          <p class="text-xs text-slate-400 mt-0.5">{{ 'Hosting in Germany/EU, DPA under Art. 28 GDPR — all evidence on one page.' if isEn else 'Hosting in DE/EU, AVV nach Art. 28 DSGVO — alle Belege auf einer Seite.' }}</p>
         </div>
       </a>
-      <a href="/projekte/" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
+      <a href="{{ t.urlProjekte }}" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
         <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0" aria-hidden="true">
           <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         </div>
         <div>
-          <p class="text-sm font-bold text-slate-800">Qualität</p>
-          <p class="text-xs text-slate-400 mt-0.5">Referenzen mit Vorher-nachher-Zahlen statt Adjektiven.</p>
+          <p class="text-sm font-bold text-slate-800">{{ 'Quality' if isEn else 'Qualität' }}</p>
+          <p class="text-xs text-slate-400 mt-0.5">{{ 'Case studies with before-and-after numbers instead of adjectives.' if isEn else 'Referenzen mit Vorher-nachher-Zahlen statt Adjektiven.' }}</p>
         </div>
       </a>
-      <a href="{{ speedUrl or '/leistungen/' }}" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
+      <a href="{{ speedUrl or t.urlLeistungen }}" class="flex items-start gap-3 bg-white rounded-2xl border border-slate-100 p-4 hover:border-blue-200 transition-colors">
         <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0" aria-hidden="true">
           <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
         <div>
-          <p class="text-sm font-bold text-slate-800">Geschwindigkeit</p>
-          <p class="text-xs text-slate-400 mt-0.5">Ehrlicher Zeitrahmen pro Leistung — kein Pauschalversprechen.</p>
+          <p class="text-sm font-bold text-slate-800">{{ 'Speed' if isEn else 'Geschwindigkeit' }}</p>
+          <p class="text-xs text-slate-400 mt-0.5">{{ 'An honest timeline per service — no blanket promise.' if isEn else 'Ehrlicher Zeitrahmen pro Leistung — kein Pauschalversprechen.' }}</p>
         </div>
       </a>
     </div>

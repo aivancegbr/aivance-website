@@ -1,8 +1,8 @@
 /**
  * UI-Strings für die Chrome-Komponenten (Header/Footer), sprachabhängig.
  * Nur Navigations- und Rahmentexte — Seiteninhalte leben in den jeweiligen Templates.
- * Solange nur die Startseite unter /en/ existiert, verlinkt die englische Navigation
- * bewusst auf die deutschen Unterseiten (§ 13 Phase 4: vollständige Spiegelstruktur folgt).
+ * Seit der vollständigen EN-Spiegelstruktur (§ 13 Phase 4) enthalten beide Blöcke
+ * zusätzlich die sprachspezifischen Link-Ziele (url*) für Header/Footer/CTA.
  */
 module.exports = {
   de: {
@@ -12,6 +12,17 @@ module.exports = {
     navProjekte: "Projekte",
     navUeberUns: "Über uns",
     navKontakt: "Kontakt",
+    urlHome: "/",
+    urlLeistungen: "/leistungen/",
+    urlBranchen: "/branchen/",
+    urlProjekte: "/projekte/",
+    urlUeberUns: "/ueber-uns/",
+    urlKontakt: "/kontakt/",
+    urlDatensicherheit: "/datensicherheit/",
+    ctaHeadline: "Ihr Projekt als Nächstes?",
+    ctaText: "Im kostenlosen Erstgespräch hören wir zu, stellen Fragen und sagen Ihnen ehrlich, ob und wie wir helfen können.",
+    ctaPrimary: "Kostenloses Erstgespräch →",
+    ctaSecondary: "Leistungen ansehen",
     navAriaLabel: "Hauptnavigation",
     homeAriaLabel: "AIVANCE Startseite",
     branchenAriaLabel: "Branchen",
@@ -45,6 +56,17 @@ module.exports = {
     navProjekte: "Projects",
     navUeberUns: "About",
     navKontakt: "Contact",
+    urlHome: "/en/",
+    urlLeistungen: "/en/leistungen/",
+    urlBranchen: "/en/branchen/",
+    urlProjekte: "/en/projekte/",
+    urlUeberUns: "/en/about/",
+    urlKontakt: "/en/contact/",
+    urlDatensicherheit: "/en/data-security/",
+    ctaHeadline: "Your project next?",
+    ctaText: "In a free introductory call we listen, ask questions and tell you honestly whether and how we can help.",
+    ctaPrimary: "Free introductory call →",
+    ctaSecondary: "View services",
     navAriaLabel: "Main navigation",
     homeAriaLabel: "AIVANCE homepage",
     branchenAriaLabel: "Industries",

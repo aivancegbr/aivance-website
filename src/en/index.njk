@@ -11,22 +11,21 @@ permalink: /en/
 
 {#
   Englische Startseite (§ 13 Phase 4). Struktur spiegelt die deutsche Startseite 1:1,
-  Inhalte übersetzt. Interne Links zu Unterseiten führen bewusst auf die deutschen
-  Fassungen, da bislang nur diese Startseite übersetzt ist — die vollständige englische
-  Spiegelstruktur ist für eine spätere Ausbaustufe vorgesehen (§ 13).
+  Inhalte übersetzt. Seit der vollständigen EN-Spiegelstruktur führen alle internen
+  Links auf die englischen Zwillingsseiten unter /en/.
   Cluster-/Branchen-Bezeichnungen sind hier lokal übersetzt (siehe enClusters/enIndustries
-  unten), ohne die deutschen _data-Quellen zu verändern.
+  unten) — die zentralen Übersetzungen liegen inzwischen als en-Blöcke in den _data-Quellen.
 #}
 
 <script>
   (function () {
     var map = {
-      "#features": "/leistungen/",
-      "#usecases": "/branchen/",
-      "#integrations": "/leistungen/integrationen/",
-      "#projects": "/projekte/",
-      "#team": "/ueber-uns/",
-      "#contact": "/kontakt/"
+      "#features": "/en/leistungen/",
+      "#usecases": "/en/branchen/",
+      "#integrations": "/en/leistungen/integrationen/",
+      "#projects": "/en/projekte/",
+      "#team": "/en/about/",
+      "#contact": "/en/contact/"
     };
     var target = map[window.location.hash];
     if (target) window.location.replace(target);
@@ -76,8 +75,8 @@ permalink: /en/
     </p>
 
     <div class="hero-cta-row">
-      <a href="/kontakt/" class="hero-btn-primary">Free introductory call</a>
-      <a href="/leistungen/" class="hero-btn-secondary">
+      <a href="/en/contact/" class="hero-btn-primary">Free introductory call</a>
+      <a href="/en/leistungen/" class="hero-btn-secondary">
         View services <span class="arrow" aria-hidden="true">→</span>
       </a>
     </div>
@@ -173,7 +172,7 @@ permalink: /en/
     <div class="grid md:grid-cols-3 gap-5">
       {% for cluster in clusters %}
       {% set ec = enClusters[cluster.slug] %}
-      <a href="/leistungen/{{ cluster.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+      <a href="/en/leistungen/{{ cluster.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
         <div class="w-10 h-10 rounded-xl {{ ['bg-blue-50','bg-violet-50','bg-amber-50'][loop.index0] }} flex items-center justify-center mb-5" aria-hidden="true">
           {% if cluster.slug == 'sichtbarkeit' %}
           <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
@@ -214,7 +213,7 @@ permalink: /en/
         </div>
         <h3 class="font-bold text-slate-900 mb-2">Data protection</h3>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">Hosting in Germany and the EU, DPA under Art. 28 GDPR, no model training on your data. Also built for professionals bound by confidentiality law.</p>
-        <a href="/datensicherheit/" class="text-sm font-semibold text-blue-600">See all evidence →</a>
+        <a href="/en/data-security/" class="text-sm font-semibold text-blue-600">See all evidence →</a>
       </div>
       <div class="reveal reveal-2 bg-white rounded-2xl border border-slate-100 p-7 shadow-card">
         <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4" aria-hidden="true">
@@ -222,7 +221,7 @@ permalink: /en/
         </div>
         <h3 class="font-bold text-slate-900 mb-2">Quality</h3>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">Case studies with before-and-after numbers, a defined process with named phases, and one dedicated contact — not an anonymous "team".</p>
-        <a href="/projekte/" class="text-sm font-semibold text-blue-600">See results →</a>
+        <a href="/en/projekte/" class="text-sm font-semibold text-blue-600">See results →</a>
       </div>
       <div class="reveal reveal-3 bg-white rounded-2xl border border-slate-100 p-7 shadow-card">
         <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center mb-4" aria-hidden="true">
@@ -230,7 +229,7 @@ permalink: /en/
         </div>
         <h3 class="font-bold text-slate-900 mb-2">Speed</h3>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">Every service has its own honest timeline — knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks.</p>
-        <a href="/leistungen/" class="text-sm font-semibold text-blue-600">Timelines per service →</a>
+        <a href="/en/leistungen/" class="text-sm font-semibold text-blue-600">Timelines per service →</a>
       </div>
     </div>
   </div>
@@ -247,7 +246,7 @@ permalink: /en/
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {% for branche in industries %}
       {% set eb = enIndustries[branche.slug] %}
-      <a href="/branchen/{{ branche.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-6 hover:border-blue-200 hover:bg-white hover:shadow-card transition-all">
+      <a href="/en/branchen/{{ branche.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-6 hover:border-blue-200 hover:bg-white hover:shadow-card transition-all">
         <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center mb-4" aria-hidden="true">
           {% if branche.slug == 'medizin' %}
           <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
@@ -277,9 +276,9 @@ permalink: /en/
     </div>
     <div class="grid md:grid-cols-2 gap-5 mb-10">
       {% for projekt in projects %}
-      {% set ep = enProjects[projekt.slug] %}
-      <a href="/projekte/{{ projekt.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
-        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ projekt.brancheLabel }}</p>
+      {% set ep = projekt.en.teaser or enProjects[projekt.slug] %}
+      <a href="/en/projekte/{{ projekt.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ projekt.en.brancheLabel or projekt.brancheLabel }}</p>
         <p class="text-4xl font-black text-slate-900">{{ ep.zahl }}</p>
         <p class="text-sm text-blue-600 font-semibold mb-3">{{ ep.zahlLabel }}</p>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ ep.text }}</p>
@@ -288,7 +287,7 @@ permalink: /en/
       {% endfor %}
     </div>
     <div class="text-center reveal">
-      <a href="/projekte/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">View all case studies →</a>
+      <a href="/en/projekte/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">View all case studies →</a>
     </div>
   </div>
 </section>
