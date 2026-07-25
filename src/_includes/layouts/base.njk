@@ -23,10 +23,14 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:title" content="{{ metaTitle or title }}" />
   <meta property="og:description" content="{{ metaDescription or description }}" />
-  <meta property="og:image" content="{{ site.url }}/images/logo.jpg" />
+  <meta property="og:image" content="{{ site.url }}/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="AIVANCE — Digitalisierungsagentur Rhein-Main" />
   <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
   <meta property="og:site_name" content="AIVANCE" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ site.url }}/images/og-image.png" />
 
   <!-- JSON-LD: Organization (global, § 11) -->
   <script type="application/ld+json">
