@@ -6,6 +6,7 @@
  */
 module.exports = {
   de: {
+    navStart: "Start",
     navLeistungen: "Leistungen",
     navBranchen: "Branchen",
     navProjekte: "Projekte",
@@ -38,6 +39,7 @@ module.exports = {
     footerSlogan: "Ein Partner statt fünf Dienstleistern."
   },
   en: {
+    navStart: "Home",
     navLeistungen: "Services",
     navBranchen: "Industries",
     navProjekte: "Projects",

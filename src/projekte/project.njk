@@ -4,6 +4,7 @@ pagination:
   data: projects
   size: 1
   alias: projekt
+  addAllPagesToCollections: true
 permalink: "/projekte/{{ projekt.slug }}/"
 eleventyComputed:
   title: "{{ projekt.meta.title }}"
@@ -81,6 +82,7 @@ eleventyComputed:
     </div>
 
     <!-- Zitat -->
+    {% if projekt.zitat %}
     <div class="reveal bg-slate-900 rounded-2xl p-7 mb-4">
       <div class="flex gap-0.5 mb-4" aria-hidden="true">
         <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
@@ -91,6 +93,7 @@ eleventyComputed:
         <p class="text-white/40 text-xs">{{ projekt.zitat.ort }}</p>
       </div>
     </div>
+    {% endif %}
     {% if projekt.anonym %}
     <p class="text-xs text-slate-400 text-center">Auf Wunsch des Kunden anonymisiert dargestellt.</p>
     {% endif %}

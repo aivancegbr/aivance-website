@@ -92,5 +92,44 @@ module.exports = [
       title: "Mittelstand: Onboarding-Zeit −3 Tage — AIVANCE",
       description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding von 7 auf 4 Tage verkürzt."
     }
+  },
+  {
+    slug: "praxis-online-sichtbarkeit",
+    nummer: "03",
+    title: "Online-Sichtbarkeit für eine Gesundheitspraxis",
+    untertitel: "Website-Relaunch, SEO & Live-Dashboard · New York, USA",
+    branche: "medizin",
+    brancheLabel: "Gesundheitswesen · USA",
+    cluster: ["sichtbarkeit"],
+    status: "Laufende Betreuung",
+    anonym: true,
+    teaser: {
+      zahl: "+128 %",
+      zahlLabel: "Klicks aus der Google-Suche",
+      text: "Eine Praxis für Akupunktur & Sportmedizin wird online endlich so gefunden, wie es ihrem Ruf entspricht — mehr Anrufe, mehr Anfragen, mehr Patienten."
+    },
+    ausgangslage:
+      "Eine renommierte Praxis für Akupunktur und Sportmedizin im Raum New York — mit Profisportlern unter den Patienten — war online praktisch unsichtbar. Die Website bestand aus einer einzigen Seite, wichtige Leistungen hatten keine eigenen Unterseiten, und Google meldete Indexierungsfehler. Wer nach den Kernleistungen der Praxis suchte, fand die Konkurrenz.",
+    loesung:
+      "AIVANCE hat die Website technisch und inhaltlich neu aufgestellt: eigene, suchoptimierte Seiten für jede Kernleistung, Behebung aller Indexierungsfehler in der Google Search Console, strukturierte Daten (FAQ-Schema) und ein Blog mit CMS, über das die Praxis ohne Entwickler publiziert. Die monatlichen Google-Kennzahlen laufen in ein Live-Dashboard, das automatisch aktualisiert wird.",
+    gebaut: [
+      "Fünf suchoptimierte Leistungsseiten mit lokalem SEO-Fokus und FAQ-Schema",
+      "Technisches SEO: Indexierungsfehler behoben, Canonicals, Sitemap, Redirects",
+      "Blog mit CMS — neue Artikel gehen ohne Entwickler live",
+      "Live-Performance-Dashboard mit monatlich automatisch aktualisierten Google-Kennzahlen"
+    ],
+    tech: ["React", "Technisches SEO", "FAQ-Schema", "Headless CMS", "Google Search Console"],
+    ergebnisse: [
+      { wert: "+128 %", label: "Google-Klicks", detail: "organische Suche, Monat zu Monat" },
+      { wert: "+32 %", label: "Patientenanrufe", detail: "über das Google-Unternehmensprofil" },
+      { wert: "+233 %", label: "Chat-Anfragen", detail: "Anfragequote pro Besucher verdoppelt" }
+    ],
+    ergebnisZeitraum: "Messbare Ergebnisse innerhalb von 3 Monaten",
+    bild: null,
+    bildAlt: null,
+    meta: {
+      title: "Gesundheitspraxis: +128 % Google-Klicks — AIVANCE",
+      description: "Case Study: Website-Relaunch & SEO für eine Praxis in New York — +128 % Suchklicks, +32 % Patientenanrufe, +233 % Chat-Anfragen."
+    }
   }
 ];

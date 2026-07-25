@@ -17,6 +17,7 @@
     </a>
 
     <div class="hidden md:flex items-center gap-7">
+      <a href="{{ '/en/' if lang == 'en' else '/' }}" class="nav-link text-sm font-medium {{ 'text-slate-900' if page.url == '/' or page.url == '/en/' else 'text-slate-500' }} hover:text-slate-900 transition-colors" {% if page.url == '/' or page.url == '/en/' %}aria-current="page"{% endif %}>{{ t.navStart }}</a>
       <button type="button" id="megaBtn" class="nav-link inline-flex items-center gap-1.5 text-sm font-medium {{ 'text-slate-900' if isLeistungen else 'text-slate-500' }} hover:text-slate-900 transition-colors"
               aria-expanded="false" aria-controls="megaPanel" {% if isLeistungen %}aria-current="true"{% endif %}>
         {{ t.navLeistungen }}
@@ -44,12 +45,12 @@
     </div>
 
     <div class="hidden md:flex items-center gap-3">
-      {% if enUrl or deUrl %}
-      <a href="{{ enUrl or deUrl }}" id="lang-toggle" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
-         lang="{{ 'en' if enUrl else 'de' }}" hreflang="{{ 'en' if enUrl else 'de' }}">
-        {% if enUrl %}<span class="text-slate-900">DE</span><span aria-hidden="true">|</span>EN{% else %}<span class="text-slate-900">EN</span><span aria-hidden="true">|</span>DE{% endif %}
+      {% set isEnPage = lang == 'en' %}
+      {% if isEnPage %}{% set langTarget = deUrl or '/' %}{% else %}{% set langTarget = enUrl or '/en/' %}{% endif %}
+      <a href="{{ langTarget }}" id="lang-toggle" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
+         lang="{{ 'de' if isEnPage else 'en' }}" hreflang="{{ 'de' if isEnPage else 'en' }}">
+        {% if isEnPage %}<span class="text-slate-900">EN</span><span aria-hidden="true">|</span>DE{% else %}<span class="text-slate-900">DE</span><span aria-hidden="true">|</span>EN{% endif %}
       </a>
-      {% endif %}
       <a href="/kontakt/" class="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">{{ t.navKontakt }}</a>
     </div>
 
@@ -98,7 +99,8 @@
   </div>
 
   <div class="flex-1 overflow-y-auto px-5 py-4">
-    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2 mt-2">{{ t.mobileLeistungenLabel }}</p>
+    <a href="{{ '/en/' if lang == 'en' else '/' }}" class="block py-3 border-b border-slate-100 text-[15px] font-semibold text-slate-800">{{ t.navStart }}</a>
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2 mt-4">{{ t.mobileLeistungenLabel }}</p>
     {% for cluster in clusters %}
     <div class="border-b border-slate-100">
       <button type="button" class="mobile-accordion w-full flex items-center justify-between py-3 text-left text-[15px] font-semibold text-slate-800" aria-expanded="false">
@@ -125,11 +127,10 @@
   </div>
 
   <div class="flex items-center gap-3 px-5 py-4 border-t border-slate-100 flex-shrink-0 bg-white">
-    {% if enUrl or deUrl %}
-    <a href="{{ enUrl or deUrl }}" class="px-4 py-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-600" lang="{{ 'en' if enUrl else 'de' }}" hreflang="{{ 'en' if enUrl else 'de' }}">
-      {{ 'DE | EN' if enUrl else 'EN | DE' }}
+    {% if lang == 'en' %}{% set mobileLangTarget = deUrl or '/' %}{% else %}{% set mobileLangTarget = enUrl or '/en/' %}{% endif %}
+    <a href="{{ mobileLangTarget }}" class="px-4 py-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-600" lang="{{ 'de' if lang == 'en' else 'en' }}" hreflang="{{ 'de' if lang == 'en' else 'en' }}">
+      {{ 'EN | DE' if lang == 'en' else 'DE | EN' }}
     </a>
-    {% endif %}
     <a href="/kontakt/" class="flex-1 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold text-center">{{ t.navKontakt }}</a>
   </div>
 </div>
