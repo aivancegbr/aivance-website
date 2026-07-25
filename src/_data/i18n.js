@@ -1,0 +1,72 @@
+/**
+ * UI-Strings für die Chrome-Komponenten (Header/Footer), sprachabhängig.
+ * Nur Navigations- und Rahmentexte — Seiteninhalte leben in den jeweiligen Templates.
+ * Solange nur die Startseite unter /en/ existiert, verlinkt die englische Navigation
+ * bewusst auf die deutschen Unterseiten (§ 13 Phase 4: vollständige Spiegelstruktur folgt).
+ */
+module.exports = {
+  de: {
+    navLeistungen: "Leistungen",
+    navBranchen: "Branchen",
+    navProjekte: "Projekte",
+    navUeberUns: "Über uns",
+    navKontakt: "Kontakt",
+    navAriaLabel: "Hauptnavigation",
+    homeAriaLabel: "AIVANCE Startseite",
+    branchenAriaLabel: "Branchen",
+    leistungenAriaLabel: "Leistungen",
+    caseStudyEyebrow: "Aktuelle Case Study",
+    caseStudyLink: "Zur Case Study →",
+    menuOpen: "Menü öffnen",
+    menuClose: "Menü schließen",
+    mobileMenuLabel: "Menü",
+    mobileLeistungenLabel: "Leistungen",
+    mobileBranchenLabel: "Branchen",
+    mobileClusterUebersicht: "Übersicht",
+    footerTagline: "Digitalisierung aus einer Hand — von der Website bis zur Automatisierung.",
+    footerLeistungen: "Leistungen",
+    footerAlleLeistungen: "Alle Leistungen",
+    footerBranchen: "Branchen",
+    footerUnternehmen: "Unternehmen",
+    footerProjekte: "Projekte",
+    footerUeberUns: "Über uns",
+    footerKontakt: "Kontakt",
+    footerDatensicherheit: "Datensicherheit",
+    footerDatenschutz: "Datenschutz",
+    footerImpressum: "Impressum",
+    footerRights: "Alle Rechte vorbehalten.",
+    footerSlogan: "Ein Partner statt fünf Dienstleistern."
+  },
+  en: {
+    navLeistungen: "Services",
+    navBranchen: "Industries",
+    navProjekte: "Projects",
+    navUeberUns: "About",
+    navKontakt: "Contact",
+    navAriaLabel: "Main navigation",
+    homeAriaLabel: "AIVANCE homepage",
+    branchenAriaLabel: "Industries",
+    leistungenAriaLabel: "Services",
+    caseStudyEyebrow: "Featured case study",
+    caseStudyLink: "View case study →",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    mobileMenuLabel: "Menu",
+    mobileLeistungenLabel: "Services",
+    mobileBranchenLabel: "Industries",
+    mobileClusterUebersicht: "Overview",
+    footerTagline: "Digital transformation from a single source — from your website to automation.",
+    footerLeistungen: "Services",
+    footerAlleLeistungen: "All services",
+    footerBranchen: "Industries",
+    footerUnternehmen: "Company",
+    footerProjekte: "Projects",
+    footerUeberUns: "About",
+    footerKontakt: "Contact",
+    footerDatensicherheit: "Data security",
+    footerDatenschutz: "Privacy policy",
+    footerImpressum: "Legal notice",
+    footerRights: "All rights reserved.",
+    footerSlogan: "One partner instead of five vendors."
+  }
+};

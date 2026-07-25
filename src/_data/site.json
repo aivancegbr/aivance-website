@@ -1,0 +1,17 @@
+{
+  "name": "AIVANCE",
+  "url": "https://ai-vance.de",
+  "email": "info@ai-vance.de",
+  "phone": "+49 176 315 37382",
+  "phoneHref": "+4917631537382",
+  "region": "Rhein-Main · Bergstraße · Rhein-Neckar",
+  "address": {
+    "street": "An der Eselsbrücke 2",
+    "zip": "64625",
+    "city": "Bensheim",
+    "country": "DE"
+  },
+  "founders": ["Ayman Karim", "Ajay Nagulendran", "Cyrus Lang"],
+  "formspree": "https://formspree.io/f/mdayjekj",
+  "github": "https://github.com/aivancegbr"
+}

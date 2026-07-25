@@ -1,0 +1,444 @@
+---
+layout: layouts/base.njk
+lang: en
+title: AIVANCE — Digital Agency, Rhine-Main Germany
+metaTitle: AIVANCE — Digital Agency, Rhine-Main Germany
+metaDescription: Website, photo & video, software and automation from a single source. GDPR-compliant, for medical practices, tax firms and hospitality.
+deUrl: /
+breadcrumb: English
+permalink: /en/
+---
+
+{#
+  Englische Startseite (§ 13 Phase 4). Struktur spiegelt die deutsche Startseite 1:1,
+  Inhalte übersetzt. Interne Links zu Unterseiten führen bewusst auf die deutschen
+  Fassungen, da bislang nur diese Startseite übersetzt ist — die vollständige englische
+  Spiegelstruktur ist für eine spätere Ausbaustufe vorgesehen (§ 13).
+  Cluster-/Branchen-Bezeichnungen sind hier lokal übersetzt (siehe enClusters/enIndustries
+  unten), ohne die deutschen _data-Quellen zu verändern.
+#}
+
+<script>
+  (function () {
+    var map = {
+      "#features": "/leistungen/",
+      "#usecases": "/branchen/",
+      "#integrations": "/leistungen/integrationen/",
+      "#projects": "/projekte/",
+      "#team": "/ueber-uns/",
+      "#contact": "/kontakt/"
+    };
+    var target = map[window.location.hash];
+    if (target) window.location.replace(target);
+  })();
+</script>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+{% set enClusters = {
+  "sichtbarkeit": { title: "Visibility", claim: "Public image and brand", bullets: ["Website & web design", "Photo, video & editing", "Social media management"] },
+  "software": { title: "Software & Systems", claim: "Custom-built solutions", bullets: ["Custom software", "Knowledge systems (RAG/DMS)", "Voice agents"] },
+  "automatisierung": { title: "Automation", claim: "Processes and data", bullets: ["Process automation", "KPIs & reporting", "Integrations & API"] }
+} %}
+{% set enIndustries = {
+  "medizin": { title: "Medical practices", hero: "Digitalization for medical practices", teaser: "Less phone-ringing at the front desk, less paperwork — and patient data stays where it belongs." },
+  "steuer-finanzberatung": { title: "Tax & financial advisors", hero: "Digitalization for tax firms", teaser: "Client mail sorts itself, routine questions answer themselves — your team works on cases, not filing." },
+  "gastronomie": { title: "Hospitality", hero: "Digitalization for hospitality", teaser: "Reservations, guest questions and your numbers run automatically — your team stays with the guests." },
+  "mittelstand": { title: "Trades & SMEs", hero: "Digitalization for trades & SMEs", teaser: "Quotes, staffing and knowledge: we digitize the workflows that strain growing businesses first." }
+} %}
+{% set enProjects = {
+  "gastronomie-chatbot": { zahl: "−78%", zahlLabel: "fewer manual inquiries per week", text: "A restaurant now answers reservations and guest questions automatically — via WhatsApp and its website." },
+  "onboarding-mittelstand": { zahl: "−3 days", zahlLabel: "onboarding time per employee", text: "New hires get answers instantly — instead of tying up the HR team with the same questions." }
+} %}
+
+<!-- ═══ 1 · HERO ═══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="badge-dot" aria-hidden="true"></span>
+      <span>Digital agency · Rhine-Main, Germany</span>
+    </div>
+
+    <h1 class="headline">
+      <span>Digital transformation,<br>from one team.</span>
+      <span class="headline-blue">
+        <span class="cycling-wrapper" id="cycling-wrapper">
+          <span class="cycling-text active">Website.</span>
+          <span class="cycling-text">Software.</span>
+          <span class="cycling-text">Automation.</span>
+          <span class="cycling-text">One partner.</span>
+        </span>
+      </span>
+    </h1>
+
+    <p class="hero-subtext">
+      Website, visuals, software and automation — coordinated instead of pieced together. You work with one partner instead of five vendors.
+    </p>
+
+    <div class="hero-cta-row">
+      <a href="/kontakt/" class="hero-btn-primary">Free introductory call</a>
+      <a href="/leistungen/" class="hero-btn-secondary">
+        View services <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-value">3</span>
+        <span class="stat-label">Service areas</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">4</span>
+        <span class="stat-label">Industries we focus on</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">1</span>
+        <span class="stat-label">Point of contact</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right" aria-hidden="true">
+    <div class="phone-wrap" style="position:relative;">
+      <div class="float-badge float-badge-1" id="hero-badge1">
+        <div class="badge-icon green">✓</div>
+        <div class="badge-text-group">
+          <span class="badge-title">One point of contact</span>
+          <span class="badge-sub">instead of five vendors</span>
+        </div>
+      </div>
+      <div class="float-badge float-badge-2" id="hero-badge2">
+        <div class="badge-icon blue">⚡</div>
+        <div class="badge-text-group">
+          <span class="badge-title">Reply within</span>
+          <span class="badge-sub">24 hours</span>
+        </div>
+      </div>
+
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="notch"></div>
+          <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+            </div>
+          </div>
+          <div class="chat-header">
+            <div class="avatar">A</div>
+            <div class="chat-header-info">
+              <div class="chat-header-name">AIVANCE</div>
+              <div class="online-indicator">
+                <span class="online-dot"></span> Online
+              </div>
+            </div>
+          </div>
+          <div class="chat-messages" id="hero-chat-messages"></div>
+          <div class="chat-input-row">
+            <div class="chat-input-bar">Ask us anything …</div>
+            <div class="chat-send">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2 · TRUST-BAR EBENE A ═══ -->
+{% include "partials/programme.njk" %}
+
+<!-- ═══ 3 · DAS PROBLEM ═══ -->
+<section class="py-20 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5 text-center reveal">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">The problem</p>
+    <h2 class="text-4xl font-black text-slate-900 mb-6">Five vendors<br/>who don't talk to each other.</h2>
+    <div class="text-slate-500 leading-relaxed space-y-4 max-w-xl mx-auto">
+      <p>Your web designer is waiting on photos from the photographer, the social media agency doesn't know about the new service page, and IT knows about none of it.</p>
+      <p>You're the one coordinating all of it — in the evening, between two appointments.</p>
+      <p class="font-semibold text-slate-700">We solve this differently: one team, one point of contact, coordinated trades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4 · DIE DREI CLUSTER ═══ -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Services</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Three areas,<br/>one connected system</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {% for cluster in clusters %}
+      {% set ec = enClusters[cluster.slug] %}
+      <a href="/leistungen/{{ cluster.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+        <div class="w-10 h-10 rounded-xl {{ ['bg-blue-50','bg-violet-50','bg-amber-50'][loop.index0] }} flex items-center justify-center mb-5" aria-hidden="true">
+          {% if cluster.slug == 'sichtbarkeit' %}
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          {% elif cluster.slug == 'software' %}
+          <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          {% else %}
+          <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          {% endif %}
+        </div>
+        <h3 class="font-bold text-slate-900 text-lg mb-1">{{ ec.title }}</h3>
+        <p class="text-xs text-blue-600 font-semibold mb-4">{{ ec.claim }}</p>
+        <ul class="space-y-2 mb-5">
+          {% for punkt in ec.bullets %}
+          <li class="flex items-center gap-2 text-sm text-slate-500">
+            <svg class="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            {{ punkt }}
+          </li>
+          {% endfor %}
+        </ul>
+        <span class="text-sm font-semibold text-blue-600">View area →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5 · DAS AIVANCE-PRINZIP ═══ -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">The AIVANCE principle</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Three promises —<br/>each with proof</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal reveal-1 bg-white rounded-2xl border border-slate-100 p-7 shadow-card">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center mb-4" aria-hidden="true">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">Data protection</h3>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">Hosting in Germany and the EU, DPA under Art. 28 GDPR, no model training on your data. Also built for professionals bound by confidentiality law.</p>
+        <a href="/datensicherheit/" class="text-sm font-semibold text-blue-600">See all evidence →</a>
+      </div>
+      <div class="reveal reveal-2 bg-white rounded-2xl border border-slate-100 p-7 shadow-card">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4" aria-hidden="true">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">Quality</h3>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">Case studies with before-and-after numbers, a defined process with named phases, and one dedicated contact — not an anonymous "team".</p>
+        <a href="/projekte/" class="text-sm font-semibold text-blue-600">See results →</a>
+      </div>
+      <div class="reveal reveal-3 bg-white rounded-2xl border border-slate-100 p-7 shadow-card">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center mb-4" aria-hidden="true">
+          <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 mb-2">Speed</h3>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">Every service has its own honest timeline — knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks.</p>
+        <a href="/leistungen/" class="text-sm font-semibold text-blue-600">Timelines per service →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6 · BRANCHEN-SELECTOR ═══ -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Industries</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">What's your industry?</h2>
+      <p class="text-slate-500 max-w-md mx-auto text-sm leading-relaxed">Every industry has its own workflows and its own rules. Pick yours — that's where we show only what's relevant to you.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {% for branche in industries %}
+      {% set eb = enIndustries[branche.slug] %}
+      <a href="/branchen/{{ branche.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-6 hover:border-blue-200 hover:bg-white hover:shadow-card transition-all">
+        <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center mb-4" aria-hidden="true">
+          {% if branche.slug == 'medizin' %}
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          {% elif branche.slug == 'steuer-finanzberatung' %}
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          {% elif branche.slug == 'gastronomie' %}
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18M3 8h4m10 13V3l4 2v9h-4M7 3v5a2 2 0 104 0V3"/></svg>
+          {% else %}
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          {% endif %}
+        </div>
+        <h3 class="font-bold text-slate-900 mb-1">{{ eb.title }}</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-3">{{ eb.teaser | truncate(80) }}</p>
+        <span class="text-xs font-semibold text-blue-600">{{ eb.hero }} →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7 · REFERENZEN ═══ -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Case studies</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Real results<br/>for real businesses</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-10">
+      {% for projekt in projects %}
+      {% set ep = enProjects[projekt.slug] %}
+      <a href="/projekte/{{ projekt.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ projekt.brancheLabel }}</p>
+        <p class="text-4xl font-black text-slate-900">{{ ep.zahl }}</p>
+        <p class="text-sm text-blue-600 font-semibold mb-3">{{ ep.zahlLabel }}</p>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ ep.text }}</p>
+        <span class="text-sm font-semibold text-blue-600">View case study →</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="text-center reveal">
+      <a href="/projekte/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">View all case studies →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8 · ABLAUF ═══ -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Process</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">How we work with you</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {% set schritte = [
+        { nr: "1", titel: "Introductory call", text: "Free and no obligation. We listen, ask good questions, and tell you honestly whether we can help." },
+        { nr: "2", titel: "Digital audit", text: "We look at your website, workflows and systems — and quantify which step brings the most benefit." },
+        { nr: "3", titel: "Implementation", text: "A clearly scoped first step at a fixed price, with checkpoints instead of surprises." },
+        { nr: "4", titel: "Ongoing support", text: "Operations, maintenance and further development — with a dedicated contact and agreed response times." }
+      ] %}
+      {% for schritt in schritte %}
+      <div class="reveal reveal-{{ loop.index }} relative bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black mb-4" aria-hidden="true">{{ schritt.nr }}</div>
+        <h3 class="font-bold text-slate-900 mb-2">{{ schritt.titel }}</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">{{ schritt.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9 · TEAM ═══ -->
+<section class="py-20 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">The team</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">The people behind AIVANCE</h2>
+      <p class="text-slate-500 text-sm max-w-md mx-auto">You work directly with the founders — not with rotating project managers.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto reveal">
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 overflow-hidden">
+          <img src="/images/profileayman.jpeg" alt="Portrait of Ayman Karim" width="400" height="320" loading="lazy" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Ayman Karim</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Founder · Strategy & client projects</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Your first point of contact: leads the introductory call and digital audit, and makes sure every discipline works together.</p>
+          <a href="mailto:ayman.karim@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">ayman.karim@ai-vance.de</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 overflow-hidden">
+          <img src="/images/profileajay.jpeg" alt="Portrait of Ajay Nagulendran" width="400" height="320" loading="lazy" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Ajay Nagulendran</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Co-founder · Engineering & operations</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Owns software, automation and infrastructure — from knowledge systems to hosting in Germany and the EU.</p>
+          <a href="mailto:ajay.nagulendran@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">ajay.nagulendran@ai-vance.de</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden">
+        <div class="w-full h-80 bg-slate-100 overflow-hidden">
+          <img src="/images/profilecyrus.jpg" alt="Portrait of Cyrus Lang" width="400" height="320" loading="lazy" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-slate-900 text-base">Cyrus Lang</p>
+          <p class="text-xs text-blue-600 font-semibold mt-0.5 mb-3">Co-founder · Partnerships & growth</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Builds strategic partnerships and leads international business with a focus on North America.</p>
+          <a href="mailto:cyrus.lang@ai-vance.de" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">cyrus.lang@ai-vance.de</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10 · FAQ ═══ -->
+{% set homeFaqEn = [
+  { q: "What does AIVANCE actually do — agency or software vendor?", a: "Both, and that's the point: we're a digital agency that designs (website, photo, social media) and builds (software, automation). You get no hand-off to subcontractors — one team implements both." },
+  { q: "Why book website, photography and automation with one provider?", a: "Because the disciplines depend on each other: the website needs the photos, automation needs the website's form data, social media needs both. With separate vendors you coordinate those dependencies yourself — with us that step disappears." },
+  { q: "What does a project cost?", a: "It depends on scope and service area — a website costs differently than a knowledge system integrated with your line-of-business software. What's fixed: the introductory call and process review are free, after that you get a fixed-price offer for one clearly scoped first step. No open-ended hourly billing." },
+  { q: "How long does implementation take?", a: "That varies by service, and we state it per service: knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks, a voice agent pilot 2–4 weeks. You get the concrete date in the first project week." },
+  { q: "Where is my data stored and who has access?", a: "On servers in Germany (Hetzner) or the EU (AWS eu-central-1). Access is governed by a data processing agreement under Art. 28 GDPR, and your data is never used for AI model training. Full details on our Data Security page." },
+  { q: "Do you work with professionals bound by confidentiality law (doctors, tax advisors)?", a: "Yes. For medical practices and tax firms, specific confidentiality statutes apply — we bring the written confidentiality commitment and data processing agreement, and document safeguards for your own compliance obligations." },
+  { q: "What happens after go-live?", a: "You decide: a one-time handover with documentation, or ongoing support with agreed response times and a dedicated contact. Most clients choose ongoing support — you're not locked into it." }
+] %}
+<section id="faq" class="py-20 bg-white">
+  <div class="max-w-2xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
+      <h2 class="text-4xl font-black text-slate-900 mb-4">Frequently asked questions</h2>
+    </div>
+    <div class="space-y-2 reveal">
+      {% for item in homeFaqEn %}
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+        <button type="button" data-faq-toggle aria-expanded="false" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">{{ item.q }}</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">{{ item.a }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11 · TRUST-BAR EBENE B ═══ -->
+{% include "partials/stack-marquee.njk" %}
+
+<!-- ═══ 12 · KONTAKT ═══ -->
+<section id="kontakt" class="py-20 bg-slate-50 border-t border-slate-100">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div class="reveal">
+        <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Contact</p>
+        <h2 class="text-4xl font-black text-slate-900 mb-4 leading-tight">Tell us<br/>where it hurts.</h2>
+        <p class="text-slate-500 text-sm leading-relaxed mb-8 max-w-sm">No sales pitch: we listen, ask questions, and tell you honestly whether and how we can help.</p>
+        <div class="space-y-3">
+          <a href="mailto:{{ site.email }}" class="flex items-center gap-3 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+            <span class="w-9 h-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center" aria-hidden="true">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </span>
+            {{ site.email }}
+          </a>
+          <a href="tel:{{ site.phoneHref }}" class="flex items-center gap-3 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+            <span class="w-9 h-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center" aria-hidden="true">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </span>
+            {{ site.phone }}
+          </a>
+        </div>
+      </div>
+      {% include "partials/kontakt-form.njk" %}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in homeFaqEn %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | dump | safe }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
+    }{{ "," if not loop.last }}
+    {% endfor %}
+  ]
+}
+</script>
+
+<script src="/js/hero.js" defer></script>

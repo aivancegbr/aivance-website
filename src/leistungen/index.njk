@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Leistungen — AIVANCE
+metaTitle: Leistungen — AIVANCE
+metaDescription: "Drei Leistungsbereiche, ein Partner: Sichtbarkeit, Software & Systeme, Automatisierung. Übersicht aller Leistungen der Digitalisierungsagentur AIVANCE."
+breadcrumb: Leistungen
+permalink: /leistungen/
+---
+
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Leistungen</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">Drei Bereiche, ein Partner</h1>
+    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">Jeder Bereich funktioniert einzeln — zusammen ersparen sie Ihnen die Koordination mehrerer Dienstleister.</p>
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5 space-y-8">
+    {% for cluster in clusters %}
+    <div class="reveal grid lg:grid-cols-3 gap-8 bg-slate-50 rounded-3xl border border-slate-100 p-8">
+      <div>
+        <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-2">{{ cluster.claim }}</p>
+        <h2 class="text-2xl font-black text-slate-900 mb-3">{{ cluster.title }}</h2>
+        <p class="text-sm text-slate-500 leading-relaxed mb-5">{{ cluster.heroSatz }}</p>
+        <a href="/leistungen/{{ cluster.slug }}/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">Zum Bereich →</a>
+      </div>
+      <div class="lg:col-span-2 grid sm:grid-cols-3 gap-4">
+        {% for serviceSlug in cluster.services %}
+        {% set service = services | findBySlug(serviceSlug) %}
+        <a href="/leistungen/{{ service.slug }}/" class="block bg-white rounded-2xl border border-slate-100 p-5 shadow-card hover:-translate-y-1 transition-transform">
+          <h3 class="font-bold text-slate-900 text-sm mb-2">{{ service.title }}</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">{{ service.card }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% include "partials/leitplanken.njk" %}
+{% include "partials/cta.njk" %}

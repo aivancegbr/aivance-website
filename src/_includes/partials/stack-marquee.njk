@@ -1,0 +1,22 @@
+{# Trust-Bar Ebene B — Technologie im Einsatz (§ 5), direkt über dem Footer #}
+{% set stackLogos = ["anthropic", "openai", "supabase", "n8n", "qdrant", "deepgram", "aws", "twilio", "hetzner"] %}
+{% set stackLabel = "Technology we use" if lang == 'en' else "Technologie im Einsatz" %}
+<section class="py-12 bg-white" aria-label="{{ stackLabel }}">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="programme-eyebrow">{{ stackLabel }}</p>
+    <div class="stack-marquee" aria-hidden="false">
+      <div class="stack-track">
+        <div class="stack-set">
+          {% for logo in stackLogos %}
+          <img src="/images/logos/stack/{{ logo }}.svg" alt="{{ logo | capitalize }}" height="20" loading="lazy">
+          {% endfor %}
+        </div>
+        <div class="stack-set" aria-hidden="true">
+          {% for logo in stackLogos %}
+          <img src="/images/logos/stack/{{ logo }}.svg" alt="" height="20" loading="lazy">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

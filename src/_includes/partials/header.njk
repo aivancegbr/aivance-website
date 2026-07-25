@@ -1,0 +1,136 @@
+{# Navigation (§ 4): max. 5 Punkte, Mega-Menü für Leistungen, Dropdown für Branchen.
+   Sprachabhängige Chrome-Texte über i18n[lang] (§ 13 Phase 4) — Zielseiten bleiben
+   deutsch, solange nur die Startseite unter /en/ übersetzt ist. #}
+{% set t = i18n[lang or 'de'] %}
+{% set isLeistungen = page.url.startsWith('/leistungen/') %}
+{% set isBranchen = page.url.startsWith('/branchen/') %}
+{% set isProjekte = page.url.startsWith('/projekte/') %}
+{% set isUeberUns = page.url.startsWith('/ueber-uns/') %}
+
+<header>
+<nav id="navbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-shadow" aria-label="{{ t.navAriaLabel }}">
+  <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16 relative">
+
+    <a href="/" class="flex items-center gap-2.5" aria-label="{{ t.homeAriaLabel }}">
+      <img src="/images/logo.jpg" alt="" width="32" height="32" class="h-8 w-8 rounded-lg object-cover" />
+      <span class="font-black text-lg tracking-tight text-slate-900">AIVANCE</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-7">
+      <button type="button" id="megaBtn" class="nav-link inline-flex items-center gap-1.5 text-sm font-medium {{ 'text-slate-900' if isLeistungen else 'text-slate-500' }} hover:text-slate-900 transition-colors"
+              aria-expanded="false" aria-controls="megaPanel" {% if isLeistungen %}aria-current="true"{% endif %}>
+        {{ t.navLeistungen }}
+        <svg class="menu-caret w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+
+      <div class="relative">
+        <button type="button" id="branchenBtn" class="nav-link inline-flex items-center gap-1.5 text-sm font-medium {{ 'text-slate-900' if isBranchen else 'text-slate-500' }} hover:text-slate-900 transition-colors"
+                aria-expanded="false" aria-controls="branchenPanel" {% if isBranchen %}aria-current="true"{% endif %}>
+          {{ t.navBranchen }}
+          <svg class="menu-caret w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="branchenPanel" class="dropdown-panel" role="menu" aria-label="{{ t.branchenAriaLabel }}">
+          {% for branche in industries %}
+          <a href="/branchen/{{ branche.slug }}/" role="menuitem" class="block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+            <span class="font-semibold block">{{ branche.title }}</span>
+            <span class="text-xs text-slate-400">{{ branche.hero }}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <a href="/projekte/" class="nav-link text-sm font-medium {{ 'text-slate-900' if isProjekte else 'text-slate-500' }} hover:text-slate-900 transition-colors" {% if isProjekte %}aria-current="true"{% endif %}>{{ t.navProjekte }}</a>
+      <a href="/ueber-uns/" class="nav-link text-sm font-medium {{ 'text-slate-900' if isUeberUns else 'text-slate-500' }} hover:text-slate-900 transition-colors" {% if isUeberUns %}aria-current="true"{% endif %}>{{ t.navUeberUns }}</a>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3">
+      {% if enUrl or deUrl %}
+      <a href="{{ enUrl or deUrl }}" id="lang-toggle" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
+         lang="{{ 'en' if enUrl else 'de' }}" hreflang="{{ 'en' if enUrl else 'de' }}">
+        {% if enUrl %}<span class="text-slate-900">DE</span><span aria-hidden="true">|</span>EN{% else %}<span class="text-slate-900">EN</span><span aria-hidden="true">|</span>DE{% endif %}
+      </a>
+      {% endif %}
+      <a href="/kontakt/" class="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">{{ t.navKontakt }}</a>
+    </div>
+
+    <button type="button" id="menuBtn" class="md:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100" aria-expanded="false" aria-controls="mobileOverlay" aria-label="{{ t.menuOpen }}">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  {# Mega-Menü: drei Cluster-Spalten + Case-Study-Teaser (§ 4) #}
+  <div id="megaPanel" class="menu-panel" aria-label="{{ t.leistungenAriaLabel }}">
+    <div class="max-w-6xl mx-auto px-5 py-8 grid grid-cols-4 gap-8">
+      {% for cluster in clusters %}
+      <div>
+        <a href="/leistungen/{{ cluster.slug }}/" class="block font-bold text-slate-900 text-sm mb-1 hover:text-blue-600 transition-colors">{{ cluster.title }}</a>
+        <p class="text-xs text-slate-400 mb-3">{{ cluster.claim }}</p>
+        <ul class="space-y-1">
+          {% for serviceSlug in cluster.services %}
+          {% set service = services | findBySlug(serviceSlug) %}
+          <li><a href="/leistungen/{{ service.slug }}/" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">{{ service.navTitle }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+      {% set teaserProjekt = projects[0] %}
+      <a href="/projekte/{{ teaserProjekt.slug }}/" class="block bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-blue-200 transition-colors">
+        <p class="text-[10px] font-semibold text-blue-600 uppercase tracking-widest mb-2">{{ t.caseStudyEyebrow }}</p>
+        <p class="text-2xl font-black text-slate-900">{{ teaserProjekt.teaser.zahl }}</p>
+        <p class="text-xs text-slate-500 mb-3">{{ teaserProjekt.teaser.zahlLabel }}</p>
+        <p class="text-xs text-slate-400 leading-relaxed">{{ teaserProjekt.teaser.text }}</p>
+        <span class="inline-block mt-3 text-xs font-semibold text-blue-600">{{ t.caseStudyLink }}</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+{# Mobile: Vollbild-Overlay, Cluster als Akkordeon, Sprache + Kontakt unten fixiert (§ 4) #}
+<div id="mobileOverlay" class="mobile-overlay md:hidden" aria-label="{{ t.mobileMenuLabel }}">
+  <div class="flex items-center justify-between px-5 h-16 border-b border-slate-100 flex-shrink-0">
+    <a href="/" class="flex items-center gap-2.5">
+      <img src="/images/logo.jpg" alt="" width="32" height="32" class="h-8 w-8 rounded-lg object-cover" />
+      <span class="font-black text-lg tracking-tight text-slate-900">AIVANCE</span>
+    </a>
+    <button type="button" id="menuCloseBtn" class="p-2 rounded-md text-slate-500 hover:bg-slate-100" aria-label="{{ t.menuClose }}">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="flex-1 overflow-y-auto px-5 py-4">
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2 mt-2">{{ t.mobileLeistungenLabel }}</p>
+    {% for cluster in clusters %}
+    <div class="border-b border-slate-100">
+      <button type="button" class="mobile-accordion w-full flex items-center justify-between py-3 text-left text-[15px] font-semibold text-slate-800" aria-expanded="false">
+        {{ cluster.title }}
+        <svg class="faq-icon w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="mobile-accordion-body pb-3">
+        <a href="/leistungen/{{ cluster.slug }}/" class="block py-2 pl-3 text-sm font-medium text-blue-600">{{ t.mobileClusterUebersicht }} {{ cluster.title }}</a>
+        {% for serviceSlug in cluster.services %}
+        {% set service = services | findBySlug(serviceSlug) %}
+        <a href="/leistungen/{{ service.slug }}/" class="block py-2 pl-3 text-sm text-slate-600">{{ service.navTitle }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2 mt-6">{{ t.mobileBranchenLabel }}</p>
+    {% for branche in industries %}
+    <a href="/branchen/{{ branche.slug }}/" class="block py-3 border-b border-slate-100 text-[15px] font-medium text-slate-700">{{ branche.title }}</a>
+    {% endfor %}
+
+    <a href="/projekte/" class="block py-3 mt-4 border-b border-slate-100 text-[15px] font-semibold text-slate-800">{{ t.navProjekte }}</a>
+    <a href="/ueber-uns/" class="block py-3 border-b border-slate-100 text-[15px] font-semibold text-slate-800">{{ t.navUeberUns }}</a>
+  </div>
+
+  <div class="flex items-center gap-3 px-5 py-4 border-t border-slate-100 flex-shrink-0 bg-white">
+    {% if enUrl or deUrl %}
+    <a href="{{ enUrl or deUrl }}" class="px-4 py-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-600" lang="{{ 'en' if enUrl else 'de' }}" hreflang="{{ 'en' if enUrl else 'de' }}">
+      {{ 'DE | EN' if enUrl else 'EN | DE' }}
+    </a>
+    {% endif %}
+    <a href="/kontakt/" class="flex-1 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold text-center">{{ t.navKontakt }}</a>
+  </div>
+</div>
+</header>

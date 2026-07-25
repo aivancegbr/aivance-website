@@ -1,0 +1,143 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: industries
+  size: 1
+  alias: branche
+permalink: "/branchen/{{ branche.slug }}/"
+eleventyComputed:
+  title: "{{ branche.meta.title }}"
+  metaTitle: "{{ branche.meta.title }}"
+  metaDescription: "{{ branche.meta.description }}"
+  breadcrumb: "{{ branche.title }}"
+---
+
+{# Template T3 — Branchenseite (§ 7), wichtigstes Template. Nur Sektion 3 (Rechtsrahmen) unterscheidet sich strukturell. #}
+
+<!-- 1 · Hero: Digitalisierung für [Branche], Ortsbezug in H1 (§ 11 Lokales SEO) -->
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">{{ site.region }}</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ branche.hero }}</h1>
+    <p class="text-slate-500 leading-relaxed max-w-lg mx-auto">{{ branche.heroSatz }}</p>
+  </div>
+</section>
+
+<!-- 2 · Branchenspezifische Schmerzpunkte -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Woran es hakt</h2>
+    <div class="space-y-3">
+      {% for punkt in branche.schmerzpunkte %}
+      <div class="reveal reveal-{{ loop.index }} bg-slate-50 rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1.5">{{ punkt.titel }}</p>
+        <p class="text-sm text-slate-500 leading-relaxed">{{ punkt.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Rechtsrahmen-Block (wichtigster Absatz der Seite, § 7 rechtlicher Hinweis) -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">Rechtsrahmen</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">{{ branche.rechtsrahmen.intro }}</p>
+    <div class="bg-white rounded-2xl border border-slate-100 p-6">
+      <ul class="space-y-2.5">
+        {% for punkt in branche.rechtsrahmen.punkte %}
+        <li class="flex items-start gap-3 text-sm text-slate-600">
+          <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          {{ punkt }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <p class="text-xs text-slate-400 mt-4">{{ branche.rechtsrahmen.hinweis }}</p>
+    <a href="/datensicherheit/" class="inline-block mt-3 text-sm font-semibold text-blue-600 hover:underline">Alle Belege auf einer Seite →</a>
+  </div>
+</section>
+
+<!-- 4 · Ausgewählte Leistungen: nur die relevanten, nie alle sieben -->
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Passende Leistungen</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for leistungSlug in branche.leistungen %}
+      {% set leistung = services | findBySlug(leistungSlug) %}
+      <a href="/leistungen/{{ leistung.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-blue-200 transition-colors">
+        <p class="font-bold text-slate-800 text-sm mb-2">{{ leistung.title }}</p>
+        <p class="text-xs text-slate-400 leading-relaxed">{{ leistung.card | truncate(75) }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Referenz aus dieser Branche -->
+{% set brancheProjekt = null %}
+{% for projekt in projects %}
+  {% if projekt.branche == branche.slug %}
+    {% set brancheProjekt = projekt %}
+  {% endif %}
+{% endfor %}
+{% if brancheProjekt %}
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4 text-center">Referenz aus dieser Branche</p>
+    <a href="/projekte/{{ brancheProjekt.slug }}/" class="reveal block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+      <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ brancheProjekt.brancheLabel }}</p>
+      <p class="text-4xl font-black text-slate-900">{{ brancheProjekt.teaser.zahl }}</p>
+      <p class="text-sm text-blue-600 font-semibold mb-3">{{ brancheProjekt.teaser.zahlLabel }}</p>
+      <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ brancheProjekt.teaser.text }}</p>
+      <span class="text-sm font-semibold text-blue-600">Zur Case Study →</span>
+    </a>
+  </div>
+</section>
+{% endif %}
+
+<!-- 6 · Branchenspezifische FAQ -->
+<section class="py-16 bg-white">
+  <div class="max-w-2xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Häufige Fragen</h2>
+    <div class="space-y-2">
+      {% for item in branche.faq %}
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+        <button type="button" data-faq-toggle aria-expanded="false" class="w-full text-left px-6 py-5 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">{{ item.q }}</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-5"><p class="text-sm text-slate-500 leading-relaxed">{{ item.a }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 7 · CTA-Block -->
+{% set ctaHeadline = "Digitalisierung für " + branche.kurz + "?" %}
+{% set ctaSecondaryUrl = "/branchen/" %}
+{% set ctaSecondaryLabel = "Andere Branchen ansehen" %}
+{% include "partials/cta.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": {{ branche.hero | dump | safe }},
+  "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
+  "audience": { "@type": "Audience", "audienceType": {{ branche.title | dump | safe }} },
+  "areaServed": "Rhein-Main, Bergstraße, Rhein-Neckar"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in branche.faq %}
+    { "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{{ "," if not loop.last }}
+    {% endfor %}
+  ]
+}
+</script>

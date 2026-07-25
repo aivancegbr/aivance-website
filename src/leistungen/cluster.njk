@@ -1,0 +1,86 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: clusters
+  size: 1
+  alias: cluster
+permalink: "/leistungen/{{ cluster.slug }}/"
+eleventyComputed:
+  title: "{{ cluster.meta.title }}"
+  metaTitle: "{{ cluster.meta.title }}"
+  metaDescription: "{{ cluster.meta.description }}"
+  breadcrumb: "{{ cluster.title }}"
+---
+
+{# Template T1 — Clusterseite (§ 7) #}
+
+<!-- 1 · Hero (kompakt) -->
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">{{ cluster.claim }}</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ cluster.title }}</h1>
+    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">{{ cluster.heroSatz }}</p>
+  </div>
+</section>
+
+<!-- 2 · Drei Leistungskarten -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-3 gap-5">
+      {% for serviceSlug in cluster.services %}
+      {% set service = services | findBySlug(serviceSlug) %}
+      <a href="/leistungen/{{ service.slug }}/" class="reveal reveal-{{ loop.index }} block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
+        <h2 class="font-bold text-slate-900 text-lg mb-2">{{ service.title }}</h2>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ service.card }}</p>
+        <p class="text-xs text-slate-400 mb-4">{{ service.zeitrahmen | truncate(90) }}</p>
+        <span class="text-sm font-semibold text-blue-600">Details ansehen →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Warum aus einer Hand -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5 text-center reveal">
+    <h2 class="text-3xl font-black text-slate-900 mb-4">Warum aus einer Hand?</h2>
+    <p class="text-slate-500 leading-relaxed">{{ cluster.verzahnung }}</p>
+  </div>
+</section>
+
+<!-- 4 · Referenzen, gefiltert auf dieses Cluster -->
+{% set clusterProjekte = [] %}
+{% for projekt in projects %}
+  {% if cluster.slug in projekt.cluster %}
+    {% set clusterProjekte = (clusterProjekte.push(projekt), clusterProjekte) %}
+  {% endif %}
+{% endfor %}
+{% if clusterProjekte.length %}
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Referenzen</p>
+      <h2 class="text-3xl font-black text-slate-900">Ergebnisse aus diesem Bereich</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      {% for projekt in clusterProjekte %}
+      <a href="/projekte/{{ projekt.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-7 hover:border-blue-200 transition-colors">
+        <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ projekt.brancheLabel }}</p>
+        <p class="text-4xl font-black text-slate-900">{{ projekt.teaser.zahl }}</p>
+        <p class="text-sm text-blue-600 font-semibold mb-3">{{ projekt.teaser.zahlLabel }}</p>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ projekt.teaser.text }}</p>
+        <span class="text-sm font-semibold text-blue-600">Zur Case Study →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 5 · Leitplanken-Streifen (kompakt) -->
+{% include "partials/leitplanken.njk" %}
+
+<!-- 6 · CTA-Block -->
+{% set ctaSecondaryUrl = "/leistungen/" %}
+{% set ctaSecondaryLabel = "Alle Leistungen" %}
+{% include "partials/cta.njk" %}

@@ -1,0 +1,29 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+permalink: "{{ redirect.from }}"
+eleventyExcludeFromCollections: true
+redirects:
+  - { from: "projekte.html", to: "/projekte/" }
+  - { from: "datenschutz.html", to: "/datenschutz/" }
+  - { from: "impressum.html", to: "/impressum/" }
+---
+{#- Redirect-Stubs (§ 3): GitHub Pages kann keine echten 301er, daher
+    Meta-Refresh + Canonical auf das neue Ziel. index.html → / entfällt
+    (identische Ressource); Anker-Redirects übernimmt JS auf der Startseite. -#}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weiterleitung — AIVANCE</title>
+  <meta http-equiv="refresh" content="0; url={{ redirect.to }}" />
+  <link rel="canonical" href="{{ site.url }}{{ redirect.to }}" />
+  <meta name="robots" content="noindex" />
+  <script>window.location.replace("{{ redirect.to }}");</script>
+</head>
+<body>
+  <p>Diese Seite ist umgezogen: <a href="{{ redirect.to }}">{{ site.url }}{{ redirect.to }}</a></p>
+</body>
+</html>

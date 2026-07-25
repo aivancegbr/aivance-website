@@ -1,6 +1,8 @@
 /* ─── BACKGROUND CANVAS – Knowledge Graph ─── */
 (function() {
   const canvas = document.getElementById('bg-canvas');
+  /* Auf Mobile: Canvas ausblenden und Animation überspringen */
+  if (window.innerWidth < 768) { canvas.style.display = 'none'; return; }
   const ctx = canvas.getContext('2d');
   let W, H, nodes;
 
@@ -207,6 +209,8 @@
   const wrap = document.querySelector('.phone-wrap');
   const hero = document.querySelector('.hero');
   if (!wrap || !hero) return;
+  /* Auf Mobile: Telefon-Mockup ist ausgeblendet, Effekt überspringen */
+  if (window.innerWidth < 768) return;
 
   let rotY = -22, rotX = 8, rotZ = -2;
   let currentRotY = rotY, currentRotX = rotX, currentRotZ = rotZ;

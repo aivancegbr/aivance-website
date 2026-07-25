@@ -1,0 +1,169 @@
+---
+layout: layouts/base.njk
+title: Datensicherheit — AIVANCE
+metaTitle: Datensicherheit — AIVANCE
+metaDescription: "Wo Ihre Daten liegen: Hosting-Standorte, AVV nach Art. 28 DSGVO, TOMs nach Art. 32, No-Training-Klauseln, Löschkonzept — alle Belege auf einer Seite."
+breadcrumb: Datensicherheit
+permalink: /datensicherheit/
+---
+
+{# Inhaltliche Datenschutzseite (§ 8) — getrennt von der rechtlichen Erklärung unter /datenschutz/.
+   HINWEIS VOR LIVEGANG: anwaltlich prüfen lassen (§ 14 DoD). #}
+
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Datensicherheit</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">Wo Ihre Daten liegen —<br/>und wer Zugriff hat</h1>
+    <p class="text-slate-500 leading-relaxed">„DSGVO-konform“ schreibt jeder. Hier steht, was das bei uns konkret bedeutet — mit Standorten, Verträgen und Fristen statt Behauptungen.</p>
+  </div>
+</section>
+
+<!-- Hosting-Standorte -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Hosting-Standorte, namentlich</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <p class="font-bold text-slate-800 mb-1">Hetzner Online GmbH</p>
+        <p class="text-sm text-slate-500">Rechenzentren Nürnberg &amp; Falkenstein, Deutschland. Standard für Kundensysteme mit personenbezogenen Daten.</p>
+      </div>
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6">
+        <p class="font-bold text-slate-800 mb-1">Amazon Web Services</p>
+        <p class="text-sm text-slate-500">Region <code class="text-xs bg-white border border-slate-200 rounded px-1.5 py-0.5">eu-central-1</code> (Frankfurt am Main). Für Systeme, die AWS-Dienste benötigen — Daten bleiben in der EU.</p>
+      </div>
+    </div>
+    <p class="text-sm text-slate-400 mt-4">Andere Standorte setzen wir nur auf Ihren ausdrücklichen Wunsch ein — nie stillschweigend.</p>
+  </div>
+</section>
+
+<!-- AVV -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">Auftragsverarbeitung nach Art. 28 DSGVO</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">Bevor wir Zugriff auf personenbezogene Daten erhalten, schließen wir mit Ihnen einen Auftragsverarbeitungsvertrag (AVV). Er regelt Zweck, Dauer, Unterauftragnehmer und Ihre Kontrollrechte.</p>
+    <a href="mailto:{{ site.email }}?subject=AVV-Muster%20anfordern" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+      AVV-Muster anfordern →
+    </a>
+    <p class="text-xs text-slate-400 mt-3">Sie erhalten das Muster vorab zur Prüfung durch Ihren Datenschutzbeauftragten — vor jeder Beauftragung.</p>
+  </div>
+</section>
+
+<!-- TOMs als aufklappbare Liste -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Technische und organisatorische Maßnahmen (Art. 32 DSGVO)</h2>
+    {% set toms = [
+      { t: "Zugriffskontrolle", a: "Zugriff auf Kundensysteme nur über personengebundene Konten mit Zwei-Faktor-Authentifizierung. Rechte nach dem Need-to-know-Prinzip; Zugriffe werden protokolliert." },
+      { t: "Verschlüsselung", a: "Übertragung ausschließlich über TLS. Speicherung auf verschlüsselten Datenträgern. Backups sind ebenfalls verschlüsselt." },
+      { t: "Trennungskontrolle", a: "Jeder Kunde erhält eine eigene, isolierte Umgebung. Keine gemeinsame Datenbank über Kunden hinweg." },
+      { t: "Verfügbarkeitskontrolle", a: "Tägliche Backups mit definierter Aufbewahrung, Wiederherstellungstests, Monitoring mit Alarmierung." },
+      { t: "Auftragskontrolle", a: "Unterauftragnehmer (z. B. Hosting) werden im AVV benannt und sind ihrerseits vertraglich nach Art. 28 DSGVO gebunden." },
+      { t: "Organisatorische Maßnahmen", a: "Verschwiegenheitsverpflichtung aller Mitwirkenden, dokumentierte Offboarding-Prozesse, Prinzip der minimalen Datenerhebung in jedem Projekt." }
+    ] %}
+    <div class="space-y-2">
+      {% for tom in toms %}
+      <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+        <button type="button" data-faq-toggle aria-expanded="false" class="w-full text-left px-6 py-4 flex items-center justify-between">
+          <span class="font-semibold text-slate-800 text-sm">{{ tom.t }}</span>
+          <svg class="faq-icon w-4 h-4 text-slate-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4"><p class="text-sm text-slate-500 leading-relaxed">{{ tom.a }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="text-xs text-slate-400 mt-4">Die vollständige TOM-Dokumentation stellen wir Ihnen mit dem AVV bereit — auch für Ihr Verzeichnis von Verarbeitungstätigkeiten.</p>
+  </div>
+</section>
+
+<!-- Keine Modelltrainings -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">Keine Modelltrainings auf Kundendaten</h2>
+    <p class="text-sm text-slate-500 leading-relaxed mb-6">Wo wir KI-Modelle einsetzen, wählen wir Zugangswege, bei denen der Anbieter vertraglich zusichert, Ihre Daten nicht für das Training seiner Modelle zu verwenden:</p>
+    <div class="space-y-3">
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">Anthropic (Claude) — Commercial Terms</p>
+        <p class="text-xs text-slate-500 leading-relaxed">Kein Training auf Kundeninhalten über die kommerzielle API. Verarbeitung auf Basis eines Data Processing Agreements.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">OpenAI — API / Enterprise-Bedingungen</p>
+        <p class="text-xs text-slate-500 leading-relaxed">API-Daten werden laut Business Terms nicht für Modelltraining verwendet. Einsatz nur über die API, nie über Consumer-Produkte.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-100 p-5">
+        <p class="font-bold text-slate-800 text-sm mb-1">AWS Bedrock (EU-Region)</p>
+        <p class="text-xs text-slate-500 leading-relaxed">Modellaufrufe verlassen die gewählte Region nicht und werden nicht zum Training verwendet — geregelt in den AWS Service Terms.</p>
+      </div>
+    </div>
+    <p class="text-xs text-slate-400 mt-4">Welche Anbieter in Ihrem Projekt konkret eingesetzt werden, benennt der AVV — inklusive der jeweiligen Vertragsklausel.</p>
+  </div>
+</section>
+
+<!-- Löschkonzept -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Löschkonzept und Aufbewahrung</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead>
+          <tr class="border-b border-slate-200">
+            <th class="py-3 pr-4 font-semibold text-slate-700">Datenart</th>
+            <th class="py-3 font-semibold text-slate-700">Frist</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-500">
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Kontaktanfragen ohne Beauftragung</td><td class="py-3">Löschung nach Abschluss, spätestens nach 24 Monaten</td></tr>
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Projektdaten nach Vertragsende</td><td class="py-3">Rückgabe oder Löschung nach Ihrer Wahl, Nachweis auf Anfrage</td></tr>
+          <tr class="border-b border-slate-100"><td class="py-3 pr-4">Backups</td><td class="py-3">Automatisches Überschreiben nach definiertem Zyklus (projektabhängig, im AVV festgelegt)</td></tr>
+          <tr><td class="py-3 pr-4">Rechnungsrelevante Daten</td><td class="py-3">Gesetzliche Aufbewahrungsfristen (HGB/AO)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Berufsgeheimnisträger -->
+<section class="py-16 bg-slate-50/50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-4">Für Berufsgeheimnisträger: § 203 StGB und § 62 StBerG</h2>
+    <div class="text-sm text-slate-500 leading-relaxed space-y-4">
+      <p>Ärztinnen, Ärzte und Steuerberater dürfen Dienstleister nur unter erweiterten Bedingungen einbinden: Die Schweigepflicht nach § 203 StGB gilt auch gegenüber IT-Dienstleistern, und § 62 StBerG verlangt die schriftliche Verpflichtung des Dienstleisters zur Verschwiegenheit.</p>
+      <p>Deshalb gehört zu jedem Praxis- und Kanzleiprojekt bei uns:</p>
+    </div>
+    <ul class="mt-4 space-y-2">
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Schriftliche Verschwiegenheitsverpflichtung aller Mitwirkenden nach § 203 Abs. 3 StGB bzw. § 62 StBerG — bevor wir Zugriff erhalten
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Auftragsverarbeitungsvertrag nach Art. 28 DSGVO mit benannten Unterauftragnehmern
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Verarbeitung von Patienten- bzw. Mandantendaten ausschließlich auf Servern in Deutschland oder der EU
+      </li>
+      <li class="flex items-start gap-3 text-sm text-slate-600">
+        <svg class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        Dokumentierte Schutzmaßnahmen für Ihre eigenen Nachweispflichten (Art. 9, Art. 32 DSGVO)
+      </li>
+    </ul>
+    <p class="text-xs text-slate-400 mt-6">Diese Angaben beschreiben unsere technischen und vertraglichen Maßnahmen. Sie sind keine Rechtsberatung.</p>
+  </div>
+</section>
+
+<!-- Ansprechpartner -->
+<section class="py-16 bg-white border-t border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-2xl font-black text-slate-900 mb-3">Ansprechpartner für Datenschutz</h2>
+    <p class="text-sm text-slate-500 mb-6">Fragen zu Datenverarbeitung, AVV oder TOMs beantwortet Ihnen direkt:</p>
+    <div class="inline-block bg-slate-50 rounded-2xl border border-slate-100 px-8 py-6">
+      <p class="font-bold text-slate-800">Ajay Nagulendran</p>
+      <p class="text-xs text-slate-400 mb-2">Mitgründer · Technik &amp; Betrieb</p>
+      <a href="mailto:ajay.nagulendran@ai-vance.de" class="text-sm text-blue-600 hover:underline">ajay.nagulendran@ai-vance.de</a>
+    </div>
+  </div>
+</section>
+
+{% set ctaHeadline = "Datenschutzfragen zuerst?" %}
+{% set ctaText = "Gerade für Praxen und Kanzleien: Wir beantworten die Compliance-Fragen gern vor dem ersten Gespräch über Technik." %}
+{% include "partials/cta.njk" %}

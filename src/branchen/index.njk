@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+title: Branchen — AIVANCE
+metaTitle: Branchen — AIVANCE
+metaDescription: "Digitalisierung für Praxen, Kanzleien, Gastronomie und Mittelstand im Rhein-Main-Gebiet — Schmerzpunkte, Rechtsrahmen und passende Leistungen je Branche."
+breadcrumb: Branchen
+permalink: /branchen/
+---
+
+<section class="py-16 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Branchen</p>
+    <h1 class="text-5xl font-black text-slate-900 mb-4">Wo arbeiten Sie?</h1>
+    <p class="text-slate-500 leading-relaxed">Jede Branche hat eigene Abläufe und eigene Regeln. Wählen Sie Ihre — dort zeigen wir nur, was für Sie relevant ist.</p>
+  </div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid sm:grid-cols-2 gap-6">
+      {% for branche in industries %}
+      <a href="/branchen/{{ branche.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-7 hover:border-blue-200 hover:bg-white hover:shadow-card transition-all">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">{{ branche.hero }}</h2>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ branche.heroSatz }}</p>
+        <span class="text-sm font-semibold text-blue-600">Zur Branchenseite →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta.njk" %}

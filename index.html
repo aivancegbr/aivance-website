@@ -437,6 +437,166 @@
     }
     #lang-toggle:hover { border-color: #2563eb; color: #2563eb; }
     .lang-flag { font-size: 14px; }
+
+    /* ════════════════════════════════════════════════════════
+       MOBILE-ONLY FIXES  –  alle Änderungen nur für Handy
+    ════════════════════════════════════════════════════════ */
+
+    /* 1 · Hintergrund-Canvas: auf Handy ausblenden (Performance) */
+    @media (max-width: 767px) {
+      #bg-canvas { display: none !important; }
+    }
+
+    /* 2 · Top-Banner: saubereres Layout auf kleinen Screens */
+    @media (max-width: 767px) {
+      .site-banner {
+        font-size: 11px;
+        padding: 7px 16px;
+        line-height: 1.7;
+      }
+    }
+
+    /* 3 · Navbar: größere Touch-Targets im mobilen Menü */
+    @media (max-width: 767px) {
+      #mobileMenu a,
+      #mobileMenu button {
+        padding-top: 11px;
+        padding-bottom: 11px;
+        font-size: 15px;
+        display: block;
+      }
+      #mobileMenu a.mt-1 {
+        margin-top: 8px;
+      }
+    }
+
+    /* 4 · Hero: keine 100vh-Mindesthöhe auf Mobile, CTA-Buttons gestapelt */
+    @media (max-width: 767px) {
+      .hero {
+        min-height: auto;
+        padding: 40px 20px 56px;
+      }
+      /* Telefon-Mockup auf Mobile ausblenden (Regel nach der Basis-Regel damit sie greift) */
+      .hero-right { display: none !important; }
+      .hero-subtext {
+        font-size: 15px;
+        max-width: 100%;
+      }
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .hero-btn-primary {
+        text-align: center;
+        padding: 15px 20px;
+      }
+      .hero-btn-secondary {
+        justify-content: center;
+        padding: 10px 0;
+      }
+      .hero-aws-row {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      /* Cycling-Text: kleines Puffer damit Punkt nicht geclippt wird */
+      .cycling-wrapper { padding-right: 4px; }
+    }
+
+    /* 5 · AWS-Karte (Trusted-Section): Trenner + Verified-Box ausblenden */
+    @media (max-width: 767px) {
+      .aws-main-card {
+        padding: 18px 20px;
+        gap: 14px;
+      }
+      .aws-main-sep   { display: none; }
+      .aws-verified-box { display: none; }
+      .aws-main-title { font-size: 13px; }
+      .aws-main-logo img { height: 36px; }
+    }
+
+    /* 6 · Features: horizontaler Swipe-Slider statt vertikales Stapeln */
+    @media (max-width: 639px) {
+      #featuresGrid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px !important;
+        padding: 4px 20px 12px !important;
+        margin: 0 -20px;
+        scrollbar-width: none;
+      }
+      #featuresGrid::-webkit-scrollbar { display: none; }
+      #featuresGrid > div {
+        flex: 0 0 84vw !important;
+        max-width: 84vw;
+        min-width: 0;
+        scroll-snap-align: start;
+        /* Hover-Transform auf Mobile deaktivieren */
+        transition: none !important;
+      }
+      /* Reveal-Animation auf Mobile überspringen (Karten sind bereits sichtbar) */
+      #featuresGrid > div.reveal,
+      #featuresGrid > div[class*="reveal-"] {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important;
+      }
+      /* Unsichtbarer End-Spacer damit letzte Karte nicht am Rand klebt */
+      #featuresGrid::after {
+        content: '';
+        flex: 0 0 6px;
+      }
+    }
+
+    /* Features Dots: nur unter sm anzeigen */
+    #featuresDots { display: none; }
+    @media (max-width: 639px) {
+      #featuresDots { display: flex; }
+    }
+
+    /* 7 · Dashboard: Überschrift auf Mobile verkleinern */
+    @media (max-width: 767px) {
+      #usecases h2 { font-size: 1.8rem; line-height: 2.15rem; }
+    }
+
+    /* 8 · Team: Portraitfotos auf Mobile schmaler */
+    @media (max-width: 767px) {
+      #team .h-80 { height: 200px !important; }
+    }
+
+    /* 9 · FAQ: Padding etwas enger auf Mobile */
+    @media (max-width: 640px) {
+      #faq button.w-full { padding-left: 20px; padding-right: 20px; }
+      #faq .faq-body { padding-left: 20px; padding-right: 20px; }
+    }
+
+    /* 10 · Contact: Abstand zwischen Info und Formular reduzieren */
+    @media (max-width: 767px) {
+      #contact .gap-14 { gap: 2.5rem !important; }
+    }
+    @media (max-width: 640px) {
+      #contact h2 { font-size: 1.6rem !important; line-height: 2rem !important; }
+    }
+
+    /* 11 · Footer: Grid-Abstände auf Mobile */
+    @media (max-width: 767px) {
+      footer .grid { gap: 28px !important; }
+    }
+
+    /* 12 · Integrations: Code-Block kleinere Schrift auf Mobile */
+    @media (max-width: 640px) {
+      #integrations .font-mono { font-size: 10px; line-height: 1.65; }
+    }
+
+    /* 13 · Section-Headlines global: nicht zu groß auf Mobile */
+    @media (max-width: 640px) {
+      section h2.text-4xl {
+        font-size: 1.75rem;
+        line-height: 2.1rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased">
@@ -445,7 +605,7 @@
 <canvas id="bg-canvas"></canvas>
 
 <!-- ═══════════ TOP BANNER ═══════════ -->
-<div class="bg-slate-900 text-white text-center py-2 text-xs font-medium tracking-wide">
+<div class="site-banner bg-slate-900 text-white text-center py-2 text-xs font-medium tracking-wide">
   <span data-i18n="banner">AI that actually knows your business.</span> &nbsp;·&nbsp;
   <a href="#contact" class="underline underline-offset-2 hover:text-blue-300 transition-colors" data-i18n="bannerCta">Get started free →</a>
 </div>
@@ -664,7 +824,7 @@
       <p class="text-slate-500 max-w-md mx-auto text-sm leading-relaxed" data-i18n="featuresSubtext">RAG prevents wrong answers by grounding every response in your real company data — no guessing, no hallucinations.</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div id="featuresGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
       <!-- F1: RAG Engine -->
       <div class="reveal reveal-1 bg-white rounded-2xl border border-slate-100 p-6 shadow-card hover:-translate-y-1 transition-transform">
@@ -770,6 +930,16 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Mobile-only slide dots -->
+    <div id="featuresDots" class="justify-center gap-2 mt-5">
+      <button class="features-dot w-2 h-2 rounded-full bg-blue-500 transition-all"></button>
+      <button class="features-dot w-2 h-2 rounded-full bg-slate-300 transition-all"></button>
+      <button class="features-dot w-2 h-2 rounded-full bg-slate-300 transition-all"></button>
+      <button class="features-dot w-2 h-2 rounded-full bg-slate-300 transition-all"></button>
+      <button class="features-dot w-2 h-2 rounded-full bg-slate-300 transition-all"></button>
+      <button class="features-dot w-2 h-2 rounded-full bg-slate-300 transition-all"></button>
     </div>
   </div>
 </section>
@@ -1499,6 +1669,30 @@
       win.scrollTop = win.scrollHeight;
     }, 1000);
   }
+
+  /* ── Features slider: Dots auf Mobile ── */
+  (function() {
+    const grid = document.getElementById('featuresGrid');
+    const dots = document.querySelectorAll('#featuresDots .features-dot');
+    if (!grid || !dots.length) return;
+    function updateDots() {
+      const cardW = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 14 : 1;
+      const idx = Math.min(Math.round(grid.scrollLeft / cardW), dots.length - 1);
+      dots.forEach((d, i) => {
+        d.style.background = i === idx ? '#2563eb' : '#cbd5e1';
+        d.style.width = i === idx ? '20px' : '8px';
+        d.style.borderRadius = '9px';
+      });
+    }
+    grid.addEventListener('scroll', updateDots, { passive: true });
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => {
+        const cardW = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 14 : 1;
+        grid.scrollTo({ left: i * cardW, behavior: 'smooth' });
+      });
+    });
+    updateDots();
+  })();
 
   /* ── Live feed ticker (simulates new queries arriving) ── */
   const queries = [

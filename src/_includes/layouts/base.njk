@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'de' }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ metaTitle or title }}</title>
+  <meta name="description" content="{{ metaDescription or description }}" />
+  <meta name="author" content="AIVANCE – Ayman Karim, Ajay Nagulendran, Cyrus Lang" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+  {%- if lang == 'en' %}
+  <link rel="alternate" hreflang="de" href="{{ site.url }}{{ deUrl or '/' }}" />
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ deUrl or '/' }}" />
+  {%- elif enUrl %}
+  <link rel="alternate" hreflang="de" href="{{ site.url }}{{ page.url }}" />
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ enUrl }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url }}" />
+  {%- endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:title" content="{{ metaTitle or title }}" />
+  <meta property="og:description" content="{{ metaDescription or description }}" />
+  <meta property="og:image" content="{{ site.url }}/images/logo.jpg" />
+  <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
+  <meta property="og:site_name" content="AIVANCE" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- JSON-LD: Organization (global, § 11) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AIVANCE",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.url }}/images/logo.jpg",
+    "description": "Digitalisierungsagentur im Rhein-Main-Gebiet: Website, Foto & Video, Software und Automatisierung aus einer Hand.",
+    "email": "{{ site.email }}",
+    "telephone": "{{ site.phoneHref }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.city }}",
+      "postalCode": "{{ site.address.zip }}",
+      "addressCountry": "{{ site.address.country }}"
+    },
+    "areaServed": "Rhein-Main, Bergstraße, Rhein-Neckar",
+    "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "{{ site.email }}", "telephone": "{{ site.phoneHref }}" },
+    "founders": [
+      { "@type": "Person", "name": "Ayman Karim" },
+      { "@type": "Person", "name": "Ajay Nagulendran" },
+      { "@type": "Person", "name": "Cyrus Lang" }
+    ],
+    "sameAs": ["{{ site.github }}"]
+  }
+  </script>
+  {%- if page.url != '/' and page.url != '/en/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "{{ 'Home' if lang == 'en' else 'Start' }}", "item": "{{ site.url }}{{ '/en/' if lang == 'en' else '/' }}" },
+      { "@type": "ListItem", "position": 2, "name": "{{ breadcrumb or title }}", "item": "{{ site.url }}{{ page.url }}" }
+    ]
+  }
+  </script>
+  {%- endif %}
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/images/favicon.png" />
+  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-card focus:text-sm focus:font-semibold">
+  {{ 'Skip to content' if lang == 'en' else 'Zum Inhalt springen' }}
+</a>
+
+{% include "partials/header.njk" %}
+
+<main id="main">
+  {{ content | safe }}
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>
