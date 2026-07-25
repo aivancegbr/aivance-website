@@ -253,7 +253,7 @@ module.exports = [
     ],
     meta: {
       title: "Digitalisierung für Gastronomie — AIVANCE",
-      description: "Reservierungen automatisieren, Gästefragen beantworten, Zahlen live sehen — Digitalisierung für Restaurants im Rhein-Main- und Rhein-Neckar-Gebiet."
+      description: "Reservierungen automatisieren, Gästefragen beantworten, Zahlen live sehen — Digitalisierung für Restaurants im Rhein-Main-Gebiet."
     },
     en: {
       title: "Hospitality",
@@ -295,7 +295,7 @@ module.exports = [
       ],
       meta: {
         title: "Digitalization for Hospitality — AIVANCE",
-        description: "Automate reservations, answer guest questions, see your numbers live — digitalization for restaurants in the Rhine-Main and Rhine-Neckar regions."
+        description: "Automate reservations, answer guest questions, see your numbers live — digitalization for restaurants in the Rhine-Main region."
       }
     }
   },
@@ -346,7 +346,7 @@ module.exports = [
     ],
     meta: {
       title: "Digitalisierung für Handwerk & Mittelstand — AIVANCE",
-      description: "Büroabläufe automatisieren, Wissen sichern, Mitarbeiter finden: Digitalisierung für Betriebe im Rhein-Main-Gebiet und an der Bergstraße."
+      description: "Büroabläufe automatisieren, Wissen sichern, Mitarbeiter finden: Digitalisierung für Betriebe im Rhein-Main-Gebiet."
     },
     en: {
       title: "Trades & SMBs",
@@ -392,7 +392,7 @@ module.exports = [
       ],
       meta: {
         title: "Digitalization for Trades & SMBs — AIVANCE",
-        description: "Automate office workflows, secure knowledge, find employees: digitalization for businesses in the Rhine-Main region and along the Bergstrasse."
+        description: "Automate office workflows, secure knowledge, find employees: digitalization for businesses in the Rhine-Main region."
       }
     }
   }

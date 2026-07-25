@@ -97,8 +97,11 @@ eleventyComputed:
 
 <!-- 5 · One case study for exactly this service area -->
 {% set serviceProjekt = null %}
+{% if service.caseSlug %}
+  {% set serviceProjekt = projects | findBySlug(service.caseSlug) %}
+{% endif %}
 {% for projekt in projects %}
-  {% if not serviceProjekt and parentCluster.slug in projekt.cluster %}
+  {% if service.caseSlug === undefined and not serviceProjekt and parentCluster.slug in projekt.cluster %}
     {% set serviceProjekt = projekt %}
   {% endif %}
 {% endfor %}
@@ -168,7 +171,7 @@ eleventyComputed:
   "@type": "Service",
   "serviceType": {{ (d.title or service.title) | dump | safe }},
   "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
-  "areaServed": "Rhine-Main, Bergstrasse, Rhine-Neckar",
+  "areaServed": "Rhine-Main region",
   "description": {{ (d.meta.description or service.meta.description) | dump | safe }}
 }
 </script>

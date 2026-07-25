@@ -94,8 +94,11 @@ eleventyComputed:
 
 <!-- 5 · Eine Referenz zu genau dieser Leistung -->
 {% set serviceProjekt = null %}
+{% if service.caseSlug %}
+  {% set serviceProjekt = projects | findBySlug(service.caseSlug) %}
+{% endif %}
 {% for projekt in projects %}
-  {% if not serviceProjekt and parentCluster.slug in projekt.cluster %}
+  {% if service.caseSlug === undefined and not serviceProjekt and parentCluster.slug in projekt.cluster %}
     {% set serviceProjekt = projekt %}
   {% endif %}
 {% endfor %}
@@ -162,7 +165,7 @@ eleventyComputed:
   "@type": "Service",
   "serviceType": {{ service.title | dump | safe }},
   "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
-  "areaServed": "Rhein-Main, Bergstraße, Rhein-Neckar",
+  "areaServed": "Rhein-Main-Gebiet",
   "description": {{ service.meta.description | dump | safe }}
 }
 </script>

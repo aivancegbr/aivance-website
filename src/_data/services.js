@@ -7,6 +7,7 @@ module.exports = [
   {
     slug: "website-webdesign",
     cluster: "sichtbarkeit",
+    caseSlug: "praxis-online-sichtbarkeit",
     title: "Website & Webdesign",
     navTitle: "Website & Webdesign",
     card: "Eine Website, die Anfragen bringt — schnell, barrierearm und von Ihnen selbst pflegbar.",
@@ -100,6 +101,7 @@ module.exports = [
   {
     slug: "foto-video",
     cluster: "sichtbarkeit",
+    caseSlug: false,
     title: "Foto, Video & Schnitt",
     navTitle: "Foto, Video & Schnitt",
     card: "Echte Bilder aus Ihrem Betrieb statt Stockfotos — für Website, Social Media und Bewerbung.",
@@ -133,7 +135,7 @@ module.exports = [
       }
     ],
     kombiniert: ["website-webdesign", "social-media"],
-    portfolio: true,
+    portfolio: false, // Platzhalter deaktiviert — reaktivieren, sobald echtes Foto-/Videomaterial vorliegt
     meta: {
       title: "Foto, Video & Schnitt für Unternehmen — AIVANCE",
       description: "Foto- und Videoproduktion vor Ort im Rhein-Main-Gebiet: Team, Räume, Arbeitsalltag. Material für Website, Social Media und Personalgewinnung."
@@ -180,6 +182,7 @@ module.exports = [
   {
     slug: "social-media",
     cluster: "sichtbarkeit",
+    caseSlug: false,
     title: "Social-Media-Management",
     navTitle: "Social Media",
     card: "Regelmäßige, geplante Beiträge mit echtem Material aus Ihrem Betrieb — ohne dass Sie täglich posten müssen.",
