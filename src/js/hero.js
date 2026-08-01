@@ -186,12 +186,19 @@ var heroReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
   const wrap = document.querySelector(".phone-wrap");
   const hero = document.querySelector(".hero");
   if (!wrap || !hero) return;
-  if (window.innerWidth < 768 || heroReducedMotion) {
-    if (heroReducedMotion) wrap.style.transform = "none";
+
+  const isMobile = window.innerWidth < 768;
+  const baseY = isMobile ? -14 : -22, baseX = isMobile ? 6 : 8, baseZ = -2;
+  const scalePrefix = isMobile ? "scale(0.68) " : "";
+
+  if (heroReducedMotion) {
+    wrap.style.transform = isMobile
+      ? `scale(0.68) rotateY(${baseY}deg) rotateX(${baseX}deg) rotateZ(${baseZ}deg)`
+      : "none";
     return;
   }
 
-  let rotY = -22, rotX = 8, rotZ = -2;
+  let rotY = baseY, rotX = baseX, rotZ = baseZ;
   let currentRotY = rotY, currentRotX = rotX, currentRotZ = rotZ;
   let targetMouseX = 0, targetMouseY = 0;
 
@@ -211,9 +218,9 @@ var heroReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
     const eased = progress < 0.5
       ? 2 * progress * progress
       : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-    rotY = lerp(-22, 0, eased);
-    rotX = lerp(8, 0, eased);
-    rotZ = lerp(-2, 0, eased);
+    rotY = lerp(baseY, 0, eased);
+    rotX = lerp(baseX, 0, eased);
+    rotZ = lerp(baseZ, 0, eased);
   }, { passive: true });
 
   (function animate() {
@@ -221,7 +228,7 @@ var heroReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
     currentRotX = lerp(currentRotX, rotX + targetMouseY, 0.06);
     currentRotZ = lerp(currentRotZ, rotZ, 0.06);
     wrap.style.transform =
-      `rotateY(${currentRotY}deg) rotateX(${currentRotX}deg) rotateZ(${currentRotZ}deg)`;
+      scalePrefix + `rotateY(${currentRotY}deg) rotateX(${currentRotX}deg) rotateZ(${currentRotZ}deg)`;
     requestAnimationFrame(animate);
   })();
 })();

@@ -257,7 +257,7 @@ button[aria-expanded="true"] .menu-caret { transform:rotate(180deg); }
   .hero-btn-primary { text-align:center; padding:15px 20px; }
   .hero-btn-secondary { justify-content:center; padding:10px 0; }
   .cycling-wrapper { padding-right:4px; }
-  .phone-wrap { transform:scale(0.68) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg) !important; }
+  .phone-wrap { transform:scale(0.68) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
 }
 @media (max-width:640px) {
   .stats-row { flex-wrap:wrap; gap:20px; }
