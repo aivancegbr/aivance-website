@@ -1,15 +1,7 @@
-# Logo-Assets — VOR LIVEGANG ERSETZEN
+# Logo-Assets
 
-Alle SVGs in diesem Ordner sind **Text-Platzhalter** (Wordmarks), keine offiziellen Logos.
-Vor dem Livegang durch offizielle Assets ersetzen — gleiche Dateinamen, dann greift alles automatisch.
-
-## Beschaffung
-
-| Programm | Quelle |
-|---|---|
-| NVIDIA Inception | Inception-Portal → Brand Assets (Mitgliederbereich) |
-| AWS Activate | AWS Brand Guidelines / Activate-Portal — vorhandenes `images/aws_logo.png` ggf. als Basis |
-| Microsoft for Startups Founders Hub | Founders-Hub-Portal → Partner Marketing Assets |
+`nvidia-inception-*`, `aws-activate-*` und `microsoft-startups-*` sind die offiziellen Logos
+(als PNG in ein SVG-Wrapper eingebettet, Hintergrund entfernt, freigestellt).
 
 Pro Programm zwei Varianten:
 - `*-dark.svg` — dunkles Logo für hellen Hintergrund (Default)
