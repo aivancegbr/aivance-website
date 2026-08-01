@@ -63,7 +63,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 @media (max-width:768px) {
   .hero { grid-template-columns:1fr; padding:60px 24px; }
-  .hero-right { display:none; }
 }
 .hero-left { display:flex; flex-direction:column; gap:28px; }
 .hero-badge {
@@ -251,13 +250,14 @@ button[aria-expanded="true"] .menu-caret { transform:rotate(180deg); }
 /* ═══ Mobile-Fixes (aus Bestand übernommen) ═══ */
 @media (max-width:767px) {
   #bg-canvas { display:none !important; }
-  .hero { min-height:auto; padding:40px 20px 56px; }
-  .hero-right { display:none !important; }
+  .hero { min-height:auto; padding:40px 20px 56px; overflow-x:hidden; }
+  .hero-right { margin-top:32px; }
   .hero-subtext { font-size:15px; max-width:100%; }
   .hero-cta-row { flex-direction:column; align-items:stretch; gap:12px; }
   .hero-btn-primary { text-align:center; padding:15px 20px; }
   .hero-btn-secondary { justify-content:center; padding:10px 0; }
   .cycling-wrapper { padding-right:4px; }
+  .phone-wrap { transform:scale(0.68) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg) !important; }
 }
 @media (max-width:640px) {
   .stats-row { flex-wrap:wrap; gap:20px; }
