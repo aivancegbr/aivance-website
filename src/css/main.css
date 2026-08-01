@@ -174,7 +174,7 @@ button[aria-expanded="true"] .menu-caret { transform:rotate(180deg); }
 /* ═══ Trust-Bar Ebene A – Offizielle Programme (§ 5) ═══ */
 .programme-eyebrow {
   font-size:12px; letter-spacing:0.09em; text-transform:uppercase; font-weight:600;
-  color:#94a3b8; text-align:center; margin-bottom:24px;
+  color:#2563eb; text-align:center; margin-bottom:24px;
 }
 .programme-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); align-items:center; }
 .programme-grid > .programme-item:nth-child(2) {
