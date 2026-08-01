@@ -183,12 +183,12 @@ button[aria-expanded="true"] .menu-caret { transform:rotate(180deg); }
 .programme-item {
   display:flex; flex-direction:column; align-items:center; text-decoration:none;
   padding:16px 24px;
-  filter:grayscale(1); opacity:0.55;
-  transition:filter 200ms ease-out, opacity 200ms ease-out;
+  opacity:0.9;
+  transition:opacity 200ms ease-out;
 }
-.programme-item:hover, .programme-item:focus-visible { filter:grayscale(0); opacity:1; }
-.programme-logo { height:52px; display:flex; align-items:center; justify-content:center; }
-.programme-logo img { height:52px; width:auto; object-fit:contain; }
+.programme-item:hover, .programme-item:focus-visible { opacity:1; }
+.programme-logo { height:64px; display:flex; align-items:center; justify-content:center; }
+.programme-logo img { height:64px; width:auto; object-fit:contain; }
 .programme-label {
   margin-top:16px; display:inline-flex; align-items:center; gap:6px;
   font-size:14px; font-weight:600; color:#475569; white-space:nowrap;
