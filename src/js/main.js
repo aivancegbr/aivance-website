@@ -163,28 +163,40 @@
     document.querySelectorAll(".counter-num[data-target]").forEach(function (el) { counterIo.observe(el); });
   }
 
-  /* ── Kontaktformular → Formspree, Fehler mit aria-live (§ 12) ── */
+  /* ── Kontaktformular → interner Proxy, Fehler mit aria-live (§ 12) ── */
   var form = document.getElementById("contactForm");
   if (form) {
+    var submitCount = 0;
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
       var errorEl = document.getElementById("formError");
       if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (submitCount >= 3) {
+        var isEn = (document.documentElement.lang || "de").startsWith("en");
+        errorEl.textContent = isEn
+          ? "Too many attempts. Please try again in a moment."
+          : "Zu viele Versuche. Bitte warten Sie kurz und versuchen Sie es erneut.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+      submitCount += 1;
       var original = btn.textContent;
       btn.textContent = "Wird gesendet …";
       btn.disabled = true;
       errorEl.classList.add("hidden");
       try {
+        var payload = Object.fromEntries(new FormData(form).entries());
         var res = await fetch(form.action, {
           method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
         });
-        if (res.ok) {
+        var data = await res.json().catch(function () { return {}; });
+        if (res.ok && data.ok) {
           form.classList.add("hidden");
           document.getElementById("successMsg").classList.remove("hidden");
-        } else { throw new Error("send failed"); }
+        } else { throw new Error(data.error || "send failed"); }
       } catch (err) {
         btn.textContent = original;
         btn.disabled = false;
