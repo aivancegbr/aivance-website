@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>AIVANCE — Icon-Quelle (favicon, App-Icon, Organization-Logo)</title>
+<!--
+  Quelle der Icons. Rendern mit: tools/render-icons.sh
+
+  Icon-Fassung des Signets in der Dunkelvariante der Marke: Ink-Fläche,
+  Glyphe in #EDEDEB, Fußnoten-1 und Linie in #F0A75C. Auf einer hellen
+  Fläche würde das Zeichen im Browser-Tab verschwinden — die Dunkelvariante
+  trägt in hellen und dunklen Tab-Leisten.
+
+  Zwei optische Fassungen statt blindem Verkleinern:
+    #tile   für 192 px und 1024 px — Proportionen wie im Signet
+    #small  für 32 px — größere Glyphe, dickere Linie, weniger Rand
+-->
+<style>
+  @font-face { font-family:'Instrument Sans'; font-weight:400 700; font-display:block;
+    src:url('/fonts/instrument-sans-latin.woff2') format('woff2'); }
+  @font-face { font-family:'IBM Plex Mono'; font-weight:400 500; font-display:block;
+    src:url('/fonts/ibm-plex-mono-500-latin.woff2') format('woff2'); }
+  * { margin:0; padding:0; }
+  html,body { width:100%; height:100%; overflow:hidden; background:#161614; }
+  svg { display:block; width:100vw; height:100vh; }
+</style>
+</head>
+<body>
+<svg id="icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"></svg>
+<script>
+const INK = "#161614", GLYPH = "#EDEDEB", AMBER = "#F0A75C", RULE = "#3A3A38";
+
+/* Maße je Fassung. Die Fußnoten-1 bleibt auch bei 32 px erhalten: sie ist
+   dort nur noch ein Amber-Akzent, trägt aber das Signal der Marke. */
+const V = {
+  tile:  { a: 78, ax: 15, ay: 74, oneSize: 30, onex: 63, oney: 38, lx1: 15, lx2: 79, ly: 85, lw: 5.5 },
+  small: { a: 92, ax:  9, ay: 79, oneSize: 34, onex: 65, oney: 41, lx1:  9, lx2: 89, ly: 91, lw: 8   }
+};
+const v = V[(location.hash || "#tile").slice(1)] || V.tile;
+
+document.getElementById("icon").innerHTML = `
+  <rect width="100" height="100" fill="${INK}"/>
+  <text x="${v.ax}" y="${v.ay}" font-family="Instrument Sans" font-weight="600"
+        font-size="${v.a}" letter-spacing="${-v.a * 0.055}" fill="${GLYPH}">a</text>
+  <text x="${v.onex}" y="${v.oney}" font-family="IBM Plex Mono" font-weight="500"
+        font-size="${v.oneSize}" fill="${AMBER}">1</text>
+  <path d="M${v.lx1} ${v.ly}H${v.lx2}" stroke="${RULE}" stroke-width="${v.lw * 0.75}" stroke-linecap="round"/>
+  <path d="M${v.lx1} ${v.ly}H${v.lx2}" stroke="${AMBER}" stroke-width="${v.lw}" stroke-linecap="round"/>
+`;
+</script>
+</body>
+</html>

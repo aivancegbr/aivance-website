@@ -2,12 +2,17 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<title>AIVANCE — Share-Banner (Quelle für src/images/og-image.png)</title>
+<title>AIVANCE — Share-Banner (Quelle für src/images/og-image*.png)</title>
 <!--
-  Quelle des Social-Banners. Rendern mit:
-    tools/render-og.sh        (Chrome headless → src/images/og-image.png, 1200×630)
-  Layout, Farben und Schriften folgen der Brand Identity: Canvas, fünf
-  Grau-Rollen, Evidence Amber nur auf der Fußnotenlinie und der Domain.
+  Quelle der Social-Banner. Rendern mit:
+    tools/render-og.sh      → src/images/og-image.png     (Fragment #de)
+                            → src/images/og-image-en.png  (Fragment #en)
+
+  Layout, Farben und Schriften folgen der Brand Identity: Canvas mit
+  Punktraster, fünf Grau-Rollen, Evidence Amber nur auf der Fußnotenlinie
+  und der Domain. Die Breite der Amber-Linie wird nach dem Laden der
+  Schriften aus der Breite der letzten Headline-Zeile gemessen — sie passt
+  damit in jeder Sprache.
 -->
 <style>
   @font-face { font-family:'Instrument Sans'; font-weight:400 700; font-display:block;
@@ -18,7 +23,7 @@
     src:url('/fonts/ibm-plex-mono-500-latin.woff2') format('woff2'); }
 
   :root {
-    --canvas:#FAFAF8; --surface:#FFFFFD; --line:#D5D5CE; --line-strong:#C2C2BA;
+    --canvas:#FAFAF8; --line:#D5D5CE; --line-strong:#C2C2BA;
     --ink:#161614; --ink-muted:#55554F; --amber:#9C4B00;
     --mono:'IBM Plex Mono', monospace;
   }
@@ -26,7 +31,7 @@
   html,body { width:1200px; height:630px; overflow:hidden; }
   body { background:var(--canvas); font-family:'Instrument Sans', sans-serif; color:var(--ink); }
 
-  .card { position:relative; width:1200px; height:630px; padding:70px 72px 60px; display:flex; flex-direction:column; }
+  .card { position:relative; width:1200px; height:630px; padding:70px 72px 60px; }
   #dots { position:absolute; inset:0; z-index:0; }
   .veil { position:absolute; inset:0; z-index:1;
     background:radial-gradient(62% 58% at 34% 46%, rgba(250,250,248,.96) 0%, rgba(250,250,248,.78) 48%, rgba(250,250,248,0) 86%); }
@@ -44,14 +49,15 @@
 
   /* Aussage */
   .headline { margin-top:auto; font-weight:600; font-size:78px; line-height:.95; letter-spacing:-.055em; }
-  .rule { width:500px; height:5px; background:var(--amber); margin:18px 0 26px; }
-  .sub { font-size:21px; line-height:1.5; color:var(--ink-muted); max-width:720px; }
+  .headline span { display:inline-block; }
+  .rule { width:0; height:5px; background:var(--amber); margin:18px 0 26px; }
+  .sub { font-size:21px; line-height:1.5; color:var(--ink-muted); max-width:760px; }
 
   /* Fuß */
   .foot { margin-top:auto; padding-top:22px; border-top:1px solid var(--line);
           display:flex; justify-content:space-between; align-items:baseline; }
   .foot span { font-family:var(--mono); font-weight:500; font-size:13px; letter-spacing:.14em; text-transform:uppercase; }
-  .programs { color:var(--ink-muted); }
+  .foot span.programs { color:var(--ink-muted); }
   .foot span.domain { color:var(--amber); letter-spacing:.06em; text-transform:none; font-size:16px; }
 </style>
 </head>
@@ -70,13 +76,13 @@
       </svg>
       <span class="wm">
         <span class="wm-name">aivance<span class="wm-dot">.</span><span class="wm-sup">1</span></span>
-        <span class="wm-sub">DIGITALISIERUNG · RHEIN-MAIN</span>
+        <span class="wm-sub" id="sublabel"></span>
       </span>
     </div>
 
-    <h1 class="headline">Digitalisierung<br>aus einer Hand.</h1>
-    <div class="rule"></div>
-    <p class="sub">Website, Bildmaterial, Software und Automatisierung — abgestimmt statt zusammengestückelt. Ein Partner statt fünf Dienstleistern.</p>
+    <h1 class="headline"><span id="l1"></span><br><span id="l2"></span></h1>
+    <div class="rule" id="rule"></div>
+    <p class="sub" id="sub"></p>
 
     <div class="foot">
       <span class="programs">NVIDIA Inception · AWS Activate · Microsoft for Startups</span>
@@ -86,8 +92,50 @@
 </div>
 
 <script>
-/* Punktraster wie im Hero, ein fester Frame (t = 2400 ms). */
-(function () {
+/* ── Inhalt je Sprache (Fragment #de | #en) ───────────────────────────── */
+const COPY = {
+  de: {
+    sublabel: "DIGITALISIERUNG · RHEIN-MAIN",
+    l1: "Digitalisierung",
+    l2: "aus einer Hand.",
+    sub: "Website, Bildmaterial, Software und Automatisierung — abgestimmt statt zusammengestückelt. Ein Partner statt fünf Dienstleistern."
+  },
+  en: {
+    sublabel: "DIGITAL AGENCY · RHINE-MAIN",
+    l1: "Digital transformation,",
+    l2: "from one team.",
+    sub: "Website, visuals, software and automation — coordinated instead of pieced together. One partner instead of five vendors."
+  }
+};
+const lang = (location.hash || "#de").slice(1) in COPY ? (location.hash || "#de").slice(1) : "de";
+const c = COPY[lang];
+document.documentElement.lang = lang;
+document.getElementById("sublabel").textContent = c.sublabel;
+document.getElementById("l1").textContent = c.l1;
+document.getElementById("l2").textContent = c.l2;
+document.getElementById("sub").textContent = c.sub;
+
+/* Lange Headlines dürfen nicht anstoßen: Grad so weit herunter, dass die
+   längere Zeile in die Satzbreite passt (1200 − 2 × 72 = 1056 px). */
+function fitHeadline() {
+  const h = document.querySelector(".headline");
+  const max = 1056;
+  let size = 78;
+  h.style.fontSize = size + "px";
+  while (size > 54) {
+    const w = Math.max(document.getElementById("l1").getBoundingClientRect().width,
+                       document.getElementById("l2").getBoundingClientRect().width);
+    if (w <= max) break;
+    size -= 2;
+    h.style.fontSize = size + "px";
+  }
+  /* Amber-Linie exakt auf die Breite der letzten Zeile */
+  document.getElementById("rule").style.width =
+    Math.round(document.getElementById("l2").getBoundingClientRect().width) + "px";
+}
+
+/* ── Punktraster wie im Hero, ein fester Frame (t = 2400 ms) ──────────── */
+function drawDots() {
   const cv = document.getElementById("dots"), ctx = cv.getContext("2d");
   const w = 1200, h = 630, SP = 9, t = 2400;
   const bands = [
@@ -118,7 +166,12 @@
       ctx.beginPath(); ctx.arc(px, py, 0.5 + Math.min(1.5, v * 1.9), 0, 6.2832); ctx.fill();
     }
   }
-})();
+}
+
+drawDots();
+/* Erst messen, wenn die Schriften wirklich stehen — sonst misst man Fallback. */
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeadline);
+else window.addEventListener("load", fitHeadline);
 </script>
 </body>
 </html>

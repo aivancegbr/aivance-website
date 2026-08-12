@@ -18,19 +18,20 @@
   <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url }}" />
   {%- endif %}
 
-  <!-- Open Graph -->
+  <!-- Open Graph — Banner sprachabhängig (Quelle: tools/og-image.html) -->
+  {%- set ogImage = '/images/og-image-en.png' if lang == 'en' else '/images/og-image.png' %}
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:title" content="{{ metaTitle or title }}" />
   <meta property="og:description" content="{{ metaDescription or description }}" />
-  <meta property="og:image" content="{{ site.url }}/images/og-image.png" />
+  <meta property="og:image" content="{{ site.url }}{{ ogImage }}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="{{ 'AIVANCE — Digital Agency Rhine-Main' if lang == 'en' else 'AIVANCE — Digitalisierungsagentur Rhein-Main' }}" />
   <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
   <meta property="og:site_name" content="AIVANCE" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="{{ site.url }}/images/og-image.png" />
+  <meta name="twitter:image" content="{{ site.url }}{{ ogImage }}" />
 
   <!-- JSON-LD: Organization (global, § 11) -->
   <script type="application/ld+json">
@@ -39,7 +40,7 @@
     "@type": "Organization",
     "name": "AIVANCE",
     "url": "{{ site.url }}",
-    "logo": "{{ site.url }}/images/logo.jpg",
+    "logo": "{{ site.url }}/images/logo.png",
     "description": {{ ('Digital agency in the Rhine-Main region, Germany: website, photo & video, software and automation from a single source.' if lang == 'en' else 'Digitalisierungsagentur im Rhein-Main-Gebiet: Website, Foto & Video, Software und Automatisierung aus einer Hand.') | dump | safe }},
     "email": "{{ site.email }}",
     "telephone": "{{ site.phoneHref }}",
