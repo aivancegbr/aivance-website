@@ -218,9 +218,9 @@ a { color: inherit; text-decoration: none; }
 .wordmark-dot { color: var(--amber); }
 .wordmark-sup {
   font-family: var(--mono); font-weight: 500;
-  font-size: 0.4em; color: var(--amber);
-  vertical-align: super; margin-left: .05em;
-  align-self: flex-start; line-height: 1.6;
+  font-size: 0.46em; color: var(--amber);
+  vertical-align: super; margin-left: .06em;
+  align-self: flex-start; line-height: 1.42;
 }
 .wordmark-sub {
   display: block; font-family: var(--mono); font-size: 11px; white-space: nowrap;
