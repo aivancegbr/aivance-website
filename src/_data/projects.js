@@ -98,8 +98,8 @@ module.exports = [
     status: "Abgeschlossen",
     anonym: true,
     teaser: {
-      zahl: "7 → 4 Tage",
-      zahlLabel: "Onboarding pro neuem Mitarbeiter",
+      zahl: "50 %",
+      zahlLabel: "weniger Onboarding-Zeit",
       text: "Neue Mitarbeitende bekommen Antworten sofort — statt das HR-Team mit denselben Fragen zu binden."
     },
     ausgangslage:
@@ -115,7 +115,7 @@ module.exports = [
     tech: ["RAG-System", "Notion API", "Slack Bot", "Claude", "n8n Workflows"],
     ergebnisse: [
       { wert: "80 %", label: "weniger HR-Anfragen", detail: "Self-Service durch KI-Assistent" },
-      { wert: "7 → 4 Tage", label: "Onboarding-Zeit", detail: "3 Arbeitstage weniger pro Eintritt" },
+      { wert: "50 %", label: "weniger Onboarding-Zeit", detail: "Einarbeitung pro Eintritt halbiert" },
       { wert: "96 %", label: "Zufriedenheit", detail: "Feedback neuer Mitarbeitender" }
     ],
     ergebnisZeitraum: "Messbare Ergebnisse nach 60 Tagen",
@@ -127,8 +127,8 @@ module.exports = [
     bild: null,
     bildAlt: null,
     meta: {
-      title: "Mittelstand: Onboarding von 7 auf 4 Tage — AIVANCE",
-      description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding von 7 auf 4 Tage verkürzt."
+      title: "Mittelstand: 50 % weniger Onboarding-Zeit — AIVANCE",
+      description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding-Zeit halbiert."
     },
     en: {
       title: "Onboarding System for a Mid-Sized Company",
@@ -136,8 +136,8 @@ module.exports = [
       brancheLabel: "SMB · Rhine-Main",
       status: "Completed",
       teaser: {
-        zahl: "7 → 4 days",
-        zahlLabel: "onboarding per new hire",
+        zahl: "50 %",
+        zahlLabel: "less onboarding time",
         text: "New hires get answers instantly — instead of tying up the HR team with the same questions."
       },
       ausgangslage:
@@ -153,7 +153,7 @@ module.exports = [
       tech: ["RAG system", "Notion API", "Slack bot", "Claude", "n8n workflows"],
       ergebnisse: [
         { wert: "80 %", label: "fewer HR inquiries", detail: "self-service via AI assistant" },
-        { wert: "7 → 4 days", label: "onboarding time", detail: "three working days saved per hire" },
+        { wert: "50 %", label: "less onboarding time", detail: "ramp-up time per hire cut in half" },
         { wert: "96 %", label: "satisfaction", detail: "feedback from new employees" }
       ],
       ergebnisZeitraum: "Measurable results after 60 days",
@@ -164,7 +164,7 @@ module.exports = [
       },
       meta: {
         title: "SMB: Onboarding Time Cut by 3 Days — AIVANCE",
-        description: "Case study: onboarding knowledge system for a mid-sized company — 80% fewer HR inquiries, onboarding cut from 7 to 4 days."
+        description: "Case study: onboarding knowledge system for a mid-sized company — 80% fewer HR inquiries, onboarding time cut in half."
       }
     }
   },
