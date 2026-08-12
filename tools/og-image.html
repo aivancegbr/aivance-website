@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>AIVANCE — Share-Banner (Quelle für src/images/og-image.png)</title>
+<!--
+  Quelle des Social-Banners. Rendern mit:
+    tools/render-og.sh        (Chrome headless → src/images/og-image.png, 1200×630)
+  Layout, Farben und Schriften folgen der Brand Identity: Canvas, fünf
+  Grau-Rollen, Evidence Amber nur auf der Fußnotenlinie und der Domain.
+-->
+<style>
+  @font-face { font-family:'Instrument Sans'; font-weight:400 700; font-display:block;
+    src:url('/fonts/instrument-sans-latin.woff2') format('woff2'); }
+  @font-face { font-family:'IBM Plex Mono'; font-weight:400; font-display:block;
+    src:url('/fonts/ibm-plex-mono-400-latin.woff2') format('woff2'); }
+  @font-face { font-family:'IBM Plex Mono'; font-weight:500; font-display:block;
+    src:url('/fonts/ibm-plex-mono-500-latin.woff2') format('woff2'); }
+
+  :root {
+    --canvas:#FAFAF8; --surface:#FFFFFD; --line:#D5D5CE; --line-strong:#C2C2BA;
+    --ink:#161614; --ink-muted:#55554F; --amber:#9C4B00;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1200px; height:630px; overflow:hidden; }
+  body { background:var(--canvas); font-family:'Instrument Sans', sans-serif; color:var(--ink); }
+
+  .card { position:relative; width:1200px; height:630px; padding:70px 72px 60px; display:flex; flex-direction:column; }
+  #dots { position:absolute; inset:0; z-index:0; }
+  .veil { position:absolute; inset:0; z-index:1;
+    background:radial-gradient(62% 58% at 34% 46%, rgba(250,250,248,.96) 0%, rgba(250,250,248,.78) 48%, rgba(250,250,248,0) 86%); }
+  .inner { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; }
+
+  /* Marke */
+  .lockup { display:flex; align-items:center; gap:13px; }
+  .wm { display:flex; flex-direction:column; line-height:1; }
+  .wm-name { font-weight:600; font-size:27px; letter-spacing:-.055em; display:flex; align-items:baseline; }
+  .wm-dot { color:var(--amber); }
+  .wm-sup { font-family:var(--mono); font-weight:500; font-size:.4em; color:var(--amber);
+            vertical-align:super; margin-left:.05em; align-self:flex-start; line-height:1.6; }
+  .wm-sub { font-family:var(--mono); font-weight:500; font-size:12.5px; letter-spacing:.16em;
+            color:var(--ink-muted); margin-top:7px; white-space:nowrap; }
+
+  /* Aussage */
+  .headline { margin-top:auto; font-weight:600; font-size:78px; line-height:.95; letter-spacing:-.055em; }
+  .rule { width:500px; height:5px; background:var(--amber); margin:18px 0 26px; }
+  .sub { font-size:21px; line-height:1.5; color:var(--ink-muted); max-width:720px; }
+
+  /* Fuß */
+  .foot { margin-top:auto; padding-top:22px; border-top:1px solid var(--line);
+          display:flex; justify-content:space-between; align-items:baseline; }
+  .foot span { font-family:var(--mono); font-weight:500; font-size:13px; letter-spacing:.14em; text-transform:uppercase; }
+  .programs { color:var(--ink-muted); }
+  .foot span.domain { color:var(--amber); letter-spacing:.06em; text-transform:none; font-size:16px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <canvas id="dots" width="1200" height="630"></canvas>
+  <div class="veil"></div>
+
+  <div class="inner">
+    <div class="lockup">
+      <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true" style="display:block;flex:none">
+        <text x="2" y="23" font-family="Instrument Sans" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
+        <text x="17.4" y="12" font-family="IBM Plex Mono" font-weight="500" font-size="10" fill="#9C4B00">1</text>
+        <path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="wm">
+        <span class="wm-name">aivance<span class="wm-dot">.</span><span class="wm-sup">1</span></span>
+        <span class="wm-sub">DIGITALISIERUNG · RHEIN-MAIN</span>
+      </span>
+    </div>
+
+    <h1 class="headline">Digitalisierung<br>aus einer Hand.</h1>
+    <div class="rule"></div>
+    <p class="sub">Website, Bildmaterial, Software und Automatisierung — abgestimmt statt zusammengestückelt. Ein Partner statt fünf Dienstleistern.</p>
+
+    <div class="foot">
+      <span class="programs">NVIDIA Inception · AWS Activate · Microsoft for Startups</span>
+      <span class="domain">ai-vance.de</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Punktraster wie im Hero, ein fester Frame (t = 2400 ms). */
+(function () {
+  const cv = document.getElementById("dots"), ctx = cv.getContext("2d");
+  const w = 1200, h = 630, SP = 9, t = 2400;
+  const bands = [
+    { ax:0.86, ay:0.52, off:-0.34, width:0.20, gain:1.00, amp:0.055, freq:1.7, ph:0.0, par:1.00 },
+    { ax:0.72, ay:-0.62, off:0.30, width:0.26, gain:0.85, amp:0.070, freq:1.2, ph:2.1, par:0.78 },
+    { ax:0.90, ay:0.44, off:0.62, width:0.10, gain:0.34, amp:0.045, freq:2.4, ph:4.2, par:1.22 },
+    { ax:0.66, ay:-0.70, off:-0.70, width:0.09, gain:0.26, amp:0.050, freq:2.0, ph:1.1, par:0.62 }
+  ];
+  ctx.fillStyle = "#FAFAF8"; ctx.fillRect(0, 0, w, h);
+  for (let py = 0; py <= h; py += SP) {
+    const ny = py / h - 0.5;
+    for (let px = 0; px <= w; px += SP) {
+      const nx = px / w - 0.5;
+      let v = 0;
+      for (const B of bands) {
+        const along = nx * B.ay - ny * B.ax, across = nx * B.ax + ny * B.ay;
+        const wave = Math.sin(along * Math.PI * 2 * B.freq + t * 0.0003 * B.par + B.ph) * B.amp
+                   + Math.sin(along * Math.PI * 4.3 * B.freq - t * 0.00017 * B.par + B.ph * 1.7) * B.amp * 0.45;
+        const u = across - B.off - wave - Math.sin(t * 0.00007 * B.par + B.ph) * 0.16;
+        const d = Math.abs(u) / B.width;
+        if (d < 1) { const f = 1 - d; v += B.gain * f * f * (0.74 + 0.26 * Math.sin(along * 9 + t * 0.0005 * B.par)); }
+      }
+      const cx = nx / 0.4, cy = ny / 0.34;
+      v *= 0.16 + 0.84 * Math.pow(Math.min(1, Math.sqrt(cx * cx + cy * cy)), 1.9);
+      v *= 0.58 + 0.42 * (Math.min(1, Math.min(px, w - px) / (w * 0.05)) * Math.min(1, Math.min(py, h - py) / (h * 0.14)));
+      if (v <= 0.012) continue;
+      ctx.fillStyle = "rgba(22,22,20," + Math.min(0.62, v * 0.72).toFixed(3) + ")";
+      ctx.beginPath(); ctx.arc(px, py, 0.5 + Math.min(1.5, v * 1.9), 0, 6.2832); ctx.fill();
+    }
+  }
+})();
+</script>
+</body>
+</html>
