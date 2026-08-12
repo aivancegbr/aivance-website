@@ -8,13 +8,13 @@ permalink: /projekte/
 enUrl: /en/projekte/
 ---
 
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-6xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Referenzen</p>
     <h1 class="text-5xl font-black text-slate-900 mb-4">Projekte &amp; Case Studies</h1>
-    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">Echte Projekte, messbare Ergebnisse. Wir zeigen Ihnen konkret, was Digitalisierung in der Praxis leistet.</p>
+    <p class="text-slate-500 max-w-lg leading-relaxed">Echte Projekte, messbare Ergebnisse. Wir zeigen Ihnen konkret, was Digitalisierung in der Praxis leistet.</p>
 
-    <div class="flex flex-wrap justify-center gap-8 mt-10 pt-10 border-t border-slate-200">
+    <div class="flex flex-wrap gap-8 mt-10 pt-10 border-t border-slate-200">
       <div>
         <p class="text-3xl font-black text-slate-900 counter-num" data-target="{{ projects.length }}">{{ projects.length }}</p>
         <p class="text-xs text-slate-400 mt-1">Abgeschlossene Projekte</p>
@@ -24,8 +24,8 @@ enUrl: /en/projekte/
         <p class="text-xs text-slate-400 mt-1">Kundenzufriedenheit</p>
       </div>
       <div>
-        <p class="text-3xl font-black text-slate-900">−79%</p>
-        <p class="text-xs text-slate-400 mt-1">Manuelle Arbeit (Ø)</p>
+        <p class="text-3xl font-black text-slate-900">79 %</p>
+        <p class="text-xs text-slate-400 mt-1">weniger manuelle Arbeit (Ø)</p>
       </div>
       <div>
         <p class="text-3xl font-black text-slate-900">17 Tage</p>
@@ -35,26 +35,26 @@ enUrl: /en/projekte/
   </div>
 </section>
 
-<section class="py-12 bg-white border-b border-slate-100">
+<section class="py-12">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Projekte filtern">
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Projekte filtern">
       <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest mr-2">Branche:</span>
-      <button type="button" class="project-filter-branche px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">Alle</button>
+      <button type="button" class="project-filter-branche px-4 py-1.5 text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">Alle</button>
       {% for branche in industries %}
-      <button type="button" class="project-filter-branche px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.kurz }}</button>
+      <button type="button" class="project-filter-branche px-4 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.kurz }}</button>
       {% endfor %}
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-2 mt-3" role="group" aria-label="Nach Leistungscluster filtern">
+    <div class="flex flex-wrap items-center gap-2 mt-3" role="group" aria-label="Nach Leistungscluster filtern">
       <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest mr-2">Bereich:</span>
-      <button type="button" class="project-filter-cluster px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">Alle</button>
+      <button type="button" class="project-filter-cluster px-4 py-1.5 text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">Alle</button>
       {% for cluster in clusters %}
-      <button type="button" class="project-filter-cluster px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ cluster.slug }}" aria-pressed="false">{{ cluster.title }}</button>
+      <button type="button" class="project-filter-cluster px-4 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ cluster.slug }}" aria-pressed="false">{{ cluster.title }}</button>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="py-16 bg-slate-50">
+<section class="py-16">
   <div class="max-w-6xl mx-auto px-5">
     <div class="grid md:grid-cols-2 gap-6" id="projectGrid">
       {% for projekt in projects %}
@@ -63,10 +63,10 @@ enUrl: /en/projekte/
         <div class="flex items-center gap-3 mb-4">
           <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black flex-shrink-0" aria-hidden="true">{{ projekt.nummer }}</div>
           <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">{{ projekt.brancheLabel }}</span>
-          <span class="ml-auto px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">{{ projekt.status }}</span>
+          <span class="ml-auto px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">{{ projekt.status }}</span>
         </div>
         <h2 class="text-xl font-black text-slate-900 mb-2">{{ projekt.title }}</h2>
-        <p class="text-xs text-blue-600 font-semibold mb-4">{{ projekt.untertitel }}</p>
+        <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-5">{{ projekt.untertitel }}</p>
         <div class="grid grid-cols-3 gap-2 mb-4">
           {% for erg in projekt.ergebnisse %}
           <div class="bg-slate-50 rounded-lg border border-slate-100 p-2.5 text-center">
@@ -75,7 +75,7 @@ enUrl: /en/projekte/
           </div>
           {% endfor %}
         </div>
-        <span class="text-sm font-semibold text-blue-600">Zur Case Study →</span>
+        <span class="mono text-[11px] tracking-widest uppercase text-ink">Zur Case Study →</span>
       </a>
       {% endfor %}
     </div>

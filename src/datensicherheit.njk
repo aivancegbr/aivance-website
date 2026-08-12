@@ -11,17 +11,17 @@ enUrl: /en/data-security/
 {# Inhaltliche Datenschutzseite (§ 8) — getrennt von der rechtlichen Erklärung unter /datenschutz/.
    HINWEIS VOR LIVEGANG: anwaltlich prüfen lassen (§ 14 DoD). #}
 
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Datensicherheit</p>
-    <h1 class="text-5xl font-black text-slate-900 mb-4">Wo Ihre Daten liegen —<br/>und wer Zugriff hat</h1>
-    <p class="text-slate-500 leading-relaxed">„DSGVO-konform“ schreibt jeder. Hier steht, was das bei uns konkret bedeutet — mit Standorten, Verträgen und Fristen statt Behauptungen.</p>
+    <h1 class="max-w-3xl text-5xl font-black text-slate-900 mb-4">Wo Ihre Daten liegen —<br/>und wer Zugriff hat</h1>
+    <p class="max-w-2xl text-slate-500 leading-relaxed">„DSGVO-konform“ schreibt jeder. Hier steht, was das bei uns konkret bedeutet — mit Standorten, Verträgen und Fristen statt Behauptungen.</p>
   </div>
 </section>
 
 <!-- Hosting-Standorte -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Hosting-Standorte, namentlich</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Ihre Daten bleiben in ihrem Rechtsraum: Kunden mit Sitz in Deutschland und der EU werden auf europäischen Servern gehostet, Kunden mit Sitz in den USA auf US-Servern. Eine Verarbeitung außerhalb der jeweiligen Region findet nicht statt.</p>
     <div class="grid sm:grid-cols-2 gap-4">
@@ -43,11 +43,11 @@ enUrl: /en/data-security/
 </section>
 
 <!-- AVV -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">Auftragsverarbeitung nach Art. 28 DSGVO</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Bevor wir Zugriff auf personenbezogene Daten erhalten, schließen wir mit Ihnen einen Auftragsverarbeitungsvertrag (AVV). Er regelt Zweck, Dauer, Unterauftragnehmer und Ihre Kontrollrechte.</p>
-    <a href="mailto:{{ site.email }}?subject=AVV-Muster%20anfordern" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+    <a href="mailto:{{ site.email }}?subject=AVV-Muster%20anfordern" class="btn-primary">
       AVV-Muster anfordern →
     </a>
     <p class="text-xs text-slate-400 mt-3">Sie erhalten das Muster vorab zur Prüfung durch Ihren Datenschutzbeauftragten — vor jeder Beauftragung.</p>
@@ -55,8 +55,8 @@ enUrl: /en/data-security/
 </section>
 
 <!-- TOMs als aufklappbare Liste -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Technische und organisatorische Maßnahmen (Art. 32 DSGVO)</h2>
     {% set toms = [
       { t: "Zugriffskontrolle", a: "Zugriff auf Kundensysteme nur über personengebundene Konten mit Zwei-Faktor-Authentifizierung. Rechte nach dem Need-to-know-Prinzip; Zugriffe werden protokolliert." },
@@ -82,8 +82,8 @@ enUrl: /en/data-security/
 </section>
 
 <!-- Keine Modelltrainings -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">Keine Modelltrainings auf Kundendaten</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Wo wir KI-Modelle einsetzen, wählen wir Zugangswege, bei denen der Anbieter vertraglich zusichert, Ihre Daten nicht für das Training seiner Modelle zu verwenden:</p>
     <div class="space-y-3">
@@ -105,8 +105,8 @@ enUrl: /en/data-security/
 </section>
 
 <!-- Löschkonzept -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Löschkonzept und Aufbewahrung</h2>
     <div class="overflow-x-auto">
       <table class="w-full text-sm text-left">
@@ -128,8 +128,8 @@ enUrl: /en/data-security/
 </section>
 
 <!-- Berufsgeheimnisträger -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">Für Berufsgeheimnisträger: § 203 StGB und § 62 StBerG</h2>
     <div class="text-sm text-slate-500 leading-relaxed space-y-4">
       <p>Ärztinnen, Ärzte und Steuerberater dürfen Dienstleister nur unter erweiterten Bedingungen einbinden: Die Schweigepflicht nach § 203 StGB gilt auch gegenüber IT-Dienstleistern, und § 62 StBerG verlangt die schriftliche Verpflichtung des Dienstleisters zur Verschwiegenheit.</p>
@@ -158,8 +158,8 @@ enUrl: /en/data-security/
 </section>
 
 <!-- Ansprechpartner -->
-<section class="py-16 bg-white border-t border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-3">Ansprechpartner für Datenschutz</h2>
     <p class="text-sm text-slate-500 mb-6">Fragen zu Datenverarbeitung, AVV oder TOMs beantwortet Ihnen direkt:</p>
     <div class="inline-block bg-slate-50 rounded-2xl border border-slate-100 px-8 py-6">

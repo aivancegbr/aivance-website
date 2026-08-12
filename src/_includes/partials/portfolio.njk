@@ -20,18 +20,18 @@
   { branche: "mittelstand", label: "Mittelstand", alt: "Platzhalter: Werkstattaufnahme" }
 ] %}
 {% endif %}
-<section class="py-16 bg-slate-50/50" aria-label="{{ 'Photo and video portfolio' if isEn else 'Foto- und Videoportfolio' }}">
+<section class="py-16" aria-label="{{ 'Photo and video portfolio' if isEn else 'Foto- und Videoportfolio' }}">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="text-center mb-10 reveal">
+    <div class="mb-10 reveal">
       <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Portfolio</p>
       <h2 class="text-2xl font-black text-slate-900 mb-3">{{ 'Examples from past sessions' if isEn else 'Beispiele aus bisherigen Terminen' }}</h2>
-      <p class="text-sm text-slate-400 max-w-md mx-auto">{{ 'Placeholder images — real portfolio material will follow with the first photo/video sessions.' if isEn else 'Platzhalterbilder — echtes Portfoliomaterial folgt mit den ersten Foto-/Videoterminen (siehe § 15, offener Punkt 7 des Briefings).' }}</p>
+      <p class="text-sm text-slate-400 max-w-md">{{ 'Placeholder images — real portfolio material will follow with the first photo/video sessions.' if isEn else 'Platzhalterbilder — echtes Portfoliomaterial folgt mit den ersten Foto-/Videoterminen (siehe § 15, offener Punkt 7 des Briefings).' }}</p>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2 mb-8" role="group" aria-label="{{ 'Filter by industry' if isEn else 'Nach Branche filtern' }}">
-      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">{{ 'All' if isEn else 'Alle' }}</button>
+    <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="{{ 'Filter by industry' if isEn else 'Nach Branche filtern' }}">
+      <button type="button" class="portfolio-filter px-4 py-1.5 text-xs font-semibold bg-slate-900 text-white" data-filter="all" aria-pressed="true">{{ 'All' if isEn else 'Alle' }}</button>
       {% for branche in industries %}
-      <button type="button" class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.en.kurz if isEn else branche.kurz }}</button>
+      <button type="button" class="portfolio-filter px-4 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-600" data-filter="{{ branche.slug }}" aria-pressed="false">{{ branche.en.kurz if isEn else branche.kurz }}</button>
       {% endfor %}
     </div>
 

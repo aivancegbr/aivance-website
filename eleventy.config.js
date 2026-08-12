@@ -5,12 +5,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/downloads": "downloads" });
   eleventyConfig.addPassthroughCopy({ "CNAME": "CNAME" });
 
-  // Selbst gehostete Inter-Schnitte (nur die tatsächlich genutzten, § 12)
-  for (const weight of [400, 500, 600, 700, 800, 900]) {
-    eleventyConfig.addPassthroughCopy({
-      [`node_modules/@fontsource/inter/files/inter-latin-${weight}-normal.woff2`]: `fonts/inter-latin-${weight}-normal.woff2`,
-    });
-  }
+  // Brand-Schriften: Instrument Sans (Display/Text) + IBM Plex Mono (Labels/Messwerte)
+  eleventyConfig.addPassthroughCopy({ "src/fonts": "fonts" });
 
   // CSS baut die Tailwind-CLI separat (npm run build:css)
   eleventyConfig.ignores.add("src/css/**");

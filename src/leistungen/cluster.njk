@@ -17,16 +17,16 @@ eleventyComputed:
 {# Template T1 — Clusterseite (§ 7) #}
 
 <!-- 1 · Hero (kompakt) -->
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-6xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">{{ cluster.claim }}</p>
     <h1 class="text-5xl font-black text-slate-900 mb-4">{{ cluster.title }}</h1>
-    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">{{ cluster.heroSatz }}</p>
+    <p class="text-slate-500 max-w-lg leading-relaxed">{{ cluster.heroSatz }}</p>
   </div>
 </section>
 
 <!-- 2 · Drei Leistungskarten -->
-<section class="py-20 bg-white">
+<section class="py-20">
   <div class="max-w-6xl mx-auto px-5">
     <div class="grid md:grid-cols-3 gap-5">
       {% for serviceSlug in cluster.services %}
@@ -35,7 +35,7 @@ eleventyComputed:
         <h2 class="font-bold text-slate-900 text-lg mb-2">{{ service.title }}</h2>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ service.card }}</p>
         <p class="text-xs text-slate-400 mb-4">{{ service.zeitrahmen | truncate(90) }}</p>
-        <span class="text-sm font-semibold text-blue-600">Details ansehen →</span>
+        <span class="mono text-[11px] tracking-widest uppercase text-ink">Details ansehen →</span>
       </a>
       {% endfor %}
     </div>
@@ -43,8 +43,8 @@ eleventyComputed:
 </section>
 
 <!-- 3 · Warum aus einer Hand -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5 text-center reveal">
+<section class="py-16">
+  <div class="prose-col reveal">
     <h2 class="text-3xl font-black text-slate-900 mb-4">Warum aus einer Hand?</h2>
     <p class="text-slate-500 leading-relaxed">{{ cluster.verzahnung }}</p>
   </div>
@@ -58,9 +58,9 @@ eleventyComputed:
   {% endif %}
 {% endfor %}
 {% if clusterProjekte.length %}
-<section class="py-20 bg-white">
+<section class="py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="text-center mb-12 reveal">
+    <div class="mb-12 reveal">
       <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Referenzen</p>
       <h2 class="text-3xl font-black text-slate-900">Ergebnisse aus diesem Bereich</h2>
     </div>
@@ -69,9 +69,9 @@ eleventyComputed:
       <a href="/projekte/{{ projekt.slug }}/" class="reveal reveal-{{ loop.index }} block bg-slate-50 rounded-2xl border border-slate-100 p-7 hover:border-blue-200 transition-colors">
         <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ projekt.brancheLabel }}</p>
         <p class="text-4xl font-black text-slate-900">{{ projekt.teaser.zahl }}</p>
-        <p class="text-sm text-blue-600 font-semibold mb-3">{{ projekt.teaser.zahlLabel }}</p>
+        <p class="mono text-[11px] tracking-widest uppercase text-amber mt-2 mb-4">{{ projekt.teaser.zahlLabel }}</p>
         <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ projekt.teaser.text }}</p>
-        <span class="text-sm font-semibold text-blue-600">Zur Case Study →</span>
+        <span class="mono text-[11px] tracking-widest uppercase text-ink">Zur Case Study →</span>
       </a>
       {% endfor %}
     </div>

@@ -18,20 +18,20 @@ eleventyComputed:
 {# Template T4 — case study page, English mirror of /projekte/[slug]/ #}
 {% set d = projekt.en %}
 
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-4xl mx-auto px-5">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <div class="flex items-center gap-3 mb-6">
       <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black flex-shrink-0" aria-hidden="true">{{ projekt.nummer }}</div>
       <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">{{ d.brancheLabel or projekt.brancheLabel }}</span>
-      <span class="ml-auto px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ {{ d.status or projekt.status }}</span>
+      <span class="ml-auto px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ {{ d.status or projekt.status }}</span>
     </div>
-    <h1 class="text-4xl font-black text-slate-900 mb-2">{{ d.title or projekt.title }}</h1>
-    <p class="text-sm text-blue-600 font-semibold">{{ d.untertitel or projekt.untertitel }}</p>
+    <h1 class="max-w-3xl text-4xl font-black text-slate-900 mb-2">{{ d.title or projekt.title }}</h1>
+    <p class="mono max-w-2xl text-[11px] tracking-widest uppercase text-ink-muted">{{ d.untertitel or projekt.untertitel }}</p>
   </div>
 </section>
 
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col-wide">
     <div class="grid md:grid-cols-2 gap-10 mb-10">
       <div class="reveal">
         <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Starting point</h2>
@@ -71,7 +71,7 @@ eleventyComputed:
 
     <!-- Measurable results -->
     <div class="reveal bg-slate-50 rounded-3xl border border-slate-100 p-8 mb-8">
-      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6 text-center">{{ d.ergebnisZeitraum or projekt.ergebnisZeitraum }}</p>
+      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6">{{ d.ergebnisZeitraum or projekt.ergebnisZeitraum }}</p>
       <div class="grid sm:grid-cols-3 gap-4">
         {% for erg in d.ergebnisse or projekt.ergebnisse %}
         <div class="bg-white rounded-2xl border border-slate-100 p-5 text-center">
@@ -98,7 +98,7 @@ eleventyComputed:
     </div>
     {% endif %}
     {% if projekt.anonym %}
-    <p class="text-xs text-slate-400 text-center">Presented anonymously at the client's request.</p>
+    <p class="text-xs text-slate-400">Presented anonymously at the client's request.</p>
     {% endif %}
   </div>
 </section>

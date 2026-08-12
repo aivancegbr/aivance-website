@@ -17,20 +17,20 @@ eleventyComputed:
 {# Template T4 — Projektseite (§ 7): Ausgangslage → Lösung → Was wir gebaut haben → Tech-Tags → Ergebnisse → Zitat #}
 {% set brancheData = industries | findBySlug(projekt.branche) %}
 
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-4xl mx-auto px-5">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <div class="flex items-center gap-3 mb-6">
       <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-black flex-shrink-0" aria-hidden="true">{{ projekt.nummer }}</div>
       <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">{{ projekt.brancheLabel }}</span>
-      <span class="ml-auto px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ {{ projekt.status }}</span>
+      <span class="ml-auto px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-100">✓ {{ projekt.status }}</span>
     </div>
-    <h1 class="text-4xl font-black text-slate-900 mb-2">{{ projekt.title }}</h1>
-    <p class="text-sm text-blue-600 font-semibold">{{ projekt.untertitel }}</p>
+    <h1 class="max-w-3xl text-4xl font-black text-slate-900 mb-2">{{ projekt.title }}</h1>
+    <p class="mono max-w-2xl text-[11px] tracking-widest uppercase text-ink-muted">{{ projekt.untertitel }}</p>
   </div>
 </section>
 
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col-wide">
     <div class="grid md:grid-cols-2 gap-10 mb-10">
       <div class="reveal">
         <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Ausgangslage</h2>
@@ -70,7 +70,7 @@ eleventyComputed:
 
     <!-- Messbare Ergebnisse -->
     <div class="reveal bg-slate-50 rounded-3xl border border-slate-100 p-8 mb-8">
-      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6 text-center">{{ projekt.ergebnisZeitraum }}</p>
+      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6">{{ projekt.ergebnisZeitraum }}</p>
       <div class="grid sm:grid-cols-3 gap-4">
         {% for erg in projekt.ergebnisse %}
         <div class="bg-white rounded-2xl border border-slate-100 p-5 text-center">
@@ -96,7 +96,7 @@ eleventyComputed:
     </div>
     {% endif %}
     {% if projekt.anonym %}
-    <p class="text-xs text-slate-400 text-center">Auf Wunsch des Kunden anonymisiert dargestellt.</p>
+    <p class="text-xs text-slate-400">Auf Wunsch des Kunden anonymisiert dargestellt.</p>
     {% endif %}
   </div>
 </section>

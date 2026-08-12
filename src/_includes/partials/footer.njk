@@ -1,49 +1,48 @@
+{# Footer — Dunkelvariante der Marke: Ink-Fläche, Amber hellt auf (#F0A75C). #}
+{% import "partials/logo.njk" as brand %}
 {% set t = i18n[lang or 'de'] %}
 {% set isEnPage = lang == 'en' %}
 {% set urlBase = '/en' if isEnPage else '' %}
-<footer class="bg-slate-900 text-white pt-14 pb-8">
+<footer class="site-footer pt-16 pb-8">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="grid md:grid-cols-4 gap-10 mb-10">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
       <div>
-        <div class="flex items-center gap-2.5 mb-3">
-          <img src="/images/logo.jpg" alt="" width="28" height="28" class="h-7 w-7 rounded-lg object-cover" loading="lazy" />
-          <span class="font-black text-lg tracking-tight">AIVANCE</span>
-        </div>
-        <p class="text-sm text-white/50 leading-relaxed max-w-xs">{{ t.footerTagline }} {{ site.region }}.</p>
-        <a href="mailto:{{ site.email }}" class="inline-block mt-4 text-sm text-white/40 hover:text-white transition-colors">{{ site.email }}</a>
+        <div class="mb-4">{{ brand.lockup(28, '20px', 'dark', 'DIGITAL AGENCY' if isEnPage else 'DIGITALISIERUNG') }}</div>
+        <p class="text-sm text-paper/55 leading-relaxed max-w-xs">{{ t.footerTagline }} {{ site.region }}.</p>
+        <a href="mailto:{{ site.email }}" class="mono inline-block mt-5 text-[11px] tracking-widest text-paper/45 transition-colors">{{ site.email }}</a>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerLeistungen }}</p>
-        <ul class="space-y-2 text-sm text-white/50">
+        <p class="footer-eyebrow mb-4">{{ t.footerLeistungen }}</p>
+        <ul class="space-y-2.5 text-sm text-paper/55">
           {% for cluster in clusters %}
-          <li><a href="{{ urlBase }}/leistungen/{{ cluster.slug }}/" class="hover:text-white transition-colors">{{ cluster.en.title if isEnPage else cluster.title }}</a></li>
+          <li><a href="{{ urlBase }}/leistungen/{{ cluster.slug }}/" class="transition-colors">{{ cluster.en.title if isEnPage else cluster.title }}</a></li>
           {% endfor %}
-          <li><a href="{{ t.urlLeistungen }}" class="hover:text-white transition-colors">{{ t.footerAlleLeistungen }}</a></li>
+          <li><a href="{{ t.urlLeistungen }}" class="transition-colors">{{ t.footerAlleLeistungen }}</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerBranchen }}</p>
-        <ul class="space-y-2 text-sm text-white/50">
+        <p class="footer-eyebrow mb-4">{{ t.footerBranchen }}</p>
+        <ul class="space-y-2.5 text-sm text-paper/55">
           {% for branche in industries %}
-          <li><a href="{{ urlBase }}/branchen/{{ branche.slug }}/" class="hover:text-white transition-colors">{{ branche.en.title if isEnPage else branche.title }}</a></li>
+          <li><a href="{{ urlBase }}/branchen/{{ branche.slug }}/" class="transition-colors">{{ branche.en.title if isEnPage else branche.title }}</a></li>
           {% endfor %}
         </ul>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">{{ t.footerUnternehmen }}</p>
-        <ul class="space-y-2 text-sm text-white/50">
-          <li><a href="{{ t.urlProjekte }}" class="hover:text-white transition-colors">{{ t.footerProjekte }}</a></li>
-          <li><a href="{{ t.urlUeberUns }}" class="hover:text-white transition-colors">{{ t.footerUeberUns }}</a></li>
-          <li><a href="{{ t.urlKontakt }}" class="hover:text-white transition-colors">{{ t.footerKontakt }}</a></li>
-          <li><a href="{{ t.urlDatensicherheit }}" class="hover:text-white transition-colors">{{ t.footerDatensicherheit }}</a></li>
-          <li><a href="/datenschutz/" class="hover:text-white transition-colors">{{ t.footerDatenschutz }}</a></li>
-          <li><a href="/impressum/" class="hover:text-white transition-colors">{{ t.footerImpressum }}</a></li>
+        <p class="footer-eyebrow mb-4">{{ t.footerUnternehmen }}</p>
+        <ul class="space-y-2.5 text-sm text-paper/55">
+          <li><a href="{{ t.urlProjekte }}" class="transition-colors">{{ t.footerProjekte }}</a></li>
+          <li><a href="{{ t.urlUeberUns }}" class="transition-colors">{{ t.footerUeberUns }}</a></li>
+          <li><a href="{{ t.urlKontakt }}" class="transition-colors">{{ t.footerKontakt }}</a></li>
+          <li><a href="{{ t.urlDatensicherheit }}" class="transition-colors">{{ t.footerDatensicherheit }}</a></li>
+          <li><a href="/datenschutz/" class="transition-colors">{{ t.footerDatenschutz }}</a></li>
+          <li><a href="/impressum/" class="transition-colors">{{ t.footerImpressum }}</a></li>
         </ul>
       </div>
     </div>
-    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/30">
-      <p>© <span data-current-year>{{ '' | currentYear }}</span> AIVANCE. {{ t.footerRights }}</p>
-      <p>{{ t.footerSlogan }}</p>
+    <div class="border-t border-line-dark pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+      <p class="mono text-[11px] tracking-widest text-paper/35">© <span data-current-year>{{ '' | currentYear }}</span> AIVANCE · {{ t.footerRights }}</p>
+      <p class="mono text-[11px] tracking-widest text-paper/35">{{ t.footerSlogan }}</p>
     </div>
   </div>
 </footer>

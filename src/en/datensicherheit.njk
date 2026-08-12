@@ -11,17 +11,17 @@ deUrl: /datensicherheit/
 
 {# English mirror of /datensicherheit/ — substantive data security page, separate from the legal privacy policy at /datenschutz/. #}
 
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Data security</p>
-    <h1 class="text-5xl font-black text-slate-900 mb-4">Where your data lives —<br/>and who has access</h1>
-    <p class="text-slate-500 leading-relaxed">Everyone writes "GDPR-compliant". Here is what that concretely means at AIVANCE — with locations, contracts and retention periods instead of claims.</p>
+    <h1 class="max-w-3xl text-5xl font-black text-slate-900 mb-4">Where your data lives —<br/>and who has access</h1>
+    <p class="max-w-2xl text-slate-500 leading-relaxed">Everyone writes "GDPR-compliant". Here is what that concretely means at AIVANCE — with locations, contracts and retention periods instead of claims.</p>
   </div>
 </section>
 
 <!-- Hosting locations -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Hosting locations, by name</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Your data stays in its jurisdiction: clients based in Germany and the EU are hosted on European servers, clients based in the USA on US servers. No processing takes place outside the respective region.</p>
     <div class="grid sm:grid-cols-2 gap-4">
@@ -43,11 +43,11 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- DPA -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">Data processing under Art. 28 GDPR</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Before we receive access to personal data, we conclude a data processing agreement (DPA) with you. It governs purpose, duration, sub-processors and your rights of control.</p>
-    <a href="mailto:{{ site.email }}?subject=Request%20DPA%20template" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors">
+    <a href="mailto:{{ site.email }}?subject=Request%20DPA%20template" class="btn-primary">
       Request DPA template →
     </a>
     <p class="text-xs text-slate-400 mt-3">You receive the template in advance for review by your data protection officer — before any engagement.</p>
@@ -55,8 +55,8 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- TOMs as expandable list -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Technical and organizational measures (Art. 32 GDPR)</h2>
     {% set toms = [
       { t: "Access control", a: "Access to client systems only via personal accounts with two-factor authentication. Rights on a need-to-know basis; access is logged." },
@@ -82,8 +82,8 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- No model training -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">No model training on client data</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">Where we use AI models, we choose access routes where the provider contractually guarantees not to use your data for training its models:</p>
     <div class="space-y-3">
@@ -105,8 +105,8 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- Deletion concept -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Deletion concept and retention</h2>
     <div class="overflow-x-auto">
       <table class="w-full text-sm text-left">
@@ -128,8 +128,8 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- Professionals bound by confidentiality law -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">For professionals bound by confidentiality law: Section 203 StGB and Section 62 StBerG</h2>
     <div class="text-sm text-slate-500 leading-relaxed space-y-4">
       <p>Physicians and tax advisors in Germany may only involve service providers under extended conditions: professional confidentiality under Section 203 StGB also applies towards IT providers, and Section 62 StBerG requires the provider's written commitment to secrecy.</p>
@@ -158,8 +158,8 @@ deUrl: /datensicherheit/
 </section>
 
 <!-- Contact person -->
-<section class="py-16 bg-white border-t border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-3">Contact for data protection</h2>
     <p class="text-sm text-slate-500 mb-6">Questions about data processing, the DPA or TOMs are answered directly by:</p>
     <div class="inline-block bg-slate-50 rounded-2xl border border-slate-100 px-8 py-6">

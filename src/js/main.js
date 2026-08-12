@@ -99,11 +99,12 @@
     });
   }
 
-  /* ── Sticky-Header-Schatten ab 80 px Scroll (Verhalten wie bisher, § 4) ── */
+  /* ── Sticky-Header ab 80 px Scroll: Trennlinie tritt hervor (statt Schatten,
+        § 4 — die Marke arbeitet mit Haarlinien, nicht mit Tiefe) ── */
   var navbar = document.getElementById("navbar");
   if (navbar) {
     window.addEventListener("scroll", function () {
-      navbar.style.boxShadow = window.scrollY > 80 ? "0 4px 20px rgba(15,23,42,.06)" : "";
+      navbar.style.borderBottomColor = window.scrollY > 80 ? "#C2C2BA" : "";
     }, { passive: true });
   }
 

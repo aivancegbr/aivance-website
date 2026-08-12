@@ -1,12 +1,19 @@
 {# Wiederverwendbarer CTA-Block (T1–T4, jeweils letzte Sektion) — sprachabhängige Defaults über i18n[lang] #}
 {% set t = i18n[lang or 'de'] %}
-<section class="py-16 bg-white border-t border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center reveal">
-    <h2 class="text-3xl font-black text-slate-900 mb-3">{{ ctaHeadline or t.ctaHeadline }}</h2>
-    <p class="text-slate-500 text-sm mb-8 max-w-md mx-auto">{{ ctaText or t.ctaText }}</p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a href="{{ t.urlKontakt }}" class="px-6 py-3 rounded-xl bg-slate-900 text-white font-semibold text-sm hover:bg-slate-700 transition-colors">{{ t.ctaPrimary }}</a>
-      <a href="{{ ctaSecondaryUrl or t.urlLeistungen }}" class="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors">{{ ctaSecondaryLabel or t.ctaSecondary }}</a>
+<section class="py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-end reveal">
+      <div>
+        <span class="eyebrow mb-5">{{ 'Next step' if lang == 'en' else 'Nächster Schritt' }}</span>
+        <h2 class="section-h2">{{ ctaHeadline or t.ctaHeadline }}</h2>
+      </div>
+      <div>
+        <p class="lede mb-8 max-w-md">{{ ctaText or t.ctaText }}</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="{{ t.urlKontakt }}" class="btn-primary">{{ t.ctaPrimary }}</a>
+          <a href="{{ ctaSecondaryUrl or t.urlLeistungen }}" class="btn-ghost">{{ ctaSecondaryLabel or t.ctaSecondary }}</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -16,8 +16,8 @@ module.exports = [
     status: "Abgeschlossen",
     anonym: true,
     teaser: {
-      zahl: "−78 %",
-      zahlLabel: "manuelle Anfragen pro Woche",
+      zahl: "78 %",
+      zahlLabel: "weniger manuelle Anfragen pro Woche",
       text: "Ein Restaurant beantwortet Reservierungen und Gästefragen automatisch — über WhatsApp und Website."
     },
     ausgangslage:
@@ -32,7 +32,7 @@ module.exports = [
     ],
     tech: ["RAG-System", "WhatsApp API", "n8n Automation", "OpenAI GPT-4o", "Vektor-Datenbank"],
     ergebnisse: [
-      { wert: "−78 %", label: "manuelle Anfragen", detail: "von 340 auf 75 pro Woche" },
+      { wert: "78 %", label: "weniger manuelle Anfragen", detail: "von 340 auf 75 pro Woche" },
       { wert: "95 %", label: "Gästezufriedenheit", detail: "basierend auf 48 Bewertungen" },
       { wert: "0,3 s", label: "Antwortzeit", detail: "vorher 2–6 Stunden manuell" }
     ],
@@ -45,7 +45,7 @@ module.exports = [
     bild: "/images/gastrodashboard.jpeg",
     bildAlt: "Manager-Dashboard des AIVANCE-Gastronomie-Systems mit Auslastung und Umsatz in Echtzeit",
     meta: {
-      title: "Gastronomie: −78 % manuelle Anfragen — AIVANCE",
+      title: "Gastronomie: 78 % weniger manuelle Anfragen — AIVANCE",
       description: "Case Study: KI-Assistent für ein Restaurant im Rhein-Main-Gebiet — 78 % weniger manuelle Anfragen, Antwortzeit von Stunden auf 0,3 Sekunden."
     },
     en: {
@@ -54,7 +54,7 @@ module.exports = [
       brancheLabel: "Hospitality · Rhine-Main",
       status: "Completed",
       teaser: {
-        zahl: "−78 %",
+        zahl: "78 %",
         zahlLabel: "manual inquiries per week",
         text: "A restaurant answers reservations and guest questions automatically — via WhatsApp and its website."
       },
@@ -70,7 +70,7 @@ module.exports = [
       ],
       tech: ["RAG system", "WhatsApp API", "n8n automation", "OpenAI GPT-4o", "Vector database"],
       ergebnisse: [
-        { wert: "−78 %", label: "manual inquiries", detail: "from 340 to 75 per week" },
+        { wert: "78 %", label: "fewer manual inquiries", detail: "from 340 to 75 per week" },
         { wert: "95 %", label: "guest satisfaction", detail: "based on 48 reviews" },
         { wert: "0.3 s", label: "response time", detail: "previously 2–6 hours manually" }
       ],
@@ -82,7 +82,7 @@ module.exports = [
       },
       bildAlt: "Manager dashboard of the AIVANCE hospitality system with real-time occupancy and revenue",
       meta: {
-        title: "Hospitality: −78 % Manual Inquiries — AIVANCE",
+        title: "Hospitality: 78 % Fewer Manual Inquiries — AIVANCE",
         description: "Case study: AI assistant for a restaurant in the Rhine-Main region — 78% fewer manual inquiries, response time down from hours to 0.3 seconds."
       }
     }
@@ -98,8 +98,8 @@ module.exports = [
     status: "Abgeschlossen",
     anonym: true,
     teaser: {
-      zahl: "−3 Tage",
-      zahlLabel: "Onboarding-Zeit pro Mitarbeiter",
+      zahl: "7 → 4 Tage",
+      zahlLabel: "Onboarding pro neuem Mitarbeiter",
       text: "Neue Mitarbeitende bekommen Antworten sofort — statt das HR-Team mit denselben Fragen zu binden."
     },
     ausgangslage:
@@ -114,8 +114,8 @@ module.exports = [
     ],
     tech: ["RAG-System", "Notion API", "Slack Bot", "Claude", "n8n Workflows"],
     ergebnisse: [
-      { wert: "−80 %", label: "HR-Anfragen", detail: "Self-Service durch KI-Assistent" },
-      { wert: "−3 Tage", label: "Onboarding-Zeit", detail: "von 7 auf 4 Tage reduziert" },
+      { wert: "80 %", label: "weniger HR-Anfragen", detail: "Self-Service durch KI-Assistent" },
+      { wert: "7 → 4 Tage", label: "Onboarding-Zeit", detail: "3 Arbeitstage weniger pro Eintritt" },
       { wert: "96 %", label: "Zufriedenheit", detail: "Feedback neuer Mitarbeitender" }
     ],
     ergebnisZeitraum: "Messbare Ergebnisse nach 60 Tagen",
@@ -127,7 +127,7 @@ module.exports = [
     bild: null,
     bildAlt: null,
     meta: {
-      title: "Mittelstand: Onboarding-Zeit −3 Tage — AIVANCE",
+      title: "Mittelstand: Onboarding von 7 auf 4 Tage — AIVANCE",
       description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding von 7 auf 4 Tage verkürzt."
     },
     en: {
@@ -136,8 +136,8 @@ module.exports = [
       brancheLabel: "SMB · Rhine-Main",
       status: "Completed",
       teaser: {
-        zahl: "−3 days",
-        zahlLabel: "onboarding time per employee",
+        zahl: "7 → 4 days",
+        zahlLabel: "onboarding per new hire",
         text: "New hires get answers instantly — instead of tying up the HR team with the same questions."
       },
       ausgangslage:
@@ -152,8 +152,8 @@ module.exports = [
       ],
       tech: ["RAG system", "Notion API", "Slack bot", "Claude", "n8n workflows"],
       ergebnisse: [
-        { wert: "−80 %", label: "HR inquiries", detail: "self-service via AI assistant" },
-        { wert: "−3 days", label: "onboarding time", detail: "reduced from 7 to 4 days" },
+        { wert: "80 %", label: "fewer HR inquiries", detail: "self-service via AI assistant" },
+        { wert: "7 → 4 days", label: "onboarding time", detail: "three working days saved per hire" },
         { wert: "96 %", label: "satisfaction", detail: "feedback from new employees" }
       ],
       ergebnisZeitraum: "Measurable results after 60 days",
@@ -179,8 +179,8 @@ module.exports = [
     status: "Laufende Betreuung",
     anonym: true,
     teaser: {
-      zahl: "+128 %",
-      zahlLabel: "Klicks aus der Google-Suche",
+      zahl: "128 %",
+      zahlLabel: "mehr Klicks aus der Google-Suche",
       text: "Eine Gesundheitspraxis wird online endlich so gefunden, wie es ihrem Ruf entspricht — mehr Anrufe, mehr Anfragen, mehr Patienten."
     },
     ausgangslage:
@@ -195,7 +195,7 @@ module.exports = [
     ],
     tech: ["React", "Technisches SEO", "FAQ-Schema", "Headless CMS", "Google Search Console"],
     ergebnisse: [
-      { wert: "+128 %", label: "Google-Klicks", detail: "organische Suche, Monat zu Monat" },
+      { wert: "128 %", label: "mehr Google-Klicks", detail: "organische Suche, Monat zu Monat" },
       { wert: "+32 %", label: "Patientenanrufe", detail: "über das Google-Unternehmensprofil" },
       { wert: "+233 %", label: "Chat-Anfragen", detail: "Anfragequote pro Besucher verdoppelt" }
     ],
@@ -212,8 +212,8 @@ module.exports = [
       brancheLabel: "Healthcare · USA",
       status: "Ongoing engagement",
       teaser: {
-        zahl: "+128 %",
-        zahlLabel: "clicks from Google Search",
+        zahl: "128 %",
+        zahlLabel: "more clicks from Google Search",
         text: "A medical practice is finally found online the way its reputation deserves — more calls, more inquiries, more patients."
       },
       ausgangslage:
@@ -228,7 +228,7 @@ module.exports = [
       ],
       tech: ["React", "Technical SEO", "FAQ schema", "Headless CMS", "Google Search Console"],
       ergebnisse: [
-        { wert: "+128 %", label: "Google clicks", detail: "organic search, month over month" },
+        { wert: "128 %", label: "more Google clicks", detail: "organic search, month over month" },
         { wert: "+32 %", label: "patient calls", detail: "via the Google Business Profile" },
         { wert: "+233 %", label: "chat inquiries", detail: "inquiry rate per visitor doubled" }
       ],

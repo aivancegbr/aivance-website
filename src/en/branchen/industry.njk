@@ -19,17 +19,17 @@ eleventyComputed:
 {% set d = branche.en %}
 
 <!-- 1 · Hero -->
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">{{ site.region }}</p>
-    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ d.hero or branche.hero }}</h1>
-    <p class="text-slate-500 leading-relaxed max-w-lg mx-auto">{{ d.heroSatz or branche.heroSatz }}</p>
+    <h1 class="max-w-3xl text-5xl font-black text-slate-900 mb-4">{{ d.hero or branche.hero }}</h1>
+    <p class="max-w-2xl text-slate-500 leading-relaxed max-w-lg">{{ d.heroSatz or branche.heroSatz }}</p>
   </div>
 </section>
 
 <!-- 2 · Industry-specific pain points -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Where it hurts</h2>
     <div class="space-y-3">
       {% for punkt in d.schmerzpunkte or branche.schmerzpunkte %}
@@ -44,8 +44,8 @@ eleventyComputed:
 
 <!-- 3 · Legal framework block -->
 {% set rr = d.rechtsrahmen or branche.rechtsrahmen %}
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-4">Legal framework</h2>
     <p class="text-sm text-slate-500 leading-relaxed mb-6">{{ rr.intro }}</p>
     <div class="bg-white rounded-2xl border border-slate-100 p-6">
@@ -59,14 +59,14 @@ eleventyComputed:
       </ul>
     </div>
     <p class="text-xs text-slate-400 mt-4">{{ rr.hinweis }}</p>
-    <a href="/en/data-security/" class="inline-block mt-3 text-sm font-semibold text-blue-600 hover:underline">All evidence on one page →</a>
+    <a href="/en/data-security/" class="mono inline-block mt-3 text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors">All evidence on one page →</a>
   </div>
 </section>
 
 <!-- 4 · Selected services: only the relevant ones -->
-<section class="py-16 bg-white">
+<section class="py-16">
   <div class="max-w-6xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Matching services</h2>
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Matching services</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {% for leistungSlug in branche.leistungen %}
       {% set leistung = services | findBySlug(leistungSlug) %}
@@ -89,15 +89,15 @@ eleventyComputed:
 {% endfor %}
 {% if brancheProjekt %}
 {% set bpd = brancheProjekt.en %}
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
-    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4 text-center">Case study from this industry</p>
+<section class="py-16">
+  <div class="prose-col">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4">Case study from this industry</p>
     <a href="/en/projekte/{{ brancheProjekt.slug }}/" class="reveal block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
       <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ bpd.brancheLabel or brancheProjekt.brancheLabel }}</p>
       <p class="text-4xl font-black text-slate-900">{{ bpd.teaser.zahl or brancheProjekt.teaser.zahl }}</p>
-      <p class="text-sm text-blue-600 font-semibold mb-3">{{ bpd.teaser.zahlLabel or brancheProjekt.teaser.zahlLabel }}</p>
+      <p class="mono text-[11px] tracking-widest uppercase text-amber mt-2 mb-4">{{ bpd.teaser.zahlLabel or brancheProjekt.teaser.zahlLabel }}</p>
       <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ bpd.teaser.text or brancheProjekt.teaser.text }}</p>
-      <span class="text-sm font-semibold text-blue-600">View case study →</span>
+      <span class="mono text-[11px] tracking-widest uppercase text-ink">View case study →</span>
     </a>
   </div>
 </section>
@@ -105,9 +105,9 @@ eleventyComputed:
 
 <!-- 6 · Industry-specific FAQ -->
 {% set faqItems = d.faq or branche.faq %}
-<section class="py-16 bg-white">
-  <div class="max-w-2xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Frequently asked questions</h2>
+<section class="py-16">
+  <div class="prose-col">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Frequently asked questions</h2>
     <div class="space-y-2">
       {% for item in faqItems %}
       <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">

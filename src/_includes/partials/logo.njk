@@ -1,0 +1,37 @@
+{# ═══ Marke ═══════════════════════════════════════════════════════════════════
+   Das Signet ist eine Fußnote: ein kleines „a“ mit hochgestellter 1 im Amber —
+   das Zeichen, mit dem seit Jahrhunderten Belege gesetzt werden. Die Linie
+   darunter zieht sich auf wie ein eingefügter Quellenverweis.
+
+   variant: 'light' (auf Canvas) | 'dark' (auf Ink, z. B. Footer)
+   Minimalgröße: 22 px.
+   ══════════════════════════════════════════════════════════════════════════ #}
+
+{% macro signet(size = 30, variant = 'light') %}
+{%- set glyph = '#EDEDEB' if variant == 'dark' else '#161614' -%}
+{%- set accent = '#F0A75C' if variant == 'dark' else '#9C4B00' -%}
+{%- set rule = '#3A3A38' if variant == 'dark' else '#C2C2BA' -%}
+<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 30 30" aria-hidden="true" focusable="false" style="display:block;flex:none">
+  <text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="{{ glyph }}">a</text>
+  <text class="signet-mark" x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="{{ accent }}">1</text>
+  <path d="M2 26.4h20.5" stroke="{{ rule }}" stroke-width="1.2" stroke-linecap="round"/>
+  <path class="signet-trace" d="M2 26.4h20.5" stroke="{{ accent }}" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="20.5"/>
+</svg>
+{% endmacro %}
+
+{# Wortmarke: aivance mit Amber-Punkt und hochgestellter Mono-1 #}
+{% macro wordmark(fontSize = '20px', variant = 'light', sublabel = '') %}
+{%- set accent = '#F0A75C' if variant == 'dark' else '#9C4B00' -%}
+<span style="display:flex;flex-direction:column;line-height:1">
+  <span class="wordmark" style="font-size:{{ fontSize }}">aivance<span class="wordmark-dot" style="color:{{ accent }}">.</span><span class="wordmark-sup" style="color:{{ accent }}">1</span></span>
+  {%- if sublabel %}<span class="wordmark-sub"{% if variant == 'dark' %} style="color:rgba(237,237,235,.45)"{% endif %}>{{ sublabel }}</span>{% endif -%}
+</span>
+{% endmacro %}
+
+{# Signet + Wortmarke als Einheit #}
+{% macro lockup(size = 28, fontSize = '19px', variant = 'light', sublabel = '') %}
+<span style="display:flex;align-items:center;gap:10px">
+  {{ signet(size, variant) }}
+  {{ wordmark(fontSize, variant, sublabel) }}
+</span>
+{% endmacro %}

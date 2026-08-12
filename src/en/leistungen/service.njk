@@ -21,19 +21,19 @@ eleventyComputed:
 {% set pc = parentCluster.en %}
 
 <!-- 1 · Hero (compact) -->
-<section class="py-16 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-4xl mx-auto px-5 text-center">
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">
       <a href="/en/leistungen/{{ parentCluster.slug }}/" class="hover:underline">{{ pc.title or parentCluster.title }}</a>
     </p>
-    <h1 class="text-5xl font-black text-slate-900 mb-4">{{ d.title or service.title }}</h1>
-    <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">{{ d.heroSatz or service.heroSatz }}</p>
+    <h1 class="max-w-3xl text-5xl font-black text-slate-900 mb-4">{{ d.title or service.title }}</h1>
+    <p class="max-w-2xl text-slate-500 max-w-lg leading-relaxed">{{ d.heroSatz or service.heroSatz }}</p>
   </div>
 </section>
 
 <!-- 2 · Who this is for -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Who this is for</h2>
     <ul class="space-y-3">
       {% for punkt in d.fuerWen or service.fuerWen %}
@@ -49,8 +49,8 @@ eleventyComputed:
 </section>
 
 <!-- 3 · What's included -->
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">What's included</h2>
     <div class="bg-white rounded-2xl border border-slate-100 p-6">
       <ul class="space-y-2.5">
@@ -66,8 +66,8 @@ eleventyComputed:
 </section>
 
 <!-- 4 · Process and timeline -->
-<section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-5">
+<section class="py-16">
+  <div class="prose-col">
     <h2 class="text-2xl font-black text-slate-900 mb-6">Process and timeline</h2>
     <div class="space-y-2 mb-8">
       {% for schritt in d.ablauf or service.ablauf %}
@@ -76,7 +76,7 @@ eleventyComputed:
         <div>
           <div class="flex flex-wrap items-baseline gap-x-2 mb-1">
             <p class="font-bold text-slate-800 text-sm">{{ schritt.phase }}</p>
-            <p class="text-xs text-blue-600 font-semibold">{{ schritt.dauer }}</p>
+            <p class="mono text-[11px] tracking-widest uppercase text-ink-muted">{{ schritt.dauer }}</p>
           </div>
           <p class="text-sm text-slate-500 leading-relaxed">{{ schritt.text }}</p>
         </div>
@@ -107,15 +107,15 @@ eleventyComputed:
 {% endfor %}
 {% if serviceProjekt %}
 {% set spd = serviceProjekt.en %}
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-3xl mx-auto px-5">
-    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4 text-center">Case study</p>
+<section class="py-16">
+  <div class="prose-col">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4">Case study</p>
     <a href="/en/projekte/{{ serviceProjekt.slug }}/" class="reveal block bg-white rounded-2xl border border-slate-100 p-7 shadow-card hover:-translate-y-1 transition-transform">
       <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">{{ spd.brancheLabel or serviceProjekt.brancheLabel }}</p>
       <p class="text-4xl font-black text-slate-900">{{ spd.teaser.zahl or serviceProjekt.teaser.zahl }}</p>
-      <p class="text-sm text-blue-600 font-semibold mb-3">{{ spd.teaser.zahlLabel or serviceProjekt.teaser.zahlLabel }}</p>
+      <p class="mono text-[11px] tracking-widest uppercase text-amber mt-2 mb-4">{{ spd.teaser.zahlLabel or serviceProjekt.teaser.zahlLabel }}</p>
       <p class="text-sm text-slate-500 leading-relaxed mb-4">{{ spd.teaser.text or serviceProjekt.teaser.text }}</p>
-      <span class="text-sm font-semibold text-blue-600">View case study →</span>
+      <span class="mono text-[11px] tracking-widest uppercase text-ink">View case study →</span>
     </a>
   </div>
 </section>
@@ -123,9 +123,9 @@ eleventyComputed:
 
 <!-- 6 · FAQ (feeds the rich snippet) -->
 {% set faqItems = d.faq or service.faq %}
-<section class="py-16 bg-white">
-  <div class="max-w-2xl mx-auto px-5">
-    <h2 class="text-2xl font-black text-slate-900 mb-6 text-center">Frequently asked questions</h2>
+<section class="py-16">
+  <div class="prose-col">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">Frequently asked questions</h2>
     <div class="space-y-2">
       {% for item in faqItems %}
       <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
@@ -142,9 +142,9 @@ eleventyComputed:
 
 <!-- 7 · Cross-references: often combined with -->
 {% if service.kombiniert.length %}
-<section class="py-16 bg-slate-50/50">
-  <div class="max-w-4xl mx-auto px-5">
-    <h2 class="text-xl font-black text-slate-900 mb-6 text-center">Often combined with</h2>
+<section class="py-16">
+  <div class="prose-col-wide">
+    <h2 class="text-xl font-black text-slate-900 mb-6">Often combined with</h2>
     <div class="grid sm:grid-cols-3 gap-4">
       {% for kombiSlug in service.kombiniert %}
       {% set kombiService = services | findBySlug(kombiSlug) %}
