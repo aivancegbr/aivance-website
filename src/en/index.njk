@@ -391,22 +391,22 @@ permalink: /en/
       <h2 class="section-h2 reveal">The people behind AIVANCE</h2>
       <p class="lede max-w-md reveal reveal-1">You work directly with the founders — not with rotating project managers.</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5 reveal">
+    <div class="grid grid-cols-3 gap-2.5 sm:gap-5 reveal">
       {% set team = [
-        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder · Strategy & client projects", text: "Your first point of contact: leads the introductory call and digital audit, and makes sure every discipline works together.", mail: "ayman.karim@ai-vance.de" },
-        { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-founder · Engineering & operations", text: "Owns software, automation and infrastructure — from knowledge systems to hosting in Germany and the EU.", mail: "ajay.nagulendran@ai-vance.de" },
-        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-founder · Partnerships & growth", text: "Leads growth and client-facing AI solutions at AIVANCE. Expert for RAG systems, voice agents, and end-to-end automation.", mail: "cyrus.lang@ai-vance.de" }
+        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder · Strategy & client projects", rolleKurz: "Founder", text: "Your first point of contact: leads the introductory call and digital audit, and makes sure every discipline works together.", mail: "ayman.karim@ai-vance.de" },
+        { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-founder · Engineering & operations", rolleKurz: "Co-founder", text: "Owns software, automation and infrastructure — from knowledge systems to hosting in Germany and the EU.", mail: "ajay.nagulendran@ai-vance.de" },
+        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-founder · Partnerships & growth", rolleKurz: "Co-founder", text: "Leads growth and client-facing AI solutions at AIVANCE. Expert for RAG systems, voice agents, and end-to-end automation.", mail: "cyrus.lang@ai-vance.de" }
       ] %}
       {% for person in team %}
-      <div class="card overflow-hidden">
+      <div class="card overflow-hidden flex flex-col">
         <div class="portrait border-b border-line">
           <img src="/images/{{ person.img }}" alt="Portrait of {{ person.name }}" width="400" height="320" loading="lazy" class="" />
         </div>
-        <div class="p-6">
-          <p class="text-base font-semibold tracking-tight">{{ person.name }}</p>
-          <p class="mono text-[10px] tracking-widest uppercase text-ink-muted mt-1.5 mb-4">{{ person.rolle }}</p>
-          <p class="text-xs text-ink-muted leading-relaxed mb-5">{{ person.text }}</p>
-          <a href="mailto:{{ person.mail }}" class="mono text-[10px] tracking-widest text-ink-muted hover:text-amber transition-colors">{{ person.mail }}</a>
+        <div class="p-2.5 sm:p-5 md:p-6 flex-1 flex flex-col">
+          <p class="text-[13px] sm:text-[15px] md:text-base font-semibold tracking-tight leading-tight hyphens-auto break-words">{{ person.name }}</p>
+          <p class="mono text-[9px] sm:text-[10px] tracking-[0.08em] sm:tracking-widest uppercase text-ink-muted mt-auto pt-2 sm:mt-1.5 sm:pt-0 mb-0 sm:mb-4 leading-relaxed"><span class="lg:hidden">{{ person.rolleKurz }}</span><span class="hidden lg:inline">{{ person.rolle }}</span></p>
+          <p class="hidden sm:block text-xs text-ink-muted leading-relaxed mb-5">{{ person.text }}</p>
+          <a href="mailto:{{ person.mail }}" class="mono hidden sm:inline-block text-[10px] tracking-widest text-ink-muted hover:text-amber transition-colors break-words">{{ person.mail }}</a>
         </div>
       </div>
       {% endfor %}
