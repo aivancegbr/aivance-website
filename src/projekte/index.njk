@@ -125,4 +125,45 @@ enUrl: /en/projekte/
 })();
 </script>
 
+
+<!-- ═══ SYSTEME IM BETRIEB (Breite ohne Kundennamen) ═══ -->
+<section class="py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">Systeme im Betrieb</span>
+      <span class="eyebrow eyebrow-muted">Stand {{ systeme.stand }}</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
+      <h2 class="section-h2 reveal">Was bei Kunden läuft.</h2>
+      <p class="lede max-w-md reveal reveal-1">Nicht jedes Projekt wird eine Case Study. Diese Systeme sind im Betrieb — ohne Kundennamen, weil die Freigaben fehlen, und ohne Zahlen, weil belegte Zahlen in die Case Studies gehören.</p>
+    </div>
+
+    <div class="reveal border-t border-line">
+      <div class="hidden md:grid grid-cols-[1.4fr_0.8fr_1.2fr] gap-6 py-3 border-b border-line">
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">Was das System tut</span>
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">Branche</span>
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">Art der Arbeit</span>
+      </div>
+      {% for zeile in systeme.betrieb %}
+      <div class="grid md:grid-cols-[1.4fr_0.8fr_1.2fr] gap-1 md:gap-6 py-4 border-b border-line">
+        <span class="text-sm text-ink">{{ zeile.tut }}</span>
+        <span class="text-sm text-ink-muted">{{ zeile.branche }}</span>
+        <span class="text-sm text-ink-muted">{{ zeile.art }}</span>
+      </div>
+      {% endfor %}
+
+      <p class="eyebrow mt-12 mb-1">In Arbeit</p>
+      <div class="border-t border-line">
+        {% for zeile in systeme.inArbeit %}
+        <div class="grid md:grid-cols-[1.4fr_0.8fr_1.2fr] gap-1 md:gap-6 py-4 border-b border-line">
+          <span class="text-sm text-ink">{{ zeile.tut }}</span>
+          <span class="text-sm text-ink-muted">{{ zeile.branche }}</span>
+          <span class="text-sm text-ink-muted">{{ zeile.art }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
 {% include "partials/cta.njk" %}

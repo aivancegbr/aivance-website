@@ -16,9 +16,10 @@ module.exports = [
     stichpunkte: [
       "Website & Webdesign",
       "Foto, Video & Schnitt",
-      "Social-Media-Management"
+      "Social-Media-Management",
+      "SEO & KI-Sichtbarkeit"
     ],
-    services: ["website-webdesign", "foto-video", "social-media"],
+    services: ["website-webdesign", "foto-video", "social-media", "seo-ki-sichtbarkeit"],
     meta: {
       title: "Sichtbarkeit — AIVANCE",
       description: "Website, Foto & Video und Social Media aus einer Hand — abgestimmt statt zusammengestückelt. Für Unternehmen im Rhein-Main-Gebiet."
@@ -35,7 +36,8 @@ module.exports = [
       stichpunkte: [
         "Website & web design",
         "Photo, video & editing",
-        "Social media management"
+        "Social media management",
+        "SEO & AI visibility"
       ],
       meta: {
         title: "Visibility — AIVANCE",

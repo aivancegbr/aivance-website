@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+lang: en
+title: Our Products — AIVANCE
+metaTitle: Our Products — AIVANCE
+metaDescription: "Four products built by AIVANCE: Iris (documents & deadlines), Boarding (onboarding), Verifly (insurance eligibility) and Radar (public tenders). Every answer carries its source."
+breadcrumb: Products
+permalink: /en/produkte/
+deUrl: /produkte/
+---
+
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
+    <span class="eyebrow mb-5">Our products</span>
+    <h1 class="max-w-3xl section-h2 mb-5">Four products, grown out of client work</h1>
+    <p class="max-w-2xl lede">What we have built more than once for clients, we develop into a product of our own. The focus is on AI systems that back every answer with its source instead of hallucinating.</p>
+  </div>
+</section>
+
+<!-- ═══ 01 · THE PRODUCTS ═══ -->
+<section class="py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">01 / Products</span>
+      <span class="eyebrow eyebrow-muted">{{ products | length }} products</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      {% for produkt in products %}
+      <div id="{{ produkt.slug }}" class="card p-7 flex flex-col">
+        <div class="flex items-baseline justify-between gap-4 mb-6">
+          <span class="eyebrow eyebrow-muted text-[11px]">Product {{ produkt.nummer }}</span>
+          {% if produkt.en.status %}<span class="mono text-[10px] tracking-widest uppercase text-amber">{{ produkt.en.status }}</span>{% endif %}
+        </div>
+        <h2 class="text-[26px] font-semibold tracking-tight mb-3">{{ produkt.name }}</h2>
+        <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-6">{{ produkt.en.tags | join(' · ') }}</p>
+        <p class="text-sm text-ink-muted leading-relaxed">{{ produkt.en.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 · HOW PRODUCT AND DELIVERY CONNECT ═══ -->
+<section class="py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">02 / How it fits</span>
+      <span class="eyebrow eyebrow-muted">Product and delivery</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+      <div class="reveal">
+        <h2 class="section-h2 mb-5">Product and rollout<br/>from the same team.</h2>
+        <p class="lede max-w-md">A product on its own solves nothing if nobody connects it to how you actually work. That is what our services are for: integration with your systems, training, maintenance — by the people who built the product.</p>
+      </div>
+      <div class="reveal reveal-1 grid sm:grid-cols-2 border border-line">
+        <a href="/en/leistungen/wissenssysteme/" class="p-7 border-b sm:border-b-0 sm:border-r border-line hover:bg-surface transition-colors">
+          <span class="eyebrow mb-4 text-[11px]">Documents &amp; company knowledge</span>
+          <p class="text-sm text-ink-muted leading-relaxed mb-5">The technology behind Iris — also available on its own, applied to your documents.</p>
+          <span class="mono text-[11px] tracking-widest uppercase text-ink">View service →</span>
+        </a>
+        <a href="/en/leistungen/voice-agents/" class="p-7 hover:bg-surface transition-colors">
+          <span class="eyebrow mb-4 text-[11px]">Phone assistants</span>
+          <p class="text-sm text-ink-muted leading-relaxed mb-5">They take calls, answer standard questions and book appointments.</p>
+          <span class="mono text-[11px] tracking-widest uppercase text-ink">View service →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/leitplanken.njk" %}
+
+{% set ctaHeadline = "Does one of these fit your case?" %}
+{% set ctaText = "In the introductory call we tell you honestly whether an existing product fits or whether your case needs its own build." %}
+{% set ctaSecondaryUrl = "/en/projekte/" %}
+{% set ctaSecondaryLabel = "View projects" %}
+{% include "partials/cta.njk" %}

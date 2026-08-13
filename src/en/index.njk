@@ -202,11 +202,41 @@ permalink: /en/
   </div>
 </section>
 
+<!-- ═══ 03 · OUR PRODUCTS ═══ -->
+<section class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">03 / Our products</span>
+      <span class="eyebrow eyebrow-muted">Grown out of client work</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
+      <h2 class="section-h2 reveal">Four products<br/>we build ourselves.</h2>
+      <p class="lede max-w-md reveal reveal-1">What has come up more than once in client work, we develop into a product of our own — on the same principle: every answer carries its source.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 border border-line reveal">
+      {% for produkt in products %}
+      <a href="/en/produkte/#{{ produkt.slug }}" class="p-7 border-line hover:bg-surface transition-colors {{ 'border-b sm:border-b lg:border-b-0' if not loop.last }} {{ 'sm:border-r' if loop.index % 2 == 1 }} lg:border-r lg:last:border-r-0">
+        <div class="flex items-baseline justify-between gap-3 mb-5">
+          <span class="eyebrow eyebrow-muted text-[11px]">{{ produkt.nummer }}</span>
+          {% if produkt.en.status %}<span class="mono text-[9.5px] tracking-widest uppercase text-amber">{{ produkt.en.status }}</span>{% endif %}
+        </div>
+        <h3 class="text-lg font-semibold tracking-tight mb-2">{{ produkt.name }}</h3>
+        <p class="mono text-[10px] tracking-widest uppercase text-ink-muted mb-4">{{ produkt.en.tags | join(' · ') }}</p>
+        <p class="text-xs text-ink-muted leading-relaxed">{{ produkt.en.kurz }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="mt-10 reveal">
+      <a href="/en/produkte/" class="btn-ghost">View all products</a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ 03 · THE AIVANCE PRINCIPLE — the chain of evidence ═══ -->
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">03 / The principle</span>
+      <span class="eyebrow">04 / The principle</span>
       <span class="eyebrow eyebrow-muted">From claim to proof</span>
     </div>
 
@@ -277,7 +307,7 @@ permalink: /en/
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">04 / Industries</span>
+      <span class="eyebrow">05 / Industries</span>
       <span class="eyebrow eyebrow-muted">Own workflows · own rules</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
@@ -302,7 +332,7 @@ permalink: /en/
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">05 / Case studies</span>
+      <span class="eyebrow">06 / Case studies</span>
       <span class="eyebrow eyebrow-muted">Numbers, not adjectives</span>
     </div>
     <h2 class="section-h2 mb-12 max-w-2xl reveal">Real results for real businesses</h2>
@@ -328,7 +358,7 @@ permalink: /en/
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">06 / Process</span>
+      <span class="eyebrow">07 / Process</span>
       <span class="eyebrow eyebrow-muted">Four steps</span>
     </div>
     <h2 class="section-h2 mb-12 max-w-2xl reveal">How we work with you</h2>
@@ -354,7 +384,7 @@ permalink: /en/
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">07 / The team</span>
+      <span class="eyebrow">08 / The team</span>
       <span class="eyebrow eyebrow-muted">Directly with the founders</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
@@ -397,7 +427,7 @@ permalink: /en/
 <section id="faq" class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">08 / FAQ</span>
+      <span class="eyebrow">09 / FAQ</span>
       <span class="eyebrow eyebrow-muted">{{ homeFaqEn | length }} questions</span>
     </div>
     <div class="grid md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 md:gap-16 items-start">
@@ -425,7 +455,7 @@ permalink: /en/
 <section id="kontakt" class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">09 / Contact</span>
+      <span class="eyebrow">10 / Contact</span>
       <span class="eyebrow eyebrow-muted">Reply within 24 hours</span>
     </div>
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">

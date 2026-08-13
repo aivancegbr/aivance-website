@@ -258,6 +258,100 @@ module.exports = [
     }
   },
 
+  {
+    slug: "seo-ki-sichtbarkeit",
+    cluster: "sichtbarkeit",
+    caseSlug: "praxis-online-sichtbarkeit",
+    title: "SEO & KI-Sichtbarkeit",
+    navTitle: "SEO & KI-Sichtbarkeit",
+    card: "Besser auffindbar in Google — und in den Antworten, die KI-Systeme Ihren Kunden geben.",
+    heroSatz: "Ihre Kunden suchen inzwischen in zwei Systemen: in Google und in KI-Assistenten. Wir sorgen dafür, dass Sie in beiden vorkommen.",
+    fuerWen: [
+      "Sie werden für Ihre Kernleistungen nicht gefunden, obwohl Ihr Ruf vor Ort gut ist.",
+      "Ihre Website hat eine einzige Seite für alles — für die Suche gibt es damit nichts zu unterscheiden.",
+      "Auf die Frage nach einem Anbieter in Ihrer Region nennt ein KI-Assistent den Wettbewerb, aber nicht Sie."
+    ],
+    umfang: [
+      "Technische Prüfung: Indexierungsfehler, Ladezeit, mobile Bedienbarkeit, Seitenstruktur",
+      "Eigene, suchoptimierte Seite für jede Kernleistung statt einer Sammelseite",
+      "Lokale Sichtbarkeit: Unternehmensprofil, Öffnungszeiten, Bewertungen, konsistente Adressdaten",
+      "Strukturierte Daten (FAQ, LocalBusiness, Leistungen) — die Grundlage, aus der KI-Systeme zitieren",
+      "Inhalte, die eine Frage vollständig beantworten, weil genau das zitiert wird",
+      "Search Console eingerichtet und ausgewertet, Fehler abgearbeitet",
+      "Monatlicher Bericht: Klicks, Platzierungen, Anfragen — mit Deutung, nicht nur Zahlen"
+    ],
+    ablauf: [
+      { phase: "Bestandsaufnahme", dauer: "Woche 1", text: "Technischer Ist-Stand, Suchbegriffe, Wettbewerbsvergleich. Sie erhalten eine Liste der Fehler, nach Wirkung sortiert." },
+      { phase: "Technik in Ordnung bringen", dauer: "Woche 2", text: "Indexierungsfehler, Ladezeit, strukturierte Daten. Das ist die Arbeit, die überhaupt erst Wirkung ermöglicht." },
+      { phase: "Seiten und Inhalte", dauer: "Woche 3–5", text: "Eigene Seiten für Ihre Kernleistungen, Texte in der Sprache Ihrer Kunden, lokale Signale gesetzt." },
+      { phase: "Messen und nachjustieren", dauer: "ab Monat 2", text: "Search Console und Rankings im Blick, monatlicher Bericht, Nachschärfen dort, wo Bewegung entsteht." }
+    ],
+    zeitrahmen: "Die technische Arbeit ist in 2–3 Wochen erledigt, die Seiten und Inhalte in 4–6 Wochen. Wirkung in den Platzierungen braucht dann 3–6 Monate — das ist keine Zurückhaltung, sondern die Reaktionszeit der Suchsysteme. Wer Ihnen Platz 1 in vier Wochen verspricht, verkauft Ihnen etwas anderes.",
+    faq: [
+      {
+        q: "Wie schnell sehe ich Ergebnisse?",
+        a: "Technische Fehler wirken innerhalb von Wochen, weil Suchmaschinen Ihre Seiten dann überhaupt erst vollständig erfassen. Bessere Platzierungen für umkämpfte Begriffe brauchen 3–6 Monate. In unserer Referenz aus dem Gesundheitswesen waren es 128 % mehr Klicks aus der Google-Suche — die Zahlen und den Zeitraum finden Sie in der Case Study."
+      },
+      {
+        q: "Was ist mit KI-Sichtbarkeit anders als mit klassischem SEO?",
+        a: "Die Grundlage ist dieselbe: saubere Technik, klare Seitenstruktur, strukturierte Daten. Der Unterschied liegt in den Inhalten. Suchmaschinen ranken Seiten, KI-Systeme zitieren Aussagen. Wer eine Frage vollständig und belegbar beantwortet, wird zitiert — wer Schlagworte streut, nicht."
+      },
+      {
+        q: "Können Sie Platzierungen garantieren?",
+        a: "Nein, und niemand kann das seriös — die Reihenfolge bestimmt Google, nicht Ihre Agentur. Was wir zusagen: die technischen Fehler sind behoben, jede Kernleistung hat eine eigene Seite, und Sie sehen monatlich schwarz auf weiß, was sich bewegt hat."
+      }
+    ],
+    kombiniert: ["website-webdesign", "social-media", "reporting"],
+    meta: {
+      title: "SEO & KI-Sichtbarkeit für Unternehmen — AIVANCE",
+      description: "Besser auffindbar in Google und in den Antworten von KI-Systemen: technische Basis, eigene Leistungsseiten, strukturierte Daten. Für Unternehmen im Rhein-Main-Gebiet."
+    },
+    en: {
+      title: "SEO & AI Visibility",
+      navTitle: "SEO & AI Visibility",
+      card: "Easier to find in Google — and in the answers AI systems give your customers.",
+      heroSatz: "Your customers now search in two systems: Google and AI assistants. We make sure you appear in both.",
+      fuerWen: [
+        "You are not found for your core services, even though your local reputation is good.",
+        "Your website has a single page for everything — which gives search engines nothing to tell apart.",
+        "Asked for a provider in your region, an AI assistant names your competition but not you."
+      ],
+      umfang: [
+        "Technical audit: indexing errors, load time, mobile usability, site structure",
+        "A dedicated, search-optimised page per core service instead of one catch-all page",
+        "Local visibility: business profile, opening hours, reviews, consistent address data",
+        "Structured data (FAQ, LocalBusiness, services) — the basis AI systems quote from",
+        "Content that answers a question completely, because that is what gets quoted",
+        "Search Console set up and reviewed, errors worked off",
+        "Monthly report: clicks, positions, inquiries — with interpretation, not just numbers"
+      ],
+      ablauf: [
+        { phase: "Assessment", dauer: "Week 1", text: "Technical status, search terms, competitive comparison. You get a list of the errors, sorted by impact." },
+        { phase: "Fix the technical base", dauer: "Week 2", text: "Indexing errors, load time, structured data. This is the work that makes any effect possible in the first place." },
+        { phase: "Pages and content", dauer: "Week 3–5", text: "Dedicated pages for your core services, copy in your customers' language, local signals in place." },
+        { phase: "Measure and adjust", dauer: "from month 2", text: "Search Console and rankings under review, monthly report, sharpening wherever movement appears." }
+      ],
+      zeitrahmen: "The technical work takes 2–3 weeks, pages and content 4–6 weeks. Effects on positions then take 3–6 months — that is not caution, it is how quickly search systems react. Anyone promising you position 1 in four weeks is selling you something else.",
+      faq: [
+        {
+          q: "How quickly will I see results?",
+          a: "Technical fixes take effect within weeks, because only then do search engines capture your pages fully. Better positions for competitive terms take 3–6 months. In our healthcare reference it was 128 % more clicks from Google search — the figures and the period are in the case study."
+        },
+        {
+          q: "How is AI visibility different from classic SEO?",
+          a: "The basis is the same: clean technology, clear site structure, structured data. The difference is in the content. Search engines rank pages, AI systems quote statements. Answer a question completely and verifiably and you get quoted; scatter keywords and you do not."
+        },
+        {
+          q: "Can you guarantee positions?",
+          a: "No, and nobody can do so credibly — Google decides the order, not your agency. What we do commit to: the technical errors are fixed, every core service has its own page, and you see in black and white every month what has moved."
+        }
+      ],
+      meta: {
+        title: "SEO & AI Visibility for Businesses — AIVANCE",
+        description: "Easier to find in Google and in the answers of AI systems: technical foundation, dedicated service pages, structured data. For businesses in the Rhine-Main region, Germany."
+      }
+    }
+  },
   /* ── Cluster: Software & Systeme ── */
   {
     slug: "individualsoftware",

@@ -78,15 +78,20 @@
         </ul>
       </div>
       {% endfor %}
-      {% set teaserProjekt = projects[0] %}
-      {% set teaserData = teaserProjekt.en.teaser if isEnPage else teaserProjekt.teaser %}
-      <a href="{{ urlBase }}/projekte/{{ teaserProjekt.slug }}/" class="block bg-amber-surface border-l-2 border-amber p-5 hover:bg-canvas transition-colors">
-        <span class="eyebrow mb-3 text-[11px]">{{ t.caseStudyEyebrow }}</span>
-        <p class="text-3xl font-semibold text-ink tracking-tighter">{{ teaserData.zahl }}</p>
-        <p class="mono text-[11px] text-amber mb-3">{{ teaserData.zahlLabel }}</p>
-        <p class="text-xs text-ink-muted leading-relaxed">{{ teaserData.text }}</p>
-        <span class="mono inline-block mt-4 text-[11px] tracking-widest text-ink">{{ t.caseStudyLink }}</span>
-      </a>
+      {# Vierte Spalte: eigene Produkte — im Mega-Menü, weil sie kein Navigationspunkt sind #}
+      <div class="border-l border-line pl-8">
+        <span class="eyebrow mb-3 text-[11px]">{{ t.navProdukte }}</span>
+        <a href="{{ t.urlProdukte }}" class="block font-semibold text-ink text-[15px] tracking-tight mb-1 hover:text-amber transition-colors">{{ 'Built by us' if isEnPage else 'Aus eigener Hand' }}</a>
+        <p class="text-xs text-ink-muted mb-4">{{ 'Grown out of client work' if isEnPage else 'Aus der Projektarbeit entstanden' }}</p>
+        <ul>
+          {% for produkt in products %}
+          <li><a href="{{ t.urlProdukte }}#{{ produkt.slug }}" class="flex items-baseline justify-between gap-2 py-1.5 text-sm text-ink-muted hover:text-amber transition-colors">
+            <span>{{ produkt.name }}</span>
+            {% if (produkt.en.status if isEnPage else produkt.status) %}<span class="mono text-[9px] tracking-widest uppercase text-amber flex-none">{{ produkt.en.status if isEnPage else produkt.status }}</span>{% endif %}
+          </a></li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
@@ -123,6 +128,12 @@
     {% for branche in industries %}
     <a href="{{ urlBase }}/branchen/{{ branche.slug }}/" class="block py-3.5 border-b border-line text-[15px] text-ink">{{ branche.en.title if isEnPage else branche.title }}</a>
     {% endfor %}
+
+    <p class="eyebrow eyebrow-muted mt-7 mb-2 text-[11px]">{{ t.navProdukte }}</p>
+    {% for produkt in products %}
+    <a href="{{ t.urlProdukte }}#{{ produkt.slug }}" class="block py-3.5 border-b border-line text-[15px] text-ink">{{ produkt.name }}</a>
+    {% endfor %}
+    <a href="{{ t.urlProdukte }}" class="block py-3.5 border-b border-line text-sm text-amber">{{ 'All products' if isEnPage else 'Alle Produkte' }}</a>
 
     <a href="{{ t.urlProjekte }}" class="block py-3.5 mt-6 border-b border-line text-[15px] font-semibold text-ink tracking-tight">{{ t.navProjekte }}</a>
     <a href="{{ t.urlUeberUns }}" class="block py-3.5 border-b border-line text-[15px] font-semibold text-ink tracking-tight">{{ t.navUeberUns }}</a>

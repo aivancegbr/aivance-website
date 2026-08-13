@@ -127,4 +127,45 @@ deUrl: /projekte/
 })();
 </script>
 
+
+<!-- ═══ SYSTEMS IN OPERATION (breadth without client names) ═══ -->
+<section class="py-20 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">Systems in operation</span>
+      <span class="eyebrow eyebrow-muted">As of {{ systeme.enStand }}</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
+      <h2 class="section-h2 reveal">What is running for clients.</h2>
+      <p class="lede max-w-md reveal reveal-1">Not every project becomes a case study. These systems are in operation — without client names, because we do not have the approvals, and without figures, because verified figures belong in the case studies.</p>
+    </div>
+
+    <div class="reveal border-t border-line">
+      <div class="hidden md:grid grid-cols-[1.4fr_0.8fr_1.2fr] gap-6 py-3 border-b border-line">
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">What the system does</span>
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">Industry</span>
+        <span class="mono text-[10px] tracking-widest uppercase text-ink-muted">Type of work</span>
+      </div>
+      {% for zeile in systeme.betrieb %}
+      <div class="grid md:grid-cols-[1.4fr_0.8fr_1.2fr] gap-1 md:gap-6 py-4 border-b border-line">
+        <span class="text-sm text-ink">{{ zeile.en.tut }}</span>
+        <span class="text-sm text-ink-muted">{{ zeile.en.branche }}</span>
+        <span class="text-sm text-ink-muted">{{ zeile.en.art }}</span>
+      </div>
+      {% endfor %}
+
+      <p class="eyebrow mt-12 mb-1">In progress</p>
+      <div class="border-t border-line">
+        {% for zeile in systeme.inArbeit %}
+        <div class="grid md:grid-cols-[1.4fr_0.8fr_1.2fr] gap-1 md:gap-6 py-4 border-b border-line">
+          <span class="text-sm text-ink">{{ zeile.en.tut }}</span>
+          <span class="text-sm text-ink-muted">{{ zeile.en.branche }}</span>
+          <span class="text-sm text-ink-muted">{{ zeile.en.art }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
 {% include "partials/cta.njk" %}
