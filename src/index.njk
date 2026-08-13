@@ -185,10 +185,10 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Aus der Projektarbeit entstanden</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
-      <h2 class="section-h2 reveal">Vier Produkte,<br/>die wir selbst bauen.</h2>
+      <h2 class="section-h2 reveal">Produkte, die wir<br/>selbst bauen.</h2>
       <p class="lede max-w-md reveal reveal-1">Was bei Kunden mehrfach entstanden ist, entwickeln wir als eigenes Produkt weiter — mit demselben Prinzip: jede Antwort führt ihre Quelle mit.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 border border-line reveal">
+    <div class="grid sm:grid-cols-2 {{ 'lg:grid-cols-4' if products.length == 4 else 'lg:grid-cols-3' }} border border-line reveal">
       {% for produkt in products %}
       <a href="/produkte/#{{ produkt.slug }}" class="p-7 border-line hover:bg-surface transition-colors {{ 'border-b sm:border-b lg:border-b-0' if not loop.last }} {{ 'sm:border-r' if loop.index % 2 == 1 }} lg:border-r lg:last:border-r-0">
         <div class="flex items-baseline justify-between gap-3 mb-5">

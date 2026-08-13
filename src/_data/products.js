@@ -43,25 +43,28 @@ module.exports = [
         "Guides new hires with individual task lists and an AI buddy that bundles knowledge, appointments and preparation notes."
     }
   },
+  /* Zurückgestellt am 13.08.2026 — noch nicht öffentlich zeigen.
+     Zum Wiederaufnehmen: Kommentar entfernen und die Nummern unten anpassen.
+    {
+      nummer: "03",
+      slug: "verifly",
+      kurz: "Prüft vor der Behandlung, ob die Versicherung die Leistung deckt.",
+      name: "aivance Verifly",
+      tags: ["Gesundheitswesen", "Eligibility"],
+      status: "In Entwicklung",
+      text:
+        "Prüft vor einer Behandlung, ob die Leistung durch die vorliegende Versicherung gedeckt ist.",
+      en: {
+        tags: ["Healthcare", "Eligibility"],
+        status: "In development",
+        kurz: "Checks before treatment whether insurance covers the service.",
+        text:
+          "Checks before treatment whether the service is covered by the patient's insurance."
+      }
+    },
+  */
   {
     nummer: "03",
-    slug: "verifly",
-    kurz: "Prüft vor der Behandlung, ob die Versicherung die Leistung deckt.",
-    name: "aivance Verifly",
-    tags: ["Gesundheitswesen", "Eligibility"],
-    status: "In Entwicklung",
-    text:
-      "Prüft vor einer Behandlung, ob die Leistung durch die vorliegende Versicherung gedeckt ist.",
-    en: {
-      tags: ["Healthcare", "Eligibility"],
-      status: "In development",
-      kurz: "Checks before treatment whether insurance covers the service.",
-      text:
-        "Checks before treatment whether the service is covered by the patient's insurance."
-    }
-  },
-  {
-    nummer: "04",
     slug: "radar",
     kurz: "Findet passende öffentliche Ausschreibungen und stellt sie priorisiert zu.",
     name: "aivance Radar",
