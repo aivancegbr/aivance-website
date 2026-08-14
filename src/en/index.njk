@@ -320,7 +320,7 @@ permalink: /en/
       <a href="/en/branchen/{{ branche.slug }}/" class="group p-7 border-line hover:bg-surface transition-colors {{ 'border-b sm:border-b lg:border-b-0' if not loop.last }} {{ 'sm:border-r' if loop.index % 2 == 1 }} lg:border-r lg:last:border-r-0">
         <span class="eyebrow eyebrow-muted mb-5 text-[11px]">0{{ loop.index }}</span>
         <h3 class="text-lg font-semibold tracking-tight mb-2">{{ eb.title }}</h3>
-        <p class="text-xs text-ink-muted leading-relaxed mb-5">{{ eb.teaser | truncate(115) }}</p>
+        <p class="text-xs text-ink-muted leading-relaxed mb-5">{{ eb.teaser }}</p>
         <span class="mono text-[11px] tracking-widest uppercase text-ink">View industry →</span>
       </a>
       {% endfor %}

@@ -279,6 +279,14 @@ a:hover .wordmark-sup { transform: translateY(-2px); }
   transition: opacity .18s ease, transform .18s ease, visibility .18s;
 }
 .dropdown-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* Unter lg übernimmt das Mobile-Overlay. Die Desktop-Panels müssen dann aus dem
+   Layout verschwinden, nicht nur unsichtbar sein: das Mega-Menü ist ein
+   4-Spalten-Raster mit pl-8 und dehnt das Dokument sonst auf 412px — jede Seite
+   scrollt dadurch seitlich. */
+@media (max-width: 1023px) {
+  .menu-panel, .dropdown-panel { display: none; }
+}
 .menu-caret { transition: transform .18s ease; }
 button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 
@@ -586,9 +594,16 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); white-space: nowrap;
 }
 .programme-label svg { width: 13px; height: 13px; color: var(--amber); flex-shrink: 0; }
+/* Mobil als Liste statt als drei zentrierte Blöcke: Logo links, Nachweis rechts.
+   Das folgt der linken Kante der übrigen Seite und spart rund 300px Höhe. */
 @media (max-width: 640px) {
-  .programme-grid { grid-template-columns: 1fr; gap: 8px; }
+  .programme-grid { grid-template-columns: 1fr; gap: 0; }
   .programme-grid > .programme-item:nth-child(2) { border-left: none; border-right: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .programme-item { flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; padding: 13px 0; }
+  .programme-logo { height: 28px; flex: 0 0 132px; justify-content: flex-start; }
+  .programme-logo img { height: 100%; width: 100%; object-fit: contain; object-position: left center; }
+  .programme-label { margin-top: 0; font-size: 9.5px; letter-spacing: .06em; }
+  .programme-label svg { width: 11px; height: 11px; }
 }
 
 /* ─── Trust-Bar B: Technologie im Einsatz ─── */
@@ -671,14 +686,30 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   .hero-cta-row { flex-direction: column; align-items: stretch; width: 100%; gap: 10px; }
   .hero-cta-row .btn-primary, .hero-cta-row .btn-ghost { justify-content: center; }
   .cycling-wrapper { padding-right: 4px; }
-  .phone-wrap { transform: scale(0.68) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
+  /* scale() verkleinert nur die Darstellung, nicht die Layout-Box: bei 0.68 blieben
+     184px toter Raum im Hero stehen. Größerer Maßstab (der Chat war vorher
+     unlesbar) plus negative Ränder, die die Box auf die sichtbare Höhe ziehen. */
+  .phone-wrap { transform: scale(0.88) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); margin-block: -37px; }
   .float-badge-1 { right: -30px; }
   .float-badge-2 { left: -30px; }
   .chain-label { width: 100%; }
 }
+@media (max-width: 767px) {
+  /* Etwas kürzere Sektionsabstände — luftig genug, dass die Abschnitte weiter
+     als Blöcke lesbar sind, aber ohne 80px oben und unten bei jedem. */
+  main > section:not(.hero) { padding-top: 3.75rem; padding-bottom: 3.75rem; }
+  /* Karten dürfen die Textbreite nicht an 28px Innenrand verlieren */
+  main .p-7 { padding: 1.25rem; }
+}
 @media (max-width: 640px) {
-  .stats-row { flex-wrap: wrap; gap: 18px 28px; }
+  /* Drei Kennzahlen in drei Spalten: vorher brach die dritte als Waise um */
+  .stats-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
   .stat-value { font-size: 22px; }
+  .stat-label { font-size: 9.5px; letter-spacing: .07em; line-height: 1.35; }
+  /* Der Kopf jeder Sektion trägt mobil nur die Rubrik — die zweite Mono-Zeile
+     rechts daneben ist auf 390px ein konkurrierendes Label ohne eigene Aussage. */
+  .section-head > .eyebrow-muted { display: none; }
+  .section-head { margin-bottom: 22px; }
   section h2.text-4xl { font-size: 1.85rem; line-height: 2.1rem; }
 }
 
