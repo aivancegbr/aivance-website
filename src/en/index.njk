@@ -393,9 +393,9 @@ permalink: /en/
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-5 reveal">
       {% set team = [
-        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder", text: "Your first point of contact: leads the introductory call and digital audit, and makes sure every discipline works together.", mail: "ayman.karim@ai-vance.de" },
-        { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-founder", text: "Owns software, automation and infrastructure — from knowledge systems to hosting in Germany and the EU.", mail: "ajay.nagulendran@ai-vance.de" },
-        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-founder", text: "Builds the client-facing AI systems: RAG knowledge systems, phone assistants and end-to-end automation. Also responsible for AIVANCE's growth.", mail: "cyrus.lang@ai-vance.de" }
+        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder · Strategy & client projects", rolleKurz: "Founder", text: "Your first point of contact: leads the introductory call and digital audit, and makes sure every discipline works together.", mail: "ayman.karim@ai-vance.de" },
+        { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-founder · Engineering & operations", rolleKurz: "Co-founder", text: "Owns software, automation and infrastructure — from knowledge systems to hosting in Germany and the EU.", mail: "ajay.nagulendran@ai-vance.de" },
+        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-founder · AI systems & growth", rolleKurz: "Co-founder", text: "Builds the client-facing AI systems: RAG knowledge systems, phone assistants and end-to-end automation. Also responsible for AIVANCE's growth.", mail: "cyrus.lang@ai-vance.de" }
       ] %}
       {% for person in team %}
       <div class="card overflow-hidden flex flex-col">
@@ -404,7 +404,7 @@ permalink: /en/
         </div>
         <div class="p-2.5 sm:p-5 md:p-6 flex-1 flex flex-col">
           <p class="text-[13px] sm:text-[15px] md:text-base font-semibold tracking-tight leading-tight hyphens-auto break-words">{{ person.name }}</p>
-          <p class="mono text-[9px] sm:text-[10px] tracking-[0.08em] sm:tracking-widest uppercase text-ink-muted mt-auto pt-2 sm:mt-1.5 sm:pt-0 mb-0 sm:mb-4 leading-relaxed">{{ person.rolle }}</p>
+          <p class="mono text-[9px] sm:text-[10px] tracking-[0.08em] sm:tracking-widest uppercase text-ink-muted mt-auto pt-2 sm:mt-1.5 sm:pt-0 mb-0 sm:mb-4 leading-relaxed"><span class="lg:hidden">{{ person.rolleKurz }}</span><span class="hidden lg:inline">{{ person.rolle }}</span></p>
           <p class="hidden sm:block text-xs text-ink-muted leading-relaxed mb-5">{{ person.text }}</p>
           <a href="mailto:{{ person.mail }}" class="mono hidden sm:inline-block text-[10px] tracking-widest text-ink-muted hover:text-amber transition-colors break-words">{{ person.mail }}</a>
         </div>
