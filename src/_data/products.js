@@ -79,5 +79,22 @@ module.exports = [
       text:
         "Maintains search profiles and finds publicly tendered contracts. Matching tenders are prioritised and delivered."
     }
+  },
+  {
+    nummer: "04",
+    slug: "voice-agent",
+    kurz: "Nimmt Anrufe an, beantwortet Standardfragen und übergibt Anliegen strukturiert an Ihr Team.",
+    name: "aivance Voice Agent",
+    tags: ["Telefonie", "Kundenservice", "Terminannahme"],
+    status: null,
+    text:
+      "Geht ans Telefon, wenn Ihr Team keine Hand frei hat. Der Voice Agent beantwortet wiederkehrende Fragen aus Ihrer Wissensbasis, nimmt Termin- und Rückrufwünsche auf, leitet Sonderfälle nach festen Regeln weiter und dokumentiert jedes Gespräch.",
+    en: {
+      tags: ["Telephony", "Customer service", "Appointments"],
+      status: null,
+      kurz: "Answers calls, handles routine questions and hands requests over to your team in a structured way.",
+      text:
+        "Picks up when your team has no hands free. The Voice Agent answers recurring questions from your knowledge base, takes appointment and callback requests, routes exceptions according to defined rules and documents every conversation."
+    }
   }
 ];
