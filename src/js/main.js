@@ -164,7 +164,7 @@
     document.querySelectorAll(".counter-num[data-target]").forEach(function (el) { counterIo.observe(el); });
   }
 
-  /* ── Kontaktformular → interner Proxy, Fehler mit aria-live (§ 12) ── */
+  /* ── Kontaktformular → Formspree, Fehler mit aria-live (§ 12) ── */
   var form = document.getElementById("contactForm");
   if (form) {
     var submitCount = 0;
@@ -183,15 +183,15 @@
       }
       submitCount += 1;
       var original = btn.textContent;
-      btn.textContent = "Wird gesendet …";
+      var isEn = (document.documentElement.lang || "de").startsWith("en");
+      btn.textContent = isEn ? "Sending …" : "Wird gesendet …";
       btn.disabled = true;
       errorEl.classList.add("hidden");
       try {
-        var payload = Object.fromEntries(new FormData(form).entries());
         var res = await fetch(form.action, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(payload),
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
         });
         var data = await res.json().catch(function () { return {}; });
         if (res.ok && data.ok) {
@@ -201,7 +201,6 @@
       } catch (err) {
         btn.textContent = original;
         btn.disabled = false;
-        var isEn = (document.documentElement.lang || "de").startsWith("en");
         errorEl.textContent = isEn
           ? "That didn't work. Please try again or email info@ai-vance.de."
           : "Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an info@ai-vance.de.";

@@ -1,7 +1,7 @@
 {# Kontaktformular — Bugfix B5: Kernbranchen im Dropdown, Cluster-Interesse zur Lead-Qualifizierung #}
 {% set isEn = lang == 'en' %}
 <div class="card p-8 reveal">
-  <form id="contactForm" action="/api/contact" method="POST" novalidate>
+  <form id="contactForm" action="https://formspree.io/f/mdayjekj" method="POST" novalidate>
     <div class="grid sm:grid-cols-2 gap-4 mb-4">
       <div>
         <label for="cf-name" class="mono block text-[10px] tracking-widest uppercase text-ink-muted mb-2">{{ 'Name *' if isEn else 'Name *' }}</label>
