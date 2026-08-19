@@ -1,7 +1,13 @@
 {# Kontaktformular — Bugfix B5: Kernbranchen im Dropdown, Cluster-Interesse zur Lead-Qualifizierung #}
 {% set isEn = lang == 'en' %}
 <div class="card p-8 reveal">
-  <form id="contactForm" action="https://formspree.io/f/xqpzovqn" method="POST" novalidate>
+  <form id="contactForm" action="{{ site.formspree }}" method="POST" novalidate data-fallback-mail="{{ site.email }}">
+    {# Formspree-Metafelder: Betreff der Benachrichtigung + Spam-Honeypot (§ 12) #}
+    <input type="hidden" name="_subject" value="{{ 'New enquiry via ai-vance.de' if isEn else 'Neue Anfrage über ai-vance.de' }}" />
+    <div class="hidden" aria-hidden="true">
+      <label for="cf-gotcha">Leave this field empty</label>
+      <input id="cf-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
     <div class="grid sm:grid-cols-2 gap-4 mb-4">
       <div>
         <label for="cf-name" class="mono block text-[10px] tracking-widest uppercase text-ink-muted mb-2">{{ 'Name *' if isEn else 'Name *' }}</label>

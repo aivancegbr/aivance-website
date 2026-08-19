@@ -168,13 +168,45 @@
   var form = document.getElementById("contactForm");
   if (form) {
     var submitCount = 0;
+    var fallbackMail = form.dataset.fallbackMail || "info@ai-vance.de";
+
+    // Leads dürfen nicht verloren gehen: Fehlermeldung enthält einen mailto-Link,
+    // der die bereits getippten Angaben übernimmt.
+    function showError(isEn) {
+      var errorEl = document.getElementById("formError");
+      var f = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ""; };
+      var subject = isEn ? "Enquiry via ai-vance.de" : "Anfrage über ai-vance.de";
+      var body = [
+        (isEn ? "Name: " : "Name: ") + f("name"),
+        (isEn ? "Company: " : "Unternehmen: ") + f("company"),
+        (isEn ? "Email: " : "E-Mail: ") + f("email"),
+        (isEn ? "Industry: " : "Branche: ") + f("branche"),
+        (isEn ? "Interest: " : "Interesse: ") + f("interesse"),
+        "",
+        f("message"),
+      ].join("\n");
+      var href = "mailto:" + fallbackMail +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      errorEl.textContent = isEn
+        ? "That didn't work. Please try again or "
+        : "Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder ";
+      var link = document.createElement("a");
+      link.href = href;
+      link.className = "underline";
+      link.textContent = isEn ? "send us an email." : "schreiben Sie uns eine E-Mail.";
+      errorEl.appendChild(link);
+      errorEl.classList.remove("hidden");
+    }
+
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
       var errorEl = document.getElementById("formError");
+      var isEn = (document.documentElement.lang || "de").startsWith("en");
       if (!form.checkValidity()) { form.reportValidity(); return; }
       if (submitCount >= 3) {
-        var isEn = (document.documentElement.lang || "de").startsWith("en");
         errorEl.textContent = isEn
           ? "Too many attempts. Please try again in a moment."
           : "Zu viele Versuche. Bitte warten Sie kurz und versuchen Sie es erneut.";
@@ -183,7 +215,6 @@
       }
       submitCount += 1;
       var original = btn.textContent;
-      var isEn = (document.documentElement.lang || "de").startsWith("en");
       btn.textContent = isEn ? "Sending …" : "Wird gesendet …";
       btn.disabled = true;
       errorEl.classList.add("hidden");
@@ -194,17 +225,22 @@
           body: new FormData(form),
         });
         var data = await res.json().catch(function () { return {}; });
-        if (res.ok && data.ok) {
+        // Formspree quittiert Erfolg mit 200 und { next, ok }; Feldfehler kommen
+        // als errors-Array. Nicht auf ein einzelnes Flag verlassen (§ 12).
+        var failed = data && (data.error || (data.errors && data.errors.length));
+        if (res.ok && !failed) {
           form.classList.add("hidden");
           document.getElementById("successMsg").classList.remove("hidden");
-        } else { throw new Error(data.error || "send failed"); }
+        } else {
+          throw new Error(
+            (data && (data.error || (data.errors && data.errors[0] && data.errors[0].message))) ||
+            "send failed (HTTP " + res.status + ")"
+          );
+        }
       } catch (err) {
         btn.textContent = original;
         btn.disabled = false;
-        errorEl.textContent = isEn
-          ? "That didn't work. Please try again or email info@ai-vance.de."
-          : "Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an info@ai-vance.de.";
-        errorEl.classList.remove("hidden");
+        showError(isEn);
       }
     });
   }
