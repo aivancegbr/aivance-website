@@ -35,3 +35,20 @@
   {{ wordmark(fontSize, variant, sublabel) }}
 </span>
 {% endmacro %}
+
+{# ═══ Produkt-Sub-Marken ═══════════════════════════════════════════════════════
+   Gleiches Signet (a¹), gleiche Wortmarke "aivance." — dahinter der Produktname
+   in regulärer Gewichtung, damit die Hierarchie Marke → Produkt erhalten bleibt.
+   ══════════════════════════════════════════════════════════════════════════ #}
+
+{% macro productWordmark(product, fontSize = '20px', variant = 'light') %}
+{%- set accent = '#F0A75C' if variant == 'dark' else '#9C4B00' -%}
+<span class="wordmark" style="font-size:{{ fontSize }}">aivance<span class="wordmark-dot" style="color:{{ accent }}">.</span><span class="wordmark-sup" style="color:{{ accent }}">1</span><span style="font-weight:400;letter-spacing:normal;margin-left:.22em">{{ product }}</span></span>
+{% endmacro %}
+
+{% macro productLockup(product, size = 28, fontSize = '19px', variant = 'light') %}
+<span style="display:flex;align-items:center;gap:10px">
+  {{ signet(size, variant) }}
+  {{ productWordmark(product, fontSize, variant) }}
+</span>
+{% endmacro %}

@@ -2,11 +2,12 @@
 layout: layouts/base.njk
 title: Eigene Produkte — AIVANCE
 metaTitle: Eigene Produkte — AIVANCE
-metaDescription: "Eigene Produkte von AIVANCE: Iris für Dokumente, Boarding für Onboarding, Radar für Ausschreibungen und der Voice Agent für Anrufe."
+metaDescription: "Eigene Produkte von AIVANCE: Iris für Dokumente, Boarding für Onboarding, Radar für Ausschreibungen und Echo für Anrufe."
 breadcrumb: Produkte
 permalink: /produkte/
 enUrl: /en/produkte/
 ---
+{% import "partials/logo.njk" as brand %}
 
 <section class="py-16">
   <div class="max-w-6xl mx-auto px-5">
@@ -25,15 +26,16 @@ enUrl: /en/produkte/
     </div>
     <div class="grid md:grid-cols-2 gap-5">
       {% for produkt in products %}
-      <div id="{{ produkt.slug }}" class="card p-7 flex flex-col">
+      <a id="{{ produkt.slug }}" href="/produkte/{{ produkt.slug }}/" class="card p-7 flex flex-col hover:-translate-y-1 transition-transform">
         <div class="flex items-baseline justify-between gap-4 mb-6">
           <span class="eyebrow eyebrow-muted text-[11px]">Produkt {{ produkt.nummer }}</span>
           {% if produkt.status %}<span class="mono text-[10px] tracking-widest uppercase text-amber">{{ produkt.status }}</span>{% endif %}
         </div>
-        <h2 class="text-[26px] font-semibold tracking-tight mb-3">{{ produkt.name }}</h2>
+        <h2 class="mb-3">{{ brand.productLockup(produkt.kurzname, 26, '22px') }}</h2>
         <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-6">{{ produkt.tags | join(' · ') }}</p>
-        <p class="text-sm text-ink-muted leading-relaxed">{{ produkt.text }}</p>
-      </div>
+        <p class="text-sm text-ink-muted leading-relaxed mb-6">{{ produkt.text }}</p>
+        <span class="mono text-[11px] tracking-widest uppercase text-ink mt-auto">Mehr erfahren →</span>
+      </a>
       {% endfor %}
     </div>
   </div>

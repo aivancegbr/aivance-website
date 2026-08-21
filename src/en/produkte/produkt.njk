@@ -1,0 +1,104 @@
+---
+layout: layouts/base.njk
+lang: en
+pagination:
+  data: products
+  size: 1
+  alias: produkt
+  addAllPagesToCollections: true
+permalink: "/en/produkte/{{ produkt.slug }}/"
+eleventyComputed:
+  deUrl: "/produkte/{{ produkt.slug }}/"
+  title: "{{ produkt.name }} — AIVANCE"
+  metaTitle: "{{ produkt.name }} — AIVANCE"
+  metaDescription: "{{ produkt.en.kurz }}"
+  breadcrumb: "{{ produkt.name }}"
+---
+{% import "partials/logo.njk" as brand %}
+
+<!-- 1 · Hero -->
+{% if produkt.en.hero %}
+<section class="hero product-hero">
+  <canvas id="hero-network-canvas" aria-hidden="true"></canvas>
+  <div class="hero-veil product-hero-veil" aria-hidden="true"></div>
+
+  <div class="product-hero-inner">
+    <a href="/en/produkte/" class="hero-badge mb-5"><span class="badge-dot"></span>{{ produkt.en.hero.eyebrow }} / {{ produkt.nummer }}</a>
+    <h1 class="headline mb-5">
+      {{ produkt.en.hero.headlineLines[0] }}.<br>{{ produkt.en.hero.headlineLines[1] }}<span style="color:var(--amber)">.</span>
+    </h1>
+    <p class="hero-subtext mb-8">{{ produkt.en.hero.sub }}</p>
+  </div>
+
+  <p class="hero-node" aria-hidden="true">{{ produkt.en.hero.nodeLabel }}</p>
+
+  <p class="product-hero-footer mono text-[11px] tracking-widest uppercase text-ink-muted" aria-hidden="true">{{ produkt.en.hero.labels | join(' · ') }}</p>
+</section>
+<script src="/js/hero-network.js" defer></script>
+{% else %}
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-5">
+      <a href="/en/produkte/" class="hover:underline">Products</a> / Product {{ produkt.nummer }}
+    </p>
+    <h1 class="mb-5">{{ brand.productLockup(produkt.kurzname, 36, '30px') }}</h1>
+    <p class="max-w-2xl lede mb-5">{{ produkt.en.kurz }}</p>
+    <div class="flex flex-wrap items-center gap-4">
+      <p class="mono text-[11px] tracking-widest uppercase text-ink-muted">{{ produkt.en.tags | join(' · ') }}</p>
+      {% if produkt.en.status %}<span class="mono text-[10px] tracking-widest uppercase text-amber">{{ produkt.en.status }}</span>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- 2 · What it does -->
+<section class="py-16">
+  <div class="prose-col">
+    <h2 class="text-2xl font-black text-slate-900 mb-6">What {{ produkt.kurzname }} does</h2>
+    <p class="text-sm text-ink-muted leading-relaxed">{{ produkt.en.text }}</p>
+  </div>
+</section>
+
+{% if produkt.en.features %}
+<!-- 3 · Features -->
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-5">
+      {% for feature in produkt.en.features %}
+      <div class="card p-6">
+        <h3 class="text-base font-semibold tracking-tight mb-2">{{ feature.titel }}</h3>
+        <p class="text-sm text-ink-muted leading-relaxed">{{ feature.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if produkt.stack %}
+<!-- 4 · Under the hood -->
+<section class="py-16">
+  <div class="prose-col">
+    <div class="section-head mb-6">
+      <span class="eyebrow">Under the hood</span>
+    </div>
+    <div class="border border-line divide-y divide-line">
+      {% for zeile in produkt.stack %}
+      <div class="flex flex-wrap items-baseline justify-between gap-3 px-5 py-3.5">
+        <span class="mono text-[11px] tracking-widest uppercase text-ink-muted">{{ zeile.schicht }}</span>
+        <span class="text-sm text-ink">{{ zeile.technologie }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% set ctaHeadline = produkt.name + " — is this a fit?" %}
+{% set ctaText = "In the introductory call we tell you honestly whether " + produkt.kurzname + " fits as-is or whether your case needs its own build." %}
+{% set ctaSecondaryUrl = "/en/produkte/" %}
+{% set ctaSecondaryLabel = "View all products" %}
+{% include "partials/cta.njk" %}

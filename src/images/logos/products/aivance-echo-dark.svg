@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="210" height="60" viewBox="0 0 210 60" role="img" aria-label="aivance Echo">
+<title>aivance Echo</title>
+<foreignObject x="0" y="0" width="210" height="60">
+<xhtml:div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;gap:10px;width:210px;height:60px;box-sizing:border-box;padding:0 4px;background:#FAFAF8;font-family:'Instrument Sans',sans-serif">
+<style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style>
+<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" style="display:block;flex:none">
+<text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
+<text x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="#9C4B00">1</text>
+<path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
+<span style="display:inline-flex;align-items:baseline;font-weight:600;font-size:22px;letter-spacing:-.055em;line-height:1;color:#161614">aivance<span style="color:#9C4B00">.</span><sup style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.46em;color:#9C4B00;vertical-align:super;margin-left:.06em">1</sup><span style="font-weight:400;letter-spacing:normal;margin-left:.22em">Echo</span></span>
+</xhtml:div>
+</foreignObject>
+</svg>

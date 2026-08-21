@@ -3,11 +3,12 @@ layout: layouts/base.njk
 lang: en
 title: Our Products — AIVANCE
 metaTitle: Our Products — AIVANCE
-metaDescription: "Products built by AIVANCE: Iris for documents, Boarding for onboarding, Radar for public tenders and the Voice Agent for calls."
+metaDescription: "Products built by AIVANCE: Iris for documents, Boarding for onboarding, Radar for public tenders and Echo for calls."
 breadcrumb: Products
 permalink: /en/produkte/
 deUrl: /produkte/
 ---
+{% import "partials/logo.njk" as brand %}
 
 <section class="py-16">
   <div class="max-w-6xl mx-auto px-5">
@@ -26,15 +27,16 @@ deUrl: /produkte/
     </div>
     <div class="grid md:grid-cols-2 gap-5">
       {% for produkt in products %}
-      <div id="{{ produkt.slug }}" class="card p-7 flex flex-col">
+      <a id="{{ produkt.slug }}" href="/en/produkte/{{ produkt.slug }}/" class="card p-7 flex flex-col hover:-translate-y-1 transition-transform">
         <div class="flex items-baseline justify-between gap-4 mb-6">
           <span class="eyebrow eyebrow-muted text-[11px]">Product {{ produkt.nummer }}</span>
           {% if produkt.en.status %}<span class="mono text-[10px] tracking-widest uppercase text-amber">{{ produkt.en.status }}</span>{% endif %}
         </div>
-        <h2 class="text-[26px] font-semibold tracking-tight mb-3">{{ produkt.name }}</h2>
+        <h2 class="mb-3">{{ brand.productLockup(produkt.kurzname, 26, '22px') }}</h2>
         <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-6">{{ produkt.en.tags | join(' · ') }}</p>
-        <p class="text-sm text-ink-muted leading-relaxed">{{ produkt.en.text }}</p>
-      </div>
+        <p class="text-sm text-ink-muted leading-relaxed mb-6">{{ produkt.en.text }}</p>
+        <span class="mono text-[11px] tracking-widest uppercase text-ink mt-auto">Learn more →</span>
+      </a>
       {% endfor %}
     </div>
   </div>
