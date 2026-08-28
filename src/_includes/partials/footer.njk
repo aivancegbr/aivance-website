@@ -41,6 +41,16 @@
         </ul>
       </div>
     </div>
+    {# Grant badge must remain in the footer for at least 12 months following the official grant approval date. Confirm the exact removal date from the acceptance email before scheduling removal. #}
+    <div class="footer-grant-row">
+      <a href="https://elevenlabs.io/startup-grants" target="_blank" rel="noopener noreferrer" class="footer-grant-link"
+         aria-label="ElevenLabs Startup Grant Recipient · 2026 ({{ 'opens in new tab' if isEnPage else 'öffnet in neuem Tab' }})">
+        <span class="footer-grant-badge">
+          <img src="/images/logos/elevenlabs-grants-dark.webp" alt="ElevenLabs Startup Grants Program" width="2324" height="312" loading="lazy">
+        </span>
+        <span class="footer-grant-label">ElevenLabs Startup Grant Recipient · 2026</span>
+      </a>
+    </div>
     <div class="border-t border-line-dark pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
       <p class="mono text-[11px] tracking-widest text-paper/35">© <span data-current-year>{{ '' | currentYear }}</span> AIVANCE · {{ t.footerRights }}</p>
       <p class="mono text-[11px] tracking-widest text-paper/35">{{ t.footerSlogan }}</p>

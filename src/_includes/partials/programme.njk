@@ -2,10 +2,10 @@
 {% set isEn = lang == 'en' %}
 <section class="py-14 md:py-16" aria-label="{{ 'Official programs' if isEn else 'Offizielle Programme' }}">
   <div class="max-w-5xl mx-auto px-5">
-    <p class="programme-eyebrow">{{ 'Official programs' if isEn else 'Offizielle Programme' }}</p>
+    <p class="programme-eyebrow">{{ 'Programs & Grants' if isEn else 'Programme & Förderungen' }}</p>
     <div class="programme-grid">
 
-      <a class="programme-item" href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener"
+      <a class="programme-item" href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer"
          title="{{ 'AIVANCE is a member of the NVIDIA Inception program for AI startups.' if isEn else 'AIVANCE ist Mitglied im NVIDIA Inception Programm für KI-Startups.' }}"
          aria-label="{{ 'NVIDIA Inception Member — AIVANCE is a member of the NVIDIA Inception program for AI startups (opens in new tab)' if isEn else 'NVIDIA Inception Member — AIVANCE ist Mitglied im NVIDIA Inception Programm für KI-Startups (öffnet in neuem Tab)' }}">
         <span class="programme-logo">
@@ -17,7 +17,7 @@
         </span>
       </a>
 
-      <a class="programme-item" href="https://aws.amazon.com/activate/" target="_blank" rel="noopener"
+      <a class="programme-item" href="https://aws.amazon.com/activate/" target="_blank" rel="noopener noreferrer"
          title="{{ 'AIVANCE is a member of the AWS Activate startup program by Amazon Web Services.' if isEn else 'AIVANCE ist Mitglied im AWS Activate Startup-Programm von Amazon Web Services.' }}"
          aria-label="{{ 'AWS Activate Startup — AIVANCE is a member of the AWS Activate startup program (opens in new tab)' if isEn else 'AWS Activate Startup — AIVANCE ist Mitglied im AWS Activate Startup-Programm (öffnet in neuem Tab)' }}">
         <span class="programme-logo">
@@ -29,7 +29,7 @@
         </span>
       </a>
 
-      <a class="programme-item" href="https://www.microsoft.com/en-us/startups" target="_blank" rel="noopener"
+      <a class="programme-item" href="https://www.microsoft.com/en-us/startups" target="_blank" rel="noopener noreferrer"
          title="{{ 'AIVANCE is a member of the Microsoft for Startups Founders Hub.' if isEn else 'AIVANCE ist Mitglied im Microsoft for Startups Founders Hub.' }}"
          aria-label="{{ 'Microsoft for Startups Founders Hub — AIVANCE is a member of the Founders Hub (opens in new tab)' if isEn else 'Microsoft for Startups Founders Hub — AIVANCE ist Mitglied im Founders Hub (öffnet in neuem Tab)' }}">
         <span class="programme-logo">
@@ -41,6 +41,21 @@
         </span>
       </a>
 
+      <a class="programme-item" href="https://elevenlabs.io/startup-grants" target="_blank" rel="noopener noreferrer"
+         title="{{ 'AIVANCE is an ElevenLabs Startup Grant recipient.' if isEn else 'AIVANCE ist Empfänger eines ElevenLabs Startup Grants.' }}"
+         aria-label="{{ 'ElevenLabs Startup Grant — AIVANCE is an ElevenLabs Startup Grant recipient (opens in new tab)' if isEn else 'ElevenLabs Startup Grant — AIVANCE ist Empfänger eines ElevenLabs Startup Grants (öffnet in neuem Tab)' }}">
+        <span class="programme-logo">
+          <img src="/images/logos/elevenlabs-grants-dark.webp" alt="ElevenLabs Startup Grants Program" width="2324" height="312" loading="lazy" class="programme-logo-official">
+        </span>
+        <span class="programme-label">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Startup Grant
+        </span>
+      </a>
+
     </div>
+    {% if showProgrammeCopy %}
+    <p class="programme-supporting-copy">{{ 'The ElevenLabs Startup Grant supports our development and testing of conversational AI and voice-agent products.' if isEn else 'Der ElevenLabs Startup Grant unterstützt die Entwicklung und Erprobung unserer Conversational-AI- und Voice-Agent-Produkte.' }}</p>
+    {% endif %}
   </div>
 </section>
