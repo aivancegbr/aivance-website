@@ -200,11 +200,36 @@ module.exports = [
       { wert: "+233 %", label: "Chat-Anfragen", detail: "Anfragequote pro Besucher verdoppelt" }
     ],
     ergebnisZeitraum: "Messbare Ergebnisse innerhalb von 3 Monaten",
+    sichtbarkeit: {
+      eyebrow: "SUCHSICHTBARKEIT · VERIFIZIERT",
+      headline: "Sichtbarkeit zählt nur, wenn sie die richtigen Menschen erreicht.",
+      intro: "Nach dem Start der neuen Website meldete Google für die Seite zur Behandlung von Sportverletzungen 855 % mehr Impressionen als üblich. Noch aussagekräftiger war, was danach geschah: Die Praxis hörte direkt von neuen Sportlerinnen und Sportlern, die angaben, sie über die Website gefunden zu haben.",
+      bild: "/images/aivance-healthcare-search-visibility-855.png",
+      bildWebp: "/images/aivance-healthcare-search-visibility-855.webp",
+      bildAlt: "Google-Suchleistungsnachweis mit 855 % mehr Impressionen als üblich für eine Seite zur Behandlung von Sportverletzungen",
+      quelle: "SRC 02 · GOOGLE-SUCHLEISTUNGSBENACHRICHTIGUNG",
+      zitat: "Ich glaube, die sportliche Ausrichtung der Website funktioniert. Wir gewinnen mehr Sportlerinnen und Sportler, und sie sagen, dass sie wegen der Website zu uns kommen. Großartige Arbeit!",
+      attribution: "Kundenfeedback · US-Gesundheitsprojekt",
+      changedTitle: "Was sich verändert hat",
+      changed: [
+        "Suchmaschinenoptimierung",
+        "Stärkere Struktur der Leistungsseiten und relevantere Inhalte",
+        "Technische Performance-Verbesserungen",
+        "Lokale Suchmaschinenoptimierung",
+        "Strukturierte Inhalte für KI-gestützte Such- und Antwortsysteme",
+        "Klarere Positionierung für Sportler und aktive Menschen"
+      ],
+      closing: [
+        "Das war mehr als ein visuelles Redesign. Die Website wurde neu aufgebaut, damit die Praxis leichter gefunden, verstanden und kontaktiert werden kann — heute über die klassische Suche und künftig auch über KI-generierte Empfehlungen, wenn sich das Suchverhalten weiterentwickelt.",
+        "Das Ergebnis ist eine klarere Marke, deutlich stärkere Sichtbarkeit in der Suche und neue Kunden, die ausdrücklich sagen, dass sie die Praxis über die Website gefunden haben."
+      ],
+      statement: "Eine starke Website sollte ein Unternehmen nicht nur repräsentieren. Sie sollte den richtigen Menschen helfen, es zu finden."
+    },
     bild: null,
     bildAlt: null,
     meta: {
       title: "Gesundheitspraxis: +128 % Google-Klicks — AIVANCE",
-      description: "Case Study: Website-Relaunch & SEO für eine Praxis in New York — +128 % Suchklicks, +32 % Patientenanrufe, +233 % Chat-Anfragen."
+      description: "Wie AIVANCE die Google- und KI-Sichtbarkeit einer US-Praxis steigerte: 128 % mehr Suchklicks und 855 % mehr Impressionen auf einer Leistungsseite."
     },
     en: {
       title: "Online Visibility for a Healthcare Practice",
@@ -233,9 +258,32 @@ module.exports = [
         { wert: "+233 %", label: "chat inquiries", detail: "inquiry rate per visitor doubled" }
       ],
       ergebnisZeitraum: "Measurable results within 3 months",
+      sichtbarkeit: {
+        eyebrow: "SEARCH VISIBILITY · VERIFIED",
+        headline: "Visibility only matters when it reaches the right audience.",
+        intro: "After the new website launched, Google Search reported 855% more impressions than usual for the practice’s sports treatment page. The stronger signal was what happened next: the practice began hearing directly from new athletes who said they had found it through the website.",
+        bildAlt: "Google Search performance evidence showing 855% more impressions than usual for a sports treatment page",
+        quelle: "SRC 02 · GOOGLE SEARCH PERFORMANCE NOTIFICATION",
+        zitat: "I think the athletic feel of the website is working. We’re getting more athletes, and they say they’re coming because of the website. Great job!",
+        attribution: "Client feedback · US healthcare project",
+        changedTitle: "What changed",
+        changed: [
+          "Search engine optimization",
+          "Stronger service-page structure and content relevance",
+          "Technical performance improvements",
+          "Local search optimization",
+          "Structured content for AI-powered search and answer engines",
+          "Clearer positioning toward athletes and active clients"
+        ],
+        closing: [
+          "This was more than a visual redesign. The website was rebuilt to make the practice easier to discover, understand and contact—through traditional search today and through AI-generated recommendations as search behavior evolves.",
+          "The result is a clearer brand, significantly stronger search visibility and new customers who explicitly say they found the practice through the website."
+        ],
+        statement: "A strong website should not only represent a business. It should help the right people find it."
+      },
       meta: {
         title: "Healthcare Practice: +128 % Google Clicks — AIVANCE",
-        description: "Case study: website relaunch & SEO for a practice in New York — +128% search clicks, +32% patient calls, +233% chat inquiries."
+        description: "How AIVANCE improved Google and AI-search visibility for a US healthcare practice: 128% more search clicks and 855% more impressions on a key service page."
       }
     }
   }

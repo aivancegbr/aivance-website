@@ -82,6 +82,51 @@ eleventyComputed:
       </div>
     </div>
 
+    {% if projekt.sichtbarkeit %}
+    <section class="case-proof reveal mt-16 pt-12 border-t border-line" aria-labelledby="verified-visibility-heading">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-start">
+        <div>
+          <p class="eyebrow mb-5">{{ projekt.sichtbarkeit.eyebrow }}</p>
+          <h2 id="verified-visibility-heading" class="section-h3 mb-6">{{ projekt.sichtbarkeit.headline }}</h2>
+          <p class="lede mb-10">{{ projekt.sichtbarkeit.intro }}</p>
+
+          <div aria-labelledby="what-changed-heading">
+            <h3 id="what-changed-heading" class="mono text-[11px] font-medium tracking-widest uppercase text-ink mb-3">{{ projekt.sichtbarkeit.changedTitle }}</h3>
+            <ul class="grid sm:grid-cols-2 border-t border-line">
+              {% for item in projekt.sichtbarkeit.changed %}
+              <li class="text-sm text-ink-muted leading-relaxed py-3 border-b border-line{% if loop.index is odd %} sm:pr-5{% else %} sm:pl-5{% endif %}">{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <figure class="mb-8">
+            <picture>
+              <source srcset="{{ projekt.sichtbarkeit.bildWebp }}" type="image/webp" />
+              <img src="{{ projekt.sichtbarkeit.bild }}" alt="{{ projekt.sichtbarkeit.bildAlt }}" width="1254" height="1254" loading="lazy" decoding="async" class="block w-full h-auto" />
+            </picture>
+            <figcaption class="mono text-[10px] font-medium tracking-widest uppercase text-amber mt-3 pt-3 border-t border-line">{{ projekt.sichtbarkeit.quelle }}</figcaption>
+          </figure>
+
+          <blockquote class="border-l-2 border-amber bg-amber-surface px-6 py-6">
+            <p class="text-lg leading-relaxed text-ink mb-5">„{{ projekt.sichtbarkeit.zitat }}“</p>
+            <footer><cite class="mono not-italic text-[10px] font-medium tracking-widest uppercase text-ink-muted">— {{ projekt.sichtbarkeit.attribution }}</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 md:gap-12 mt-12 pt-10 border-t border-line">
+        <div>
+          {% for paragraph in projekt.sichtbarkeit.closing %}
+          <p class="text-sm text-ink-muted leading-relaxed{% if not loop.last %} mb-4{% endif %}">{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+        <p class="text-xl md:text-2xl font-semibold leading-tight text-ink">{{ projekt.sichtbarkeit.statement }}</p>
+      </div>
+    </section>
+    {% endif %}
+
     <!-- Zitat -->
     {% if projekt.zitat %}
     <div class="reveal bg-slate-900 rounded-2xl p-7 mb-4">
@@ -103,7 +148,9 @@ eleventyComputed:
 
 {% include "partials/leitplanken.njk" %}
 
-{% set ctaHeadline = "Ihr Projekt als Nächstes?" %}
+{% set ctaHeadline = "Machen Sie Ihre Website leichter auffindbar — und leichter nutzbar." if projekt.sichtbarkeit else "Ihr Projekt als Nächstes?" %}
+{% set ctaText = "Erfahren Sie, wo Ihre Website Sichtbarkeit verliert und was Sie zuerst verbessern sollten." if projekt.sichtbarkeit else null %}
+{% set ctaPrimaryLabel = "Kostenlosen Sichtbarkeitscheck anfragen" if projekt.sichtbarkeit else null %}
 {% set ctaSecondaryUrl = "/projekte/" %}
 {% set ctaSecondaryLabel = "Alle Case Studies" %}
 {% include "partials/cta.njk" %}
