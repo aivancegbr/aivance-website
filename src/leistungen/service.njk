@@ -87,6 +87,11 @@ eleventyComputed:
   </div>
 </section>
 
+<!-- 4b · Verifizierter Sichtbarkeits-Beleg -->
+{% if service.sichtbarkeitsBeleg %}
+{% include "partials/sichtbarkeits-beleg.njk" %}
+{% endif %}
+
 {% if service.portfolio %}
 <!-- Foto/Video-Portfolio (§ 12: neuer Seitentyp, nur bei foto-video eingebunden) -->
 {% include "partials/portfolio.njk" %}

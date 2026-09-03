@@ -262,6 +262,8 @@ module.exports = [
     slug: "seo-ki-sichtbarkeit",
     cluster: "sichtbarkeit",
     caseSlug: "praxis-online-sichtbarkeit",
+    // Zeigt den verifizierten Google-Search-Console-Beleg (855 %) aus der Case Study
+    sichtbarkeitsBeleg: true,
     title: "SEO & KI-Sichtbarkeit",
     navTitle: "SEO & KI-Sichtbarkeit",
     card: "Besser auffindbar in Google — und in den Antworten, die KI-Systeme Ihren Kunden geben.",

@@ -50,6 +50,11 @@ eleventyComputed:
   </div>
 </section>
 
+<!-- 3b · Verifizierter Sichtbarkeits-Beleg (nur Cluster Sichtbarkeit) -->
+{% if cluster.slug == 'sichtbarkeit' %}
+{% include "partials/sichtbarkeits-beleg.njk" %}
+{% endif %}
+
 <!-- 4 · Referenzen, gefiltert auf dieses Cluster -->
 {% set clusterProjekte = [] %}
 {% for projekt in projects %}

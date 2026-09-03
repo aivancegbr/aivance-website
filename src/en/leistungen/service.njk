@@ -90,6 +90,11 @@ eleventyComputed:
   </div>
 </section>
 
+<!-- 4b · Verified visibility evidence -->
+{% if service.sichtbarkeitsBeleg %}
+{% include "partials/sichtbarkeits-beleg.njk" %}
+{% endif %}
+
 {% if service.portfolio %}
 <!-- Photo/video portfolio (only included for foto-video) -->
 {% include "partials/portfolio.njk" %}

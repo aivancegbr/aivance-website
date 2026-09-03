@@ -1,0 +1,59 @@
+{# Sichtbarkeits-Beleg (§ 8 Qualität): verifizierter Google-Search-Console-Nachweis aus dem
+   Gesundheitsprojekt. Eingebunden auf der Clusterseite Sichtbarkeit und auf SEO & KI-Sichtbarkeit.
+   Sprachabhängig über `lang`; verlinkt auf die zugehörige Case Study. #}
+{% set isEn = lang == 'en' %}
+{% set belegCaseUrl = ('/en/projekte/' if isEn else '/projekte/') + 'praxis-online-sichtbarkeit/' %}
+<section class="py-16" aria-labelledby="sichtbarkeits-beleg-heading">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="reveal grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+      <figure class="order-2 md:order-1 m-0">
+        <a href="{{ belegCaseUrl }}" class="block border border-line bg-surface hover:border-amber-line transition-colors">
+          <picture>
+            <source srcset="/images/aivance-healthcare-search-visibility-855.webp" type="image/webp" />
+            <img
+              src="/images/aivance-healthcare-search-visibility-855.png"
+              alt="{{ 'Google Search Console notification: 855% more impressions than usual for a single service page' if isEn else 'Meldung der Google Search Console: 855 % mehr Impressionen als üblich für eine einzelne Leistungsseite' }}"
+              width="1254" height="1254" loading="lazy" decoding="async"
+              class="block w-full h-auto" />
+          </picture>
+        </a>
+        {# Die Quellenzeile SRC 01 steht bereits im Bild — hier steht, aus welchem Projekt der Beleg stammt. #}
+        <figcaption class="mono text-[10px] font-medium tracking-widest uppercase text-amber mt-3 pt-3 border-t border-line">
+          {{ 'GOOGLE SEARCH CONSOLE · US HEALTHCARE PROJECT' if isEn else 'GOOGLE SEARCH CONSOLE · GESUNDHEITSPROJEKT USA' }}
+        </figcaption>
+      </figure>
+
+      <div class="order-1 md:order-2">
+        <p class="eyebrow mb-5">{{ 'VISIBILITY · VERIFIED' if isEn else 'SICHTBARKEIT · VERIFIZIERT' }}</p>
+        <h2 id="sichtbarkeits-beleg-heading" class="section-h3 mb-5">
+          {{ '855 % more impressions — reported by Google, not by us.' if isEn else '855 % mehr Impressionen — gemeldet von Google, nicht von uns.' }}
+        </h2>
+        <p class="lede mb-8">
+          {{ 'After the relaunch, Google Search Console reported 855 % more impressions than usual for a single service page in our healthcare project. What mattered was what came of it: new patients who say, unprompted, that they found the practice through the website.' if isEn else 'Nach dem Relaunch meldete die Google Search Console für eine einzelne Leistungsseite unseres Gesundheitsprojekts 855 % mehr Impressionen als üblich. Entscheidend war, was daraus wurde: neue Patientinnen und Patienten, die von sich aus sagen, sie hätten die Praxis über die Website gefunden.' }}
+        </p>
+
+        <ul class="border-t border-line mb-8">
+          {% set belegFakten = [
+            'Google Search Console report: 855 % more impressions on one service page',
+            '128 % more clicks from organic Google search',
+            '32 % more calls via the Google Business Profile'
+          ] if isEn else [
+            'Meldung der Google Search Console: 855 % mehr Impressionen auf einer Leistungsseite',
+            '128 % mehr Klicks aus der organischen Google-Suche',
+            '32 % mehr Anrufe über das Google-Unternehmensprofil'
+          ] %}
+          {% for fakt in belegFakten %}
+          <li class="flex items-start gap-3 py-3 border-b border-line text-sm text-ink-muted leading-relaxed">
+            <span class="w-1.5 h-1.5 bg-amber flex-shrink-0 mt-2" aria-hidden="true"></span>
+            {{ fakt }}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <a href="{{ belegCaseUrl }}" class="mono text-[11px] font-medium tracking-widest uppercase text-ink border-b border-amber pb-1 hover:text-amber transition-colors">
+          {{ 'To the case study →' if isEn else 'Zur Case Study →' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
