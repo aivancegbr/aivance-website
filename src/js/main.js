@@ -108,7 +108,75 @@
     }, { passive: true });
   }
 
+  /* ── Gestaffelte Typo-Reveals (Modul G) ──────────────────────────────────
+     Zeilenweise, nicht wortweise: Wort-Splitting zerreißt den Umbruch bei
+     Komposita wie „Digitalisierungsagentur". Gemessen wird mit Range-Rects am
+     unveränderten Text, erst danach wird umgebaut. Der Text bleibt im DOM. */
+  function tokenize(el) {
+    var tokens = [];
+    Array.prototype.forEach.call(el.childNodes, function (node) {
+      if (node.nodeType !== 3) return;
+      var re = /\S+/g, m;
+      while ((m = re.exec(node.nodeValue)) !== null) {
+        tokens.push({ node: node, start: m.index, end: m.index + m[0].length, text: m[0] });
+      }
+    });
+    return tokens;
+  }
+
+  function splitIntoLines(el) {
+    // Nur reiner Text und <br> — alles andere bliebe beim Umbau auf der Strecke.
+    var plain = Array.prototype.every.call(el.childNodes, function (n) {
+      return n.nodeType === 3 || n.nodeName === "BR";
+    });
+    if (!plain) return false;
+
+    if (el._revealSource == null) el._revealSource = el.innerHTML;
+    else el.innerHTML = el._revealSource; // vor jeder Neumessung zurücksetzen
+
+    var tokens = tokenize(el);
+    if (!tokens.length) return false;
+
+    var lines = [];
+    var lastTop = null;
+    var range = document.createRange();
+    tokens.forEach(function (t) {
+      range.setStart(t.node, t.start);
+      range.setEnd(t.node, t.end);
+      var top = Math.round(range.getBoundingClientRect().top);
+      if (lastTop === null || Math.abs(top - lastTop) > 2) { lines.push([]); lastTop = top; }
+      lines[lines.length - 1].push(t.text);
+    });
+    range.detach && range.detach();
+    if (lines.length < 2 && el.childNodes.length < 2) {
+      // Einzeiler brauchen keinen Umbau — der Block-Reveal genügt.
+      return false;
+    }
+
+    var html = "";
+    lines.forEach(function (words, i) {
+      // Ab der 7. Zeile laufen alle gemeinsam, sonst wird das Warten spürbar.
+      var step = Math.min(i, 6);
+      var span = document.createElement("span");
+      // Nachlaufendes Leerzeichen: sonst klebt beim Vorlesen und Kopieren
+      // das letzte Wort einer Zeile am ersten der nächsten.
+      span.textContent = words.join(" ") + (i < lines.length - 1 ? " " : "");
+      html += '<span class="line"><span class="line-inner" style="--i:' + step + '">' +
+        span.innerHTML + "</span></span>";
+    });
+    el.innerHTML = html;
+    el.classList.add("reveal-lines");
+    return true;
+  }
+
   /* ── Scroll-Reveal ── */
+  var staggered = [];
+  if (!reducedMotion) {
+    document.querySelectorAll("[data-reveal-stagger]").forEach(function (el) {
+      if (splitIntoLines(el)) staggered.push(el);
+    });
+  }
+
   if (!reducedMotion && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add("visible"); });
@@ -116,6 +184,21 @@
     document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
   } else {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("visible"); });
+  }
+
+  // Bei Resize neu messen — derselbe 150-ms-Takt wie measure() im Hero.
+  if (staggered.length) {
+    var reflowTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(reflowTimer);
+      reflowTimer = setTimeout(function () {
+        staggered.forEach(function (el) {
+          var wasVisible = el.classList.contains("visible");
+          el.classList.remove("reveal-lines");
+          if (splitIntoLines(el) && wasVisible) el.classList.add("visible");
+        });
+      }, 150);
+    }, { passive: true });
   }
 
   /* ── FAQ-Akkordeon ── */
@@ -161,7 +244,22 @@
         }
       });
     }, { threshold: 0.3 });
-    document.querySelectorAll(".counter-num[data-target]").forEach(function (el) { counterIo.observe(el); });
+    document.querySelectorAll(".counter-num[data-target]").forEach(function (el) {
+      /* In einer Galerie zählt nicht die Sichtbarkeit der Galerie, sondern die
+         der einzelnen Karte — Modul C meldet das über "card:active". */
+      var card = el.closest("[data-gallery] [data-card]");
+      if (card) {
+        card.addEventListener("card:active", function once() {
+          if (seen.has(el)) return;
+          seen.add(el);
+          el.dataset.finalText = el.textContent;
+          animateCounter(el);
+          card.removeEventListener("card:active", once);
+        });
+        return;
+      }
+      counterIo.observe(el);
+    });
   }
 
   /* ── Kontaktformular → Formspree, Fehler mit aria-live (§ 12) ── */

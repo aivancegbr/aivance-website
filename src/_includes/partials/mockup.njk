@@ -1,0 +1,59 @@
+{#
+  Mockup-Schritte rendern (Modul F).
+
+  Das Markup steht vollständig im Dokument — ohne JS lesbar, per Textsuche
+  auffindbar, für Vorleseprogramme zugänglich. /js/mockup.js deckt es nur
+  nacheinander auf. Neue Schritttypen brauchen deshalb nur einen Zweig hier
+  und eine Regel im Stylesheet, keine Änderung an der Engine.
+#}
+{% macro haken() %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>{% endmacro %}
+
+{% macro schritte(steps) %}
+{%- for s in steps %}
+{%- if s.kind == "typing" %}
+  <div class="typing" data-delay="{{ s.delay }}" aria-hidden="true"><span></span><span></span><span></span></div>
+{%- elif s.kind == "user" or s.kind == "assistant" %}
+  <div class="msg" data-pause="{{ s.pause }}">
+    <div class="bubble {{ s.kind }}{{ ' evidenced' if s.evidenced }}">{{ s.text | safe }}</div>
+    {%- if s.source %}
+    <div class="msg-source">{{ haken() }}<span>{{ s.source }}</span></div>
+    {%- endif %}
+  </div>
+{%- elif s.kind == "call" %}
+  <div class="mock-row mock-call" data-pause="{{ s.pause }}">
+    <span class="mock-call-label">{{ s.label }}</span>
+    <span class="mock-call-who">{{ s.who }}</span>
+  </div>
+{%- elif s.kind == "transcript" %}
+  <div class="mock-row mock-transcript" data-pause="{{ s.pause }}">
+    <span class="mock-transcript-label">{{ s.label }}</span>
+    <span class="mock-transcript-text">{{ s.text }}</span>
+  </div>
+{%- elif s.kind == "handoff" %}
+  <div class="mock-row" data-pause="{{ s.pause }}">
+    <div class="mock-handoff">
+      {%- for row in s.rows %}
+      <div class="mock-handoff-row"><span class="mock-handoff-key">{{ row[0] }}</span><span class="mock-handoff-val">{{ row[1] }}</span></div>
+      {%- endfor %}
+    </div>
+    {%- if s.source %}
+    <div class="msg-source">{{ haken() }}<span>{{ s.source }}</span></div>
+    {%- endif %}
+  </div>
+{%- elif s.kind == "document" %}
+  <div class="mock-row mock-document" data-pause="{{ s.pause }}">
+    <span class="mock-document-name">{{ s.name }}</span>
+    <span class="mock-document-via">{{ s.via }}</span>
+  </div>
+{%- elif s.kind == "field" %}
+  <div class="mock-row mock-field" data-pause="{{ s.pause }}">
+    <span class="mock-field-key">{{ s.key }}</span>
+    <span class="mock-field-val">{{ s.val }}</span>
+  </div>
+{%- elif s.kind == "task" %}
+  <div class="mock-row mock-task{{ ' is-open' if s.open }}" data-pause="{{ s.pause }}">
+    {{ haken() }}<span>{{ s.text }}</span>
+  </div>
+{%- endif %}
+{%- endfor %}
+{% endmacro %}

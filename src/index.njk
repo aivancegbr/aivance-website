@@ -6,6 +6,7 @@ metaDescription: Website, Foto & Video, Software und Automatisierung aus einer H
 enUrl: /en/
 permalink: /
 ---
+{% import "partials/mockup.njk" as mock %}
 
 <script>
   // Redirects alter Anker-URLs (§ 3): extern verlinkte Anker dürfen nicht ins Leere laufen
@@ -113,7 +114,10 @@ permalink: /
               </div>
             </div>
           </div>
-          <div class="chat-messages" id="hero-chat-messages"></div>
+          <div class="chat-messages" id="hero-chat-messages" data-mockup
+               data-mockup-start="1000" data-mockup-restart="17000">
+            {{ mock.schritte(mockups.hero.de) }}
+          </div>
           <div class="chat-input-row">
             <div class="chat-input-bar">Ihre Frage …</div>
             <div class="chat-send">
@@ -138,7 +142,7 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Warum es hakt</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-      <h2 class="section-h2 reveal">Fünf Dienstleister,<br/>die nicht miteinander reden.</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Fünf Dienstleister,<br/>die nicht miteinander reden.</h2>
       <div class="reveal reveal-1 space-y-4 max-w-xl">
         <p class="lede">Der Webdesigner wartet auf Fotos vom Fotografen, die Social-Media-Agentur kennt die neue Leistungsseite nicht, und die IT weiß von allem nichts.</p>
         <p class="lede">Koordiniert wird das von Ihnen — abends, zwischen zwei Terminen.</p>
@@ -155,24 +159,43 @@ permalink: /
       <span class="eyebrow">02 / Leistungen</span>
       <span class="eyebrow eyebrow-muted">Drei Bereiche · ein System</span>
     </div>
-    <h2 class="section-h2 mb-12 max-w-2xl reveal">Drei Bereiche, ein zusammenhängendes System</h2>
-    <div class="grid md:grid-cols-3 gap-5">
-      {% for cluster in clusters %}
-      <a href="/leistungen/{{ cluster.slug }}/" class="card reveal reveal-{{ loop.index }} block p-7">
-        <span class="eyebrow eyebrow-muted mb-6 text-[11px]">0{{ loop.index }}</span>
-        <h3 class="text-[22px] font-semibold tracking-tight mb-2">{{ cluster.title }}</h3>
-        <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-6">{{ cluster.claim }}</p>
-        <ul class="space-y-2.5 mb-7">
-          {% for punkt in cluster.stichpunkte %}
-          <li class="flex items-start gap-2.5 text-sm text-ink-muted">
-            <svg class="w-3.5 h-3.5 mt-1 text-amber flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-            {{ punkt }}
-          </li>
+    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">Drei Bereiche, ein zusammenhängendes System</h2>
+    <!-- Sticky-Kapitel (Modul B): das Medium bleibt stehen, die Copy zieht durch.
+         Gepinnt wird erst ab 1024 px — darunter stehen die drei Bereiche
+         normal untereinander. -->
+    <div class="chapter" data-scrub data-scrub-start="top top"
+         data-scrub-end="bottom bottom" data-scrub-var="--p" data-scrub-index="3">
+      <div class="chapter-media" aria-hidden="true">
+        <div class="chapter-stack">
+          {% for cluster in clusters %}
+          <div class="chapter-medium" data-i="{{ loop.index0 }}">
+            <span class="chapter-num">0{{ loop.index }}</span>
+            <span class="chapter-claim">{{ cluster.claim }}</span>
+          </div>
           {% endfor %}
-        </ul>
-        <span class="mono text-[11px] tracking-widest uppercase text-ink">Zum Bereich →</span>
-      </a>
-      {% endfor %}
+        </div>
+        <div class="chapter-ticks">
+          {% for cluster in clusters %}<span class="chapter-tick" data-i="{{ loop.index0 }}"><span></span></span>{% endfor %}
+        </div>
+      </div>
+      <div class="chapter-copy">
+        {% for cluster in clusters %}
+        <div class="chapter-panel" data-i="{{ loop.index0 }}">
+          <span class="eyebrow eyebrow-muted mb-5 text-[11px] chapter-panel-num">0{{ loop.index }}</span>
+          <h3 class="text-[26px] md:text-[32px] font-semibold tracking-tight mb-2">{{ cluster.title }}</h3>
+          <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-7 chapter-panel-claim">{{ cluster.claim }}</p>
+          <ul class="space-y-2.5 mb-8">
+            {% for punkt in cluster.stichpunkte %}
+            <li class="flex items-start gap-2.5 text-sm text-ink-muted">
+              <svg class="w-3.5 h-3.5 mt-1 text-amber flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              {{ punkt }}
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="/leistungen/{{ cluster.slug }}/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors">Zum Bereich →</a>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -185,8 +208,48 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Aus der Projektarbeit entstanden</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
-      <h2 class="section-h2 reveal">Produkte, die wir<br/>selbst bauen.</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Produkte, die wir<br/>selbst bauen.</h2>
       <p class="lede max-w-md reveal reveal-1">Was bei Kunden mehrfach entstanden ist, entwickeln wir als eigenes Produkt weiter — mit demselben Prinzip: jede Antwort führt ihre Quelle mit.</p>
+    </div>
+    <!-- Produkt-Schaukasten (Modul C + F): ein Mockup zur Zeit, Punktleiste mit
+         Laufbalken. Die Schritte stehen als Markup im Dokument. -->
+    {% set schaukasten = [
+      { k: "echo", name: "aivance Echo", was: "Telefonassistent" },
+      { k: "iris", name: "aivance Iris", was: "Dokumente" },
+      { k: "boarding", name: "aivance Boarding", was: "Onboarding" }
+    ] %}
+    <div class="showcase mb-14 reveal" data-showcase data-showcase-interval="9000">
+      <div class="showcase-intro">
+        <p class="text-sm text-ink-muted leading-relaxed max-w-sm">Wählen Sie ein Produkt — das Mockup zeigt Schritt für Schritt, was es tut.</p>
+        <ul class="dotnav" role="tablist" aria-label="Produkt-Mockups">
+          {% for p in schaukasten %}
+          <li role="presentation">
+            <button type="button" role="tab" class="dotnav-tab"
+                    id="mocktab-{{ p.k }}" aria-controls="mockpanel-{{ p.k }}"
+                    aria-selected="{{ 'true' if loop.first else 'false' }}">
+              <span class="dotnav-name">{{ p.name }}</span>
+              <span class="dotnav-was">{{ p.was }}</span>
+              <span class="dotnav-bar" aria-hidden="true"><span></span></span>
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="showcase-stage">
+        {% for p in schaukasten %}
+        <div class="showcase-panel" role="tabpanel" id="mockpanel-{{ p.k }}" aria-labelledby="mocktab-{{ p.k }}">
+          <div class="mock-device">
+            <div class="mock-device-head">
+              <span class="mock-device-name">{{ p.name }}</span>
+              <span class="mock-device-live" aria-hidden="true"></span>
+            </div>
+            <div class="chat-messages" data-mockup data-mockup-start="400" data-mockup-restart="0">
+              {{ mock.schritte(mockups[p.k].de) }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
     <div class="grid sm:grid-cols-2 {{ 'lg:grid-cols-4' if products.length == 4 else 'lg:grid-cols-3' }} border border-line reveal">
       {% for produkt in products %}
@@ -215,50 +278,58 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Von der Zusage zum Beleg</span>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-16">
-      <div class="reveal">
-        <h2 class="section-h2 mb-5">Drei Zusagen —<br/>jede mit Beleg.</h2>
-        <p class="lede max-w-md">Versprechen kostet nichts. Deshalb steht hinter jeder Zusage eine Zahl, ein Dokument oder eine Seite, auf der Sie sie nachlesen können. Amber markiert auf dieser Website ausschließlich das, was belegt ist.</p>
-      </div>
+    <!-- Beleg-Kette als Scroll-Sequenz (Modul D): die vier Stufen decken
+         sich nacheinander auf, gesteuert vom Scrollfortschritt --p. -->
+    <div class="chain-stage mb-16" data-scrub
+         data-scrub-start="top top" data-scrub-end="bottom bottom"
+         data-scrub-var="--p">
+      <div class="chain-pin">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          <div class="reveal">
+            <h2 data-reveal-stagger class="section-h2 mb-5">Drei Zusagen —<br/>jede mit Beleg.</h2>
+            <p class="lede max-w-md">Versprechen kostet nichts. Deshalb steht hinter jeder Zusage eine Zahl, ein Dokument oder eine Seite, auf der Sie sie nachlesen können. Amber markiert auf dieser Website ausschließlich das, was belegt ist.</p>
+          </div>
 
-      <!-- Beleg-Kette: Zusage → Prüfung → Beleg → Quellen -->
-      <div class="chain reveal reveal-1">
-        <div class="chain-row">
-          <span class="chain-label">Zusage</span>
-          <span class="chain-question">„Wir sagen Ihnen verbindlich, wann Ihr System live geht.“</span>
-        </div>
-        <div class="chain-row">
-          <span class="chain-label">Prüfung</span>
-          <span class="chain-bar" aria-hidden="true"><span></span></span>
-          <span class="chain-meta">3 / 3 Projekte</span>
-        </div>
-        <div class="chain-row top">
-          <span class="chain-label is-amber">Belegt</span>
-          <span class="chain-answer evidence">Wissenssysteme gingen bisher im Schnitt nach 17 Tagen live.</span>
-        </div>
-        <div class="chain-row top">
-          <span class="chain-label">Quellen</span>
-          <div class="chain-sources">
-            <a href="/projekte/onboarding-mittelstand/" class="chain-source">
-              <span class="chain-num">1</span>
-              <span class="chain-rule" aria-hidden="true"></span>
-              <span class="chain-file">projekte/onboarding-mittelstand</span>
-            </a>
-            <a href="/leistungen/wissenssysteme/" class="chain-source">
-              <span class="chain-num">2</span>
-              <span class="chain-rule" aria-hidden="true"></span>
-              <span class="chain-file">leistungen/wissenssysteme</span>
-            </a>
-            <div class="chain-source">
-              <span class="chain-num empty">3</span>
-              <span class="chain-rule empty" aria-hidden="true"></span>
-              <span class="chain-file muted">kein weiterer Beleg</span>
+          <!-- Beleg-Kette: Zusage → Prüfung → Beleg → Quellen -->
+          <div class="chain reveal reveal-1">
+            <div class="chain-row" data-stage="1">
+              <span class="chain-label">Zusage</span>
+              <span class="chain-question">„Wir sagen Ihnen verbindlich, wann Ihr System live geht.“</span>
+            </div>
+            <div class="chain-thread" aria-hidden="true"><span></span></div>
+            <div class="chain-row" data-stage="2">
+              <span class="chain-label">Prüfung</span>
+              <span class="chain-bar" aria-hidden="true"><span></span></span>
+              <span class="chain-meta">3 / 3 Projekte</span>
+            </div>
+            <div class="chain-row top" data-stage="3">
+              <span class="chain-label is-amber">Belegt</span>
+              <span class="chain-answer evidence">Wissenssysteme gingen bisher im Schnitt nach 17 Tagen live.</span>
+            </div>
+            <div class="chain-row top" data-stage="4">
+              <span class="chain-label">Quellen</span>
+              <div class="chain-sources">
+                <a href="/projekte/onboarding-mittelstand/" class="chain-source">
+                  <span class="chain-num">1</span>
+                  <span class="chain-rule" aria-hidden="true"></span>
+                  <span class="chain-file">projekte/onboarding-mittelstand</span>
+                </a>
+                <a href="/leistungen/wissenssysteme/" class="chain-source">
+                  <span class="chain-num">2</span>
+                  <span class="chain-rule" aria-hidden="true"></span>
+                  <span class="chain-file">leistungen/wissenssysteme</span>
+                </a>
+                <div class="chain-source">
+                  <span class="chain-num empty">3</span>
+                  <span class="chain-rule empty" aria-hidden="true"></span>
+                  <span class="chain-file muted">kein weiterer Beleg</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="grid md:grid-cols-3 border border-line reveal">
       <div class="p-7 border-b md:border-b-0 md:border-r border-line flex flex-col">
         <span class="eyebrow mb-5 text-[11px]">Datenschutz</span>
@@ -287,18 +358,33 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Eigene Abläufe · eigene Regeln</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
-      <h2 class="section-h2 reveal">Wo arbeiten Sie?</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Wo arbeiten Sie?</h2>
       <p class="lede max-w-md reveal reveal-1">Jede Branche hat eigene Abläufe und eigene Regeln. Wählen Sie Ihre — dort zeigen wir nur, was für Sie relevant ist.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 border border-line reveal">
-      {% for branche in industries %}
-      <a href="/branchen/{{ branche.slug }}/" class="group p-7 border-line hover:bg-surface transition-colors {{ 'border-b sm:border-b lg:border-b-0' if not loop.last }} {{ 'sm:border-r' if loop.index % 2 == 1 }} lg:border-r lg:last:border-r-0">
-        <span class="eyebrow eyebrow-muted mb-5 text-[11px]">0{{ loop.index }}</span>
-        <h3 class="text-lg font-semibold tracking-tight mb-2">{{ branche.title }}</h3>
-        <p class="text-xs text-ink-muted leading-relaxed mb-5">{{ branche.heroSatz }}</p>
-        <span class="mono text-[11px] tracking-widest uppercase text-ink">Zur Branche →</span>
-      </a>
-      {% endfor %}
+    <!-- Branchen-Umschalter (Modul H): Personalisierung, kein Vergleich. Die vier
+         Namen bleiben immer sichtbar — gewechselt wird nur die Vertiefung.
+         Ohne JS stehen alle vier Tafeln untereinander. -->
+    <div class="switcher reveal" data-switcher>
+      <ul class="switcher-tabs" role="tablist" aria-label="Branchen">
+        {% for branche in industries %}
+        <li role="presentation">
+          <button type="button" role="tab" class="switcher-tab"
+                  id="btab-{{ branche.slug }}" aria-controls="bpanel-{{ branche.slug }}"
+                  aria-selected="{{ 'true' if loop.first else 'false' }}">
+            <span class="switcher-tab-num">0{{ loop.index }}</span>
+            <span class="switcher-tab-name">{{ branche.title }}</span>
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="switcher-panels">
+        {% for branche in industries %}
+        <div class="switcher-panel" role="tabpanel" id="bpanel-{{ branche.slug }}" aria-labelledby="btab-{{ branche.slug }}">
+          <p class="switcher-lede">{{ branche.heroSatz }}</p>
+          <a href="/branchen/{{ branche.slug }}/" class="btn-ghost">Zur Branche →</a>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -310,17 +396,27 @@ permalink: /
       <span class="eyebrow">06 / Referenzen</span>
       <span class="eyebrow eyebrow-muted">Zahlen statt Adjektive</span>
     </div>
-    <h2 class="section-h2 mb-12 max-w-2xl reveal">Echte Ergebnisse für echte Unternehmen</h2>
-    <div class="grid md:grid-cols-3 gap-5 mb-10">
+    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">Echte Ergebnisse für echte Unternehmen</h2>
+    <div class="gallery mb-10" data-gallery>
+      <div class="gallery-track">
       {% for projekt in projects %}
-      <a href="/projekte/{{ projekt.slug }}/" class="card reveal reveal-{{ loop.index }} block p-7">
+      <a href="/projekte/{{ projekt.slug }}/" class="card gallery-card reveal reveal-{{ loop.index }} block p-7" data-card>
         <span class="eyebrow eyebrow-muted mb-6 text-[11px]">{{ projekt.brancheLabel }}</span>
-        <p class="text-[clamp(34px,3.8vw,50px)] font-semibold tracking-tighter leading-none">{{ projekt.teaser.zahl }}</p>
+        <p class="text-[clamp(34px,3.8vw,50px)] font-semibold tracking-tighter leading-none counter-num"
+           data-target="{{ projekt.teaser.zahl | replace(" %", "") | replace("%", "") }}" data-suffix=" %">{{ projekt.teaser.zahl }}</p>
         <p class="mono text-[11px] tracking-widest uppercase text-amber mt-3 mb-5">{{ projekt.teaser.zahlLabel }}</p>
         <p class="text-sm text-ink-muted leading-relaxed mb-6">{{ projekt.teaser.text }}</p>
         <span class="mono text-[11px] tracking-widest uppercase text-ink">Zur Case Study →</span>
       </a>
       {% endfor %}
+      </div>
+      <ul class="gallery-dots">
+        {% for projekt in projects %}
+        <li><button type="button" class="gallery-dot" data-dot
+                    aria-label="Zur Case Study {{ loop.index }}"
+                    {{ 'aria-current="true"' | safe if loop.first }}></button></li>
+        {% endfor %}
+      </ul>
     </div>
     <div class="reveal">
       <a href="/projekte/" class="btn-ghost">Alle Case Studies ansehen</a>
@@ -335,8 +431,12 @@ permalink: /
       <span class="eyebrow">07 / Ablauf</span>
       <span class="eyebrow eyebrow-muted">Vier Schritte</span>
     </div>
-    <h2 class="section-h2 mb-12 max-w-2xl reveal">So arbeiten wir mit Ihnen</h2>
-    <div class="steps reveal">
+    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">So arbeiten wir mit Ihnen</h2>
+    <!-- Ablauf als Zeitachse (Modul E): die Amber-Füllung wächst mit dem
+         Scroll, durchlaufene Schritte bleiben aktiv stehen. -->
+    <div class="timeline reveal" data-scrub
+         data-scrub-start="top center" data-scrub-end="bottom center"
+         data-scrub-var="--p" data-scrub-latch>
       {% set schritte = [
         { nr: "01", titel: "Erstgespräch", text: "Kostenlos und unverbindlich. Wir hören zu, stellen Fragen und sagen Ihnen ehrlich, ob wir helfen können." },
         { nr: "02", titel: "Digital-Audit", text: "Wir schauen uns Website, Abläufe und Systeme an — und beziffern, welcher Schritt am meisten bringt." },
@@ -344,7 +444,8 @@ permalink: /
         { nr: "04", titel: "Betreuung", text: "Betrieb, Wartung und Weiterentwicklung — mit festem Ansprechpartner und vereinbarten Reaktionszeiten." }
       ] %}
       {% for schritt in schritte %}
-      <div>
+      <div class="timeline-step" data-i="{{ loop.index0 }}">
+        <span class="timeline-node" aria-hidden="true"><span></span></span>
         <span class="mono block text-[11px] tracking-widest text-amber mb-5">{{ schritt.nr }}</span>
         <h3 class="text-lg font-semibold tracking-tight mb-2">{{ schritt.titel }}</h3>
         <p class="text-sm text-ink-muted leading-relaxed">{{ schritt.text }}</p>
@@ -362,7 +463,7 @@ permalink: /
       <span class="eyebrow eyebrow-muted">Direkt mit den Foundern</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
-      <h2 class="section-h2 reveal">Die Köpfe hinter AIVANCE</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Die Köpfe hinter AIVANCE</h2>
       <p class="lede max-w-md reveal reveal-1">Alle drei bauen selbst. Sie arbeiten direkt mit ihnen — nicht mit wechselnden Projektmanagern.</p>
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-5 reveal">
@@ -405,7 +506,7 @@ permalink: /
       <span class="eyebrow eyebrow-muted">{{ homeFaq | length }} Fragen</span>
     </div>
     <div class="grid md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 md:gap-16 items-start">
-      <h2 class="section-h2 reveal">Häufige Fragen</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Häufige Fragen</h2>
       <div class="reveal reveal-1 border-t border-line">
         {% for item in homeFaq %}
         <div class="border-b border-line">
@@ -434,7 +535,7 @@ permalink: /
     </div>
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
       <div class="reveal">
-        <h2 class="section-h2 mb-5">Erzählen Sie uns,<br/>wo es hakt.</h2>
+        <h2 data-reveal-stagger class="section-h2 mb-5">Erzählen Sie uns,<br/>wo es hakt.</h2>
         <p class="lede mb-10 max-w-sm">Kein Verkaufsgespräch: Wir hören zu, stellen Fragen und sagen Ihnen ehrlich, ob und wie wir helfen können.</p>
         <div class="border-t border-line">
           <a href="mailto:{{ site.email }}" class="flex items-center justify-between gap-4 py-4 border-b border-line group">
