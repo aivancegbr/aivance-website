@@ -821,7 +821,8 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 .mock-document-via { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); flex: none; }
 
 .mock-field { align-items: baseline; font-size: 10.5px; padding: 3px 0; border-bottom: 1px solid var(--line); }
-.mock-field-key { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); flex: none; width: 62px; }
+/* 78px statt 62px: „Dokumenttyp" lief sonst in den Wert hinein. */
+.mock-field-key { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); flex: none; width: 78px; }
 .mock-field-val { color: var(--ink); flex: 1; font-weight: 500; }
 
 .mock-task { align-items: flex-start; font-size: 11px; padding: 4px 0; color: var(--ink); }
@@ -862,17 +863,24 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 .chain-stage { --p: 1; --pp: 1; }
 
 @media (min-width: 1024px) {
-  .js .chain-stage { min-height: 180vh; --pp: var(--p); }
-  /* Der gepinnte Block steht mittig im Bild — sonst hängt er oben und
-     darunter klafft der Rest des Viewports. */
+  .js .chain-stage { min-height: 132vh; --pp: var(--p); }
+  /* Der gepinnte Block steht mittig, bleibt aber unter Bildschirmhöhe — so
+     bleiben die Nachbarsektionen angeschnitten sichtbar und die Bühne wirkt
+     nicht leer. */
   .js .chain-stage .chain-pin {
     position: sticky;
-    top: 0;
-    min-height: 100vh;
+    top: 9vh;
+    min-height: 78vh;
     display: flex;
     align-items: center;
   }
   .js .chain-stage .chain-pin > * { flex: 1; }
+
+  /* Die Zusage steht groß — sie trägt die erste Stufe allein (Modul D). */
+  .js .chain-stage .chain { gap: 30px; }
+  .js .chain-stage .chain-question { font-size: clamp(20px, 2.1vw, 28px); line-height: 1.34; }
+  .js .chain-stage .chain-answer { font-size: clamp(19px, 2vw, 26px); line-height: 1.38; }
+  .js .chain-stage .chain-sources { gap: 15px; }
 }
 
 .chain-stage .chain-row,
@@ -991,17 +999,24 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 
 @media (min-width: 1024px) {
   .js .chapter { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+  /* Kein bildschirmfüllendes Pinning: das Medium hängt sich unter die
+     Sektionsüberschrift und lässt die Nachbarschaft sichtbar. Ein leerer
+     100-vh-Kasten wirkt sonst wie eine Lücke im Layout. */
   .js .chapter-media {
-    display: flex; flex-direction: column; justify-content: center; gap: 40px;
-    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column; gap: 26px;
+    position: sticky; top: 22vh;
+    /* align-self ist Pflicht: als Grid-Item würde die Spalte sonst auf volle
+       Zeilenhöhe gestreckt, und ein Element so hoch wie sein Container
+       klebt nie. */
+    align-self: start;
   }
-  .js .chapter-stack { position: relative; height: 200px; }
+  .js .chapter-stack { position: relative; height: 170px; }
   .js .chapter-medium {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; justify-content: center; gap: 10px;
   }
   .js .chapter-panel {
-    min-height: 82vh;
+    min-height: 62vh;
     display: flex; flex-direction: column; justify-content: center;
     margin-top: 0; padding-top: 0; border-top: 0;
   }
@@ -1024,7 +1039,20 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 .chapter-medium[data-i="1"] { --me: 1; }
 .chapter-medium[data-i="2"] { --me: 2; }
 
-.chapter-num { font-size: clamp(56px, 7vw, 96px); font-weight: 600; letter-spacing: -.06em; line-height: .9; color: var(--ink); }
+.chapter-num { font-size: clamp(72px, 9vw, 132px); font-weight: 600; letter-spacing: -.06em; line-height: .86; color: var(--ink); }
+
+/* Die Leistungen tragen den Bereich — nackte Stichpunkte ließen die
+   gepinnte Fläche leer wirken. Jede Zeile führt auf ihre eigene Seite. */
+.chapter-list { list-style: none; margin: 0 0 30px; padding: 0; border-top: 1px solid var(--line); }
+.chapter-item {
+  display: block; padding: 15px 0 16px;
+  border-bottom: 1px solid var(--line);
+  transition: border-color .2s ease;
+}
+.chapter-item:hover { border-bottom-color: var(--line-strong); }
+.chapter-item-title { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.02em; color: var(--ink); margin-bottom: 3px; }
+.chapter-item:hover .chapter-item-title { color: var(--amber); }
+.chapter-item-text { display: block; font-size: 13.5px; line-height: 1.5; color: var(--ink-muted); max-width: 44ch; }
 .chapter-claim { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-muted); }
 
 /* Fortschrittsstriche: der aktive füllt sich mit dem Scroll. */

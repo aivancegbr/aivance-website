@@ -110,7 +110,7 @@ permalink: /en/
         </span>
         <span class="badge-text-group">
           <span class="badge-title">Reply within 24 hours</span>
-          <span class="badge-sub">on weekdays, from a founder</span>
+          <span class="badge-sub">on weekdays, from a co-founder</span>
         </span>
       </div>
 
@@ -208,11 +208,13 @@ permalink: /en/
           <span class="eyebrow eyebrow-muted mb-5 text-[11px] chapter-panel-num">0{{ loop.index }}</span>
           <h3 class="text-[26px] md:text-[32px] font-semibold tracking-tight mb-2">{{ ec.title }}</h3>
           <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-7 chapter-panel-claim">{{ ec.claim }}</p>
-          <ul class="space-y-2.5 mb-8">
-            {% for punkt in ec.bullets %}
-            <li class="flex items-start gap-2.5 text-sm text-ink-muted">
-              <svg class="w-3.5 h-3.5 mt-1 text-amber flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-              {{ punkt }}
+          <ul class="chapter-list">
+            {% for leistung in services | filterByCluster(cluster.slug) %}
+            <li>
+              <a href="/en/leistungen/{{ leistung.slug }}/" class="chapter-item">
+                <span class="chapter-item-title">{{ leistung.en.title }}</span>
+                <span class="chapter-item-text">{{ leistung.en.card }}</span>
+              </a>
             </li>
             {% endfor %}
           </ul>
@@ -492,7 +494,7 @@ permalink: /en/
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-5 reveal">
       {% set team = [
-        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder · Strategy & client projects", rolleKurz: "Founder", text: "Designs the product architecture: components, data model and interfaces.", mail: "ayman.karim@ai-vance.de" },
+        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Co-Founder · Strategy & client projects", rolleKurz: "Co-Founder", text: "Designs the product architecture: components, data model and interfaces.", mail: "ayman.karim@ai-vance.de" },
         { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-Founder · Engineering & operations", rolleKurz: "Co-Founder", text: "Owns infrastructure and operations — hosting in Germany and the EU, security and data protection.", mail: "ajay.nagulendran@ai-vance.de" },
         { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-Founder · Product development & partnerships", rolleKurz: "Co-Founder", text: "Stays your contact through the project and develops our own products and the partner programmes.", mail: "cyrus.lang@ai-vance.de" }
       ] %}

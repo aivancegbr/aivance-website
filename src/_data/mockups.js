@@ -88,8 +88,8 @@ module.exports = {
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", evidenced: true, pause: 0,
-        text: "Die Antwort kommt aus dem Dokument — mit Verweis auf die Fundstelle.",
-        source: "Quelle · /produkte/#iris · Antwort mit Quellenverweis",
+        text: "Eine Haftpflichtversicherung, jährlich verlängert. Die Kündigungsfrist steht auf Seite 2, Absatz 3.",
+        source: "Quelle · Police_Mueller.pdf · Seite 2",
       },
     ],
     en: [
@@ -101,8 +101,8 @@ module.exports = {
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", evidenced: true, pause: 0,
-        text: "The answer comes from the document — with a reference to the passage.",
-        source: "Source · /en/produkte/#iris · answer with a source reference",
+        text: "A liability policy, renewed annually. The notice period is on page 2, paragraph 3.",
+        source: "Source · Policy_Mueller.pdf · page 2",
       },
     ],
   },

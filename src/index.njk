@@ -86,7 +86,7 @@ permalink: /
         </span>
         <span class="badge-text-group">
           <span class="badge-title">Antwort in 24 Stunden</span>
-          <span class="badge-sub">werktags, vom Founder</span>
+          <span class="badge-sub">werktags, von einem Co-Founder</span>
         </span>
       </div>
 
@@ -184,11 +184,13 @@ permalink: /
           <span class="eyebrow eyebrow-muted mb-5 text-[11px] chapter-panel-num">0{{ loop.index }}</span>
           <h3 class="text-[26px] md:text-[32px] font-semibold tracking-tight mb-2">{{ cluster.title }}</h3>
           <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-7 chapter-panel-claim">{{ cluster.claim }}</p>
-          <ul class="space-y-2.5 mb-8">
-            {% for punkt in cluster.stichpunkte %}
-            <li class="flex items-start gap-2.5 text-sm text-ink-muted">
-              <svg class="w-3.5 h-3.5 mt-1 text-amber flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-              {{ punkt }}
+          <ul class="chapter-list">
+            {% for leistung in services | filterByCluster(cluster.slug) %}
+            <li>
+              <a href="/leistungen/{{ leistung.slug }}/" class="chapter-item">
+                <span class="chapter-item-title">{{ leistung.title }}</span>
+                <span class="chapter-item-text">{{ leistung.card }}</span>
+              </a>
             </li>
             {% endfor %}
           </ul>
@@ -468,7 +470,7 @@ permalink: /
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-5 reveal">
       {% set team = [
-        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Founder · Strategie & Kundenprojekte", rolleKurz: "Founder", text: "Entwirft die Produktarchitektur: Komponenten, Datenmodell und Schnittstellen.", mail: "ayman.karim@ai-vance.de" },
+        { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Co-Founder · Strategie & Kundenprojekte", rolleKurz: "Co-Founder", text: "Entwirft die Produktarchitektur: Komponenten, Datenmodell und Schnittstellen.", mail: "ayman.karim@ai-vance.de" },
         { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-Founder · Technik & Betrieb", rolleKurz: "Co-Founder", text: "Verantwortet Infrastruktur und Betrieb — Hosting in Deutschland und der EU, Sicherheit und Datenschutz.", mail: "ajay.nagulendran@ai-vance.de" },
         { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-Founder · Produktentwicklung & Partnerschaften", rolleKurz: "Co-Founder", text: "Bleibt Ihr Ansprechpartner im Projekt und entwickelt die eigenen Produkte und die Partnerprogramme.", mail: "cyrus.lang@ai-vance.de" }
       ] %}
