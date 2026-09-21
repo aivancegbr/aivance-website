@@ -255,15 +255,11 @@
       var agent = {};
       var lang = root.getAttribute("data-lang");
       if (lang) agent.language = lang;
-      /* Die API erwartet prompt als Objekt, nicht als Zeichenkette — eine
-         Zeichenkette faellt schon an der Formatpruefung durch. */
-      var prompt = root.getAttribute("data-prompt");
-      if (prompt) agent.prompt = { prompt: prompt };
-      /* Nur beim Sprechen: im Textfenster soll Echo nicht von selbst
-         anfangen, bevor ueberhaupt jemand gefragt hat. */
-      var gruss = root.getAttribute("data-first-message");
-      if (gruss && ziel === "stimme") agent.firstMessage = gruss;
-      else if (prompt) agent.firstMessage = "";
+      /* Die Anweisung steht im Agenten, nicht hier — siehe _data/askEcho.js.
+         Beim Tippen bleibt nur die Begruessung zu unterdruecken: der Agent
+         schickt sie auch im Textmodus, und sie stuende dann nach der ersten
+         Frage im Fenster statt davor. Beim Sprechen ist sie erwuenscht. */
+      if (ziel === "text") agent.firstMessage = "";
       if (ziel === "text") {
         /* Das SDK traegt daraus selbst `conversation.text_only` in die
            Eroeffnung ein — nachgemessen am Websocket-Verkehr. Ein eigener

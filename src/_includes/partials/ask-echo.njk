@@ -15,12 +15,6 @@
      data-agent-id="{{ askEcho.agentId }}"
      data-sdk-url="{{ askEcho.sdkUrl }}"
      data-lang="{{ 'en' if isEn else 'de' }}"
-     {# Systemanweisung und Begruessung werden beim Verbinden ueberschrieben,
-        damit derselbe Agent hier ueber aivance spricht statt als Telefon-
-        zentrale eines Kunden. Setzt die Freigaben im Dashboard voraus —
-        siehe _data/askEcho.js. #}
-     data-prompt="{{ askEcho.prompt.en if isEn else askEcho.prompt.de }}"
-     data-first-message="{{ askEcho.firstMessage.en if isEn else askEcho.firstMessage.de }}"
      data-t-ready="{{ 'Ready' if isEn else 'Bereit' }}"
      data-t-connecting="{{ 'Connecting' if isEn else 'Verbindet' }}"
      data-t-live="{{ 'Connected' if isEn else 'Verbunden' }}"
