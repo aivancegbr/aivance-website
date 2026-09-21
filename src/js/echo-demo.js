@@ -222,8 +222,14 @@
         };
         /* Der Agent ist deutsch angelegt; die englische Seite schaltet um.
            Die Begruessung kommt dann aus der Sprachvoreinstellung des Agenten. */
+        var agent = {};
         var lang = root.getAttribute("data-lang");
-        if (lang) config.overrides = { agent: { language: lang } };
+        if (lang) agent.language = lang;
+        /* Schreibt die Marke klein — der Agent selbst begruesst mit
+           Versalien, siehe _data/echoDemo.js. */
+        var gruss = root.getAttribute("data-first-message");
+        if (gruss) agent.firstMessage = gruss;
+        config.overrides = { agent: agent };
         return lib.Conversation.startSession(config);
       })
       .then(function (session) { conversation = session; })

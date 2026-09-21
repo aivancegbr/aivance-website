@@ -22,6 +22,7 @@
          data-agent-id="{{ echoDemo.agentId }}"
          data-sdk-url="{{ echoDemo.sdkUrl }}"
          data-lang="{{ 'en' if isEn else 'de' }}"
+         data-first-message="{{ echoDemo.firstMessage.en if isEn else echoDemo.firstMessage.de }}"
          data-t-ready="{{ 'Ready' if isEn else 'Bereit' }}"
          data-t-connecting="{{ 'Connecting' if isEn else 'Verbindet' }}"
          data-t-live="{{ 'In conversation' if isEn else 'Im Gespräch' }}"
