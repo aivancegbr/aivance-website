@@ -30,8 +30,13 @@
   var waveEl = root.querySelector("[data-echo-wave]");
   if (!startBtn || !stopBtn || !statusEl || !threadEl) return;
 
+  /* getAttribute schreibt den Namen klein — "faultConnection" wuerde also auf
+     data-t-faultconnection zeigen und nie auf data-t-fault-connection. Deshalb
+     hier von Binnenversalien auf Bindestriche umschreiben. */
   function say(key) {
-    return root.getAttribute("data-t-" + key) || "";
+    return root.getAttribute("data-t-" + key.replace(/[A-Z]/g, function (c) {
+      return "-" + c.toLowerCase();
+    })) || "";
   }
 
   /* Die Demo ist erst ab hier bedienbar — ohne JS bleibt der Knopf deaktiviert

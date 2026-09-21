@@ -41,7 +41,14 @@
   var waveEl = el("[data-ask-wave]");
   if (!launchBtn || !panel || !form || !input || !threadEl) return;
 
-  function say(key) { return root.getAttribute("data-t-" + key) || ""; }
+  /* getAttribute schreibt den Namen klein — "faultConnection" wuerde also auf
+     data-t-faultconnection zeigen und nie auf data-t-fault-connection. Deshalb
+     hier von Binnenversalien auf Bindestriche umschreiben. */
+  function say(key) {
+    return root.getAttribute("data-t-" + key.replace(/[A-Z]/g, function (c) {
+      return "-" + c.toLowerCase();
+    })) || "";
+  }
 
   var sdk = null;
   var conversation = null;
@@ -245,9 +252,18 @@
         }
       };
 
-      var overrides = {};
+      var agent = {};
       var lang = root.getAttribute("data-lang");
-      if (lang) overrides.agent = { language: lang };
+      if (lang) agent.language = lang;
+      /* Die API erwartet prompt als Objekt, nicht als Zeichenkette — eine
+         Zeichenkette faellt schon an der Formatpruefung durch. */
+      var prompt = root.getAttribute("data-prompt");
+      if (prompt) agent.prompt = { prompt: prompt };
+      /* Nur beim Sprechen: im Textfenster soll Echo nicht von selbst
+         anfangen, bevor ueberhaupt jemand gefragt hat. */
+      var gruss = root.getAttribute("data-first-message");
+      if (gruss && ziel === "stimme") agent.firstMessage = gruss;
+      else if (prompt) agent.firstMessage = "";
       if (ziel === "text") {
         /* Das SDK traegt daraus selbst `conversation.text_only` in die
            Eroeffnung ein — nachgemessen am Websocket-Verkehr. Ein eigener
@@ -256,7 +272,7 @@
       } else {
         config.connectionType = "webrtc";
       }
-      if (overrides.agent) config.overrides = overrides;
+      config.overrides = { agent: agent };
 
       return lib.Conversation.startSession(config);
     }).then(function (session) {
