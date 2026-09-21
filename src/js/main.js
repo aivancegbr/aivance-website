@@ -1,4 +1,4 @@
-/* AIVANCE – zentrales Site-JS: Navigation, Reveal, FAQ, Formular, Zähler */
+/* aivance – zentrales Site-JS: Navigation, Reveal, FAQ, Formular, Zähler */
 (function () {
   "use strict";
 

@@ -1,7 +1,7 @@
 {
   "name": "aivance-website",
   "version": "2.0.0",
-  "description": "AIVANCE – Digitalisierungsagentur Rhein-Main (statische Website, Eleventy)",
+  "description": "aivance – KI-Produktunternehmen Rhein-Main (statische Website, Eleventy)",
   "private": true,
   "type": "commonjs",
   "scripts": {

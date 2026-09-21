@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   AIVANCE Design-Tokens — abgeleitet aus der Brand Identity.
+   aivance Design-Tokens — abgeleitet aus der Brand Identity.
 
    Fünf Grau-Rollen und ein Beleg-Amber, mehr nicht. Die bestehenden
    Tailwind-Skalen sind bewusst auf diese Rollen umgebogen (statt sie in

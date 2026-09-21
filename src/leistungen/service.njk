@@ -169,7 +169,7 @@ eleventyComputed:
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": {{ service.title | dump | safe }},
-  "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
+  "provider": { "@type": "Organization", "name": "aivance", "url": "{{ site.url }}" },
   "areaServed": "Rhein-Main-Gebiet",
   "description": {{ service.meta.description | dump | safe }}
 }

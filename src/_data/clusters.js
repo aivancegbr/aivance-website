@@ -21,7 +21,7 @@ module.exports = [
     ],
     services: ["website-webdesign", "foto-video", "social-media", "seo-ki-sichtbarkeit"],
     meta: {
-      title: "Sichtbarkeit — AIVANCE",
+      title: "Sichtbarkeit — aivance",
       description: "Website, Foto & Video und Social Media als ein zusammenhängendes System. Für Unternehmen im Rhein-Main-Gebiet."
     },
     en: {
@@ -40,7 +40,7 @@ module.exports = [
         "SEO & AI visibility"
       ],
       meta: {
-        title: "Visibility — AIVANCE",
+        title: "Visibility — aivance",
         description: "Website, photo & video and social media as one coherent system. For businesses in the Rhine-Main region."
       }
     }
@@ -62,7 +62,7 @@ module.exports = [
     ],
     services: ["individualsoftware", "wissenssysteme", "voice-agents"],
     meta: {
-      title: "Software & Systeme — AIVANCE",
+      title: "Software & Systeme — aivance",
       description: "Individualsoftware, Wissenssysteme und Voice Agents für den Mittelstand — DSGVO-konform betrieben, Hosting in Deutschland und der EU."
     },
     en: {
@@ -80,7 +80,7 @@ module.exports = [
         "Voice agents"
       ],
       meta: {
-        title: "Software & Systems — AIVANCE",
+        title: "Software & Systems — aivance",
         description: "Custom software, knowledge systems and voice agents for mid-sized companies — GDPR-compliant operation, hosted in Germany and the EU."
       }
     }
@@ -102,7 +102,7 @@ module.exports = [
     ],
     services: ["prozessautomatisierung", "reporting", "integrationen"],
     meta: {
-      title: "Automatisierung — AIVANCE",
+      title: "Automatisierung — aivance",
       description: "Prozessautomatisierung, KPI-Reporting und Systemintegrationen für Unternehmen im Rhein-Main-Gebiet — nachvollziehbar und DSGVO-konform."
     },
     en: {
@@ -120,7 +120,7 @@ module.exports = [
         "Integrations & API"
       ],
       meta: {
-        title: "Automation — AIVANCE",
+        title: "Automation — aivance",
         description: "Process automation, KPI reporting and system integrations for businesses in the Rhine-Main region — transparent and GDPR-compliant."
       }
     }

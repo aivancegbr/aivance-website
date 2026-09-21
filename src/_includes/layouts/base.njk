@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ metaTitle or title }}</title>
   <meta name="description" content="{{ metaDescription or description }}" />
-  <meta name="author" content="AIVANCE – Ayman Karim, Ajay Nagulendran, Cyrus Lang" />
+  <meta name="author" content="aivance – Ayman Karim, Ajay Nagulendran, Cyrus Lang" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
   {%- if lang == 'en' %}
@@ -27,9 +27,9 @@
   <meta property="og:image" content="{{ site.url }}{{ ogImage }}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="{{ 'AIVANCE — AI products that cite their source' if lang == 'en' else 'AIVANCE — KI-Produkte, die ihre Quelle mitführen' }}" />
+  <meta property="og:image:alt" content="{{ 'aivance — AI products that cite their source' if lang == 'en' else 'aivance — KI-Produkte, die ihre Quelle mitführen' }}" />
   <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
-  <meta property="og:site_name" content="AIVANCE" />
+  <meta property="og:site_name" content="aivance" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="{{ site.url }}{{ ogImage }}" />
 
@@ -38,10 +38,10 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "AIVANCE",
+    "name": "aivance",
     "url": "{{ site.url }}",
     "logo": "{{ site.url }}/images/logo.png",
-    "description": {{ ('AIVANCE builds AI products for telephony, documents, onboarding and public tenders. Every answer carries the source it came from. Based in the Rhine-Main region, Germany.' if lang == 'en' else 'AIVANCE baut KI-Produkte für Telefonie, Dokumente, Onboarding und Ausschreibungen. Jede Antwort führt die Quelle mit, aus der sie stammt. Sitz im Rhein-Main-Gebiet.') | dump | safe }},
+    "description": {{ ('aivance builds AI products for telephony, documents, onboarding and public tenders. Every answer carries the source it came from. Based in the Rhine-Main region, Germany.' if lang == 'en' else 'aivance baut KI-Produkte für Telefonie, Dokumente, Onboarding und Ausschreibungen. Jede Antwort führt die Quelle mit, aus der sie stammt. Sitz im Rhein-Main-Gebiet.') | dump | safe }},
     "email": "{{ site.email }}",
     "telephone": "{{ site.phoneHref }}",
     "address": {

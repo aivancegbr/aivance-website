@@ -23,7 +23,7 @@ module.exports = [
     ausgangslage:
       "Ein wachsendes Restaurant im Rhein-Main-Gebiet kämpfte täglich mit hunderten manuell bearbeiteten Anfragen zu Reservierungen, Öffnungszeiten und Speisekarten. Das Team verlor wertvolle Zeit — besonders in Stoßzeiten.",
     loesung:
-      "AIVANCE implementierte einen KI-Assistenten auf Basis eines Wissenssystems, der in die bestehende Infrastruktur integriert wurde — über die WhatsApp Business API und die Website. Der Assistent kennt Speisekarte, Verfügbarkeiten und Hausregeln in Echtzeit.",
+      "aivance implementierte einen KI-Assistenten auf Basis eines Wissenssystems, der in die bestehende Infrastruktur integriert wurde — über die WhatsApp Business API und die Website. Der Assistent kennt Speisekarte, Verfügbarkeiten und Hausregeln in Echtzeit.",
     gebaut: [
       "Wissenssystem mit Echtzeit-Indexierung der Speisekarte und Reservierungsdaten",
       "WhatsApp-Business-API-Integration mit automatischer Reservierungsbestätigung",
@@ -38,14 +38,14 @@ module.exports = [
     ],
     ergebnisZeitraum: "Messbare Ergebnisse nach 90 Tagen",
     zitat: {
-      text: "Seit AIVANCE können wir uns endlich auf das Wesentliche konzentrieren: unsere Gäste. Die KI beantwortet Anfragen schneller und präziser, als wir es je manuell konnten.",
+      text: "Seit aivance können wir uns endlich auf das Wesentliche konzentrieren: unsere Gäste. Die KI beantwortet Anfragen schneller und präziser, als wir es je manuell konnten.",
       autor: "Inhaber, Restaurant",
       ort: "Rhein-Main-Gebiet · Gastronomie"
     },
     bild: "/images/gastrodashboard.jpeg",
-    bildAlt: "Manager-Dashboard des AIVANCE-Gastronomie-Systems mit Auslastung und Umsatz in Echtzeit",
+    bildAlt: "Manager-Dashboard des aivance-Gastronomie-Systems mit Auslastung und Umsatz in Echtzeit",
     meta: {
-      title: "Gastronomie: 78 % weniger manuelle Anfragen — AIVANCE",
+      title: "Gastronomie: 78 % weniger manuelle Anfragen — aivance",
       description: "Case Study: KI-Assistent für ein Restaurant im Rhein-Main-Gebiet — 78 % weniger manuelle Anfragen, Antwortzeit von Stunden auf 0,3 Sekunden."
     },
     en: {
@@ -61,7 +61,7 @@ module.exports = [
       ausgangslage:
         "A growing restaurant in the Rhine-Main region struggled daily with hundreds of manually handled inquiries about reservations, opening hours and menus. The team lost valuable time — especially at peak hours.",
       loesung:
-        "AIVANCE implemented an AI assistant built on a knowledge system and integrated it into the existing infrastructure — via the WhatsApp Business API and the website. The assistant knows the menu, availability and house rules in real time.",
+        "aivance implemented an AI assistant built on a knowledge system and integrated it into the existing infrastructure — via the WhatsApp Business API and the website. The assistant knows the menu, availability and house rules in real time.",
       gebaut: [
         "Knowledge system with real-time indexing of the menu and reservation data",
         "WhatsApp Business API integration with automatic reservation confirmation",
@@ -76,13 +76,13 @@ module.exports = [
       ],
       ergebnisZeitraum: "Measurable results after 90 days",
       zitat: {
-        text: "Since AIVANCE, we can finally focus on what matters: our guests. The AI answers inquiries faster and more precisely than we ever could manually.",
+        text: "Since aivance, we can finally focus on what matters: our guests. The AI answers inquiries faster and more precisely than we ever could manually.",
         autor: "Owner, restaurant",
         ort: "Rhine-Main region · Hospitality"
       },
-      bildAlt: "Manager dashboard of the AIVANCE hospitality system with real-time occupancy and revenue",
+      bildAlt: "Manager dashboard of the aivance hospitality system with real-time occupancy and revenue",
       meta: {
-        title: "Hospitality: 78 % Fewer Manual Inquiries — AIVANCE",
+        title: "Hospitality: 78 % Fewer Manual Inquiries — aivance",
         description: "Case study: AI assistant for a restaurant in the Rhine-Main region — 78% fewer manual inquiries, response time down from hours to 0.3 seconds."
       }
     }
@@ -105,7 +105,7 @@ module.exports = [
     ausgangslage:
       "Ein mittelständisches Unternehmen im Rhein-Main-Gebiet verlor pro neuem Mitarbeitenden durchschnittlich 3–4 Arbeitstage durch manuelles Onboarding — vom HR-Team bis zur Führungskraft. Repetitive Fragen zu Prozessen, Tools und Richtlinien blockierten das Team täglich.",
     loesung:
-      "AIVANCE baute ein Onboarding-Wissenssystem, das die gesamte Wissensbasis des Unternehmens indexiert. Neue Mitarbeitende erhalten sofort präzise Antworten — über Slack, Teams oder Web — ohne ein Ticket zu öffnen.",
+      "aivance baute ein Onboarding-Wissenssystem, das die gesamte Wissensbasis des Unternehmens indexiert. Neue Mitarbeitende erhalten sofort präzise Antworten — über Slack, Teams oder Web — ohne ein Ticket zu öffnen.",
     gebaut: [
       "Wissens-Index über alle Unternehmensrichtlinien, Prozesse und HR-Dokumente",
       "Slack-Bot mit personalisiertem Onboarding-Plan und automatischer Fortschrittsverfolgung",
@@ -120,14 +120,14 @@ module.exports = [
     ],
     ergebnisZeitraum: "Messbare Ergebnisse nach 60 Tagen",
     zitat: {
-      text: "Unser HR-Team wurde täglich mit denselben Fragen überflutet. AIVANCE hat das vollständig gelöst. Neue Kollegen fühlen sich ab Tag 1 gut betreut, und die Implementierung war schneller als erwartet.",
+      text: "Unser HR-Team wurde täglich mit denselben Fragen überflutet. aivance hat das vollständig gelöst. Neue Kollegen fühlen sich ab Tag 1 gut betreut, und die Implementierung war schneller als erwartet.",
       autor: "HR-Leitung",
       ort: "Mittelständisches Unternehmen · Rhein-Main-Gebiet"
     },
     bild: null,
     bildAlt: null,
     meta: {
-      title: "Mittelstand: 50 % weniger Onboarding-Zeit — AIVANCE",
+      title: "Mittelstand: 50 % weniger Onboarding-Zeit — aivance",
       description: "Case Study: Onboarding-Wissenssystem für einen Mittelständler — 80 % weniger HR-Anfragen, Onboarding-Zeit halbiert."
     },
     en: {
@@ -143,7 +143,7 @@ module.exports = [
       ausgangslage:
         "A mid-sized company in the Rhine-Main region lost an average of 3–4 working days per new hire to manual onboarding — from the HR team up to the line manager. Repetitive questions about processes, tools and policies blocked the team daily.",
       loesung:
-        "AIVANCE built an onboarding knowledge system that indexes the company's entire knowledge base. New employees get precise answers instantly — via Slack, Teams or the web — without opening a ticket.",
+        "aivance built an onboarding knowledge system that indexes the company's entire knowledge base. New employees get precise answers instantly — via Slack, Teams or the web — without opening a ticket.",
       gebaut: [
         "Knowledge index across all company policies, processes and HR documents",
         "Slack bot with a personalized onboarding plan and automatic progress tracking",
@@ -158,12 +158,12 @@ module.exports = [
       ],
       ergebnisZeitraum: "Measurable results after 60 days",
       zitat: {
-        text: "Our HR team was flooded with the same questions every day. AIVANCE solved that completely. New colleagues feel well looked after from day one, and the implementation was faster than expected.",
+        text: "Our HR team was flooded with the same questions every day. aivance solved that completely. New colleagues feel well looked after from day one, and the implementation was faster than expected.",
         autor: "Head of HR",
         ort: "Mid-sized company · Rhine-Main region"
       },
       meta: {
-        title: "SMB: Onboarding Time Cut by 3 Days — AIVANCE",
+        title: "SMB: Onboarding Time Cut by 3 Days — aivance",
         description: "Case study: onboarding knowledge system for a mid-sized company — 80% fewer HR inquiries, onboarding time cut in half."
       }
     }
@@ -186,7 +186,7 @@ module.exports = [
     ausgangslage:
       "Eine renommierte Gesundheitspraxis im Raum New York mit anspruchsvollem Patientenstamm war online praktisch unsichtbar. Die Website bestand aus einer einzigen Seite, wichtige Leistungen hatten keine eigenen Unterseiten, und Google meldete Indexierungsfehler. Wer nach den Kernleistungen der Praxis suchte, fand die Konkurrenz.",
     loesung:
-      "AIVANCE hat die Website technisch und inhaltlich neu aufgestellt: eigene, suchoptimierte Seiten für jede Kernleistung, Behebung aller Indexierungsfehler in der Google Search Console, strukturierte Daten (FAQ-Schema) und ein Blog mit CMS, über das die Praxis ohne Entwickler publiziert. Die monatlichen Google-Kennzahlen laufen in ein Live-Dashboard, das automatisch aktualisiert wird.",
+      "aivance hat die Website technisch und inhaltlich neu aufgestellt: eigene, suchoptimierte Seiten für jede Kernleistung, Behebung aller Indexierungsfehler in der Google Search Console, strukturierte Daten (FAQ-Schema) und ein Blog mit CMS, über das die Praxis ohne Entwickler publiziert. Die monatlichen Google-Kennzahlen laufen in ein Live-Dashboard, das automatisch aktualisiert wird.",
     gebaut: [
       "Fünf suchoptimierte Leistungsseiten mit lokalem SEO-Fokus und FAQ-Schema",
       "Technisches SEO: Indexierungsfehler behoben, Canonicals, Sitemap, Redirects",
@@ -228,8 +228,8 @@ module.exports = [
     bild: null,
     bildAlt: null,
     meta: {
-      title: "Gesundheitspraxis: +128 % Google-Klicks — AIVANCE",
-      description: "Wie AIVANCE die Google- und KI-Sichtbarkeit einer US-Praxis steigerte: 128 % mehr Suchklicks und 855 % mehr Impressionen auf einer Leistungsseite."
+      title: "Gesundheitspraxis: +128 % Google-Klicks — aivance",
+      description: "Wie aivance die Google- und KI-Sichtbarkeit einer US-Praxis steigerte: 128 % mehr Suchklicks und 855 % mehr Impressionen auf einer Leistungsseite."
     },
     en: {
       title: "Online Visibility for a Healthcare Practice",
@@ -244,7 +244,7 @@ module.exports = [
       ausgangslage:
         "A well-established medical practice in the New York area with a demanding patient base was practically invisible online. The website consisted of a single page, key services had no dedicated subpages, and Google reported indexing errors. Anyone searching for the practice's core services found the competition.",
       loesung:
-        "AIVANCE rebuilt the website technically and editorially: dedicated, search-optimized pages for every core service, all indexing errors fixed in Google Search Console, structured data (FAQ schema), and a blog with a CMS the practice publishes through without a developer. The monthly Google metrics flow into a live dashboard that updates automatically.",
+        "aivance rebuilt the website technically and editorially: dedicated, search-optimized pages for every core service, all indexing errors fixed in Google Search Console, structured data (FAQ schema), and a blog with a CMS the practice publishes through without a developer. The monthly Google metrics flow into a live dashboard that updates automatically.",
       gebaut: [
         "Five search-optimized service pages with local SEO focus and FAQ schema",
         "Technical SEO: indexing errors fixed, canonicals, sitemap, redirects",
@@ -282,8 +282,8 @@ module.exports = [
         statement: "A strong website should not only represent a business. It should help the right people find it."
       },
       meta: {
-        title: "Healthcare Practice: +128 % Google Clicks — AIVANCE",
-        description: "How AIVANCE improved Google and AI-search visibility for a US healthcare practice: 128% more search clicks and 855% more impressions on a key service page."
+        title: "Healthcare Practice: +128 % Google Clicks — aivance",
+        description: "How aivance improved Google and AI-search visibility for a US healthcare practice: 128% more search clicks and 855% more impressions on a key service page."
       }
     }
   }

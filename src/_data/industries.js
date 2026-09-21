@@ -1,6 +1,6 @@
 /**
  * Vier Branchenseiten (Template T3, § 7).
- * Rechtsrahmen-Blöcke beschreiben Maßnahmen von AIVANCE — keine Rechtsberatung
+ * Rechtsrahmen-Blöcke beschreiben Maßnahmen von aivance — keine Rechtsberatung
  * ("Wir stellen sicher, dass …", nicht "Sie müssen …"). Vor Livegang anwaltlich prüfen (§ 7).
  */
 module.exports = [
@@ -55,7 +55,7 @@ module.exports = [
       }
     ],
     meta: {
-      title: "Digitalisierung für Praxen — AIVANCE",
+      title: "Digitalisierung für Praxen — aivance",
       description: "Telefonentlastung, Website und Dokumentenabläufe für Arztpraxen im Rhein-Main-Gebiet — konform mit § 203 StGB und Art. 9 DSGVO."
     },
     en: {
@@ -106,7 +106,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Digitalization for Medical Practices — AIVANCE",
+        title: "Digitalization for Medical Practices — aivance",
         description: "Phone relief, website and document workflows for medical practices in the Rhine-Main region — compliant with Section 203 StGB and Art. 9 GDPR."
       }
     }
@@ -158,7 +158,7 @@ module.exports = [
       }
     ],
     meta: {
-      title: "Digitalisierung für Steuerkanzleien — AIVANCE",
+      title: "Digitalisierung für Steuerkanzleien — aivance",
       description: "Automatisierter Posteingang, Wissenssysteme und Reporting für Kanzleien im Rhein-Main-Gebiet — konform mit § 62 StBerG und § 203 StGB."
     },
     en: {
@@ -205,7 +205,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Digitalization for Tax Firms — AIVANCE",
+        title: "Digitalization for Tax Firms — aivance",
         description: "Automated mail intake, knowledge systems and reporting for firms in the Rhine-Main region — compliant with Section 62 StBerG and Section 203 StGB."
       }
     }
@@ -252,7 +252,7 @@ module.exports = [
       }
     ],
     meta: {
-      title: "Digitalisierung für Gastronomie — AIVANCE",
+      title: "Digitalisierung für Gastronomie — aivance",
       description: "Reservierungen automatisieren, Gästefragen beantworten, Zahlen live sehen — Digitalisierung für Restaurants im Rhein-Main-Gebiet."
     },
     en: {
@@ -294,7 +294,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Digitalization for Hospitality — AIVANCE",
+        title: "Digitalization for Hospitality — aivance",
         description: "Automate reservations, answer guest questions, see your numbers live — digitalization for restaurants in the Rhine-Main region."
       }
     }
@@ -345,7 +345,7 @@ module.exports = [
       }
     ],
     meta: {
-      title: "Digitalisierung für Handwerk & Mittelstand — AIVANCE",
+      title: "Digitalisierung für Handwerk & Mittelstand — aivance",
       description: "Büroabläufe automatisieren, Wissen sichern, Mitarbeiter finden: Digitalisierung für Betriebe im Rhein-Main-Gebiet."
     },
     en: {
@@ -391,7 +391,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Digitalization for Trades & SMBs — AIVANCE",
+        title: "Digitalization for Trades & SMBs — aivance",
         description: "Automate office workflows, secure knowledge, find employees: digitalization for businesses in the Rhine-Main region."
       }
     }

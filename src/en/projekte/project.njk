@@ -165,6 +165,6 @@ eleventyComputed:
   "name": {{ (d.title or projekt.title) | dump | safe }},
   "about": {{ (d.brancheLabel or projekt.brancheLabel) | dump | safe }},
   "description": {{ (d.meta.description or projekt.meta.description) | dump | safe }},
-  "creator": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" }
+  "creator": { "@type": "Organization", "name": "aivance", "url": "{{ site.url }}" }
 }
 </script>

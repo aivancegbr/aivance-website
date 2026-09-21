@@ -133,7 +133,7 @@ eleventyComputed:
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": {{ (d.hero or branche.hero) | dump | safe }},
-  "provider": { "@type": "Organization", "name": "AIVANCE", "url": "{{ site.url }}" },
+  "provider": { "@type": "Organization", "name": "aivance", "url": "{{ site.url }}" },
   "audience": { "@type": "Audience", "audienceType": {{ (d.title or branche.title) | dump | safe }} },
   "areaServed": "Rhine-Main region"
 }

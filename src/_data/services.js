@@ -49,7 +49,7 @@ module.exports = [
     ],
     kombiniert: ["foto-video", "social-media", "prozessautomatisierung"],
     meta: {
-      title: "Website & Webdesign für Unternehmen — AIVANCE",
+      title: "Website & Webdesign für Unternehmen — aivance",
       description: "Websites für Praxen, Kanzleien und Betriebe im Rhein-Main-Gebiet: schnell, mobil, selbst pflegbar. Livegang realistisch in 4–6 Wochen."
     },
     en: {
@@ -93,7 +93,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Website & Web Design for Businesses — AIVANCE",
+        title: "Website & Web Design for Businesses — aivance",
         description: "Websites for practices, firms and businesses in the Rhine-Main region: fast, mobile, easy to maintain yourself. Launch realistically in 4–6 weeks."
       }
     }
@@ -137,7 +137,7 @@ module.exports = [
     kombiniert: ["website-webdesign", "social-media"],
     portfolio: false, // Platzhalter deaktiviert — reaktivieren, sobald echtes Foto-/Videomaterial vorliegt
     meta: {
-      title: "Foto, Video & Schnitt für Unternehmen — AIVANCE",
+      title: "Foto, Video & Schnitt für Unternehmen — aivance",
       description: "Foto- und Videoproduktion vor Ort im Rhein-Main-Gebiet: Team, Räume, Arbeitsalltag. Material für Website, Social Media und Personalgewinnung."
     },
     en: {
@@ -174,7 +174,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Photo, Video & Editing for Businesses — AIVANCE",
+        title: "Photo, Video & Editing for Businesses — aivance",
         description: "On-site photo and video production in the Rhine-Main region: team, premises, everyday work. Material for your website, social media and recruiting."
       }
     }
@@ -216,7 +216,7 @@ module.exports = [
     ],
     kombiniert: ["foto-video", "website-webdesign"],
     meta: {
-      title: "Social-Media-Management für Unternehmen — AIVANCE",
+      title: "Social-Media-Management für Unternehmen — aivance",
       description: "Planung, Produktion und Veröffentlichung Ihrer Social-Media-Beiträge mit echtem Material aus Ihrem Betrieb. Für Unternehmen im Rhein-Main-Gebiet."
     },
     en: {
@@ -252,7 +252,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Social Media Management for Businesses — AIVANCE",
+        title: "Social Media Management for Businesses — aivance",
         description: "Planning, production and publishing of your social media posts with real material from your business. For companies in the Rhine-Main region."
       }
     }
@@ -305,7 +305,7 @@ module.exports = [
     ],
     kombiniert: ["website-webdesign", "social-media", "reporting"],
     meta: {
-      title: "SEO & KI-Sichtbarkeit für Unternehmen — AIVANCE",
+      title: "SEO & KI-Sichtbarkeit für Unternehmen — aivance",
       description: "Besser auffindbar in Google und in den Antworten von KI-Systemen: technische Basis, eigene Leistungsseiten, strukturierte Daten. Für Unternehmen im Rhein-Main-Gebiet."
     },
     en: {
@@ -349,7 +349,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "SEO & AI Visibility for Businesses — AIVANCE",
+        title: "SEO & AI Visibility for Businesses — aivance",
         description: "Easier to find in Google and in the answers of AI systems: technical foundation, dedicated service pages, structured data. For businesses in the Rhine-Main region, Germany."
       }
     }
@@ -392,7 +392,7 @@ module.exports = [
     ],
     kombiniert: ["prozessautomatisierung", "integrationen", "wissenssysteme"],
     meta: {
-      title: "Individualsoftware für Unternehmen — AIVANCE",
+      title: "Individualsoftware für Unternehmen — aivance",
       description: "Maßgeschneiderte Anwendungen statt Excel-Chaos: Analyse, Prototyp, Entwicklung in Etappen. Betrieb auf Servern in Deutschland oder der EU."
     },
     en: {
@@ -429,7 +429,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Custom Software for Businesses — AIVANCE",
+        title: "Custom Software for Businesses — aivance",
         description: "Tailor-made applications instead of Excel chaos: analysis, prototype, development in stages. Hosted on servers in Germany or the EU."
       }
     }
@@ -476,7 +476,7 @@ module.exports = [
     ],
     kombiniert: ["voice-agents", "prozessautomatisierung", "individualsoftware"],
     meta: {
-      title: "Wissenssysteme (RAG/DMS) für Unternehmen — AIVANCE",
+      title: "Wissenssysteme (RAG/DMS) für Unternehmen — aivance",
       description: "Firmenwissen durchsuchbar machen: KI-Suche mit Quellenangabe aus Ihren Dokumenten. DSGVO-konform, Ø 17 Tage bis Go-Live."
     },
     en: {
@@ -518,7 +518,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Knowledge Systems (RAG/DMS) for Businesses — AIVANCE",
+        title: "Knowledge Systems (RAG/DMS) for Businesses — aivance",
         description: "Make company knowledge searchable: AI search with source citations from your documents. GDPR-compliant, 17 days on average to go-live."
       }
     }
@@ -560,7 +560,7 @@ module.exports = [
     ],
     kombiniert: ["wissenssysteme", "prozessautomatisierung"],
     meta: {
-      title: "Voice Agents für Unternehmen — AIVANCE",
+      title: "Voice Agents für Unternehmen — aivance",
       description: "KI-Telefon-Assistent für Praxen, Kanzleien und Betriebe: nimmt Anrufe an, beantwortet Standardfragen, leitet weiter. Pilotbetrieb in 2–4 Wochen."
     },
     en: {
@@ -597,7 +597,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Voice Agents for Businesses — AIVANCE",
+        title: "Voice Agents for Businesses — aivance",
         description: "AI phone assistant for practices, firms and businesses: answers calls, handles routine questions, forwards the rest. Pilot operation in 2–4 weeks."
       }
     }
@@ -641,7 +641,7 @@ module.exports = [
     ],
     kombiniert: ["integrationen", "reporting", "wissenssysteme"],
     meta: {
-      title: "Prozessautomatisierung für Unternehmen — AIVANCE",
+      title: "Prozessautomatisierung für Unternehmen — aivance",
       description: "Wiederkehrende Abläufe automatisieren: Posteingang, Dokumentenablage, Datenübertragung. Erster Ablauf produktiv in 2–4 Wochen."
     },
     en: {
@@ -678,7 +678,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Process Automation for Businesses — AIVANCE",
+        title: "Process Automation for Businesses — aivance",
         description: "Automate recurring workflows: inbound mail, document filing, data transfer. First workflow live in 2–4 weeks."
       }
     }
@@ -720,7 +720,7 @@ module.exports = [
     ],
     kombiniert: ["prozessautomatisierung", "integrationen"],
     meta: {
-      title: "KPI & Reporting für Unternehmen — AIVANCE",
+      title: "KPI & Reporting für Unternehmen — aivance",
       description: "Automatische Dashboards und Berichte aus Buchhaltung, Kasse und CRM. Eine Zahl, eine Quelle — erstes Dashboard in 2–3 Wochen."
     },
     en: {
@@ -757,7 +757,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "KPIs & Reporting for Businesses — AIVANCE",
+        title: "KPIs & Reporting for Businesses — aivance",
         description: "Automated dashboards and reports from accounting, POS and CRM. One number, one source — first dashboard in 2–3 weeks."
       }
     }
@@ -799,7 +799,7 @@ module.exports = [
     ],
     kombiniert: ["prozessautomatisierung", "reporting", "individualsoftware"],
     meta: {
-      title: "Integrationen & API für Unternehmen — AIVANCE",
+      title: "Integrationen & API für Unternehmen — aivance",
       description: "Systeme verbinden statt Daten abtippen: Schnittstellen, Datenmigration, Überwachung. Einzelne Verbindungen oft in 1–2 Wochen."
     },
     en: {
@@ -836,7 +836,7 @@ module.exports = [
         }
       ],
       meta: {
-        title: "Integrations & API for Businesses — AIVANCE",
+        title: "Integrations & API for Businesses — aivance",
         description: "Connect systems instead of retyping data: interfaces, data migration, monitoring. Single connections often in 1–2 weeks."
       }
     }
