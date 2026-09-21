@@ -59,6 +59,7 @@
     });
   }
   setupMenu("megaBtn", "megaPanel", true);
+  setupMenu("produkteBtn", "produktePanel", false);
   setupMenu("branchenBtn", "branchenPanel", false);
 
   /* ── Mobiles Vollbild-Overlay (§ 4) ── */

@@ -1,4 +1,5 @@
-{# Navigation (§ 4): max. 5 Punkte, Mega-Menü für Leistungen, Dropdown für Branchen.
+{# Navigation (§ 4): max. 5 Punkte — Produkte zuerst, danach die Umsetzung.
+   Mega-Menü für Leistungen, Dropdowns für Produkte und Branchen.
    Sprachabhängige Chrome-Texte und Link-Ziele über i18n[lang] (§ 13 Phase 4).
    Auf EN-Seiten führen alle internen Links auf die englischen Zwillingsseiten.
    Look: Mono-Labels in Versalien, Haarlinien, Amber markiert die aktive Stelle. #}
@@ -10,7 +11,7 @@
 {% set isBranchen = page.url.startsWith('/branchen/') or page.url.startsWith('/en/branchen/') %}
 {% set isProjekte = page.url.startsWith('/projekte/') or page.url.startsWith('/en/projekte/') %}
 {% set isUeberUns = page.url.startsWith('/ueber-uns/') or page.url.startsWith('/en/about/') %}
-{% set isHome = page.url == '/' or page.url == '/en/' %}
+{% set isProdukte = page.url.startsWith('/produkte/') or page.url.startsWith('/en/produkte/') %}
 
 <header>
 <nav id="navbar" class="sticky top-0 z-50 border-b border-line" aria-label="{{ t.navAriaLabel }}">
@@ -21,7 +22,23 @@
     </a>
 
     <div class="hidden lg:flex items-center gap-7">
-      <a href="{{ t.urlHome }}" class="nav-link {{ 'text-amber' if isHome else 'text-ink-muted' }} hover:text-ink transition-colors" {% if isHome %}aria-current="page"{% endif %}>{{ t.navStart }}</a>
+      {# Produkte zuerst: das Geschaeft sind die Produkte, nicht die Umsetzung. #}
+      <div class="relative">
+        <button type="button" id="produkteBtn" class="nav-link inline-flex items-center gap-1.5 {{ 'text-amber' if isProdukte else 'text-ink-muted' }} hover:text-ink transition-colors"
+                aria-expanded="false" aria-controls="produktePanel" {% if isProdukte %}aria-current="true"{% endif %}>
+          {{ t.navProdukte }}
+          <svg class="menu-caret w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="produktePanel" class="dropdown-panel" role="menu" aria-label="{{ t.navProdukte }}">
+          {% for produkt in products %}
+          <a href="{{ urlBase }}/produkte/{{ produkt.slug }}/" role="menuitem" class="block px-4 py-3 hover:bg-canvas transition-colors">
+            <span class="font-semibold text-sm text-ink block tracking-tight">{{ produkt.name }}</span>
+            <span class="mono text-[11px] text-ink-muted">{{ (produkt.en.tags if isEnPage else produkt.tags) | join(' · ') }}</span>
+          </a>
+          {% endfor %}
+          <a href="{{ t.urlProdukte }}" role="menuitem" class="block px-4 py-3 border-t border-line mono text-[11px] tracking-widest uppercase text-ink hover:text-amber hover:bg-canvas transition-colors">{{ 'All products' if isEnPage else 'Alle Produkte' }} →</a>
+        </div>
+      </div>
       <button type="button" id="megaBtn" class="nav-link inline-flex items-center gap-1.5 {{ 'text-amber' if isLeistungen else 'text-ink-muted' }} hover:text-ink transition-colors"
               aria-expanded="false" aria-controls="megaPanel" {% if isLeistungen %}aria-current="true"{% endif %}>
         {{ t.navLeistungen }}
@@ -64,7 +81,7 @@
 
   {# Mega-Menü: drei Cluster-Spalten + Case-Study-Teaser (§ 4) #}
   <div id="megaPanel" class="menu-panel" aria-label="{{ t.leistungenAriaLabel }}">
-    <div class="max-w-6xl mx-auto px-5 py-9 grid grid-cols-4 gap-8">
+    <div class="max-w-6xl mx-auto px-5 py-9 grid grid-cols-3 gap-8">
       {% for cluster in clusters %}
       <div>
         <span class="eyebrow eyebrow-muted mb-3 text-[11px]">0{{ loop.index }}</span>
@@ -78,20 +95,6 @@
         </ul>
       </div>
       {% endfor %}
-      {# Vierte Spalte: eigene Produkte — im Mega-Menü, weil sie kein Navigationspunkt sind #}
-      <div class="border-l border-line pl-8">
-        <span class="eyebrow mb-3 text-[11px]">{{ t.navProdukte }}</span>
-        <a href="{{ t.urlProdukte }}" class="block font-semibold text-ink text-[15px] tracking-tight mb-1 hover:text-amber transition-colors">{{ 'Built by us' if isEnPage else 'Aus eigener Hand' }}</a>
-        <p class="text-xs text-ink-muted mb-4">{{ 'Grown out of client work' if isEnPage else 'Aus der Projektarbeit entstanden' }}</p>
-        <ul>
-          {% for produkt in products %}
-          <li><a href="{{ t.urlProdukte }}#{{ produkt.slug }}" class="flex items-baseline justify-between gap-2 py-1.5 text-sm text-ink-muted hover:text-amber transition-colors">
-            <span>{{ produkt.name }}</span>
-            {% if (produkt.en.status if isEnPage else produkt.status) %}<span class="mono text-[9px] tracking-widest uppercase text-amber flex-none">{{ produkt.en.status if isEnPage else produkt.status }}</span>{% endif %}
-          </a></li>
-          {% endfor %}
-        </ul>
-      </div>
     </div>
   </div>
 </nav>
@@ -107,6 +110,14 @@
 
   <div class="flex-1 overflow-y-auto px-5 py-4">
     <a href="{{ t.urlHome }}" class="block py-3.5 border-b border-line text-[15px] font-semibold text-ink tracking-tight">{{ t.navStart }}</a>
+    <p class="eyebrow eyebrow-muted mt-6 mb-2 text-[11px]">{{ t.navProdukte }}</p>
+    {% for produkt in products %}
+    <a href="{{ urlBase }}/produkte/{{ produkt.slug }}/" class="block py-3.5 border-b border-line text-[15px] text-ink">
+      {{ produkt.name }}
+      <span class="mono text-[11px] text-ink-muted block mt-0.5">{{ (produkt.en.tags if isEnPage else produkt.tags) | join(' · ') }}</span>
+    </a>
+    {% endfor %}
+    <a href="{{ t.urlProdukte }}" class="block py-3.5 border-b border-line text-sm text-amber">{{ 'All products' if isEnPage else 'Alle Produkte' }} →</a>
     <p class="eyebrow eyebrow-muted mt-6 mb-2 text-[11px]">{{ t.mobileLeistungenLabel }}</p>
     {% for cluster in clusters %}
     <div class="border-b border-line">
@@ -128,12 +139,6 @@
     {% for branche in industries %}
     <a href="{{ urlBase }}/branchen/{{ branche.slug }}/" class="block py-3.5 border-b border-line text-[15px] text-ink">{{ branche.en.title if isEnPage else branche.title }}</a>
     {% endfor %}
-
-    <p class="eyebrow eyebrow-muted mt-7 mb-2 text-[11px]">{{ t.navProdukte }}</p>
-    {% for produkt in products %}
-    <a href="{{ t.urlProdukte }}#{{ produkt.slug }}" class="block py-3.5 border-b border-line text-[15px] text-ink">{{ produkt.name }}</a>
-    {% endfor %}
-    <a href="{{ t.urlProdukte }}" class="block py-3.5 border-b border-line text-sm text-amber">{{ 'All products' if isEnPage else 'Alle Produkte' }}</a>
 
     <a href="{{ t.urlProjekte }}" class="block py-3.5 mt-6 border-b border-line text-[15px] font-semibold text-ink tracking-tight">{{ t.navProjekte }}</a>
     <a href="{{ t.urlUeberUns }}" class="block py-3.5 border-b border-line text-[15px] font-semibold text-ink tracking-tight">{{ t.navUeberUns }}</a>

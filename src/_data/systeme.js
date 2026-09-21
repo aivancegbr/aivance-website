@@ -34,7 +34,7 @@ module.exports = {
       en: { tut: "Get found in Google and AI search", branche: "Healthcare", art: "Search optimisation, visibility in AI answers" }
     },
     {
-      tut: "Außenauftritt aus einer Hand",
+      tut: "Außenauftritt als ein System",
       branche: "Gastronomie, Friseur, Mode",
       art: "Webdesign, Grafik, Video, Imagefilm",
       en: { tut: "Public presence from a single team", branche: "Hospitality, salons, fashion", art: "Web design, graphics, video, brand film" }

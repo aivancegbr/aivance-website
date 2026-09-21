@@ -1,9 +1,9 @@
 ---
 layout: layouts/base.njk
 lang: en
-title: AIVANCE — Digital Agency, Rhine-Main Germany
-metaTitle: AIVANCE — Digital Agency, Rhine-Main Germany
-metaDescription: Website, photo & video, software and automation from a single source. GDPR-compliant, for medical practices, tax firms and hospitality.
+title: AIVANCE — AI products that cite their source
+metaTitle: AIVANCE — AI products that cite their source
+metaDescription: Four AI products for telephony, documents, onboarding and public tenders. Every answer carries its source. GDPR-compliant, data held in the EU.
 deUrl: /
 breadcrumb: English
 permalink: /en/
@@ -57,38 +57,38 @@ permalink: /en/
   <div class="hero-inner">
   <div class="hero-left">
     <h1 class="headline">
-      <span>Digital transformation,<br>from one team.</span>
+      <span>AI products that<br>cite their source.</span>
       <span class="headline-accent">
         <span class="cycling-wrapper" id="cycling-wrapper">
-          <span class="cycling-text active">Website.</span>
-          <span class="cycling-text">Software.</span>
-          <span class="cycling-text">Automation.</span>
-          <span class="cycling-text">One partner.</span>
+          <span class="cycling-text active">Echo.</span>
+          <span class="cycling-text">Iris.</span>
+          <span class="cycling-text">Boarding.</span>
+          <span class="cycling-text">Radar.</span>
         </span>
       </span>
     </h1>
 
     <p class="hero-subtext">
-      Website, visuals, software and automation — coordinated instead of pieced together. You work with one partner instead of five vendors. Every claim on this page carries its proof.
+      We build four products on one shared foundation: telephony, documents, onboarding, public tenders. Every answer names the document and the passage it came from — verifiable, not plausibly guessed.
     </p>
 
     <div class="hero-cta-row">
       <a href="/en/contact/" class="btn-primary">Free introductory call</a>
-      <a href="/en/leistungen/" class="btn-ghost">View services</a>
+      <a href="/en/produkte/" class="btn-ghost">View products</a>
     </div>
 
     <div class="stats-row">
       <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Service areas</span>
+        <span class="stat-value">4</span>
+        <span class="stat-label">Products of our own</span>
       </div>
       <div class="stat">
         <span class="stat-value">4</span>
         <span class="stat-label">Industries in focus</span>
       </div>
       <div class="stat">
-        <span class="stat-value">1</span>
-        <span class="stat-label">Point of contact</span>
+        <span class="stat-value">EU</span>
+        <span class="stat-label">Data residency</span>
       </div>
     </div>
   </div>
@@ -100,8 +100,8 @@ permalink: /en/
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
         </span>
         <span class="badge-text-group">
-          <span class="badge-title">One point of contact</span>
-          <span class="badge-sub">instead of five vendors</span>
+          <span class="badge-title">Every answer sourced</span>
+          <span class="badge-sub">document and passage</span>
         </span>
       </div>
       <div class="float-badge float-badge-2" id="hero-badge2">
@@ -163,79 +163,29 @@ permalink: /en/
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
       <span class="eyebrow">01 / The problem</span>
-      <span class="eyebrow eyebrow-muted">Where it breaks</span>
+      <span class="eyebrow eyebrow-muted">Why AI fails in practice</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-      <h2 data-reveal-stagger class="section-h2 reveal">Five vendors<br/>who don't talk to each other.</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">AI that sounds convincing<br/>and is still wrong.</h2>
       <div class="reveal reveal-1 space-y-4 max-w-xl">
-        <p class="lede">Your web designer is waiting on photos from the photographer, the social media agency doesn't know about the new service page, and IT knows about none of it.</p>
-        <p class="lede">You're the one coordinating all of it — in the evening, between two appointments.</p>
-        <p class="evidence text-[17px] leading-snug">We solve this differently: one team, one point of contact, coordinated trades.</p>
+        <p class="lede">Most AI tools answer fluently but without evidence. Anyone who wants to check the answer has to go find the source themselves.</p>
+        <p class="lede">In a medical practice, a law firm or an accounts department that isn't a time saving, it's a liability: nobody can stand behind a statement whose origin they don't know.</p>
+        <p class="evidence text-[17px] leading-snug">So we build products where the evidence is part of the answer — document, page, passage.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ 02 · THE THREE CLUSTERS ═══ -->
+<!-- ═══ 02 · THE PRODUCTS — the business, hence first ═══ -->
 <section class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
-      <span class="eyebrow">02 / Services</span>
-      <span class="eyebrow eyebrow-muted">Three areas · one system</span>
-    </div>
-    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">Three areas, one connected system</h2>
-    <!-- Sticky-Kapitel (Modul B): das Medium bleibt stehen, die Copy zieht durch.
-         Gepinnt wird erst ab 1024 px — darunter stehen die drei Bereiche
-         normal untereinander. -->
-    <div class="chapter" data-scrub data-scrub-start="top top"
-         data-scrub-end="bottom bottom" data-scrub-var="--p" data-scrub-index="3">
-      <div class="chapter-media" aria-hidden="true">
-        <div class="chapter-stack">
-          {% for cluster in clusters %}{% set ec = enClusters[cluster.slug] %}
-          <div class="chapter-medium" data-i="{{ loop.index0 }}">
-            <span class="chapter-num">0{{ loop.index }}</span>
-            <span class="chapter-claim">{{ ec.claim }}</span>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="chapter-ticks">
-          {% for cluster in clusters %}<span class="chapter-tick" data-i="{{ loop.index0 }}"><span></span></span>{% endfor %}
-        </div>
-      </div>
-      <div class="chapter-copy">
-        {% for cluster in clusters %}{% set ec = enClusters[cluster.slug] %}
-        <div class="chapter-panel" data-i="{{ loop.index0 }}">
-          <span class="eyebrow eyebrow-muted mb-5 text-[11px] chapter-panel-num">0{{ loop.index }}</span>
-          <h3 class="text-[26px] md:text-[32px] font-semibold tracking-tight mb-2">{{ ec.title }}</h3>
-          <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-7 chapter-panel-claim">{{ ec.claim }}</p>
-          <ul class="chapter-list">
-            {% for leistung in services | filterByCluster(cluster.slug) %}
-            <li>
-              <a href="/en/leistungen/{{ leistung.slug }}/" class="chapter-item">
-                <span class="chapter-item-title">{{ leistung.en.title }}</span>
-                <span class="chapter-item-text">{{ leistung.en.card }}</span>
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-          <a href="/en/leistungen/{{ cluster.slug }}/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors">View area →</a>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 03 · OUR PRODUCTS ═══ -->
-<section class="py-20 md:py-28">
-  <div class="max-w-6xl mx-auto px-5">
-    <div class="section-head">
-      <span class="eyebrow">03 / Our products</span>
-      <span class="eyebrow eyebrow-muted">Grown out of client work</span>
+      <span class="eyebrow">02 / Products</span>
+      <span class="eyebrow eyebrow-muted">Four products · one foundation</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12">
-      <h2 data-reveal-stagger class="section-h2 reveal">Products we<br/>build ourselves.</h2>
-      <p class="lede max-w-md reveal reveal-1">What has come up more than once in client work, we develop into a product of our own — on the same principle: every answer carries its source.</p>
+      <h2 data-reveal-stagger class="section-h2 reveal">Four products,<br/>one foundation.</h2>
+      <p class="lede max-w-md reveal reveal-1">Echo, Iris, Boarding and Radar are our own products. They rest on the same ground — evidence rather than assertion — and are developed for every customer at once. What one business reports improves the product for all of them.</p>
     </div>
     <!-- Produkt-Schaukasten (Modul C + F): ein Mockup zur Zeit, Punktleiste mit
          Laufbalken. Die Schritte stehen als Markup im Dokument. -->
@@ -292,6 +242,57 @@ permalink: /en/
     </div>
     <div class="mt-10 reveal">
       <a href="/en/produkte/" class="btn-ghost">View all products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 · GROUNDWORK — what the products run on ═══ -->
+<section class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">03 / Groundwork</span>
+      <span class="eyebrow eyebrow-muted">So a product can hold</span>
+    </div>
+    <h2 data-reveal-stagger class="section-h2 mb-5 max-w-2xl reveal">A product is only as good as the system beneath it</h2>
+    <p class="lede mb-12 max-w-xl reveal reveal-1">Before Echo picks up the phone, it has to be clear what it may answer. Before Iris files anything, the folders have to be right. We put that groundwork in place and keep it running — it is the precondition, not the product.</p>
+    <!-- Sticky-Kapitel (Modul B): das Medium bleibt stehen, die Copy zieht durch.
+         Gepinnt wird erst ab 1024 px — darunter stehen die drei Bereiche
+         normal untereinander. -->
+    <div class="chapter" data-scrub data-scrub-start="top top"
+         data-scrub-end="bottom bottom" data-scrub-var="--p" data-scrub-index="3">
+      <div class="chapter-media" aria-hidden="true">
+        <div class="chapter-stack">
+          {% for cluster in clusters %}{% set ec = enClusters[cluster.slug] %}
+          <div class="chapter-medium" data-i="{{ loop.index0 }}">
+            <span class="chapter-num">0{{ loop.index }}</span>
+            <span class="chapter-claim">{{ ec.claim }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="chapter-ticks">
+          {% for cluster in clusters %}<span class="chapter-tick" data-i="{{ loop.index0 }}"><span></span></span>{% endfor %}
+        </div>
+      </div>
+      <div class="chapter-copy">
+        {% for cluster in clusters %}{% set ec = enClusters[cluster.slug] %}
+        <div class="chapter-panel" data-i="{{ loop.index0 }}">
+          <span class="eyebrow eyebrow-muted mb-5 text-[11px] chapter-panel-num">0{{ loop.index }}</span>
+          <h3 class="text-[26px] md:text-[32px] font-semibold tracking-tight mb-2">{{ ec.title }}</h3>
+          <p class="mono text-[11px] tracking-widest uppercase text-ink-muted mb-7 chapter-panel-claim">{{ ec.claim }}</p>
+          <ul class="chapter-list">
+            {% for leistung in services | filterByCluster(cluster.slug) %}
+            <li>
+              <a href="/en/leistungen/{{ leistung.slug }}/" class="chapter-item">
+                <span class="chapter-item-title">{{ leistung.en.title }}</span>
+                <span class="chapter-item-text">{{ leistung.en.card }}</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="/en/leistungen/{{ cluster.slug }}/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors">View area →</a>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -517,13 +518,13 @@ permalink: /en/
 
 <!-- ═══ 08 · FAQ ═══ -->
 {% set homeFaqEn = [
-  { q: "What does AIVANCE actually do — agency or software vendor?", a: "Both, and that's the point: we're a digital agency that designs (website, photo, social media) and builds (software, automation). You get no hand-off to subcontractors — one team implements both." },
-  { q: "Why book website, photography and automation with one provider?", a: "Because the disciplines depend on each other: the website needs the photos, automation needs the website's form data, social media needs both. With separate vendors you coordinate those dependencies yourself — with us that step disappears." },
-  { q: "What does a project cost?", a: "It depends on scope and service area — a website costs differently than a knowledge system integrated with your line-of-business software. What's fixed: the introductory call and process review are free, after that you get a fixed-price offer for one clearly scoped first step. No open-ended hourly billing." },
+  { q: "Is AIVANCE an agency?", a: "No. We build our own products — Echo for telephony, Iris for documents, Boarding for onboarding, Radar for public tenders — and develop them for every customer at once. To make a product run in your business we set up the surroundings: data, interfaces, public presence. That implementation work is a precondition, not our business model." },
+  { q: "What do I gain from you building a product rather than a one-off solution?", a: "A product running in several businesses improves with every piece of feedback — you receive improvements you never paid for. A bespoke build stays frozen at its acceptance date and starts ageing from day one." },
+  { q: "What does it cost to run one of your products?", a: "It depends on the product and the setup — connecting Radar to a search profile costs differently than fitting Iris to your existing filing. What's fixed: the introductory call and process review are free, after that you get a fixed-price offer for one clearly scoped first step. No open-ended hourly billing." },
   { q: "How long does implementation take?", a: "That varies by service, and we state it per service: knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks, a voice agent pilot 2–4 weeks. You get the concrete date in the first project week." },
   { q: "Where is my data stored and who has access?", a: "On servers in Germany (Hetzner) or the EU (AWS eu-central-1) — for US-based clients, on US servers. Access is governed by a data processing agreement under Art. 28 GDPR, and your data is never used for AI model training. Full details on our Data Security page." },
   { q: "Do you work with professionals bound by confidentiality law (doctors, tax advisors)?", a: "Yes. For medical practices and tax firms, specific confidentiality statutes apply — we bring the written confidentiality commitment and data processing agreement, and document safeguards for your own compliance obligations." },
-  { q: "What happens after go-live?", a: "You decide: a one-time handover with documentation, or ongoing support with agreed response times and a dedicated contact. Most clients choose ongoing support — you're not locked into it." }
+  { q: "What happens after go-live?", a: "The product keeps running and keeps being developed — improvements reach you without you commissioning a new project. For operation and response times we agree fixed commitments; the alternative is a one-time handover with documentation." }
 ] %}
 <section id="faq" class="py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-5">

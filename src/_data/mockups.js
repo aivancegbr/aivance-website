@@ -18,35 +18,35 @@ const LANG = 1600;
 module.exports = {
   hero: {
     de: [
-      { kind: "user", text: "Unsere Website ist veraltet und das Telefon steht nicht still. Wo fangen wir an?", pause: KURZ },
+      { kind: "user", text: "Wann läuft der Vertrag von Müller aus?", pause: KURZ },
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", pause: LANG,
-        text: "Mit einem <strong>Digital-Audit</strong>: Wir sehen uns Website, Anfragen und Abläufe an — und starten mit dem Schritt, der am meisten entlastet.",
-        source: "Quelle · /kontakt · kostenlos & unverbindlich",
+        text: "Am <strong>31. März 2027</strong>. Die Kündigungsfrist beträgt drei Monate, endet also am 31. Dezember 2026.",
+        source: "Quelle · Police_Mueller.pdf · Seite 2",
       },
-      { kind: "user", text: "Und wer koordiniert Website, Fotos und Technik?", pause: KURZ },
+      { kind: "user", text: "Und wenn die Antwort nicht im Dokument steht?", pause: KURZ },
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", evidenced: true, pause: 0,
-        text: "<strong>Ein Ansprechpartner</strong> bei AIVANCE. Website, Bildmaterial und Automatisierung aus einer Hand — abgestimmt statt zusammengestückelt.",
-        source: "Quelle · /ueber-uns · fester Ansprechpartner",
+        text: "Dann sagen unsere Produkte das — statt zu raten. <strong>Ohne Fundstelle keine Antwort.</strong>",
+        source: "Quelle · /produkte · Belegpflicht in jedem Produkt",
       },
     ],
     en: [
-      { kind: "user", text: "Our website is outdated and the phone won't stop ringing. Where do we start?", pause: KURZ },
+      { kind: "user", text: "When does the Müller contract expire?", pause: KURZ },
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", pause: LANG,
-        text: "With a <strong>digital audit</strong>: we look at your website, inquiries and workflows — and start with the step that relieves the most pressure.",
-        source: "Source · /en/contact · free, no strings",
+        text: "On <strong>31 March 2027</strong>. Notice period is three months, so the deadline is 31 December 2026.",
+        source: "Source · Police_Mueller.pdf · page 2",
       },
-      { kind: "user", text: "And who coordinates the website, photos and tech?", pause: KURZ },
+      { kind: "user", text: "And if the answer isn't in the document?", pause: KURZ },
       { kind: "typing", delay: 900 },
       {
         kind: "assistant", evidenced: true, pause: 0,
-        text: "<strong>One point of contact</strong> at AIVANCE. Website, visuals and automation from a single team — coordinated instead of pieced together.",
-        source: "Source · /en/about · one named contact",
+        text: "Then our products say so instead of guessing. <strong>No source, no answer.</strong>",
+        source: "Source · /en/produkte · every product cites its source",
       },
     ],
   },

@@ -8,9 +8,9 @@ module.exports = [
     title: "Sichtbarkeit",
     claim: "Außenwirkung und Marke",
     heroSatz:
-      "Website, Bildmaterial und Social Media aus einer Hand — abgestimmt statt zusammengestückelt.",
+      "Website, Bildmaterial und Social Media als ein zusammenhängendes System.",
     beschreibung:
-      "Ihr Auftritt entsteht bei uns als Ganzes: Die Website nutzt die Fotos, die wir vor Ort machen. Die Social-Media-Beiträge verlinken auf Seiten, die es wirklich gibt. Niemand koordiniert drei Dienstleister — Sie sprechen mit einem.",
+      "Ihr Auftritt entsteht als Ganzes: Die Website nutzt die Fotos, die wir vor Ort machen. Die Social-Media-Beiträge verlinken auf Seiten, die es wirklich gibt. Und der Auftritt ist die Oberfläche, auf der unsere Produkte später aufsetzen.",
     verzahnung:
       "Sichtbarkeit endet bei uns nicht beim Design: Kontaktanfragen aus der Website landen direkt in Ihren Systemen (Automatisierung), und Inhalte kommen aus denselben Datenquellen, die auch Ihre Software nutzt (Software & Systeme).",
     stichpunkte: [
@@ -22,13 +22,13 @@ module.exports = [
     services: ["website-webdesign", "foto-video", "social-media", "seo-ki-sichtbarkeit"],
     meta: {
       title: "Sichtbarkeit — AIVANCE",
-      description: "Website, Foto & Video und Social Media aus einer Hand — abgestimmt statt zusammengestückelt. Für Unternehmen im Rhein-Main-Gebiet."
+      description: "Website, Foto & Video und Social Media als ein zusammenhängendes System. Für Unternehmen im Rhein-Main-Gebiet."
     },
     en: {
       title: "Visibility",
       claim: "Public image and brand",
       heroSatz:
-        "Website, imagery and social media from a single source — coordinated instead of pieced together.",
+        "Website, imagery and social media as one coherent system.",
       beschreibung:
         "Your public presence is created as one coherent whole: the website uses the photos we take on site, and your social media posts link to pages that actually exist. Nobody has to coordinate three vendors — you talk to one.",
       verzahnung:
@@ -41,7 +41,7 @@ module.exports = [
       ],
       meta: {
         title: "Visibility — AIVANCE",
-        description: "Website, photo & video and social media from a single source — coordinated instead of pieced together. For businesses in the Rhine-Main region."
+        description: "Website, photo & video and social media as one coherent system. For businesses in the Rhine-Main region."
       }
     }
   },
