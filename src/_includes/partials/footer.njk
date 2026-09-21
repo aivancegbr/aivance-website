@@ -56,4 +56,13 @@
       <p class="mono text-[11px] tracking-widest text-paper/35">{{ t.footerSlogan }}</p>
     </div>
   </div>
+
+  {# Punktlandschaft als Abschluss der Seite. Eigenes Band unter der Fußzeile,
+     damit sie nichts überdeckt und die Höhe feststeht — kein Nachrutschen.
+     Ohne JavaScript erscheint sie gar nicht; ein leerer schwarzer Streifen
+     wäre schlechter als kein Streifen. #}
+  <div class="footer-terrain-band" aria-hidden="true">
+    <canvas id="footer-terrain"></canvas>
+  </div>
 </footer>
+<script src="/js/footer-terrain.js" defer></script>

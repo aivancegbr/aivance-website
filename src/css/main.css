@@ -1541,3 +1541,20 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   .ask-echo.is-live .ask-echo-dot { animation: none; }
   .ask-echo-thread { scroll-behavior: auto; }
 }
+
+/* ── Punktlandschaft am Seitenfuß ───────────────────────────────────────────
+   Dasselbe Raster wie im Hero, in die Tiefe gelegt: Reihen laufen auf einen
+   Horizont zu. Die Höhe steht fest, damit beim Laden nichts nachrutscht.
+   Ohne JavaScript bleibt das Band weg — ein leerer Streifen wäre schlechter
+   als keiner. */
+.footer-terrain-band { display: none; }
+.js .footer-terrain-band {
+  display: block; position: relative;
+  height: clamp(170px, 20vw, 300px);
+  margin-top: clamp(32px, 5vw, 64px);
+}
+.footer-terrain-band canvas { display: block; width: 100%; height: 100%; }
+
+@media (max-width: 640px) {
+  .js .footer-terrain-band { height: 140px; margin-top: 28px; }
+}
