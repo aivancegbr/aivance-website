@@ -1,56 +1,108 @@
-# „ask echo" — was im ElevenLabs-Dashboard noch fehlt
+# „ask echo" — Agentenkonfiguration und die Lücke, die zu schließen ist
 
-Das Fragefenster unten rechts ist gebaut, geprüft und läuft über **denselben
-Agenten wie die Live-Demo** auf der Produktseite
-(`agent_5801m32bpsx2e8er9e0mhd47aqd9`). Damit er dort Telefonzentrale bleibt
-und hier über aivance spricht, überschreibt die Website seine Systemanweisung
-beim Verbinden — derselbe Mechanismus, über den auch die englische Sprache
-umgeschaltet wird. Die Anweisung steht in `src/_data/askEcho.js`.
+## Stand heute (live, funktioniert, aber offen)
 
-Dafür fehlen drei Freigaben. Nachgemessen am Websocket-Verkehr erlaubt der
-Agent heute nur `language`; alles andere weist die Gegenstelle sofort ab.
+Das Fragefenster läuft über **denselben Agenten wie die Live-Demo**
+(`agent_5801m32bpsx2e8er9e0mhd47aqd9`). Damit er auf der Produktseite
+Telefonzentrale bleibt und im Fenster über aivance spricht, überschreibt die
+Website seine Systemanweisung beim Verbinden. Dafür sind im Dashboard die
+Overrides `prompt`, `first_message`, `text_only` und `language` freigegeben.
 
-## Agent → Security
+Das funktioniert — und ist zugleich das Problem.
 
-- [ ] **Override `prompt` erlauben.**
-      Sonst: `1008 — Override for field 'prompt' is not allowed by config.`
-      Folge: Echo antwortet auf der Website als Empfangs-Persona.
-- [ ] **Override `first_message` erlauben.**
-      Sonst: `1008 — Override for field 'first_message' is not allowed by config.`
-      Folge: Er begrüßt mit „Echo am Apparat" statt zu fragen, was man wissen will.
-- [ ] **Override `text_only` erlauben.**
-      Sonst: `1008 — Override for field 'text_only' is not allowed by config.`
-      Folge: Tippen ist unmöglich, nur Sprechen geht. Das SDK meldet den
-      Textmodus immer als Override an, umgehen lässt sich das nicht.
+## Die Lücke
 
-Danach ist nichts weiter zu tun — die Agent-ID steht schon in
-`src/_data/askEcho.js`, das Fenster erscheint auf allen Seiten außer
-`/produkte/echo/` und `/en/produkte/echo/`, wo die Live-Demo schon im Text steht.
+Zwei Schichten, die auseinanderzuhalten sind.
 
-## Der Preis dieser Bequemlichkeit
+**Schicht 1 — der Agent ist öffentlich.** `enable_auth: false` ist bei einer
+statischen Seite auf GitHub Pages unvermeidlich: Es gibt keinen Server, der ein
+Conversation-Token ausstellen könnte, und ein API-Schlüssel darf nicht in den
+Quelltext. Die Hostname-Allowlist ist **keine** Sicherheitsgrenze, sondern eine
+Bequemlichkeitsschranke — sie prüft den `Origin`-Header, und den setzt ein
+Skript außerhalb des Browsers frei. Vorgeführt am 21.09.2026: Ein Node-Skript
+mit `Origin: https://ai-vance.de` kam ohne weiteres durch, obwohl es von
+127.0.0.1 lief.
 
-Ein öffentlich erreichbarer Agent, der Prompt-Überschreibungen zulässt, lässt
-sich von jedem, der die ID im Quelltext liest, mit eigener Anweisung fahren —
-auf Ihre Rechnung und unter Ihrem Namen. Die Hostname-Allowlist auf
-`ai-vance.de` bremst normale Browser, ist aber keine harte Grenze: Sie stützt
-sich auf einen Header, den ein Skript außerhalb des Browsers frei setzt.
+**Schicht 2 — der Prompt ist überschreibbar.** Das ist die eigentliche Lücke.
+Solange nur `language` freigegeben war, konnte ein Fremder mit der Agent-ID
+höchstens ein Gespräch mit einer Empfangs-Persona führen: Credits weg, sonst
+nichts. Mit freigegebenem `prompt` ist der Agent ein beliebiges Sprachmodell
+mit Sprachausgabe, abgerechnet über das aivance-Konto. Das ist attraktiv genug,
+dass es jemand tut, der die ID im Quelltext findet. Dazu kommt der Rufschaden:
+Man kann „den Agenten von aivance" beliebige Dinge sagen lassen und das
+mitschneiden.
 
-Wer das nicht will, nimmt den Weg unten. Der Code trägt beides.
+Schicht 1 lässt sich ohne Server nicht schließen. **Schicht 2 schon** — und
+zwar vollständig, indem die Anweisung im Agenten steht statt in der Website.
 
-## Alternative: eigener Agent
+## Der Zielzustand
 
-Zweiten Agenten anlegen, `prompt` und `firstMessage` in
-`src/_data/askEcho.js` **leeren** und nur die `agentId` austauschen. Dann bleibt
-beim Demo-Agenten alles zu, und der neue Agent braucht nur `language` und
-`text_only`.
+Zwei Agenten, keiner von beiden mit überschreibbarem Prompt.
+
+| | Demo-Agent (bestehend) | ask-echo-Agent (neu) |
+|---|---|---|
+| Rolle | Empfang, auf `/produkte/echo/` | Auskunft über aivance |
+| Systemanweisung | im Agenten | im Agenten |
+| Begrüßung | im Agenten, klein geschrieben | leer |
+| Erlaubte Overrides | `language` | `language`, `text_only` |
+| Website sendet | nur `language` | nur `language` |
+
+Danach kann ein Fremder mit einer der beiden IDs nur noch genau das tun, wofür
+der Agent gebaut ist. Credits kosten kann er weiterhin — das ist Schicht 1 —,
+aber er kann den Agenten nicht umwidmen und ihm nichts in den Mund legen.
+
+## Schritt 1 — neuen Agenten anlegen
+
+ElevenLabs → Conversational AI → Create Agent.
 
 - **Name:** aivance — ask echo
-- **Systemanweisung:** der Text aus `prompt.de` in `src/_data/askEcho.js`
-  (englische Fassung darunter als `language_preset`)
-- **Erste Nachricht:** leer lassen
-- **Wissensbasis:** `https://ai-vance.de/` und die Produktseiten einlesen —
-  dann bleibt der Agent automatisch auf dem Stand der Seite. Das kann die
-  Überschreibungs-Variante nicht, dort weiß er nur, was in der Anweisung steht.
-- **Security:** öffentlich (`enable_auth: false`), Hostname-Allowlist auf
-  `ai-vance.de`, Overrides `language` und `text_only`, keine Tools,
-  Gesprächsdauer deckeln (in der Demo: 300 s)
+- **Systemanweisung:** wörtlich der Text aus `prompt.de` in
+  `src/_data/askEcho.js`
+- **Sprachen:** Deutsch als Grundsprache, Englisch als `language_preset` mit
+  dem Text aus `prompt.en`
+- **Erste Nachricht:** leer lassen. Im Textfenster stünde sie sonst als
+  Begrüßung da, bevor überhaupt jemand gefragt hat.
+- **Wissensbasis:** `https://ai-vance.de/` und die Produktseiten einlesen.
+  Damit bleibt der Agent automatisch auf dem Stand der Seite — das kann die
+  heutige Überschreibungs-Lösung nicht, dort weiß er nur, was in der Anweisung
+  steht.
+- **Stimme:** wie beim Demo-Agenten
+- **Security:** `enable_auth: false`, Allowlist `ai-vance.de` und
+  `www.ai-vance.de`, Gesprächsdauer deckeln (Demo: 300 s), **keine Tools**.
+  Overrides: **nur** `language` und `text_only`.
+  `prompt` und `first_message` bleiben zu.
+
+## Schritt 2 — Demo-Agenten wieder zumachen
+
+Am bestehenden Agenten:
+
+- **Begrüßung im Agenten** auf die kleine Schreibweise ändern:
+  `aivance, Echo am Apparat. Was kann ich für Sie tun?`
+  (englisches Preset: `aivance, Echo speaking. How can I help you?`)
+  Heute setzt die Website das per Override — nach diesem Schritt nicht mehr.
+- **Overrides `prompt`, `first_message` und `text_only` wieder abschalten.**
+  Übrig bleibt `language`.
+
+## Schritt 3 — Website umstellen
+
+Drei kleine Änderungen, die ich mache, sobald Schritt 1 und 2 stehen:
+
+- `src/_data/askEcho.js`: neue `agentId` eintragen, `prompt` und
+  `firstMessage` leeren
+- `src/_data/echoDemo.js`: `firstMessage` entfernen
+- `src/_includes/partials/echo-demo.njk` und `src/js/echo-demo.js`: den
+  `first_message`-Override wieder ausbauen
+
+Der Code trägt beide Wege schon: Sind `prompt` und `firstMessage` leer, sendet
+die Website nur noch `language`.
+
+## Was danach immer noch offen bleibt
+
+Schicht 1. Wer eine der Agent-IDs kennt, kann Gespräche führen und Credits
+verbrauchen. Dagegen hilft nur eines: ein Endpunkt, der den API-Schlüssel
+serverseitig hält und signierte Conversation-Tokens ausstellt — eine
+Cloudflare- oder Netlify-Funktion genügt, die Seite selbst bliebe statisch.
+Das ist ein eigener Umbau und keine Dashboard-Einstellung.
+
+Bis dahin: Nutzungsgrenze im ElevenLabs-Konto setzen, damit ein Missbrauch
+gedeckelt ist statt unbemerkt zu laufen.
