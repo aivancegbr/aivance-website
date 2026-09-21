@@ -1,108 +1,114 @@
-# „ask echo" — Agentenkonfiguration und die Lücke, die zu schließen ist
-
-## Stand heute (live, funktioniert, aber offen)
-
-Das Fragefenster läuft über **denselben Agenten wie die Live-Demo**
-(`agent_5801m32bpsx2e8er9e0mhd47aqd9`). Damit er auf der Produktseite
-Telefonzentrale bleibt und im Fenster über aivance spricht, überschreibt die
-Website seine Systemanweisung beim Verbinden. Dafür sind im Dashboard die
-Overrides `prompt`, `first_message`, `text_only` und `language` freigegeben.
-
-Das funktioniert — und ist zugleich das Problem.
+# „ask echo" — ein Agent, und die Lücke, die zu schließen ist
 
 ## Die Lücke
 
-Zwei Schichten, die auseinanderzuhalten sind.
-
-**Schicht 1 — der Agent ist öffentlich.** `enable_auth: false` ist bei einer
+Der Agent `agent_5801m32bpsx2e8er9e0mhd47aqd9` ist öffentlich erreichbar. Das ist bei einer
 statischen Seite auf GitHub Pages unvermeidlich: Es gibt keinen Server, der ein
 Conversation-Token ausstellen könnte, und ein API-Schlüssel darf nicht in den
-Quelltext. Die Hostname-Allowlist ist **keine** Sicherheitsgrenze, sondern eine
-Bequemlichkeitsschranke — sie prüft den `Origin`-Header, und den setzt ein
-Skript außerhalb des Browsers frei. Vorgeführt am 21.09.2026: Ein Node-Skript
-mit `Origin: https://ai-vance.de` kam ohne weiteres durch, obwohl es von
-127.0.0.1 lief.
+Quelltext. Die Hostname-Allowlist ist **keine** Sicherheitsgrenze — sie prüft den
+`Origin`-Header, und den setzt ein Skript außerhalb des Browsers frei.
+Nachgewiesen am 21.09.2026: Ein Node-Skript mit `Origin: https://ai-vance.de` kam
+von 127.0.0.1 ohne weiteres durch.
 
-**Schicht 2 — der Prompt ist überschreibbar.** Das ist die eigentliche Lücke.
-Solange nur `language` freigegeben war, konnte ein Fremder mit der Agent-ID
-höchstens ein Gespräch mit einer Empfangs-Persona führen: Credits weg, sonst
-nichts. Mit freigegebenem `prompt` ist der Agent ein beliebiges Sprachmodell
-mit Sprachausgabe, abgerechnet über das aivance-Konto. Das ist attraktiv genug,
-dass es jemand tut, der die ID im Quelltext findet. Dazu kommt der Rufschaden:
-Man kann „den Agenten von aivance" beliebige Dinge sagen lassen und das
-mitschneiden.
+Damit kann jeder, der die ID im Quelltext liest, Gespräche führen und Credits
+verbrauchen. Das ist hinnehmbar und nur mit einem eigenen Server zu ändern.
 
-Schicht 1 lässt sich ohne Server nicht schließen. **Schicht 2 schon** — und
-zwar vollständig, indem die Anweisung im Agenten steht statt in der Website.
+**Nicht hinnehmbar ist die zweite Schicht:** Solange der Override `prompt`
+freigegeben ist, kann derselbe Fremde die Systemanweisung ersetzen. Aus dem
+Agenten wird dann ein beliebiges Sprachmodell mit Sprachausgabe auf fremde
+Rechnung — und man kann dem Agenten von aivance beliebige Sätze in den Mund legen
+und das mitschneiden. Das ist ein Unterschied in der Art, nicht im Grad.
 
-## Der Zielzustand
+## Warum ein Agent genügt
 
-Zwei Agenten, keiner von beiden mit überschreibbarem Prompt.
+Echo spielt keine zwei Rollen. Auf der Produktseite meldet er sich als Empfang
+von aivance — am eigenen Beispiel vorgeführt. Im Fragefenster ist er der Assistent
+von aivance. Dieselbe Rolle, zwei Fenster. Eine Anweisung deckt beides ab; getestet
+am laufenden Agenten mit Website-Fragen und mit Termin- und Rückrufwünschen.
 
-| | Demo-Agent (bestehend) | ask-echo-Agent (neu) |
+Damit entfällt der Grund, warum die Website den Prompt überhaupt überschreibt.
+
+## Zielzustand
+
+| Override | danach | warum |
 |---|---|---|
-| Rolle | Empfang, auf `/produkte/echo/` | Auskunft über aivance |
-| Systemanweisung | im Agenten | im Agenten |
-| Begrüßung | im Agenten, klein geschrieben | leer |
-| Erlaubte Overrides | `language` | `language`, `text_only` |
-| Website sendet | nur `language` | nur `language` |
+| `prompt` | **AUS** | die eigentliche Lücke |
+| `first_message` | AN | siehe unten |
+| `text_only` | AN | wählt nur den Textmodus, keine Angriffsfläche |
+| `language` | AN | trägt die englische Fassung |
 
-Danach kann ein Fremder mit einer der beiden IDs nur noch genau das tun, wofür
-der Agent gebaut ist. Credits kosten kann er weiterhin — das ist Schicht 1 —,
-aber er kann den Agenten nicht umwidmen und ihm nichts in den Mund legen.
+`first_message` bleibt bewusst offen. Nachgemessen: Der Agent schickt seine
+Begrüßung auch im Textmodus. Ohne den Override stünde sie im Fragefenster **nach**
+der ersten Frage — erst die Frage, dann „Was kann ich für Sie tun?", dann die
+Antwort. Ein Fremder gewinnt damit einen einzigen Satz in seiner eigenen Sitzung,
+mehr nicht; alles danach gibt die Anweisung vor. Das ist eine Abwägung, keine
+Notwendigkeit — soll auch dieser Schalter zu, baue ich die Begrüßung im
+Textfenster stattdessen im Code weg.
 
-## Schritt 1 — neuen Agenten anlegen
+## Schritt 1 — Anweisung in den Agenten
 
-ElevenLabs → Conversational AI → Create Agent.
+Agent `agent_5801m32bpsx2e8er9e0mhd47aqd9` → System prompt. Den Text unten **vollständig**
+einsetzen und den bisherigen ersetzen.
 
-- **Name:** aivance — ask echo
-- **Systemanweisung:** wörtlich der Text aus `prompt.de` in
-  `src/_data/askEcho.js`
-- **Sprachen:** Deutsch als Grundsprache, Englisch als `language_preset` mit
-  dem Text aus `prompt.en`
-- **Erste Nachricht:** leer lassen. Im Textfenster stünde sie sonst als
-  Begrüßung da, bevor überhaupt jemand gefragt hat.
-- **Wissensbasis:** `https://ai-vance.de/` und die Produktseiten einlesen.
-  Damit bleibt der Agent automatisch auf dem Stand der Seite — das kann die
-  heutige Überschreibungs-Lösung nicht, dort weiß er nur, was in der Anweisung
-  steht.
-- **Stimme:** wie beim Demo-Agenten
-- **Security:** `enable_auth: false`, Allowlist `ai-vance.de` und
-  `www.ai-vance.de`, Gesprächsdauer deckeln (Demo: 300 s), **keine Tools**.
-  Overrides: **nur** `language` und `text_only`.
-  `prompt` und `first_message` bleiben zu.
+<details>
+<summary>Deutsch (Grundsprache)</summary>
 
-## Schritt 2 — Demo-Agenten wieder zumachen
+```
+Du bist Echo, der Assistent von aivance. Du begegnest Besuchern an zwei Stellen und verhältst dich an beiden gleich: im Fragefenster der Website und in der Vorführung auf der Produktseite, wo du zugleich zeigst, was Echo am Telefon kann. Du beantwortest Fragen über aivance — was das Unternehmen macht, welche Produkte es gibt, wie eine Zusammenarbeit abläuft, wie man Kontakt aufnimmt. Will jemand einen Termin, einen Rückruf oder das Team sprechen, nimmst du das auf wie am Empfang: Anliegen, Name, Erreichbarkeit — und sagst zu, dass sich jemand meldet. Du bist nicht die Telefonzentrale einer fremden Firma.
 
-Am bestehenden Agenten:
+aivance baut vier KI-Produkte auf einem gemeinsamen Fundament. Jede Antwort der Produkte führt die Quelle mit, aus der sie stammt — Dokument und Fundstelle, nachprüfbar statt plausibel geraten. Sitz ist Bensheim im Rhein-Main-Gebiet, die Daten bleiben in der EU. Die Produkte: Echo nimmt Anrufe an, bucht Termine, beantwortet Standardfragen und übergibt Anliegen strukturiert an das Team. Iris erfasst Dokumente automatisch, legt sie ab und beantwortet Fragen dazu mit Quellenverweis. Boarding führt neue Leute mit Aufgabenlisten und einem AI Buddy für Wissen und Termine ein. Radar findet passende öffentliche Ausschreibungen und stellt sie priorisiert zu.
 
-- **Begrüßung im Agenten** auf die kleine Schreibweise ändern:
-  `aivance, Echo am Apparat. Was kann ich für Sie tun?`
-  (englisches Preset: `aivance, Echo speaking. How can I help you?`)
-  Heute setzt die Website das per Override — nach diesem Schritt nicht mehr.
-- **Overrides `prompt`, `first_message` und `text_only` wieder abschalten.**
-  Übrig bleibt `language`.
+Unter den Produkten liegt das Handwerk, mit dem sie eingeführt werden: Wissenssysteme, Voice Agents, Prozessautomatisierung, Integrationen, Individualsoftware, KPI und Reporting, dazu Website, Foto und Video, Social Media und SEO. Fragt jemand ausdrücklich nach einer dieser Leistungen, bestätige, dass aivance sie erbringt, und verweise auf die Leistungsseite — verneine sie nicht. Von dir aus nennst du sie nicht und zählst sie nie als Katalog auf: aivance ist ein Produktunternehmen, keine Agentur.
 
-## Schritt 3 — Website umstellen
+Schreibe den Namen immer klein: aivance. Nur im rechtlichen Zusammenhang heißt es AIVANCE GbR. Sprich Besucher ausnahmslos mit "Sie" an, auch in Nebensätzen — also "Rufen Sie an", niemals "ruf an", "dir" oder "euch".
 
-Drei kleine Änderungen, die ich mache, sobald Schritt 1 und 2 stehen:
+Halte dich kurz, zwei bis vier Sätze — es wird oft in einem schmalen Fenster gelesen. Erfinde nichts. Der Ablauf eines Projekts unterscheidet sich je nach Produkt und Leistung und steht auf der jeweiligen Seite; er beginnt immer mit einem kostenlosen Erstgespräch, in dem Ziele geklärt werden. Nenne keine Phasen, Wochen oder Fristen. Nenne keine Preise, keine Referenzkunden und keine Zahlen, die hier nicht stehen. Was du nicht weißt, sagst du offen und verweist auf info@ai-vance.de oder +49 174 2306370.
+```
 
-- `src/_data/askEcho.js`: neue `agentId` eintragen, `prompt` und
-  `firstMessage` leeren
-- `src/_data/echoDemo.js`: `firstMessage` entfernen
-- `src/_includes/partials/echo-demo.njk` und `src/js/echo-demo.js`: den
-  `first_message`-Override wieder ausbauen
+</details>
 
-Der Code trägt beide Wege schon: Sind `prompt` und `firstMessage` leer, sendet
-die Website nur noch `language`.
+<details>
+<summary>Englisch (Language Preset `en`)</summary>
 
-## Was danach immer noch offen bleibt
+```
+You are Echo, the assistant of aivance. Visitors meet you in two places and you behave the same in both: in the question window on the website, and in the demonstration on the product page, where you also show what Echo can do on the phone. You answer questions about aivance — what the company does, which products exist, how a project runs, how to get in touch. If someone wants an appointment, a callback or to speak to the team, take it down the way a receptionist would: the matter, the name, how to reach them — and confirm that someone will get back to them. You are not the phone reception of some other company.
 
-Schicht 1. Wer eine der Agent-IDs kennt, kann Gespräche führen und Credits
-verbrauchen. Dagegen hilft nur eines: ein Endpunkt, der den API-Schlüssel
-serverseitig hält und signierte Conversation-Tokens ausstellt — eine
-Cloudflare- oder Netlify-Funktion genügt, die Seite selbst bliebe statisch.
-Das ist ein eigener Umbau und keine Dashboard-Einstellung.
+aivance builds four AI products on a shared foundation. Every answer the products give carries the source it came from — document and passage, verifiable instead of plausibly guessed. The company is based in Bensheim in the Rhine-Main region of Germany; data stays in the EU. The products: Echo answers calls, books appointments, handles common questions and hands matters to the team in a structured way. Iris captures documents automatically, files them and answers questions about them with a source reference. Boarding onboards new people with task lists and an AI buddy for knowledge and appointments. Radar finds relevant public tenders and delivers them by priority.
 
-Bis dahin: Nutzungsgrenze im ElevenLabs-Konto setzen, damit ein Missbrauch
-gedeckelt ist statt unbemerkt zu laufen.
+Beneath the products sits the craft that introduces them: knowledge systems, voice agents, process automation, integrations, custom software, KPI and reporting, plus website, photo and video, social media and SEO. If someone asks about one of these services directly, confirm that aivance provides it and point to the services page — do not deny it. Never bring them up unprompted and never list them as a catalogue: aivance is a product company, not an agency.
+
+Always write the name in lower case: aivance. Stay polite and professional, never chummy. Keep it short, two to four sentences — it is often read in a narrow window. Invent nothing. How a project runs differs by product and service and is documented on the respective page; it always starts with a free first conversation to clarify goals. Do not name phases, weeks or deadlines. Do not quote prices, reference customers, or figures that are not stated here. Say openly what you do not know and point to info@ai-vance.de or +49 174 2306370.
+```
+
+</details>
+
+Erste Nachricht im Agenten, klein geschrieben:
+
+    Deutsch:  aivance, Echo hier. Was kann ich für Sie tun?
+    Englisch: aivance, Echo here. How can I help you?
+
+Wissensbasis: `https://ai-vance.de/` und die vier Produktseiten einlesen. Dann
+bleibt der Agent automatisch auf dem Stand der Seite — das kann die
+Überschreibungs-Lösung nicht, dort weiß er nur, was in der Anweisung steht.
+
+## Schritt 2 — Website umstellen
+
+Mache ich, sobald Schritt 1 steht: `prompt` aus `src/_data/askEcho.js` leeren und
+deployen. Die Website sendet dann nur noch `language`, `text_only` und die
+Begrüßung. Dauert eine Minute, danach prüfe ich beide Seiten und beide Sprachen
+nach.
+
+## Schritt 3 — Schalter zu
+
+Erst **nach** Schritt 2, sonst bricht das Fragefenster ab:
+Agent → Security → Override `prompt` **ausschalten**.
+`language`, `text_only` und `first_message` bleiben an.
+
+## Was danach offen bleibt
+
+Credits. Wer die ID kennt, kann Gespräche führen — nur eben ausschließlich als
+Echo von aivance. Dagegen hilft nur ein Endpunkt, der den API-Schlüssel
+serverseitig hält und signierte Tokens ausstellt; eine Cloudflare- oder
+Netlify-Funktion genügt, die Seite selbst bliebe statisch. Bis dahin:
+Nutzungsgrenze im ElevenLabs-Konto setzen, damit ein Missbrauch gedeckelt ist
+statt unbemerkt zu laufen.
