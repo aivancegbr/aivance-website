@@ -8,8 +8,8 @@ pagination:
 permalink: "/produkte/{{ produkt.slug }}/"
 eleventyComputed:
   enUrl: "/en/produkte/{{ produkt.slug }}/"
-  title: "{{ produkt.name }} — AIVANCE"
-  metaTitle: "{{ produkt.name }} — AIVANCE"
+  title: "{{ produkt.name }} — aivance"
+  metaTitle: "{{ produkt.name }} — aivance"
   metaDescription: "{{ produkt.kurz }}"
   breadcrumb: "{{ produkt.name }}"
 ---
@@ -29,7 +29,8 @@ eleventyComputed:
     <h1 class="headline mb-5">
       {{ produkt.hero.headlineLines[0] }}.<br>{{ produkt.hero.headlineLines[1] }}<span style="color:var(--amber)">.</span>
     </h1>
-    <p class="hero-subtext mb-8">{{ produkt.hero.sub }}</p>
+    <p class="hero-subtext mb-5">{{ produkt.hero.sub }}</p>
+    {% if produkt.hero.lead %}<p class="hero-lead">{{ produkt.hero.lead }}</p>{% endif %}
   </div>
 
   <p class="hero-node" aria-hidden="true">{{ produkt.hero.nodeLabel }}</p>

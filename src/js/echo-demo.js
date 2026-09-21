@@ -1,5 +1,5 @@
 /**
- * AIVANCE Echo — Live-Demo auf der Produktseite.
+ * aivance Echo — Live-Demo auf der Produktseite.
  *
  * Bis der Besucher ausdruecklich auf "Gespraech starten" drueckt, geht nichts
  * an ElevenLabs: weder das SDK noch eine Verbindung, und das Mikrofon bleibt zu.
@@ -27,6 +27,7 @@
   var threadEl = root.querySelector("[data-echo-thread]");
   var idleEl = root.querySelector("[data-echo-idle]");
   var noteEl = root.querySelector("[data-echo-note]");
+  var waveEl = root.querySelector("[data-echo-wave]");
   if (!startBtn || !stopBtn || !statusEl || !threadEl) return;
 
   function say(key) {
@@ -44,6 +45,62 @@
   var seconds = 0;
   var muted = false;
   var busy = false;
+  var spricht = false;
+
+  /* ── Pegelanzeige ─────────────────────────────────────────────────────────
+     44 Haarlinien, zur Mitte gespiegelt: aussen die tiefen Frequenzen, innen
+     die hohen. Solange Echo spricht, lesen wir den Ausgang, sonst das Mikrofon.
+     Wer Bewegung abbestellt hat, bekommt eine ruhende Silhouette statt eines
+     Zappelns — das Bild bleibt lesbar, nur eben als Standbild. */
+  var bars = waveEl ? waveEl.children : [];
+  var barCount = bars.length;
+  var ruhig = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var frame = null;
+
+  function abstand(i) {
+    return Math.abs(i - (barCount - 1) / 2) / ((barCount - 1) / 2);
+  }
+
+  function setzeBalken(i, h) {
+    bars[i].style.transform = "scaleY(" + Math.min(1, Math.max(0.06, h)).toFixed(3) + ")";
+  }
+
+  function wellenRuhe() {
+    for (var i = 0; i < barCount; i++) setzeBalken(i, 0.06);
+  }
+
+  function wellenStandbild() {
+    for (var i = 0; i < barCount; i++) setzeBalken(i, 0.1 + Math.pow(1 - abstand(i), 1.5) * 0.55);
+  }
+
+  function wellenBild() {
+    var daten;
+    try {
+      daten = spricht ? conversation.getOutputByteFrequencyData() : conversation.getInputByteFrequencyData();
+    } catch (e) {
+      daten = null;
+    }
+    var laenge = daten ? daten.length : 0;
+    for (var i = 0; i < barCount; i++) {
+      var d = abstand(i);
+      var pegel = laenge ? daten[Math.floor((1 - d) * (laenge - 1))] / 255 : 0;
+      setzeBalken(i, 0.06 + pegel * (1 - d * 0.55) * 1.5);
+    }
+    frame = requestAnimationFrame(wellenBild);
+  }
+
+  function wellenStart() {
+    if (!barCount) return;
+    if (ruhig) { wellenStandbild(); return; }
+    if (frame === null) frame = requestAnimationFrame(wellenBild);
+  }
+
+  function wellenStop() {
+    if (frame !== null) { cancelAnimationFrame(frame); frame = null; }
+    spricht = false;
+    if (waveEl) waveEl.classList.remove("is-speaking");
+    wellenRuhe();
+  }
 
   function setStatus(text, active) {
     statusEl.textContent = text;
@@ -92,6 +149,7 @@
     muted = false;
     busy = false;
     conversation = null;
+    wellenStop();
     showControls(false);
     setStatus(say("ready"), false);
     setNote(note);
@@ -144,6 +202,11 @@
             seconds = 0;
             setStatus(say("live") + " · 0:00", true);
             timer = setInterval(tick, 1000);
+            wellenStart();
+          },
+          onModeChange: function (payload) {
+            spricht = !!payload && payload.mode === "speaking";
+            if (waveEl) waveEl.classList.toggle("is-speaking", spricht);
           },
           onDisconnect: function () { reset(say("ended")); },
           onError: function () { reset(say("faultConnection")); },

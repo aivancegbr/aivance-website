@@ -1,10 +1,21 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   Produkt-Hero „Anruf-Netz" (Echo) — generative Fein-Punkt-Grafik: viele
-   dünne graue Signalpfade laufen aus der unteren/linken Fläche zusammen,
-   färben sich beim Zusammenlaufen amber und enden in einem Knoten rechts.
-   Darunter/links ein paar wellenförmige Bänder als ruhige Gegenfläche.
-   Statisch (kein RAF-Loop) — reines Layout-Element, seed-fest, damit sich
-   die Grafik nicht bei jedem Reload sichtbar verändert.
+   Produkt-Hero „Anruf-Netz" (Echo) — generative Fein-Punkt-Grafik nach der
+   Plakatvorlage vom 21.09.2026.
+
+   Aufbau, von hinten nach vorn:
+     1 Bänder   — Bündel eng nebeneinander laufender, gepunkteter Sinuskurven
+                  in der unteren Hälfte. Sie tragen die Fläche.
+     2 Pfade    — viele feine Signalwege, die aus der linken und unteren Fläche
+                  kommen, sich an einem Sammelpunkt bündeln und von dort als
+                  schmaler Strahl in den Knoten rechts laufen. Quadratische
+                  Bézierkurve über den Sammelpunkt: dadurch schwingen die Wege
+                  links noch aus und liegen rechts sauber übereinander.
+     3 Marker   — verstreute graue Knoten, einige mit auslaufenden Ringen.
+     4 Knoten   — der Beleg-Punkt: Amber-Kern, Ringe, gepunkteter Zulauf zum
+                  Label „Anruf angenommen".
+
+   Statisch, kein RAF-Loop: die Grafik ist ein Layout-Element, kein Effekt.
+   Fester Seed, damit sie bei jedem Aufruf identisch aussieht.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -34,23 +45,34 @@
   }
   const GRAY = hexToRgb(cssVar("--ink-muted", "#8a8a82"));
   const AMBER = hexToRgb(cssVar("--amber", "#9c4b00"));
+  const rgba = (c, a) => "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")";
   const mix = (a, b, t) => [0, 1, 2].map((i) => Math.round(a[i] + (b[i] - a[i]) * t));
   const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
   const clampPx = (frac, min, max, base) => Math.min(max, Math.max(min, frac * base));
 
   let W = 0, H = 0;
 
+  /* Punkte dieser Größe sind als Quadrat nicht von einem Kreis zu unterscheiden,
+     und fillRect ist um ein Vielfaches billiger als ein eigener arc-Pfad —
+     bei rund 40 000 Punkten ist das der Unterschied zwischen ruckelfrei und
+     spürbar. Kreise gibt es nur noch für die Ringe am Beleg-Knoten. */
+  function px(x, y, r) {
+    ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  }
   function dot(x, y, r, rgb, a) {
+    ctx.fillStyle = rgba(rgb, a);
+    /* Unter ~1,2 px ist ein Quadrat von einem Kreis nicht zu unterscheiden und
+       um ein Vielfaches billiger. Darueber sieht man die Ecken sofort. */
+    if (r < 1.2) { px(x, y, r); return; }
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
     ctx.fill();
   }
-
   function ring(cx, cy, r, rgb, a, count) {
+    ctx.fillStyle = rgba(rgb, a);
     for (let i = 0; i < count; i++) {
       const ang = (i / count) * Math.PI * 2;
-      dot(cx + Math.cos(ang) * r, cy + Math.sin(ang) * r, 0.7, rgb, a);
+      px(cx + Math.cos(ang) * r, cy + Math.sin(ang) * r, 0.75);
     }
   }
 
@@ -58,91 +80,168 @@
     ctx.clearRect(0, 0, W, H);
     const rand = rng(1337);
 
-    /* Beleg-Knoten: rechte Bildkante, Position folgt derselben Formel wie
-       die CSS-Position von .hero-node (top: 46%, right: clamp(24px,9vw,110px)). */
-    const cy = 0.46 * H;
-    const cx = W - clampPx(0.09, 24, 110, W);
-
-    /* ─── wellenförmige Bänder (ruhige Fläche unten/links) ─── */
-    const clusters = [
-      { baseY: 0.62, amp: 0.075, freq: 2.1, x1: 0.0, x2: 0.62 },
-      { baseY: 0.8, amp: 0.09, freq: 1.5, x1: 0.0, x2: 0.98 },
-      { baseY: 0.94, amp: 0.06, freq: 2.6, x1: 0.02, x2: 0.86 },
+    /* Beleg-Knoten: rechte Bildkante. Die Position folgt derselben Formel wie
+       die CSS-Position von .hero-node, damit Label und Zeichnung zusammenpassen. */
+    const nodeX = W - clampPx(0.09, 24, 110, W);
+    const nodeY = 0.46 * H;
+    /* Taille: hier ist der Faecher zusammengelaufen. Von dort bis zum Knoten
+       liegen alle Wege als ein schmaler Strahl uebereinander — genau die
+       Zweiteilung, die die Vorlage zeigt. */
+    const waistX = nodeX - Math.min(0.20 * W, 280);
+    const waistAnteil = 0.78;
+    /* ── 1 · Bänder ──────────────────────────────────────────────────────────
+       Je Bündel mehrere fast parallele Kurven mit geringem Abstand. Erst diese
+       Enge macht aus Einzellinien ein Band. */
+    /* Die Baender duerfen einander nicht ueberlappen: Amplitude plus halbe
+       Buendelbreite muss kleiner bleiben als der Abstand zum naechsten Band,
+       sonst wird aus drei Baendern ein grauer Nebel. */
+    const bands = [
+      { y: 0.57, amp: 0.034, freq: 1.75, x1: -0.03, x2: 0.46, strands: 10, spread: 0.034, a: 0.34 },
+      { y: 0.79, amp: 0.044, freq: 1.20, x1: -0.03, x2: 0.97, strands: 13, spread: 0.042, a: 0.38 },
+      { y: 0.99, amp: 0.032, freq: 2.05, x1: 0.03, x2: 0.80, strands: 10, spread: 0.032, a: 0.30 },
+      { y: 0.64, amp: 0.028, freq: 1.70, x1: 0.60, x2: 1.03, strands: 8, spread: 0.028, a: 0.22 },
+      { y: 0.30, amp: 0.020, freq: 2.30, x1: 0.70, x2: 1.03, strands: 7, spread: 0.022, a: 0.16 }
     ];
-    clusters.forEach((c) => {
-      const lines = 5;
-      for (let li = 0; li < lines; li++) {
-        const phase = rand() * Math.PI * 2;
-        const ampJ = c.amp * (0.7 + rand() * 0.6);
-        const freqJ = c.freq * (0.85 + rand() * 0.3);
-        const yOff = (li - (lines - 1) / 2) * 0.018;
-        const baseA = 0.07 + rand() * 0.08 + (li === Math.floor(lines / 2) ? 0.05 : 0);
-        const samples = 180;
+    bands.forEach((b) => {
+      const phase = rand() * Math.PI * 2;
+      const span = (b.x2 - b.x1) * W;
+      const samples = Math.max(80, Math.round(span / 2.4));
+      for (let li = 0; li < b.strands; li++) {
+        const k = li / (b.strands - 1) - 0.5;          /* −0.5 … +0.5 quer zum Band */
+        const yOff = k * b.spread * H;
+        /* Nur ein Hauch Streuung. Groesserer Jitter als der Straehnenabstand
+           laesst aus dem Band sofort eine unscharfe Wolke werden. */
+        const ampJ = b.amp * (0.97 + rand() * 0.06);
+        const freqJ = b.freq * (0.985 + rand() * 0.03);
+        /* Die mittleren Strähnen tragen das Band, die äußeren laufen aus. */
+        const alpha = b.a * (0.45 + 0.55 * Math.cos(k * Math.PI));
+        ctx.fillStyle = rgba(GRAY, alpha);
         for (let s = 0; s <= samples; s++) {
           const t = s / samples;
-          if (rand() < 0.12) continue;
-          const x = (c.x1 + (c.x2 - c.x1) * t) * W;
-          const y = (c.baseY + yOff + ampJ * Math.sin(freqJ * t * Math.PI * 2 + phase) * (0.4 + 0.6 * Math.sin(t * Math.PI))) * H;
-          dot(x, y, 0.55 + rand() * 0.3, GRAY, baseA);
+          if (rand() < 0.16) continue;                  /* Lücken = gepunktet */
+          const x = (b.x1 + (b.x2 - b.x1) * t) * W;
+          /* Die Enden laufen aus, statt abgeschnitten dazustehen. */
+          const taper = Math.sin(Math.min(1, Math.max(0, t)) * Math.PI);
+          const y = (b.y + yOff / H) * H
+            + ampJ * H * Math.sin(freqJ * t * Math.PI * 2 + phase) * (0.35 + 0.65 * taper);
+          px(x, y, 0.58);
         }
       }
     });
 
-    /* ─── zusammenlaufende Signalpfade ─── */
-    const flowCount = 34;
-    for (let i = 0; i < flowCount; i++) {
-      const x0 = rand() * 0.58 * W;
-      const y0 = (0.26 + rand() * 0.72) * H;
-      const amp = (0.05 + rand() * 0.09) * H;
-      const freq = 1.1 + rand() * 1.6;
+    /* ── 2 · Zusammenlaufende Pfade ─────────────────────────────────────────
+       Quadratische Bézierkurve Start → Sammelpunkt → Knoten. Alle Kurven enden
+       exakt im Knoten; die Bündelung entsteht also von selbst, ohne dass die
+       Streuung künstlich heruntergerechnet werden müsste. */
+    const flows = 78;
+    for (let i = 0; i < flows; i++) {
+      /* Zwei Drittel kommen von links, ein Drittel von unten — so entsteht der
+         steile Zulauf, der die Vorlage prägt. Die Textzone oben links bleibt
+         dabei frei. */
+      const vonUnten = rand() < 0.36;
+      const x0 = (vonUnten ? 0.08 + rand() * 0.54 : -0.04 + rand() * 0.46) * W;
+      const y0 = (vonUnten ? 0.76 + rand() * 0.36 : 0.28 + rand() * 0.74) * H;
+
+      /* Durchhang: die Kurve bauscht sich in der Mitte aus und liegt an beiden
+         Enden wieder auf der Geraden. Ueberwiegend nach oben, das ergibt den
+         Schwung der Vorlage. */
+      const bow = (rand() * 0.115 - 0.028) * H * (vonUnten ? -1 : 1);
+      const wobbleAmp = (0.012 + rand() * 0.04) * H;
+      const wobbleFreq = 1.0 + rand() * 1.9;
       const phase = rand() * Math.PI * 2;
-      const humpAmp = (rand() - 0.5) * 0.14 * H;
-      const humpCenter = 0.35 + rand() * 0.3;
-      const baseA = 0.1 + rand() * 0.14;
-      const samples = 160;
+      const baseA = 0.13 + rand() * 0.15;
+      const samples = 220;
+
       for (let s = 0; s <= samples; s++) {
         const t = s / samples;
-        if (rand() < 0.1) continue;
-        const te = Math.pow(t, 0.82);
-        const decay = Math.pow(1 - t, 1.3);
-        const hump = humpAmp * decay * Math.exp(-Math.pow((t - humpCenter) / 0.16, 2));
-        const x = x0 + (cx - x0) * te;
-        const y = y0 + (cy - y0) * te + amp * decay * Math.sin(freq * t * Math.PI * 2 + phase) + hump;
-        const colorT = smooth(0.8, 1, t);
-        const rgb = mix(GRAY, AMBER, colorT);
-        const a = baseA * (1 - colorT) + baseA * 1.8 * colorT;
-        dot(x, y, 0.5 + colorT * 0.4, rgb, Math.min(0.85, a));
+        if (rand() < 0.14) continue;
+        /* Zwei Abschnitte: gerade Strecke vom Start zur Taille — daraus
+           entsteht der Faecher von selbst, breit am Anfang, im Punkt zusammen —
+           und von der Taille aus der Strahl zum Knoten. */
+        let x, yGerade, decay;
+        if (t <= waistAnteil) {
+          const u = t / waistAnteil;
+          x = x0 + (waistX - x0) * u;
+          yGerade = y0 + (nodeY - y0) * u;
+          decay = Math.pow(1 - u, 1.9);
+        } else {
+          const u = (t - waistAnteil) / (1 - waistAnteil);
+          x = waistX + (nodeX - waistX) * u;
+          yGerade = nodeY;
+          /* Ein Rest Streuung, der im Knoten auf null laeuft: sonst ist der
+             Strahl eine gezogene Linie statt eines Buendels. */
+          decay = 0.06 * (1 - u);
+        }
+        const y = yGerade
+          + bow * Math.sin(Math.PI * Math.min(1, t / waistAnteil))
+          + wobbleAmp * decay * Math.sin(wobbleFreq * t * Math.PI * 2 + phase);
+
+        const colorT = smooth(0.76, 1, t);
+        const a = Math.min(0.9, baseA * (1 + colorT * 2.2));
+        dot(x, y, 0.55 + colorT * 0.35, mix(GRAY, AMBER, colorT), a);
       }
     }
 
-    /* ─── verstreute Knoten (einige mit auslaufendem Ring) ─── */
-    const nodes = [
-      [0.06, 0.8, true], [0.24, 0.63, false], [0.37, 0.71, false],
-      [0.47, 0.9, false], [0.56, 0.55, false], [0.66, 0.78, false],
-      [0.73, 0.6, true], [0.9, 0.86, true],
+    /* ── 2b · Amber-Leitpfad ────────────────────────────────────────────────
+       Eine einzelne Spur, die früher umschlägt als die übrigen: sie führt das
+       Auge in den Knoten, so wie in der Vorlage. */
+    (function leitpfad() {
+      const x0 = 0.22 * W, y0 = 0.74 * H;
+      const samples = 300;
+      for (let s = 0; s <= samples; s++) {
+        const t = s / samples;
+        if (rand() < 0.1) continue;
+        const u = Math.min(1, t / waistAnteil);
+        const x = t <= waistAnteil
+          ? x0 + (waistX - x0) * u
+          : waistX + (nodeX - waistX) * ((t - waistAnteil) / (1 - waistAnteil));
+        const y = (t <= waistAnteil ? y0 + (nodeY - y0) * u : nodeY)
+          - 0.085 * H * Math.sin(Math.PI * u);
+        const colorT = smooth(0.15, 0.7, t);
+        dot(x, y, 0.62 + colorT * 0.4, mix(GRAY, AMBER, colorT), 0.26 + colorT * 0.5);
+      }
+    })();
+
+    /* ── 3 · Verstreute Marker ──────────────────────────────────────────────
+       Sitzen auf den Bändern, nicht daneben — sonst wirken sie aufgesetzt. */
+    const markers = [
+      [0.055, 0.815, true], [0.255, 0.615, false], [0.375, 0.705, false],
+      [0.475, 0.905, false], [0.545, 0.575, true], [0.665, 0.795, false],
+      [0.745, 0.625, false], [0.895, 0.845, true], [0.615, 0.335, false]
     ];
-    nodes.forEach(([nx, ny, hasRing]) => {
-      const px = nx * W, py = ny * H;
-      dot(px, py, 2.6, GRAY, 0.5);
+    markers.forEach(([nx, ny, hasRing]) => {
+      const mx = nx * W, my = ny * H;
+      dot(mx, my, 2.5, GRAY, 0.55);
       if (hasRing) {
-        ring(px, py, 8, GRAY, 0.22, 16);
-        ring(px, py, 15, GRAY, 0.13, 22);
+        ring(mx, my, 9, GRAY, 0.26, 18);
+        ring(mx, my, 16.5, GRAY, 0.15, 26);
       }
     });
 
-    /* ─── Beleg-Knoten: solider Amber-Kern + auslaufende Ringe ─── */
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 26);
-    glow.addColorStop(0, "rgba(" + AMBER[0] + "," + AMBER[1] + "," + AMBER[2] + ",0.18)");
-    glow.addColorStop(1, "rgba(" + AMBER[0] + "," + AMBER[1] + "," + AMBER[2] + ",0)");
+    /* ── 4 · Beleg-Knoten ───────────────────────────────────────────────────
+       Gepunkteter Zulauf nach links, dann Ringe und ein solider Kern. Der
+       Zulauf endet dort, wo das Label „Anruf angenommen" beginnt — dessen
+       CSS-Position rechnet mit derselben Länge (8.5vw). */
+    const leadLen = 0.085 * W;
+    ctx.fillStyle = rgba(AMBER, 0.32);
+    for (let x = nodeX - 30; x > nodeX - leadLen; x -= 5) px(x, nodeY, 0.7);
+
+    const glow = ctx.createRadialGradient(nodeX, nodeY, 0, nodeX, nodeY, 34);
+    glow.addColorStop(0, rgba(AMBER, 0.2));
+    glow.addColorStop(1, rgba(AMBER, 0));
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(cx, cy, 26, 0, Math.PI * 2);
+    ctx.arc(nodeX, nodeY, 34, 0, Math.PI * 2);
     ctx.fill();
 
-    ring(cx, cy, 12, AMBER, 0.45, 26);
-    ring(cx, cy, 19, AMBER, 0.28, 30);
-    ring(cx, cy, 27, AMBER, 0.16, 36);
-    dot(cx, cy, 6.5, AMBER, 1);
+    ring(nodeX, nodeY, 13, AMBER, 0.5, 28);
+    ring(nodeX, nodeY, 21, AMBER, 0.3, 34);
+    ring(nodeX, nodeY, 30, AMBER, 0.17, 40);
+
+    ctx.fillStyle = rgba(AMBER, 1);
+    ctx.beginPath();
+    ctx.arc(nodeX, nodeY, 7, 0, Math.PI * 2);
+    ctx.fill();
   }
 
   function resize() {

@@ -1,5 +1,5 @@
 {#
-  Live-Demo fuer AIVANCE Echo.
+  Live-Demo fuer aivance Echo.
 
   Erwartet: `demo` (aus products.js, deutsch oder englisch) und `isEn`.
   Beide Sprachfassungen der Produktseite binden dieselbe Datei ein — das
@@ -50,6 +50,14 @@
             {{ 'Mute' if isEn else 'Stumm' }}
           </button>
         </span>
+      </div>
+
+      {# Pegelanzeige — dieselbe Haarlinien-Grafik wie auf demo2: 44 Striche,
+         zur Mitte gespiegelt. Ohne Gespraech stehen sie flach da, das ist der
+         Ruhezustand und zugleich der sinnvolle Endzustand ohne JavaScript.
+         Amber, solange Echo spricht; Tinte, solange Echo zuhoert. #}
+      <div class="echo-wave" data-echo-wave aria-hidden="true">
+        {% for i in range(0, 44) %}<span class="echo-wave-bar"></span>{% endfor %}
       </div>
 
       <div class="echo-stage">

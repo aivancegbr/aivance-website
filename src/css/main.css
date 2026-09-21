@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   AIVANCE — Brand Identity
+   aivance — Brand Identity
    Instrument Sans (Display/Text) · IBM Plex Mono (Labels, Quellen, Messwerte)
    Fünf Grau-Rollen + Evidence Amber. Scharfe Kanten, Haarlinien, keine Schatten.
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -343,17 +343,31 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   padding: clamp(40px, 6vw, 72px) clamp(20px, 3.4vw, 40px) clamp(64px, 10vw, 128px);
 }
 .product-hero-inner .headline { max-width: 14ch; }
+/* Vorlage: die Unterzeile traegt deutlich groesser als der erklaerende Absatz
+   darunter. Ohne diese Stufe lesen sich beide als ein Block. */
+.product-hero-inner .hero-subtext { font-size: clamp(17px, 1.55vw, 22px); line-height: 1.45; }
+.product-hero-inner .hero-lead { font-size: clamp(12.5px, .95vw, 14px); }
+/* Der Schleier deckt nur noch die Textzone oben links. Vorher lag er ueber
+   der halben Flaeche und hat die Zeichnung ausgewaschen — die Vorlage zeigt
+   die Punktgrafik durchgehend, der Text steht dort einfach im freien Feld. */
 .product-hero-veil {
-  background: radial-gradient(56% 46% at 26% 32%,
-    rgba(250,250,248,.97) 0%, rgba(250,250,248,.82) 50%, rgba(250,250,248,0) 84%);
+  background: radial-gradient(40% 34% at 21% 26%,
+    rgba(250,250,248,.94) 0%, rgba(250,250,248,.58) 52%, rgba(250,250,248,0) 82%);
 }
 #hero-network-canvas {
   position: absolute; inset: 0; width: 100%; height: 100%;
   display: block; pointer-events: none; z-index: -2; background: var(--canvas);
 }
 .hero-node {
-  position: absolute; z-index: 1; top: 46%; right: calc(clamp(24px, 9vw, 110px) + 42px);
+  position: absolute; z-index: 1; top: 46%;
+  /* Der gepunktete Zulauf im Canvas ist 8.5vw lang und endet hier —
+     Label und Zeichnung ergeben zusammen eine Linie. */
+  right: calc(clamp(24px, 9vw, 110px) + 26px);
   transform: translateY(-50%);
+  /* Der gepunktete Zulauf laeuft hinter dem Label durch. Ein Hintergrund in
+     Canvas-Farbe stanzt ihn frei, damit Linie und Schrift sich nicht
+     ueberlagern — genau wie in der Vorlage. */
+  background: var(--canvas); padding: 3px 10px;
   font-family: var(--mono); font-size: 11px; font-weight: 500;
   letter-spacing: .16em; text-transform: uppercase; color: var(--amber);
   opacity: 0; animation: fadeSlideUp .8s 1.1s ease forwards;
@@ -407,6 +421,14 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   max-width: 52ch; margin: 0;
   opacity: 0; animation: fadeSlideUp .7s .45s ease forwards;
 }
+/* Zweiter, kleinerer Absatz im Produkt-Hero: nennt konkret, was das Produkt
+   tut. In der Vorlage steht er genau so unter der Unterzeile. */
+.hero-lead {
+  font-size: clamp(13px, 1vw, 14.5px); line-height: 1.7; color: var(--ink-muted);
+  max-width: 46ch; margin: 0;
+  opacity: 0; animation: fadeSlideUp .7s .55s ease forwards;
+}
+
 .hero-cta-row {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   opacity: 0; animation: fadeSlideUp .7s .6s ease forwards;
@@ -759,9 +781,13 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   }
   /* Kein Platz für den freistehenden Knoten, sobald die Type die volle Breite nimmt */
   .hero-node { display: none; }
+  /* Einspaltig steht der Text im oberen Drittel — der Schleier deckt genau so
+     weit und gibt die Zeichnung darunter frei. Der alte Verlauf lief bis zum
+     unteren Rand auf .6 und hat den Faecher ausgewaschen. */
   .product-hero-veil {
     background: linear-gradient(180deg,
-      rgba(250,250,248,.96) 0%, rgba(250,250,248,.88) 46%, rgba(250,250,248,.6) 100%);
+      rgba(250,250,248,.95) 0%, rgba(250,250,248,.88) 26%,
+      rgba(250,250,248,.3) 42%, rgba(250,250,248,0) 54%);
   }
 }
 @media (max-width: 767px) {
@@ -1109,7 +1135,9 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   display: flex; align-items: center; justify-content: space-between;
   padding: 11px 13px; border-bottom: 1px solid var(--line); flex: none;
 }
-.mock-device-name { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink); }
+/* Kein uppercase: die Marke wird klein geschrieben, und text-transform
+   wuerde daraus im Schaukasten wieder „AIVANCE ECHO" machen. */
+.mock-device-name { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: var(--ink); }
 .mock-device-live { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex: none; }
 
 /* ─── Modul C-2 · Referenz-Galerie (Sektion 06) ─── */
@@ -1169,7 +1197,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   html { scroll-behavior: auto; }
   .reveal, [class*="reveal-"] { opacity: 1 !important; transform: none !important; transition: none !important; }
   .float, .badge-dot, .online-dot, .float-badge, .signet-trace, .signet-mark { animation: none !important; }
-  .hero-badge, .headline, .hero-subtext, .hero-cta-row, .stats-row, .hero-right { animation: none !important; opacity: 1 !important; }
+  .hero-badge, .headline, .hero-subtext, .hero-lead, .hero-cta-row, .stats-row, .hero-right { animation: none !important; opacity: 1 !important; }
   .hero-node { animation: none !important; opacity: 1 !important; }
   .cycling-text, .cycling-text::after { transition: none; }
   .cycling-text.active::after { transform: scaleX(1); }
@@ -1235,6 +1263,28 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
    da, bevor ein Gespraech laeuft. */
 .echo-btn[hidden] { display: none; }
 
+/* ── Pegelanzeige ────────────────────────────────────────────────────────────
+   44 Haarlinien, die um ihre Mitte wachsen (transform-origin: center) — das
+   kostet keine Layoutrechnung und laeuft deshalb auch auf schwachen Geraeten
+   ruhig. Die Hoehe steht fest, damit nichts springt, wenn das Gespraech
+   beginnt. Amber traegt nur, was gerade aus dem Lautsprecher kommt. */
+.echo-wave {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(3px, .8vw, 7px);
+  height: 84px; padding: 0 16px;
+  border-bottom: 1px solid var(--line);
+}
+.echo-wave-bar {
+  width: 2px; height: 100%; flex: none;
+  transform: scaleY(.06); transform-origin: center;
+  background: var(--line-strong);
+  transition: background-color .3s ease;
+}
+/* Waehrend Echo zuhoert traegt die Anzeige das Mikrofon — in Tinte, nicht in
+   Amber: es laeuft etwas, belegt ist damit aber noch nichts. */
+.echo-demo.is-live .echo-wave-bar { background: var(--ink); }
+.echo-demo.is-live .echo-wave.is-speaking .echo-wave-bar { background: var(--amber); }
+
 /* Feste Hoehe = kein Springen, wenn Beitraege eintreffen. */
 .echo-stage { position: relative; height: 300px; }
 .echo-thread { position: absolute; inset: 0; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
@@ -1274,6 +1324,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 .js .echo-nojs { display: none; }
 
 @media (max-width: 480px) {
+  .echo-wave { height: 64px; padding: 0 12px; }
   .echo-stage { height: 260px; }
   .echo-actions { width: 100%; }
   .echo-btn { flex: 1 1 auto; }
@@ -1284,4 +1335,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
      weiterhin ablesbar, nur ohne Bewegung. */
   .echo-demo.is-live .echo-dot { animation: none; }
   .echo-thread { scroll-behavior: auto; }
+  /* Die Pegelanzeige stellt das Skript dann einmalig als ruhende
+     Silhouette — das Bild bleibt lesbar, nur ohne Bewegung. */
+  .echo-wave-bar { transition: none; }
 }

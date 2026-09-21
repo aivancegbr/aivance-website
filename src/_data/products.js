@@ -13,12 +13,12 @@ module.exports = [
     nummer: "01",
     slug: "echo",
     kurzname: "Echo",
-    kurz: "Nimmt Anrufe an, beantwortet Standardfragen und übergibt Anliegen strukturiert an Ihr Team.",
-    name: "AIVANCE Echo",
+    kurz: "Nimmt Anrufe an, bucht Termine, beantwortet Standardfragen und übergibt Anliegen strukturiert an Ihr Team.",
+    name: "aivance Echo",
     tags: ["Telefonie", "Kundenservice", "Terminannahme"],
     status: null,
     text:
-      "Geht ans Telefon, wenn Ihr Team keine Hand frei hat. Echo beantwortet wiederkehrende Fragen aus Ihrer Wissensbasis, nimmt Termin- und Rückrufwünsche auf, leitet Sonderfälle nach festen Regeln weiter und dokumentiert jedes Gespräch.",
+      "Geht ans Telefon, wenn Ihr Team keine Hand frei hat. In Ihrer Installation bucht und verschiebt Echo Termine direkt im verbundenen Kalender, beantwortet wiederkehrende Fragen aus Ihrer Wissensbasis, nimmt Rückrufwünsche auf, leitet Sonderfälle nach festen Regeln weiter und dokumentiert jedes Gespräch.",
     /* Eigene Hero-Sektion für die Produktseite (Bildvorlage vom 21.08.2026) —
        nutzt dieselbe Punktraster-Canvas + denselben Eyebrow-/Badge-Baukasten
        wie die Startseite (main.css / hero.js), keine neue Optik erfunden. */
@@ -26,19 +26,22 @@ module.exports = [
       eyebrow: "Telefonassistent",
       headlineLines: ["Jeder Anruf", "Beantwortet"],
       sub: "Erreichbar, wenn Ihr Team nicht abnehmen kann.",
+      /* Zweiter, kleinerer Absatz wie in der Vorlage vom 21.09.2026 — nennt
+         konkret, was Echo am Telefon tut, statt es nur zu behaupten. */
+      lead: "Bucht und verwaltet Termine, beantwortet wiederkehrende Fragen, nimmt Rückrufwünsche auf und leitet komplexe Anliegen an Ihr Team weiter.",
       nodeLabel: "Anruf angenommen",
       labels: ["Annehmen", "Weiterleiten", "Dokumentieren"]
     },
     /* Live-Demo: der Besucher spricht im Browser mit demselben Agenten, der
-       am Telefon abnimmt. Der Agent gehört AIVANCE und kennt bewusst nur das
+       am Telefon abnimmt. Der Agent gehört aivance und kennt bewusst nur das
        eigene Haus — er hat keinen Zugriff auf Kunden-, Kalender- oder
        Vertragsdaten, weil die Demo oeffentlich erreichbar ist. */
     demo: {
       eyebrow: "Live-Demo",
       headline: "Sprechen Sie mit Echo.",
-      text: "Das hier ist keine Aufzeichnung. Sie sprechen mit demselben Assistenten, der bei unseren Kunden ans Telefon geht — nur beantwortet er Fragen zu AIVANCE statt zu deren Betrieb.",
+      text: "Das hier ist keine Aufzeichnung. Sie sprechen mit demselben Assistenten, der bei unseren Kunden ans Telefon geht — nur beantwortet er Fragen zu aivance statt zu deren Betrieb.",
       prompts: [
-        "Was macht AIVANCE eigentlich?",
+        "Was macht aivance eigentlich?",
         "Ich hätte gern einen Termin für ein Erstgespräch.",
         "Können Sie mich zurückrufen?",
         "Wie erreiche ich jemanden persönlich?"
@@ -46,18 +49,40 @@ module.exports = [
       hinweis: "Beim Start wird das Mikrofon freigegeben und eine Verbindung zu ElevenLabs aufgebaut, unserem Anbieter für Sprachagenten. Vorher verlässt nichts Ihren Browser. Das Gespräch wird nicht zu Werbezwecken ausgewertet.",
       ohneJs: "Die Live-Demo braucht JavaScript und ein Mikrofon. Ohne beides beschreibt dieser Abschnitt, was Echo am Telefon übernimmt."
     },
+    features: [
+      {
+        titel: "Termine buchen und verschieben",
+        text: "Echo sieht die freien Zeiten im verbundenen Kalender, schlägt sie am Telefon vor und trägt den Termin ein. Absagen und Verschiebungen laufen denselben Weg."
+      },
+      {
+        titel: "Antworten aus Ihrer Wissensbasis",
+        text: "Öffnungszeiten, Leistungen, Anfahrt, Zuständigkeiten: Echo beantwortet, was hinterlegt ist — und sagt es, wenn etwas nicht hinterlegt ist, statt zu raten."
+      },
+      {
+        titel: "Rückrufwünsche mit Anliegen",
+        text: "Wo ein Mensch übernehmen muss, nimmt Echo Name, Nummer und Anliegen auf und legt den Rückruf dort an, wo Ihr Team ohnehin arbeitet."
+      },
+      {
+        titel: "Weiterleiten nach festen Regeln",
+        text: "Wer wann durchgestellt wird, legen Sie fest — Notfall, Bestandskunde, Beschwerde. Echo hält sich an die Regel und erfindet keine Ausnahme."
+      },
+      {
+        titel: "Jedes Gespräch dokumentiert",
+        text: "Nach dem Auflegen stehen Transkript, Zusammenfassung und Ergebnis bereit. Nachvollziehbar, wer was wann gesagt hat."
+      }
+    ],
     en: {
       tags: ["Telephony", "Customer service", "Appointments"],
       status: null,
-      kurz: "Answers calls, handles routine questions and hands requests over to your team in a structured way.",
+      kurz: "Answers calls, books appointments, handles routine questions and hands requests over to your team in a structured way.",
       text:
-        "Picks up when your team has no hands free. Echo answers recurring questions from your knowledge base, takes appointment and callback requests, routes exceptions according to defined rules and documents every conversation.",
+        "Picks up when your team has no hands free. In your installation Echo books and reschedules appointments directly in the connected calendar, answers recurring questions from your knowledge base, takes callback requests, routes exceptions according to defined rules and documents every conversation.",
       demo: {
         eyebrow: "Live demo",
         headline: "Talk to Echo.",
-        text: "This is not a recording. You are talking to the same assistant that picks up the phone for our clients — except it answers questions about AIVANCE rather than about their business.",
+        text: "This is not a recording. You are talking to the same assistant that picks up the phone for our clients — except it answers questions about aivance rather than about their business.",
         prompts: [
-          "What does AIVANCE actually do?",
+          "What does aivance actually do?",
           "I'd like to book an intro call.",
           "Could someone call me back?",
           "How do I reach a person directly?"
@@ -65,10 +90,33 @@ module.exports = [
         hinweis: "Starting the demo grants microphone access and opens a connection to ElevenLabs, our voice-agent provider. Nothing leaves your browser before that. The conversation is not mined for marketing.",
         ohneJs: "The live demo needs JavaScript and a microphone. Without them, this section describes what Echo handles on the phone."
       },
+      features: [
+        {
+          titel: "Books and reschedules appointments",
+          text: "Echo reads the free slots in the connected calendar, offers them on the call and enters the appointment. Cancellations and changes take the same route."
+        },
+        {
+          titel: "Answers from your knowledge base",
+          text: "Opening hours, services, directions, responsibilities: Echo answers what has been filed — and says so when something has not, rather than guessing."
+        },
+        {
+          titel: "Callback requests with context",
+          text: "Where a person has to take over, Echo captures name, number and request and files the callback where your team already works."
+        },
+        {
+          titel: "Routing by defined rules",
+          text: "You decide who gets put through and when — emergency, existing client, complaint. Echo follows the rule and invents no exception."
+        },
+        {
+          titel: "Every conversation documented",
+          text: "Transcript, summary and outcome are ready once the call ends. Who said what, and when, stays traceable."
+        }
+      ],
       hero: {
         eyebrow: "Voice Agent",
         headlineLines: ["Every call", "Answered"],
         sub: "Be available when your team can't pick up.",
+        lead: "Books and manages appointments, answers common questions, captures callbacks and routes complex requests to your team.",
         nodeLabel: "Call answered",
         labels: ["Answer", "Route", "Document"]
       }
@@ -79,7 +127,7 @@ module.exports = [
     slug: "iris",
     kurzname: "Iris",
     kurz: "Dokumente automatisch erfassen, ablegen und mit Quellenverweis abfragen.",
-    name: "AIVANCE Iris",
+    name: "aivance Iris",
     tags: ["Finanzberatung", "OCR", "RAG"],
     status: null,
     text:
@@ -152,7 +200,7 @@ module.exports = [
     slug: "boarding",
     kurzname: "Boarding",
     kurz: "Onboarding mit Aufgabenlisten und einem AI Buddy für Wissen und Termine.",
-    name: "AIVANCE Boarding",
+    name: "aivance Boarding",
     tags: ["HR", "Microsoft 365"],
     status: null,
     text:
@@ -171,7 +219,7 @@ module.exports = [
       nummer: "03",
       slug: "verifly",
       kurz: "Prüft vor der Behandlung, ob die Versicherung die Leistung deckt.",
-      name: "AIVANCE Verifly",
+      name: "aivance Verifly",
       tags: ["Gesundheitswesen", "Eligibility"],
       status: "In Entwicklung",
       text:
@@ -190,7 +238,7 @@ module.exports = [
     slug: "radar",
     kurzname: "Radar",
     kurz: "Findet passende öffentliche Ausschreibungen und stellt sie priorisiert zu.",
-    name: "AIVANCE Radar",
+    name: "aivance Radar",
     tags: ["Vertrieb", "Ausschreibungen"],
     status: null,
     text:
