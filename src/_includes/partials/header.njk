@@ -13,8 +13,11 @@
 {% set isUeberUns = page.url.startsWith('/ueber-uns/') or page.url.startsWith('/en/about/') %}
 {% set isProdukte = page.url.startsWith('/produkte/') or page.url.startsWith('/en/produkte/') %}
 
-<header>
-<nav id="navbar" class="sticky top-0 z-50 border-b border-line" aria-label="{{ t.navAriaLabel }}">
+{# Sticky sitzt am <header>, nicht am <nav>: Ein sticky-Element kann sich nur
+   innerhalb seines Elternelements bewegen. Der <header> ist genauso hoch wie
+   die Navbar — am <nav> gesetzt, scrollte sie deshalb sofort weg. #}
+<header class="sticky top-0 z-50">
+<nav id="navbar" class="border-b border-line" aria-label="{{ t.navAriaLabel }}">
   <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16 relative">
 
     <a href="{{ t.urlHome }}" aria-label="{{ t.homeAriaLabel }}">

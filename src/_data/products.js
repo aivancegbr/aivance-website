@@ -14,7 +14,7 @@ module.exports = [
     slug: "echo",
     kurzname: "Echo",
     kurz: "Nimmt Anrufe an, beantwortet Standardfragen und übergibt Anliegen strukturiert an Ihr Team.",
-    name: "aivance Echo",
+    name: "AIVANCE Echo",
     tags: ["Telefonie", "Kundenservice", "Terminannahme"],
     status: null,
     text:
@@ -49,7 +49,7 @@ module.exports = [
     slug: "iris",
     kurzname: "Iris",
     kurz: "Dokumente automatisch erfassen, ablegen und mit Quellenverweis abfragen.",
-    name: "aivance Iris",
+    name: "AIVANCE Iris",
     tags: ["Finanzberatung", "OCR", "RAG"],
     status: null,
     text:
@@ -122,7 +122,7 @@ module.exports = [
     slug: "boarding",
     kurzname: "Boarding",
     kurz: "Onboarding mit Aufgabenlisten und einem AI Buddy für Wissen und Termine.",
-    name: "aivance Boarding",
+    name: "AIVANCE Boarding",
     tags: ["HR", "Microsoft 365"],
     status: null,
     text:
@@ -141,7 +141,7 @@ module.exports = [
       nummer: "03",
       slug: "verifly",
       kurz: "Prüft vor der Behandlung, ob die Versicherung die Leistung deckt.",
-      name: "aivance Verifly",
+      name: "AIVANCE Verifly",
       tags: ["Gesundheitswesen", "Eligibility"],
       status: "In Entwicklung",
       text:
@@ -160,7 +160,7 @@ module.exports = [
     slug: "radar",
     kurzname: "Radar",
     kurz: "Findet passende öffentliche Ausschreibungen und stellt sie priorisiert zu.",
-    name: "aivance Radar",
+    name: "AIVANCE Radar",
     tags: ["Vertrieb", "Ausschreibungen"],
     status: null,
     text:
