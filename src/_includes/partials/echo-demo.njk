@@ -1,0 +1,78 @@
+{#
+  Live-Demo fuer AIVANCE Echo.
+
+  Erwartet: `demo` (aus products.js, deutsch oder englisch) und `isEn`.
+  Beide Sprachfassungen der Produktseite binden dieselbe Datei ein — das
+  Markup steht deshalb nur einmal hier.
+
+  Ohne JavaScript bleibt der Startknopf deaktiviert und der Abschnitt liest
+  sich als Beschreibung: ein sinnvoller Endzustand statt eines toten Kastens.
+#}
+{% if demo and echoDemo.agentId %}
+<section class="py-16" id="demo">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="section-head">
+      <span class="eyebrow">{{ demo.eyebrow }}</span>
+    </div>
+    <h2 class="text-2xl font-black text-slate-900 mb-4">{{ demo.headline }}</h2>
+    <p class="lede max-w-2xl mb-8">{{ demo.text }}</p>
+
+    <div class="echo-demo"
+         data-echo-demo
+         data-agent-id="{{ echoDemo.agentId }}"
+         data-sdk-url="{{ echoDemo.sdkUrl }}"
+         data-lang="{{ 'en' if isEn else 'de' }}"
+         data-t-ready="{{ 'Ready' if isEn else 'Bereit' }}"
+         data-t-connecting="{{ 'Connecting' if isEn else 'Verbindet' }}"
+         data-t-live="{{ 'In conversation' if isEn else 'Im Gespräch' }}"
+         data-t-ended="{{ 'Conversation ended.' if isEn else 'Gespräch beendet.' }}"
+         data-t-caller="{{ 'You' if isEn else 'Sie' }}"
+         data-t-echo="Echo"
+         data-t-mute="{{ 'Mute' if isEn else 'Stumm' }}"
+         data-t-unmute="{{ 'Unmute' if isEn else 'Ton an' }}"
+         data-t-fault-mic="{{ 'Without microphone access the demo cannot listen. Allow it in your browser and start again.' if isEn else 'Ohne Mikrofonfreigabe kann die Demo nicht zuhören. Im Browser freigeben und erneut starten.' }}"
+         data-t-fault-sdk="{{ 'The voice component could not be loaded. Please try again.' if isEn else 'Der Sprachbaustein konnte nicht geladen werden. Bitte erneut versuchen.' }}"
+         data-t-fault-connection="{{ 'The connection could not be established.' if isEn else 'Die Verbindung kam nicht zustande.' }}">
+
+      <div class="echo-demo-bar">
+        <span class="echo-state">
+          <span class="echo-dot" aria-hidden="true"></span>
+          <span class="mono echo-status" data-echo-status>{{ 'Ready' if isEn else 'Bereit' }}</span>
+        </span>
+        <span class="echo-actions">
+          <button type="button" class="btn-primary echo-btn" data-echo-start disabled>
+            {{ 'Start conversation' if isEn else 'Gespräch starten' }}
+          </button>
+          <button type="button" class="btn-ghost echo-btn" data-echo-stop hidden>
+            {{ 'Hang up' if isEn else 'Auflegen' }}
+          </button>
+          <button type="button" class="btn-ghost echo-btn" data-echo-mute aria-pressed="false" hidden>
+            {{ 'Mute' if isEn else 'Stumm' }}
+          </button>
+        </span>
+      </div>
+
+      <div class="echo-stage">
+        {# Der Verlauf ist eine Live-Region: Screenreader lesen jeden Beitrag mit. #}
+        <div class="echo-thread" data-echo-thread role="log" aria-live="polite"
+             aria-label="{{ 'Conversation transcript' if isEn else 'Gesprächsverlauf' }}"></div>
+
+        <div class="echo-idle" data-echo-idle>
+          <p class="mono echo-idle-label">{{ 'Try for example' if isEn else 'Sagen Sie zum Beispiel' }}</p>
+          <ul class="echo-prompts">
+            {% for prompt in demo.prompts %}
+            <li>{{ '“' if isEn else '„' }}{{ prompt }}{{ '”' if isEn else '“' }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <p class="echo-note" data-echo-note hidden></p>
+    </div>
+
+    <p class="echo-privacy">{{ demo.hinweis }}</p>
+    <p class="echo-nojs">{{ demo.ohneJs }}</p>
+  </div>
+</section>
+<script src="/js/echo-demo.js" defer></script>
+{% endif %}

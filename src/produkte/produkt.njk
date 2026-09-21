@@ -61,6 +61,13 @@ eleventyComputed:
   </div>
 </section>
 
+{# 3 · Live-Demo — erscheint nur bei Produkten mit `demo` in products.js
+   (derzeit allein Echo). Alle übrigen Produkte bleiben bei der gespielten
+   Vorführung im Schaukasten. #}
+{% set demo = produkt.demo %}
+{% set isEn = false %}
+{% include "partials/echo-demo.njk" %}
+
 {% if produkt.features %}
 <!-- 3 · Funktionen -->
 <section class="py-16">

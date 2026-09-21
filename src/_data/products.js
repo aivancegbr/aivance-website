@@ -29,12 +29,42 @@ module.exports = [
       nodeLabel: "Anruf angenommen",
       labels: ["Annehmen", "Weiterleiten", "Dokumentieren"]
     },
+    /* Live-Demo: der Besucher spricht im Browser mit demselben Agenten, der
+       am Telefon abnimmt. Der Agent gehört AIVANCE und kennt bewusst nur das
+       eigene Haus — er hat keinen Zugriff auf Kunden-, Kalender- oder
+       Vertragsdaten, weil die Demo oeffentlich erreichbar ist. */
+    demo: {
+      eyebrow: "Live-Demo",
+      headline: "Sprechen Sie mit Echo.",
+      text: "Das hier ist keine Aufzeichnung. Sie sprechen mit demselben Assistenten, der bei unseren Kunden ans Telefon geht — nur beantwortet er Fragen zu AIVANCE statt zu deren Betrieb.",
+      prompts: [
+        "Was macht AIVANCE eigentlich?",
+        "Ich hätte gern einen Termin für ein Erstgespräch.",
+        "Können Sie mich zurückrufen?",
+        "Wie erreiche ich jemanden persönlich?"
+      ],
+      hinweis: "Beim Start wird das Mikrofon freigegeben und eine Verbindung zu ElevenLabs aufgebaut, unserem Anbieter für Sprachagenten. Vorher verlässt nichts Ihren Browser. Das Gespräch wird nicht zu Werbezwecken ausgewertet.",
+      ohneJs: "Die Live-Demo braucht JavaScript und ein Mikrofon. Ohne beides beschreibt dieser Abschnitt, was Echo am Telefon übernimmt."
+    },
     en: {
       tags: ["Telephony", "Customer service", "Appointments"],
       status: null,
       kurz: "Answers calls, handles routine questions and hands requests over to your team in a structured way.",
       text:
         "Picks up when your team has no hands free. Echo answers recurring questions from your knowledge base, takes appointment and callback requests, routes exceptions according to defined rules and documents every conversation.",
+      demo: {
+        eyebrow: "Live demo",
+        headline: "Talk to Echo.",
+        text: "This is not a recording. You are talking to the same assistant that picks up the phone for our clients — except it answers questions about AIVANCE rather than about their business.",
+        prompts: [
+          "What does AIVANCE actually do?",
+          "I'd like to book an intro call.",
+          "Could someone call me back?",
+          "How do I reach a person directly?"
+        ],
+        hinweis: "Starting the demo grants microphone access and opens a connection to ElevenLabs, our voice-agent provider. Nothing leaves your browser before that. The conversation is not mined for marketing.",
+        ohneJs: "The live demo needs JavaScript and a microphone. Without them, this section describes what Echo handles on the phone."
+      },
       hero: {
         eyebrow: "Voice Agent",
         headlineLines: ["Every call", "Answered"],

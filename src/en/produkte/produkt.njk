@@ -59,6 +59,11 @@ eleventyComputed:
   </div>
 </section>
 
+{# 3 · Live demo — only for products carrying `demo` in products.js. #}
+{% set demo = produkt.en.demo %}
+{% set isEn = true %}
+{% include "partials/echo-demo.njk" %}
+
 {% if produkt.en.features %}
 <!-- 3 · Features -->
 <section class="py-16">
