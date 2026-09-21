@@ -1089,6 +1089,16 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 /* Ohne JS stehen alle drei Geräte nebeneinander. */
 .showcase-stage { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
 .showcase-panel[hidden] { display: none; }
+/* Das Panel ist das Flex-Kind, nicht das Gerät darin. Ohne eigene Breite
+   richtet es sich nach seinem Inhalt — und weil die Mockup-Schritte erst
+   nach und nach eingehängt werden, wuchs das Gerät sichtbar mit
+   (gemessen: 121 px leer → 320 px gefüllt, beim Produktwechsel zurück).
+   Feste Basisbreite: die Bühne steht ab dem ersten Frame. */
+.showcase-panel { flex: 0 1 320px; min-width: 0; }
+/* Mit JS ist immer genau ein Gerät zu sehen. Ohne diese Höhe steht die Bühne
+   für ein paar Millisekunden auf 1300 px (alle drei untereinander), bis
+   interactive.js zwei davon ausblendet — ein Höhensprung vor dem ersten Bild. */
+.js .showcase-stage { height: 420px; }
 
 .mock-device {
   display: flex; flex-direction: column;
