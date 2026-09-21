@@ -1,0 +1,119 @@
+{#
+  „ask echo" — das Fragefenster unten rechts, auf jeder Seite.
+
+  Nicht auf der Echo-Produktseite: dort steht die Live-Demo schon im Text, ein
+  zweiter Einstieg daneben waere doppelt gemoppelt — und zwei gleichzeitige
+  Sitzungen wuerden sich um dasselbe Mikrofon streiten.
+
+  Ohne JavaScript erscheint der Knopf gar nicht (Regel in main.css am `.js`).
+  Ein toter Knopf waere schlechter als keiner.
+#}
+{% set istEchoSeite = page.url == '/produkte/echo/' or page.url == '/en/produkte/echo/' %}
+{% if askEcho.agentId and not istEchoSeite %}
+{% set isEn = lang == 'en' %}
+<div class="ask-echo" data-ask-echo
+     data-agent-id="{{ askEcho.agentId }}"
+     data-sdk-url="{{ askEcho.sdkUrl }}"
+     data-lang="{{ 'en' if isEn else 'de' }}"
+     data-t-ready="{{ 'Ready' if isEn else 'Bereit' }}"
+     data-t-connecting="{{ 'Connecting' if isEn else 'Verbindet' }}"
+     data-t-live="{{ 'Connected' if isEn else 'Verbunden' }}"
+     data-t-thinking="{{ 'Answering' if isEn else 'Antwortet' }}"
+     data-t-call="{{ 'In conversation' if isEn else 'Im Gespräch' }}"
+     data-t-ended="{{ 'Conversation ended.' if isEn else 'Gespräch beendet.' }}"
+     data-t-caller="{{ 'You' if isEn else 'Sie' }}"
+     data-t-echo="Echo"
+     data-t-mute="{{ 'Mute' if isEn else 'Stumm' }}"
+     data-t-unmute="{{ 'Unmute' if isEn else 'Ton an' }}"
+     data-t-fault-mic="{{ 'Without microphone access Echo cannot listen. Allow it in your browser, or keep typing.' if isEn else 'Ohne Mikrofonfreigabe kann Echo nicht zuhören. Im Browser freigeben — oder einfach weiter tippen.' }}"
+     data-t-fault-sdk="{{ 'The voice component could not be loaded. Please try again.' if isEn else 'Der Sprachbaustein konnte nicht geladen werden. Bitte erneut versuchen.' }}"
+     data-t-fault-connection="{{ 'The connection could not be established.' if isEn else 'Die Verbindung kam nicht zustande.' }}">
+
+  {# Ruhezustand ist der Kreis mit der Sprechblase. Erst bei Hover oder
+     Tastaturfokus waechst die Beschriftung heraus — beides, damit der Knopf
+     nicht nur mit der Maus zu verstehen ist. #}
+  <button type="button" class="ask-echo-launch" data-ask-open
+          aria-expanded="false" aria-controls="askEchoPanel"
+          aria-label="{{ 'ask echo — ask a question about aivance' if isEn else 'ask echo — Frage zu aivance stellen' }}">
+    <span class="ask-echo-launch-label" aria-hidden="true">ask echo</span>
+    <span class="ask-echo-launch-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 14a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/>
+      </svg>
+    </span>
+  </button>
+
+  <div class="ask-echo-panel" id="askEchoPanel" data-ask-panel role="dialog"
+       aria-label="{{ 'ask echo' }}" hidden>
+
+    <div class="ask-echo-head">
+      <span class="ask-echo-title">ask echo</span>
+      <span class="ask-echo-state">
+        <span class="ask-echo-dot" aria-hidden="true"></span>
+        <span class="mono ask-echo-status" data-ask-status>{{ 'Ready' if isEn else 'Bereit' }}</span>
+      </span>
+      <button type="button" class="ask-echo-close" data-ask-close
+              aria-label="{{ 'Close' if isEn else 'Schließen' }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    {# Pegelanzeige wie in der Produktdemo, nur schmaler: 28 Striche statt 44.
+       Sie erscheint erst im Sprachmodus — beim Tippen gibt es keinen Pegel. #}
+    <div class="ask-echo-wave" data-ask-wave aria-hidden="true" hidden>
+      {% for i in range(0, 40) %}<span class="ask-echo-wave-bar"></span>{% endfor %}
+    </div>
+
+    <div class="ask-echo-body">
+      <div class="ask-echo-thread" data-ask-thread role="log" aria-live="polite"
+           aria-label="{{ 'Conversation' if isEn else 'Gesprächsverlauf' }}"></div>
+
+      {# Liegt ueber dem leeren Verlauf und weicht dem ersten Beitrag. Die
+         Vorschlaege sind Knoepfe, keine Zierde: ein Klick schickt sie ab. #}
+      <div class="ask-echo-idle" data-ask-idle>
+        <p class="ask-echo-idle-label">{{ 'Ask for example' if isEn else 'Fragen Sie zum Beispiel' }}</p>
+        <ul class="ask-echo-prompts">
+          {% set vorschlaege = ['What does aivance do?', 'What products do you offer?', 'How does a project work?'] if isEn else ['Was macht aivance?', 'Welche Produkte gibt es?', 'Wie läuft ein Projekt ab?'] %}
+          {% for frage in vorschlaege %}
+          <li><button type="button" class="ask-echo-chip" data-ask-prompt>{{ frage }}</button></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <p class="ask-echo-note" data-ask-note hidden></p>
+
+    <form class="ask-echo-form" data-ask-form>
+      <label class="sr-only" for="askEchoInput">{{ 'Your question' if isEn else 'Ihre Frage' }}</label>
+      <input id="askEchoInput" class="ask-echo-input" data-ask-input type="text"
+             autocomplete="off" enterkeyhint="send"
+             placeholder="{{ 'Type a question …' if isEn else 'Frage eintippen …' }}" />
+      <button type="button" class="ask-echo-icon" data-ask-voice
+              aria-label="{{ 'Speak instead of typing' if isEn else 'Sprechen statt tippen' }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 11a7 7 0 0 1-14 0M12 18v4"/>
+        </svg>
+      </button>
+      <button type="submit" class="ask-echo-icon ask-echo-send" data-ask-send
+              aria-label="{{ 'Send question' if isEn else 'Frage senden' }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </button>
+    </form>
+
+    {# Tritt im Sprachmodus an die Stelle des Eingabefelds. #}
+    <div class="ask-echo-voicebar" data-ask-voicebar hidden>
+      <button type="button" class="btn-ghost ask-echo-btn" data-ask-hangup>{{ 'Hang up' if isEn else 'Auflegen' }}</button>
+      <button type="button" class="btn-ghost ask-echo-btn" data-ask-mute aria-pressed="false">{{ 'Mute' if isEn else 'Stumm' }}</button>
+    </div>
+
+    <p class="ask-echo-privacy">
+      {{ 'Echo answers about aivance. The connection to ElevenLabs is made with your first question, not before.' if isEn else 'Echo antwortet über aivance. Die Verbindung zu ElevenLabs entsteht erst mit Ihrer ersten Frage, nicht vorher.' }}
+    </p>
+  </div>
+</div>
+<script src="/js/ask-echo.js" defer></script>
+{% endif %}

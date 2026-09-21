@@ -1339,3 +1339,205 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
      Silhouette — das Bild bleibt lesbar, nur ohne Bewegung. */
   .echo-wave-bar { transition: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   „ask echo" — das Fragefenster unten rechts (auf jeder Seite ausser der
+   Echo-Produktseite, dort steht die Demo schon im Text).
+
+   Ruhezustand ist ein Kreis mit einer Sprechblase. Erst bei Hover oder
+   Tastaturfokus waechst die Beschriftung heraus — der Knopf soll im Ruhezustand
+   nichts vom Inhalt der Seite wegnehmen. Amber traegt auch hier nur das
+   laufende Gespraech; solange nichts laeuft, ist alles Tinte und Haarlinie.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Ohne JavaScript erscheint das Fenster gar nicht: ein Knopf, der nichts tut,
+   waere schlechter als kein Knopf. Die Klasse setzt das Inline-Skript im Head. */
+.ask-echo { display: none; }
+.js .ask-echo {
+  display: block;
+  position: fixed; z-index: 60;
+  right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px);
+}
+
+/* ── Knopf ─────────────────────────────────────────────────────────────────
+   Die Pille waechst nach links: rechts sitzt das Symbol fest, die Beschriftung
+   schiebt sich davor. Animiert wird max-width statt width — die Schriftbreite
+   steht erst zur Laufzeit fest. */
+.ask-echo-launch {
+  display: flex; align-items: center; justify-content: flex-end; gap: 0;
+  height: 52px; min-width: 52px; padding: 0; border: 0; border-radius: 26px;
+  background: var(--ink); color: var(--canvas); cursor: pointer;
+  transition: padding .22s ease, gap .22s ease, background-color .22s ease;
+}
+.ask-echo-launch:hover { background: var(--ink-soft); }
+.ask-echo-launch-icon { display: flex; width: 52px; flex: none; justify-content: center; }
+.ask-echo-launch-icon svg { width: 21px; height: 21px; }
+.ask-echo-launch-label {
+  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+  transition: max-width .22s ease, opacity .18s ease;
+}
+.ask-echo-launch:hover .ask-echo-launch-label,
+.ask-echo-launch:focus-visible .ask-echo-launch-label { max-width: 120px; opacity: 1; }
+.ask-echo-launch:hover, .ask-echo-launch:focus-visible { padding-left: 18px; }
+/* Ist das Fenster offen, sagt es selbst, worum es geht — dann bleibt der Knopf
+   ein Kreis und flackert nicht bei jeder Mausbewegung auf. */
+.ask-echo.is-open .ask-echo-launch-label { max-width: 0; opacity: 0; }
+.ask-echo.is-open .ask-echo-launch { padding-left: 0; }
+
+/* ── Fenster ───────────────────────────────────────────────────────────────
+   Der einzige Schatten im ganzen Haus: Das Fenster schwebt ueber dem Inhalt
+   und braucht eine Kante, die eine Haarlinie allein nicht hergibt. */
+.ask-echo-panel {
+  position: absolute; right: 0; bottom: calc(100% + 14px);
+  width: min(370px, calc(100vw - 32px));
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line);
+  box-shadow: 0 18px 48px rgba(22, 22, 20, .13);
+}
+.ask-echo-panel[hidden] { display: none; }
+
+.ask-echo-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-bottom: 1px solid var(--line);
+}
+.ask-echo-title { font-size: 14px; font-weight: 600; letter-spacing: -.03em; margin-right: auto; }
+.ask-echo-state { display: inline-flex; align-items: center; gap: 7px; }
+.ask-echo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line-strong); flex: none; }
+.ask-echo-status {
+  font-family: var(--mono); font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--ink-muted);
+}
+.ask-echo.is-live .ask-echo-dot { background: var(--amber); animation: echo-pulse 1.6s ease-in-out infinite; }
+.ask-echo.is-live .ask-echo-status { color: var(--amber); }
+.ask-echo-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; flex: none; padding: 0;
+  border: 0; background: transparent; color: var(--ink-muted); cursor: pointer;
+  transition: color .2s ease;
+}
+.ask-echo-close:hover { color: var(--ink); }
+.ask-echo-close svg { width: 15px; height: 15px; }
+
+/* ── Pegelanzeige (nur im Sprachmodus) ─── */
+/* space-between statt festem Abstand: 40 Striche verteilen sich damit ueber
+   jede Fensterbreite — auf dem Telefon enger, am Schreibtisch weiter, ohne
+   dass die Anzeige als Haeufchen in der Mitte sitzt. */
+.ask-echo-wave {
+  display: flex; align-items: center; justify-content: space-between; gap: 0;
+  height: 54px; padding: 0 14px; border-bottom: 1px solid var(--line);
+}
+.ask-echo-wave[hidden] { display: none; }
+.ask-echo-wave-bar {
+  width: 2px; height: 100%; flex: none;
+  transform: scaleY(.06); transform-origin: center;
+  background: var(--line-strong); transition: background-color .3s ease;
+}
+/* Waehrend Echo zuhoert traegt die Anzeige das Mikrofon — in Tinte: es laeuft
+   etwas, belegt ist damit aber noch nichts. */
+.ask-echo.is-live .ask-echo-wave-bar { background: var(--ink); }
+.ask-echo.is-live .ask-echo-wave.is-speaking .ask-echo-wave-bar { background: var(--amber); }
+
+/* ── Verlauf ───────────────────────────────────────────────────────────────
+   Feste Hoehe: Das Fenster darf nicht bei jeder Antwort wachsen und dabei den
+   Knopf unter sich wegschieben. */
+.ask-echo-body { position: relative; height: 300px; }
+.ask-echo-thread {
+  position: absolute; inset: 0; overflow-y: auto; padding: 14px;
+  display: flex; flex-direction: column; gap: 13px;
+}
+.ask-echo-turn { display: flex; flex-direction: column; gap: 3px; margin: 0; }
+.ask-echo-who {
+  font-family: var(--mono); font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--ink-muted);
+}
+.ask-echo-text { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+/* Was Echo gesagt hat, steht an der Belegkante — wie die Quellenbloecke sonst auch. */
+.ask-echo-turn--echo { border-left: 2px solid var(--amber); padding-left: 11px; }
+.ask-echo-turn--caller { padding-left: 13px; }
+
+/* Ruhezustand: liegt ueber dem leeren Verlauf und weicht dem ersten Beitrag.
+   Die Vorschlaege sind Knoepfe, keine Zierde — ein Klick schickt sie ab. */
+.ask-echo-idle {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 11px; padding: 14px 16px;
+}
+.ask-echo-idle[hidden] { display: none; }
+.ask-echo-idle-label {
+  margin: 0; font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--ink-muted);
+}
+.ask-echo-prompts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ask-echo-chip {
+  width: 100%; text-align: left; padding: 8px 11px;
+  border: 1px solid var(--line); background: transparent;
+  font-size: 13px; color: var(--ink-soft); cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+}
+.ask-echo-chip:hover { border-color: var(--ink); color: var(--ink); }
+
+.ask-echo-note {
+  margin: 0; padding: 11px 14px; border-top: 1px solid var(--line);
+  font-size: 12.5px; line-height: 1.55; color: var(--ink-muted);
+}
+.ask-echo-note[hidden] { display: none; }
+
+/* ── Eingabe ─── */
+.ask-echo-form {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; border-top: 1px solid var(--line);
+}
+.ask-echo-form[hidden] { display: none; }
+.ask-echo-input {
+  flex: 1; min-width: 0; padding: 6px 2px;
+  border: 0; background: transparent; outline: none;
+  font-size: 13.5px; color: var(--ink);
+}
+.ask-echo-input::placeholder { color: var(--ink-muted); }
+.ask-echo-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; flex: none; padding: 0;
+  border: 1px solid var(--line); background: transparent;
+  color: var(--ink-muted); cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background-color .2s ease;
+}
+.ask-echo-icon svg { width: 16px; height: 16px; }
+.ask-echo-icon:hover { border-color: var(--ink); color: var(--ink); }
+.ask-echo-send { background: var(--ink); border-color: var(--ink); color: var(--canvas); }
+.ask-echo-send:hover { background: var(--amber); border-color: var(--amber); color: var(--on-amber); }
+
+/* Tritt im Sprachmodus an die Stelle des Eingabefelds — beides zugleich
+   waere nur Gedraenge auf 370 Pixeln. */
+.ask-echo-voicebar {
+  display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line);
+}
+.ask-echo-voicebar[hidden] { display: none; }
+.ask-echo-btn { flex: 1; justify-content: center; font-size: 12.5px; padding: 8px 14px; }
+
+.ask-echo-privacy {
+  margin: 0; padding: 10px 14px 12px; border-top: 1px solid var(--line);
+  font-size: 11px; line-height: 1.5; color: var(--ink-muted);
+}
+
+.ask-echo :focus-visible, .ask-echo-launch:focus-visible {
+  outline: 2px solid var(--amber); outline-offset: 2px;
+}
+
+/* Auf dem Telefon wird aus dem Fenster eine Lade ueber die volle Breite —
+   370 Pixel neben dem Rand waeren dort nur noch ein Streifen. */
+@media (max-width: 520px) {
+  .ask-echo-panel {
+    position: fixed; left: 12px; right: 12px; bottom: 84px; width: auto;
+  }
+  .ask-echo-body { height: 240px; }
+  .ask-echo-wave { height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-echo-launch, .ask-echo-launch-label, .ask-echo-chip,
+  .ask-echo-icon, .ask-echo-close, .ask-echo-wave-bar { transition: none; }
+  /* Der Punkt bleibt amber, hoert aber auf zu blinken: der Zustand ist
+     weiterhin ablesbar, nur ohne Bewegung. */
+  .ask-echo.is-live .ask-echo-dot { animation: none; }
+  .ask-echo-thread { scroll-behavior: auto; }
+}
