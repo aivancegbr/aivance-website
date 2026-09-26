@@ -178,6 +178,11 @@
         sdk ? resolve(sdk) : reject(new Error("sdk"));
       };
       tag.onerror = function () { reject(new Error("sdk")); };
+      /* Subresource Integrity: Der Hash gilt fuer genau @1.24.0. Wer die
+         Version in _data/ hebt, muss ihn neu berechnen — sonst laedt das SDK
+         nicht (curl … | openssl dgst -sha384 -binary | openssl base64 -A). */
+      tag.integrity = "sha384-pyGPXGg+kebWmZDuYabTtFKSulYO4AyWW+b3y2n8eIIIyNs1H0qFlH7eBScD6E7b";
+      tag.crossOrigin = "anonymous";
       document.head.appendChild(tag);
     });
   }
