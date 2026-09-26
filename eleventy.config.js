@@ -6,6 +6,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/downloads": "downloads" });
   eleventyConfig.addPassthroughCopy({ "CNAME": "CNAME" });
+  // security.txt (RFC 9116) — Expires spaetestens nach einem Jahr erneuern
+  eleventyConfig.addPassthroughCopy({ "src/.well-known": ".well-known" });
 
   // Brand-Schriften: Instrument Sans (Display/Text) + IBM Plex Mono (Labels/Messwerte)
   eleventyConfig.addPassthroughCopy({ "src/fonts": "fonts" });
