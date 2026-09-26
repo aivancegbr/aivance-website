@@ -75,6 +75,18 @@
     <button type="submit" class="btn-primary w-full justify-center">
       {{ 'Request a free consultation →' if isEn else 'Kostenloses Erstgespräch anfragen →' }}
     </button>
+    {# Hinweis statt Pflicht-Checkbox: informiert über die Verarbeitung und verlinkt die Erklärung #}
+    <p class="text-xs text-ink-muted mt-3">
+      {% if isEn %}
+      By submitting, you agree to the processing of your details for handling
+      your enquiry. Details and withdrawal:
+      <a href="/datenschutz/" class="underline">Privacy policy (German)</a>.
+      {% else %}
+      Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung
+      Ihrer Anfrage zu. Details und Widerruf:
+      <a href="/datenschutz/" class="underline">Datenschutzerklärung</a>.
+      {% endif %}
+    </p>
     <p id="formError" class="hidden mt-3 mono text-[11px] text-red-600" aria-live="assertive"></p>
   </form>
   <div id="successMsg" class="hidden text-center py-6" aria-live="polite">
