@@ -1,3 +1,5 @@
+const crypto = require("node:crypto");
+
 module.exports = function (eleventyConfig) {
   // Statische Assets unverändert übernehmen
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
@@ -21,6 +23,23 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("filterByCluster", (arr, cluster) =>
     (arr || []).filter((item) => item.cluster === cluster)
   );
+
+  /* CSP: Jedes ausfuehrbare Inline-Script der Seite bekommt seinen SHA-256-Hash
+     in script-src (Platzhalter im Meta-Tag von base.njk). So bleibt die Policy
+     ohne 'unsafe-inline', und ein geaendertes Script kann nicht still
+     blockiert werden, weil der Hash bei jedem Build neu entsteht. JSON-LD ist
+     kein ausfuehrbares Script und braucht keinen Hash. */
+  eleventyConfig.addTransform("csp-hashes", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    if (!content.includes("__CSP_SCRIPT_HASHES__")) return content;
+    const hashes = new Set();
+    for (const m of content.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      const attrs = m[1] || "";
+      if (/\ssrc=/.test(attrs) || /type=["']application\/ld\+json["']/.test(attrs)) continue;
+      hashes.add("'sha256-" + crypto.createHash("sha256").update(m[2], "utf8").digest("base64") + "'");
+    }
+    return content.replace("__CSP_SCRIPT_HASHES__", [...hashes].join(" "));
+  });
 
   eleventyConfig.addFilter("currentYear", () => String(new Date().getFullYear()));
 
