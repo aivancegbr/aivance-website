@@ -1476,6 +1476,19 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 }
 .ask-echo-chip:hover { border-color: var(--ink); color: var(--ink); }
 
+/* Einwilligung: liegt an derselben Stelle wie der Ruhezustand, damit das
+   Fenster beim Zustimmen nicht springt. */
+.ask-echo-consent {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 12px; padding: 14px 16px;
+}
+.ask-echo-consent[hidden] { display: none; }
+.ask-echo-consent-text { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ink); }
+.ask-echo-consent-link { margin: 0; font-size: 12px; }
+.ask-echo-consent-link a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+.ask-echo-consent-link a:hover { color: var(--ink); }
+.ask-echo-consent-actions { display: flex; flex-direction: column; gap: 6px; }
+
 .ask-echo-note {
   margin: 0; padding: 11px 14px; border-top: 1px solid var(--line);
   font-size: 12.5px; line-height: 1.55; color: var(--ink-muted);

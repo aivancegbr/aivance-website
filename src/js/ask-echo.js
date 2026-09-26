@@ -8,7 +8,8 @@
  * dabei stehen, die Sitzung darunter nicht.
  *
  * Bis zur ersten Frage geht nichts an ElevenLabs: weder das SDK (gut ein
- * Megabyte) noch eine Verbindung. Das haelt das JS-Budget der Seite und die
+ * Megabyte) noch eine Verbindung — und vorher muss der Besucher im Fenster
+ * ausdruecklich zugestimmt haben. Das haelt das JS-Budget der Seite und die
  * Datenschutzlage sauber, denn ohne Handlung des Besuchers wird kein Dritter
  * kontaktiert. Alle Texte stehen als data-Attribute im Markup, damit die
  * englischen Seiten dieselbe Datei benutzen.
@@ -39,7 +40,13 @@
   var noteEl = el("[data-ask-note]");
   var statusEl = el("[data-ask-status]");
   var waveEl = el("[data-ask-wave]");
+  var consentEl = el("[data-ask-consent]");
+  var acceptBtn = el("[data-ask-consent-accept]");
+  var cancelBtn = el("[data-ask-consent-cancel]");
   if (!launchBtn || !panel || !form || !input || !threadEl) return;
+  /* Ohne Einwilligungsschritt kein Fenster — lieber keinen Knopf als einen,
+     der ungefragt verbindet. */
+  if (!consentEl || !acceptBtn || !cancelBtn) return;
 
   /* getAttribute schreibt den Namen klein — "faultConnection" wuerde also auf
      data-t-faultconnection zeigen und nie auf data-t-fault-connection. Deshalb
@@ -60,6 +67,9 @@
   var spricht = false;
   var wechsel = false;     /* eine Trennung, die wir selbst ausgeloest haben */
   var wartet = "";         /* Frage, die vor dem Verbinden getippt wurde */
+  /* Zustimmung gilt nur, solange die Seite offen ist: bewusst nur im Speicher,
+     kein Cookie, kein localStorage, kein sessionStorage. */
+  var einverstanden = false;
 
   /* ── Pegelanzeige ─────────────────────────────────────────────────────────
      Dieselbe Rechnung wie in der Produktdemo, nur mit weniger Strichen: zur
@@ -150,6 +160,7 @@
   /* ── Sitzung ────────────────────────────────────────────────────────────── */
 
   function loadSdk() {
+    if (!einverstanden) return Promise.reject(new Error("consent"));
     if (sdk) return Promise.resolve(sdk);
     if (window.ElevenLabsClient) { sdk = window.ElevenLabsClient; return Promise.resolve(sdk); }
     return new Promise(function (resolve, reject) {
@@ -194,7 +205,7 @@
   }
 
   function verbinde(ziel) {
-    if (busy) return;
+    if (busy || !einverstanden) return;
     busy = true;
     imAufbau = ziel;
     setNote("");
@@ -288,7 +299,7 @@
 
   function frage(text) {
     text = (text || "").trim();
-    if (!text) return;
+    if (!text || !einverstanden) return;
     addTurn("caller", text);
     if (modus === "text" && conversation) { schicke(text); return; }
     /* Noch keine Textsitzung: Frage vormerken und verbinden. Eine laufende
@@ -299,13 +310,23 @@
 
   /* ── Fenster ────────────────────────────────────────────────────────────── */
 
+  /* Vor der Zustimmung stehen weder Eingabefeld noch Vorschlaege bereit —
+     sonst liesse sich die Frage an der Einwilligung vorbei abschicken. */
+  function zeigeEinwilligung(an) {
+    consentEl.hidden = !an;
+    form.hidden = an;
+    if (idleEl) idleEl.hidden = an || threadEl.children.length > 0;
+  }
+
   function oeffne() {
     if (offen) return;
     offen = true;
     panel.hidden = false;
     root.classList.add("is-open");
     launchBtn.setAttribute("aria-expanded", "true");
-    input.focus();
+    if (einverstanden) { input.focus(); return; }
+    zeigeEinwilligung(true);
+    acceptBtn.focus();
   }
 
   function schliesse() {
@@ -326,6 +347,13 @@
   }
 
   launchBtn.addEventListener("click", function () { offen ? schliesse() : oeffne(); });
+
+  acceptBtn.addEventListener("click", function () {
+    einverstanden = true;
+    zeigeEinwilligung(false);
+    input.focus();
+  });
+  cancelBtn.addEventListener("click", schliesse);
   if (closeBtn) closeBtn.addEventListener("click", schliesse);
 
   form.addEventListener("submit", function (ereignis) {

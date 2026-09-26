@@ -81,6 +81,28 @@
           {% endfor %}
         </ul>
       </div>
+
+      {# Einwilligung vor der ersten Verbindung. Der Klick auf „ask echo" oeffnet
+         nur das Fenster — erst „Einverstanden" erlaubt, das SDK nachzuladen und
+         mit ElevenLabs zu verbinden. Die Entscheidung lebt nur im Speicher der
+         Seite: kein Cookie, kein localStorage. #}
+      <div class="ask-echo-consent" data-ask-consent role="group"
+           aria-labelledby="askEchoConsentText" hidden>
+        <p class="ask-echo-consent-text" id="askEchoConsentText">
+          {% if isEn %}
+          Echo is operated by ElevenLabs Inc. (USA). Once you start, your question — and in voice mode also your voice recording — is transmitted to ElevenLabs. No connection is made before that.
+          {% else %}
+          Echo wird von ElevenLabs Inc. (USA) betrieben. Sobald Sie starten, wird Ihre Frage — im Sprachmodus auch Ihre Stimmaufnahme — an ElevenLabs übertragen. Vorher entsteht keine Verbindung.
+          {% endif %}
+        </p>
+        <p class="ask-echo-consent-link">
+          <a href="/datenschutz/">{{ 'Privacy policy (German)' if isEn else 'Datenschutzerklärung' }}</a>
+        </p>
+        <div class="ask-echo-consent-actions">
+          <button type="button" class="btn-primary ask-echo-btn" data-ask-consent-accept>{{ 'Agree, start conversation' if isEn else 'Einverstanden, Gespräch starten' }}</button>
+          <button type="button" class="btn-ghost ask-echo-btn" data-ask-consent-cancel>{{ 'Cancel' if isEn else 'Abbrechen' }}</button>
+        </div>
+      </div>
     </div>
 
     <p class="ask-echo-note" data-ask-note hidden></p>
