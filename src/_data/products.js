@@ -46,7 +46,7 @@ module.exports = [
         "Können Sie mich zurückrufen?",
         "Wie erreiche ich jemanden persönlich?"
       ],
-      hinweis: "Beim Start wird das Mikrofon freigegeben und eine Verbindung zu ElevenLabs aufgebaut, unserem Anbieter für Sprachagenten. Vorher verlässt nichts Ihren Browser. Das Gespräch wird nicht zu Werbezwecken ausgewertet.",
+      hinweis: "Mit „Gespräch starten“ geben Sie das Mikrofon frei und verbinden sich mit ElevenLabs Inc. (USA), unserem Anbieter für Sprachagenten. Ihre Stimmaufnahme und deren Transkription werden dorthin übertragen. Vorher verlässt nichts Ihren Browser. Das Gespräch wird nicht zu Werbezwecken ausgewertet.",
       ohneJs: "Die Live-Demo braucht JavaScript und ein Mikrofon. Ohne beides beschreibt dieser Abschnitt, was Echo am Telefon übernimmt."
     },
     features: [
@@ -87,7 +87,7 @@ module.exports = [
           "Could someone call me back?",
           "How do I reach a person directly?"
         ],
-        hinweis: "Starting the demo grants microphone access and opens a connection to ElevenLabs, our voice-agent provider. Nothing leaves your browser before that. The conversation is not mined for marketing.",
+        hinweis: "“Start conversation” grants microphone access and connects you to ElevenLabs Inc. (USA), our voice-agent provider. Your voice recording and its transcript are transmitted there. Nothing leaves your browser before that. The conversation is not mined for marketing.",
         ohneJs: "The live demo needs JavaScript and a microphone. Without them, this section describes what Echo handles on the phone."
       },
       features: [

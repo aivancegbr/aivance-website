@@ -40,7 +40,8 @@
           <span class="mono echo-status" data-echo-status>{{ 'Ready' if isEn else 'Bereit' }}</span>
         </span>
         <span class="echo-actions">
-          <button type="button" class="btn-primary echo-btn" data-echo-start disabled>
+          <button type="button" class="btn-primary echo-btn" data-echo-start disabled
+                  aria-describedby="echoDemoHinweis">
             {{ 'Start conversation' if isEn else 'Gespräch starten' }}
           </button>
           <button type="button" class="btn-ghost echo-btn" data-echo-stop hidden>
@@ -51,6 +52,14 @@
           </button>
         </span>
       </div>
+
+      {# Der Hinweis steht direkt unter dem Startknopf, nicht unter dem Kasten:
+         Der Klick ist die Einwilligung, also muss man vorher lesen koennen,
+         wohin Stimme und Transkript gehen. #}
+      <p class="echo-privacy" id="echoDemoHinweis">
+        {{ demo.hinweis }}
+        <a href="/datenschutz/">{{ 'Privacy policy (German)' if isEn else 'Datenschutzerklärung' }}</a>
+      </p>
 
       {# Pegelanzeige — dieselbe Haarlinien-Grafik wie auf demo2: 44 Striche,
          zur Mitte gespiegelt. Ohne Gespraech stehen sie flach da, das ist der
@@ -78,7 +87,6 @@
       <p class="echo-note" data-echo-note hidden></p>
     </div>
 
-    <p class="echo-privacy">{{ demo.hinweis }}</p>
     <p class="echo-nojs">{{ demo.ohneJs }}</p>
   </div>
 </section>

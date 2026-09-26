@@ -1317,9 +1317,16 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 }
 .echo-note[hidden] { display: none; }
 
-.echo-privacy, .echo-nojs {
+.echo-nojs {
   max-width: 720px; margin: 14px 0 0; font-size: 12px; line-height: 1.65; color: var(--ink-muted);
 }
+/* Hinweis im Kasten, direkt unter der Knopfleiste — siehe echo-demo.njk. */
+.echo-privacy {
+  margin: 0; padding: 10px 16px; border-bottom: 1px solid var(--line);
+  font-size: 12px; line-height: 1.6; color: var(--ink-muted);
+}
+.echo-privacy a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+.echo-privacy a:hover { color: var(--ink); }
 /* Mit JavaScript ist der Hinweis ueberfluessig — die Demo laeuft dann ja. */
 .js .echo-nojs { display: none; }
 
