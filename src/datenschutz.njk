@@ -54,9 +54,20 @@ permalink: /datenschutz/
     <section>
       <h2 class="text-lg font-bold text-slate-900 mb-3 pb-2 border-b border-slate-100">4. Kontaktformular (Formspree)</h2>
       <p>Für den Versand des Kontaktformulars nutzen wir den Dienst Formspree. Die von Ihnen eingegebenen Daten werden zur Zustellung an uns verarbeitet. Details finden Sie in der Datenschutzerklärung von Formspree.</p>
-      <p class="mt-3">Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Die Übermittlung in die USA erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. der Standardvertragsklauseln.</p>
-      {# TODO(AV-Vertrag): Satz zum Auftragsverarbeitungsvertrag nach Art. 28 DSGVO mit
-         Formspree erst ergänzen, wenn bestätigt ist, dass er besteht. #}
+      <p class="mt-3">Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Formspree Inc. hat seinen Sitz in den USA; die Grundlage der Drittlandübermittlung wird derzeit geprüft.</p>
+      {# TODO(Formspree): Zwei offene Punkte, die zusammengehoeren und zusammen zu
+         beantworten sind.
+         1) Auftragsverarbeitungsvertrag nach Art. 28 DSGVO — besteht er?
+         2) Grundlage der Drittlandübermittlung. Formspree ist am 27.09.2026 NICHT
+            in der DPF-Teilnehmerliste gefuehrt (weder aktiv noch inaktiv, geprueft
+            gegen dataprivacyframework.gov/list). Das Data Privacy Framework darf
+            hier also nicht genannt werden. Es bleiben nur die EU-Standard-
+            vertragsklauseln — und die stecken ueblicherweise im AV-Vertrag.
+         Ist kein AV-Vertrag abgeschlossen, fehlen Art.-28-Vertrag UND SCC. Dann ist
+         der Satz nicht das Problem, sondern der Einsatz von Formspree selbst; die
+         Loesung waere ein AV-Vertrag inkl. SCC oder ein Wechsel auf einen
+         EU-Anbieter. Erst nach Klaerung den Satz oben durch die zutreffende
+         Formulierung ersetzen. Klaert Cyrus. #}
     </section>
 
     <section>
@@ -91,7 +102,7 @@ permalink: /datenschutz/
         </div>
         <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs">
           <span class="font-semibold text-slate-700">Formularversand (Formspree, Formspree Inc.)</span>
-          <span class="text-slate-600">USA — nur Kontaktformular</span>
+          <span class="text-slate-600">USA — nur Kontaktformular; Übermittlungsgrundlage in Prüfung</span>
         </div>
         <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs">
           <span class="font-semibold text-slate-700">Sprachassistent „ask echo" (ElevenLabs Inc.)</span>
@@ -99,7 +110,7 @@ permalink: /datenschutz/
         </div>
         <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs">
           <span class="font-semibold text-slate-700">Auslieferung des Sprach-SDK (jsDelivr / Cloudflare)</span>
-          <span class="text-slate-600">EU/USA — nur beim Öffnen des Fragefensters</span>
+          <span class="text-slate-600">EU/USA — erst nach Ihrer Zustimmung mit der ersten Frage bzw. beim Start der Demo</span>
         </div>
       </div>
     </section>
