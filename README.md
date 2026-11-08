@@ -15,10 +15,14 @@ Das Telefon im Hero der Startseite (DE und EN) ist auf Desktop eine three.js-Sze
 überall sonst ein statisches Rendering derselben Szene.
 
 **Modell: selbst gebaut, keine fremden Assets.** Die Geometrie entsteht zur Laufzeit
-aus Code (`src/js3d/phone-scene.js`): extrudiertes Rundrechteck mit runder Kante als
-Rahmen, schwarze Front, drei generische Tasten. Kein heruntergeladenes Modell, keine
-Herstellerdaten oder -renderings, kein Logo, keine Insel, keine Kamerainsel. Die
-Frontkamera ist ein schlichtes rundes Loch im Chat-Kopf (`.notch` in `main.css`).
+aus Code (`src/js3d/phone-scene.js`): Rahmen mit flachen Seiten und polierter Fase,
+schmale gleichmäßige Ränder, Ecken als Superellipse (Exponent 2.8, konzentrisch zur
+Bildschirmecke), rechts eine Seitentaste, links Aktionstaste und zwei
+Lautstärketasten. Die Kameraaussparung ist eine Pille in eigenen Proportionen
+(88 × 28 px, rund ein Drittel der Bildschirmbreite), CSS in `.notch` (`main.css`);
+die Statusleiste liegt links und rechts daneben. Kein heruntergeladenes Modell,
+keine Herstellerdaten, -maße oder -renderings, kein Logo, keine Rückkamera, keine
+Marke.
 Reflexionen kommen aus `RoomEnvironment` von three.js, nicht aus einer HDR-Datei.
 Es gibt deshalb keine Modelldatei und nichts, was Draco oder Meshopt komprimieren
 müssten.

@@ -481,19 +481,32 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 .phone-inner {
   background: var(--surface); border-radius: 34px; height: 100%;
   overflow: hidden; display: flex; flex-direction: column; position: relative;
+  /* Ecken als Superellipse (Ausdehnung 44px, Exponent 2.8) statt Kreisbogen —
+     dieselbe Form wie Front und Rahmen in src/js3d/phone-scene.js.
+     Erzeugt für 274 × 594 px; border-radius bleibt als Rückfall. */
+  clip-path: path("M230 0L238.4 0.2L243.7 0.6L248.2 1.4L252.2 2.4L255.7 3.8L258.9 5.4L261.8 7.4L264.4 9.6L266.6 12.2L268.6 15.1L270.2 18.3L271.6 21.8L272.6 25.8L273.4 30.3L273.8 35.6L274 44L274 550L273.8 558.4L273.4 563.7L272.6 568.2L271.6 572.2L270.2 575.7L268.6 578.9L266.6 581.8L264.4 584.4L261.8 586.6L258.9 588.6L255.7 590.2L252.2 591.6L248.2 592.6L243.7 593.4L238.4 593.8L230 594L44 594L35.6 593.8L30.3 593.4L25.8 592.6L21.8 591.6L18.3 590.2L15.1 588.6L12.2 586.6L9.6 584.4L7.4 581.8L5.4 578.9L3.8 575.7L2.4 572.2L1.4 568.2L0.6 563.7L0.2 558.4L0 550L0 44L0.2 35.6L0.6 30.3L1.4 25.8L2.4 21.8L3.8 18.3L5.4 15.1L7.4 12.2L9.6 9.6L12.2 7.4L15.1 5.4L18.3 3.8L21.8 2.4L25.8 1.4L30.3 0.6L35.6 0.2L44 0Z");
 }
 .notch { height: 24px; flex-shrink: 0; position: relative; }
-/* Generische Frontkamera: kleines rundes Loch, keine Aussparung im Rand */
+/* Kameraaussparung als Pille oben mittig: rund ein Drittel der Bildschirm-
+   breite, Höhe ein Drittel der Länge, eigene Proportionen. Schwarz mit feiner
+   dunkelgrauer Innenkante und kleiner Linse rechts. */
 .notch::after {
-  content: ''; position: absolute; left: 50%; top: 8px; width: 9px; height: 9px;
-  margin-left: -4.5px; border-radius: 50%; background: #0d0d0c;
-  box-shadow: inset 0 0 0 1.5px #242422;
+  content: ''; position: absolute; left: 50%; top: 9px; width: 88px; height: 28px;
+  margin-left: -44px; border-radius: 14px;
+  background:
+    radial-gradient(circle at calc(100% - 14px) 50%, #1b2230 0 2.6px, #0b0d12 3.2px 4.6px, transparent 5.2px),
+    #050505;
+  box-shadow: inset 0 0 0 1px #1d1d1b;
 }
+/* Statusleiste links und rechts neben der Pille. Nur per transform nach oben
+   gezogen — die Höhe im Fluss bleibt, der Chat darunter rückt nicht. */
 .status-bar {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 18px 0; font-family: var(--mono); font-size: 10px; font-weight: 500;
+  padding: 8px 0 0; font-family: var(--mono); font-size: 10px; font-weight: 500;
   color: var(--ink); flex-shrink: 0;
+  transform: translateY(-15px);
 }
+.status-bar > span, .status-bar > .status-icons { flex: 0 0 calc(50% - 50px); justify-content: center; text-align: center; }
 .status-icons { display: flex; gap: 5px; align-items: center; }
 .status-icons svg { width: 13px; height: 13px; }
 
@@ -568,7 +581,8 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   opacity: 0; transition: opacity .4s ease, transform .4s ease; z-index: 2;
 }
 .float-badge.visible { opacity: 1; }
-.float-badge-1 { top: 26px; right: -96px; transform: translateY(-10px); }
+/* Liegt neben dem Chat-Kopf, nicht über Kameraaussparung und Statusleiste */
+.float-badge-1 { top: 70px; right: -96px; transform: translateY(-10px); }
 .float-badge-1.visible { transform: translateY(0); }
 .float-badge-2 { bottom: 18px; left: -110px; transform: translateY(10px); }
 .float-badge-2.visible { transform: translateY(0); }
@@ -820,7 +834,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
      unlesbar) plus negative Ränder, die die Box auf die sichtbare Höhe ziehen. */
   .phone-stage { transform: scale(0.88); margin-block: -37px; }
   .phone-wrap, .phone-badges { transform: var(--phone-persp) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
-  .float-badge-1 { right: -30px; }
+  .float-badge-1 { right: -46px; } /* frei vom Chat-Kopf */
   .float-badge-2 { left: -30px; }
   .chain-label { width: 100%; }
 }

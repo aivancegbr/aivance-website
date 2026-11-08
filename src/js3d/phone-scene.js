@@ -13,15 +13,22 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Group, Mesh, Shape, ExtrudeGeometry,
-  ShapeGeometry, PlaneGeometry, MeshPhysicalMaterial, MeshBasicMaterial, ShaderMaterial,
+  ShapeGeometry, PlaneGeometry, BufferGeometry, Float32BufferAttribute, MeshPhysicalMaterial, MeshBasicMaterial, ShaderMaterial,
   DirectionalLight, PMREMGenerator, CanvasTexture, Matrix4, Vector3, Color,
   NeutralToneMapping, SRGBColorSpace,
 } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
-/* Maße des Geräts — identisch zu .phone im CSS (300 × 620, Radius 46) */
-export const DEVICE = { w: 300, h: 620, r: 46, depth: 28, rim: 4.5 };
+/* Maße. Die Bühne ist 300 × 620 (= .phone im CSS), der Bildschirm (.phone-inner)
+   sitzt 13 px eingerückt. Das Gehäuse ist 3 px kleiner als die Bühne, damit die
+   Ränder schmal werden, ohne dass der Chat sich bewegt. Alle Ecken folgen
+   derselben Superellipse (Exponent SQ_N) und liegen konzentrisch zur
+   Bildschirmecke in main.css (clip-path der .phone-inner, Ausdehnung 44 px). */
+export const DEVICE = { w: 294, h: 614, depth: 28, rim: 2.2 };
+const SCREEN_INSET = 13 - 3;        // Bildschirmkante ab Gehäusekante
+const SCREEN_CORNER = 44;           // = clip-path in main.css
+export const SQ_N = 2.8;            // Superellipse: weicher Übergang als ein Kreisbogen
 /* CSS-Perspektive der Lagen (--phone-persp in main.css): 1200px, Ursprung 150px / 248px */
 export const PERSPECTIVE = 1200;
 export const ORIGIN = { x: 150, y: 248 };
@@ -32,19 +39,44 @@ export const BOX_BODY = { left: -100, top: -70, width: 500, height: 840 };
 const SHADOW_Z = 170; // Abstand der Schattenebene hinter der Front
 export const BOX_GLASS = { left: -40, top: -40, width: 380, height: 700 };
 
-function roundedRect(w, h, r) {
-  /* Kreisbögen statt Bézier: schlichte, generische Ecken */
-  const s = new Shape(), x = w / 2 - r, y = h / 2 - r, q = Math.PI / 2;
-  s.moveTo(-x, -h / 2);
-  s.lineTo(x, -h / 2);
-  s.absarc(x, -y, r, -q, 0);
-  s.lineTo(w / 2, y);
-  s.absarc(x, y, r, 0, q);
-  s.lineTo(-x, h / 2);
-  s.absarc(-x, y, r, q, 2 * q);
-  s.lineTo(-w / 2, -y);
-  s.absarc(-x, -y, r, 2 * q, 3 * q);
+/* Rechteck mit Superellipsen-Ecken (Ausdehnung r je Ecke). Fein unterteilt,
+   weil die Kanten flach schattiert werden. */
+function squircleRect(w, h, r, segs = 40) {
+  const s = new Shape(), cx = w / 2 - r, cy = h / 2 - r, e = 2 / SQ_N;
+  const pts = [];
+  for (const [sx, sy, a0] of [[1, -1, -Math.PI / 2], [1, 1, 0], [-1, 1, Math.PI / 2], [-1, -1, Math.PI]]) {
+    for (let i = 0; i <= segs; i++) {
+      const t = a0 + (i / segs) * (Math.PI / 2), c = Math.cos(t), si = Math.sin(t);
+      pts.push([sx * cx + Math.sign(c) * Math.abs(c) ** e * r, sy * cy + Math.sign(si) * Math.abs(si) ** e * r]);
+    }
+  }
+  s.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) s.lineTo(pts[i][0], pts[i][1]);
+  s.closePath();
   return s;
+}
+
+/* Teilt eine Extrusion nach Flächenneigung in drei Gruppen: Deckflächen (0),
+   flache Seitenwand (1), Fase (2) — damit die Fase poliert glänzen kann. */
+function splitByNormal(geo) {
+  const g = geo.index ? geo.toNonIndexed() : geo;
+  g.computeVertexNormals();
+  const pos = g.attributes.position.array, nor = g.attributes.normal.array;
+  const buckets = [[], [], []];
+  for (let t = 0; t < pos.length / 9; t++) {
+    const nz = Math.abs(nor[t * 9 + 2] + nor[t * 9 + 5] + nor[t * 9 + 8]) / 3;
+    buckets[nz > 0.97 ? 0 : nz < 0.25 ? 1 : 2].push(t);
+  }
+  const P = [], N = [], out = new BufferGeometry();
+  let start = 0;
+  buckets.forEach((list, gi) => {
+    for (const t of list) for (let k = 0; k < 9; k++) { P.push(pos[t * 9 + k]); N.push(nor[t * 9 + k]); }
+    out.addGroup(start, list.length * 3, gi);
+    start += list.length * 3;
+  });
+  out.setAttribute("position", new Float32BufferAttribute(P, 3));
+  out.setAttribute("normal", new Float32BufferAttribute(N, 3));
+  return out;
 }
 
 /* Weicher Schatten als vorgerechnete Textur: verwischtes Rundrechteck in
@@ -102,13 +134,16 @@ const glassFrag = /* glsl */ `
   uniform vec3 uNormal;
   uniform vec2 uHalf;
   uniform float uRadius;
+  uniform float uN;
   uniform vec2 uPointer;
   uniform float uOpacity;
   varying vec3 vWorld;
   varying vec2 vLocal;
+  /* Abstand zu einem Rechteck mit Superellipsen-Ecken (p-Norm, genähert) */
   float sdRound(vec2 p, vec2 b, float r) {
     vec2 q = abs(p) - b + r;
-    return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;
+    vec2 m = max(q, 0.0);
+    return pow(pow(m.x, uN) + pow(m.y, uN), 1.0 / uN) + min(max(q.x, q.y), 0.0) - r;
   }
   void main() {
     float d = sdRound(vLocal, uHalf, uRadius);
@@ -168,44 +203,48 @@ export function createPhoneScene({ bodyCanvas, glassCanvas, pixelRatio }) {
   const rim = new DirectionalLight(0xffffff, 2.4); rim.position.set(0.9, 0.7, -1);
   scene.add(key, fill, rim);
 
-  const { w, h, r, depth, rim: rimW } = DEVICE;
-  const bevel = 3.2;
+  const { w, h, depth, rim: rimW } = DEVICE;
+  const r = SCREEN_CORNER + SCREEN_INSET;          // Gehäuseecke, konzentrisch zum Bildschirm
+  const rFront = SCREEN_CORNER + SCREEN_INSET - rimW;
+  const chamfer = 1.3;
   const device = new Group();
   device.matrixAutoUpdate = false;
 
-  /* Rahmen: extrudiertes Rundrechteck mit runder Kante; Front bei z = 0 */
-  const frameGeo = new ExtrudeGeometry(roundedRect(w - 2 * bevel, h - 2 * bevel, r - bevel), {
-    depth: depth - 2 * bevel, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel,
-    bevelSegments: 6, curveSegments: 28,
+  /* Rahmen: flache Seitenwände, vorn und hinten eine schmale 45°-Fase.
+     Seiten satiniert, Fase poliert. Front bei z = 0. */
+  const frameGeo = splitByNormal(new ExtrudeGeometry(squircleRect(w - 2 * chamfer, h - 2 * chamfer, r - chamfer), {
+    depth: depth - 2 * chamfer, bevelEnabled: true, bevelThickness: chamfer, bevelSize: chamfer, bevelSegments: 1,
+  }));
+  frameGeo.translate(0, 0, -depth + chamfer - 0.25);
+  const satin = new MeshPhysicalMaterial({
+    color: new Color("#5a5752"), metalness: 1, roughness: 0.42, clearcoat: 0.3, clearcoatRoughness: 0.45,
   });
-  frameGeo.translate(0, 0, -depth + bevel - 0.25);
-  const metal = new MeshPhysicalMaterial({
-    color: new Color("#5a5752"), metalness: 1, roughness: 0.34,
-    clearcoat: 0.4, clearcoatRoughness: 0.35,
-  });
-  device.add(new Mesh(frameGeo, metal));
+  const polished = new MeshPhysicalMaterial({ color: new Color("#8d8a83"), metalness: 1, roughness: 0.12 });
+  device.add(new Mesh(frameGeo, [satin, satin, polished]));
 
   /* Front: schwarzes Deckglas innerhalb des Rahmens, liegt unter dem Chat */
   const front = new Mesh(
-    new ShapeGeometry(roundedRect(w - 2 * rimW, h - 2 * rimW, r - rimW), 28),
+    new ShapeGeometry(squircleRect(w - 2 * rimW, h - 2 * rimW, rFront)),
     new MeshPhysicalMaterial({ color: new Color("#050505"), metalness: 0, roughness: 0.6, envMapIntensity: 0.25 }),
   );
   front.position.z = -0.05;
   device.add(front);
 
-  /* Tasten: rechts eine, links zwei — generisch, ohne Vorbild */
-  const keyMat = new MeshPhysicalMaterial({ color: new Color("#5a5752"), metalness: 1, roughness: 0.3 });
-  const btn = (x, y, len) => {
-    const m = new Mesh(new RoundedBoxGeometry(4, len, 9, 2, 1.6), keyMat);
-    m.position.set(x, y, -depth / 2);
+  /* Tasten: rechts eine lange, links eine kurze Aktionstaste und zwei für die
+     Lautstärke. Flach, knapp aus der Seitenwand stehend. */
+  const keyMat = new MeshPhysicalMaterial({ color: new Color("#6a6760"), metalness: 1, roughness: 0.28 });
+  const btn = (side, y, len) => {
+    const m = new Mesh(new RoundedBoxGeometry(3, len, 7, 2, 1.2), keyMat);
+    m.position.set(side * (w / 2 + 0.4), y, -depth / 2);
     device.add(m);
   };
-  btn(w / 2 + 0.6, 120, 62);
-  btn(-w / 2 - 0.6, 150, 40);
-  btn(-w / 2 - 0.6, 96, 40);
+  btn(1, 100, 78);   // Seitentaste
+  btn(-1, 186, 26);  // Aktionstaste
+  btn(-1, 126, 50);  // lauter
+  btn(-1, 66, 50);   // leiser
 
-  /* Kamera der Front: kleines, rundes Loch im Chat-Kopf übernimmt der DOM-Teil
-     (.notch). Hier nichts weiter — der Bildschirm ist DOM. */
+  /* Kameraaussparung und Statusleiste gehören zum DOM-Bildschirm (.notch,
+     .status-bar in main.css). */
 
   scene.add(device);
 
@@ -228,7 +267,8 @@ export function createPhoneScene({ bodyCanvas, glassCanvas, pixelRatio }) {
       uniforms: {
         uNormal: { value: new Vector3(0, 0, 1) },
         uHalf: { value: [(w - 2 * rimW) / 2, (h - 2 * rimW) / 2] },
-        uRadius: { value: r - rimW },
+        uRadius: { value: rFront },
+        uN: { value: SQ_N },
         uPointer: { value: [0, 0] },
         uOpacity: { value: 1 },
       },
@@ -240,8 +280,9 @@ export function createPhoneScene({ bodyCanvas, glassCanvas, pixelRatio }) {
     glassCam = cssCamera(BOX_GLASS);
   }
 
-  /* Gerätemitte relativ zum Perspektiv-Ursprung (y nach oben) */
-  const center = new Matrix4().makeTranslation(w / 2 - ORIGIN.x, -(h / 2 - ORIGIN.y), 0);
+  /* Gerätemitte (= Bühnenmitte 150/310) relativ zum Perspektiv-Ursprung, y nach oben */
+  const STAGE = { w: 300, h: 620 };
+  const center = new Matrix4().makeTranslation(STAGE.w / 2 - ORIGIN.x, -(STAGE.h / 2 - ORIGIN.y), 0);
   const flip = new Matrix4().makeScale(1, -1, 1);
   const local = new Matrix4(), world = new Matrix4(), glassLocal = new Matrix4();
   const normal = new Vector3();
@@ -268,7 +309,7 @@ export function createPhoneScene({ bodyCanvas, glassCanvas, pixelRatio }) {
     shadow.scale.set(SHADOW_TEX.w * sx * (0.6 + 0.4 * Math.abs(e[0])), SHADOW_TEX.h * sy, 1);
     shadow.position.set(
       (e[12] * 0.6 + 10) * depthScale,
-      (-(h / 2 - ORIGIN.y) - 26 + e[13] * 0.4) * depthScale - coreCy * sy,
+      (-(STAGE.h / 2 - ORIGIN.y) - 26 + e[13] * 0.4) * depthScale - coreCy * sy,
       -SHADOW_Z,
     );
     shadow.material.opacity = 0.3 - e[13] * 0.01;
