@@ -22,7 +22,7 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 
 /* Maße des Geräts — identisch zu .phone im CSS (300 × 620, Radius 46) */
 export const DEVICE = { w: 300, h: 620, r: 46, depth: 28, rim: 4.5 };
-/* CSS-Perspektive der Bühne (.phone-float): 1200px, Ursprung 50 % / 40 % */
+/* CSS-Perspektive der Lagen (--phone-persp in main.css): 1200px, Ursprung 150px / 248px */
 export const PERSPECTIVE = 1200;
 export const ORIGIN = { x: 150, y: 248 };
 
@@ -55,16 +55,21 @@ function shadowTexture() {
   c.width = SHADOW_TEX.w; c.height = SHADOW_TEX.h;
   const g = c.getContext("2d");
   const k = SHADOW_TEX.core;
-  g.fillStyle = "rgba(22,22,20,1)";
-  g.filter = "blur(15px)";
-  g.beginPath();
-  g.roundRect(k.x, k.y, k.w, k.h, 26);
-  g.fill();
-  g.filter = "blur(9px)";
-  g.globalAlpha = 0.5;
-  g.beginPath();
-  g.ellipse(128, 506, 62, 9, 0, 0, Math.PI * 2);
-  g.fill();
+  /* Weichzeichnen über shadowBlur statt ctx.filter (Safari kennt filter auf
+     Canvas 2D nicht): Form außerhalb zeichnen, nur ihr Schatten fällt hinein. */
+  const soft = (sigma, alpha, shape) => {
+    g.save();
+    g.shadowColor = `rgba(22,22,20,${alpha})`;
+    g.shadowBlur = sigma * 2;
+    g.shadowOffsetX = 2000;
+    g.translate(-2000, 0);
+    g.beginPath();
+    shape();
+    g.fill();
+    g.restore();
+  };
+  soft(15, 1, () => g.roundRect(k.x, k.y, k.w, k.h, 26));
+  soft(9, 0.5, () => g.ellipse(128, 506, 62, 9, 0, 0, Math.PI * 2));
   const t = new CanvasTexture(c);
   t.colorSpace = SRGBColorSpace;
   return t;

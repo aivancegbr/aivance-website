@@ -10,6 +10,7 @@ const REST = { y: -20, x: 7, z: -2 }; // Ruhepose, wie bisher im CSS
 const TILT = { y: 10, x: 6 };         // maximale Neigung zum Zeiger (Grad)
 const FLOAT = { amp: 6, period: 6 };  // Schweben: 6 px Hub, 6 s — wie @keyframes float
 const TAU_FOLLOW = 0.22, TAU_RETURN = 0.7; // Dämpfung in Sekunden
+const PERSP = "translateY(-62px) perspective(1200px) translateY(62px) "; // = --phone-persp
 
 (function () {
   const stage = document.querySelector(".phone-stage");
@@ -110,7 +111,7 @@ const TAU_FOLLOW = 0.22, TAU_RETURN = 0.7; // Dämpfung in Sekunden
     t += dt;
     const m = pose(dt);
     phone.render(m, [px * weight, py * weight]);
-    const css = m.toString();
+    const css = PERSP + m.toString(); // Perspektive je Lage, siehe main.css
     wrap.style.transform = css;
     if (badges) badges.style.transform = css;
 

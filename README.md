@@ -31,10 +31,12 @@ müssten.
 
 **Aufbau.** Der Bildschirm bleibt echtes DOM (Chat aus `src/_data/mockups.js`,
 abgespielt von `mockup.js`), damit Text scharf, ohne JS lesbar und in DE/EN gepflegt
-bleibt. Fünf Lagen im selben Perspektivraum (`.phone-float`, `perspective: 1200px`):
-Körper-Canvas bzw. -Bild → Chat → Glas-Canvas bzw. -Bild → Badges. Die three.js-Kamera
-bildet die CSS-Perspektive exakt nach; Chat und Badges bekommen pro Bild dieselbe
-Pose als `matrix3d`. Maße, Perspektive und Canvas-Ausschnitte stehen in
+bleibt. Fünf Lagen übereinander: Körper-Canvas bzw. -Bild → Chat → Glas-Canvas bzw.
+-Bild → Badges. Die Perspektive (1200px, Ursprung 150px/248px) steckt als
+`--phone-persp` in der Transformation jeder DOM-Lage, nicht als `perspective` am
+Elternteil; das ist gleichwertig und unabhängig davon, wie die Engine
+Elternperspektiven zusammensetzt. Die three.js-Kamera bildet dieselbe Projektion
+exakt nach; Chat und Badges bekommen pro Bild dieselbe Pose als `matrix3d`. Maße, Perspektive und Canvas-Ausschnitte stehen in
 `phone-scene.js` und `main.css` und müssen zusammenpassen.
 
 **Wann was läuft** (Entscheidung in `src/js/hero.js`):
@@ -46,6 +48,9 @@ Pose als `matrix3d`. Maße, Perspektive und Canvas-Ausschnitte stehen in
 | WebGL fehlt, Software-Renderer, Kontextverlust, < ~24 fps in den ersten 2 s | Standbild, Schweben per CSS |
 | `prefers-reduced-motion: reduce` | Standbild, still; three.js wird nicht geladen |
 | ohne JS | Standbild, still; Chat vollständig sichtbar |
+
+Der Schatten wird mit `shadowBlur` weichgezeichnet, nicht mit `ctx.filter`
+(Safari unterstützt `filter` auf Canvas 2D nicht).
 
 Pixel-Ratio maximal 2. Die Schleife pausiert außerhalb des Viewports und bei
 verborgenem Tab.

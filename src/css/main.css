@@ -452,16 +452,19 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 }
 
 /* ─── Telefon-Mockup ───────────────────────────────────────────────────────────
-   Bühne in fünf Lagen, alle im selben Perspektivraum (.phone-float):
+   Bühne in fünf Lagen, alle in derselben Perspektive:
    Rendering hinten (Rahmen, Front, Schatten) · Chat (DOM) · Rendering vorn
    (Glas) · Badges. Auf Desktop ersetzt /js/hero-3d.js die beiden Renderings
    durch WebGL-Canvas und setzt die Pose per matrix3d auf Chat und Badges.
    Maße und Perspektive müssen zu src/js3d/phone-scene.js passen. */
 .phone-stage { position: relative; width: 300px; height: 620px; }
-.phone-float {
-  position: relative; width: 300px; height: 620px;
-  perspective: 1200px; perspective-origin: 150px 248px;
-}
+.phone-float { position: relative; width: 300px; height: 620px; }
+/* Perspektive steckt in der Transformation jeder Lage selbst statt in
+   perspective am Elternteil: WebKit zeichnet die Elternperspektive bei
+   zusammengesetzten Ebenen falsch (Chat sitzt dann neben der Front).
+   Gleichwertig zu perspective: 1200px mit Ursprung 150px 248px, weil der
+   Drehpunkt der Lage (150px 310px) 62px darunter liegt. */
+.phone-stage { --phone-persp: translateY(-62px) perspective(1200px) translateY(62px); }
 .js .phone-float { animation: float 6s ease-in-out infinite; }
 .phone-stage.is-3d .phone-float { animation: none; }
 .phone-render, .phone-gl { position: absolute; pointer-events: none; transition: opacity .5s ease; }
@@ -580,7 +583,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
 
 .phone-wrap, .phone-badges {
   position: absolute; inset: 0;
-  transform: rotateY(-20deg) rotateX(7deg) rotateZ(-2deg);
+  transform: var(--phone-persp) rotateY(-20deg) rotateX(7deg) rotateZ(-2deg);
 }
 .phone-badges { pointer-events: none; }
 .phone-stage.is-3d .phone-wrap, .phone-stage.is-3d .phone-badges { will-change: transform; }
@@ -816,7 +819,7 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
      184px toter Raum im Hero stehen. Größerer Maßstab (der Chat war vorher
      unlesbar) plus negative Ränder, die die Box auf die sichtbare Höhe ziehen. */
   .phone-stage { transform: scale(0.88); margin-block: -37px; }
-  .phone-wrap, .phone-badges { transform: rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
+  .phone-wrap, .phone-badges { transform: var(--phone-persp) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg); }
   .float-badge-1 { right: -30px; }
   .float-badge-2 { left: -30px; }
   .chain-label { width: 100%; }
