@@ -11,7 +11,7 @@
   <title>{{ metaTitle or title }}</title>
   <meta name="description" content="{{ metaDescription or description }}" />
   <meta name="author" content="aivance – Ayman Karim, Ajay Nagulendran, Cyrus Lang" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="{{ robots or 'index, follow' }}" />
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
   {%- if lang == 'en' %}
   <link rel="alternate" hreflang="de" href="{{ site.url }}{{ deUrl or '/' }}" />
@@ -32,7 +32,7 @@
   <meta property="og:image" content="{{ site.url }}{{ ogImage }}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="{{ 'aivance — AI products that cite their source' if lang == 'en' else 'aivance — KI-Produkte, die ihre Quelle mitführen' }}" />
+  <meta property="og:image:alt" content="{{ 'aivance: We automate the processes that slow your team down' if lang == 'en' else 'aivance: Wir automatisieren die Abläufe, die Ihr Team ausbremsen' }}" />
   <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'de_DE' }}" />
   <meta property="og:site_name" content="aivance" />
   <meta name="twitter:card" content="summary_large_image" />

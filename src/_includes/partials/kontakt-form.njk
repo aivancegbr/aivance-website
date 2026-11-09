@@ -3,7 +3,7 @@
 <div class="card p-8 reveal">
   <form id="contactForm" action="{{ site.formspree }}" method="POST" novalidate data-fallback-mail="{{ site.email }}">
     {# Formspree-Metafelder: Betreff der Benachrichtigung + Spam-Honeypot (§ 12) #}
-    <input type="hidden" name="_subject" value="{{ 'New enquiry via ai-vance.de' if isEn else 'Neue Anfrage über ai-vance.de' }}" />
+    <input type="hidden" name="_subject" value="{{ 'New inquiry via ai-vance.de' if isEn else 'Neue Anfrage über ai-vance.de' }}" />
     <div class="hidden" aria-hidden="true">
       <label for="cf-gotcha">Leave this field empty</label>
       <input id="cf-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
@@ -57,12 +57,14 @@
           <option>Software & systems (custom software, knowledge systems, voice agents)</option>
           <option>Automation (processes, reporting, integrations)</option>
           <option>Not sure yet — I'd like advice first</option>
+          <option>Introduce us to a business with an annoying process</option>
           {% else %}
           <option value="">Bitte wählen …</option>
           <option>Sichtbarkeit (Website, Foto/Video, Social Media)</option>
           <option>Software &amp; Systeme (Individualsoftware, Wissenssysteme, Voice Agents)</option>
           <option>Automatisierung (Prozesse, Reporting, Integrationen)</option>
           <option>Noch unklar — erst einmal beraten lassen</option>
+          <option>Betrieb vorstellen, der einen nervigen Ablauf hat</option>
           {% endif %}
         </select>
       </div>
@@ -79,7 +81,7 @@
     <p class="text-xs text-ink-muted mt-3">
       {% if isEn %}
       By submitting, you agree to the processing of your details for handling
-      your enquiry. Details and withdrawal:
+      your inquiry. Details and withdrawal:
       <a href="/datenschutz/" class="underline">Privacy policy (German)</a>.
       {% else %}
       Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung

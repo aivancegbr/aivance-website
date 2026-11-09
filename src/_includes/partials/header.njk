@@ -27,7 +27,8 @@
     <div class="hidden lg:flex items-center gap-7">
       {# Produkte zuerst: das Geschaeft sind die Produkte, nicht die Umsetzung. #}
       <div class="relative">
-        <button type="button" id="produkteBtn" class="nav-link inline-flex items-center gap-1.5 {{ 'text-amber' if isProdukte else 'text-ink-muted' }} hover:text-ink transition-colors"
+        {# Produkte mit mehr Gewicht: Ink statt gedämpft, auch wenn nicht aktiv #}
+        <button type="button" id="produkteBtn" class="nav-link inline-flex items-center gap-1.5 {{ 'text-amber' if isProdukte else 'text-ink' }} hover:text-amber transition-colors"
                 aria-expanded="false" aria-controls="produktePanel" {% if isProdukte %}aria-current="true"{% endif %}>
           {{ t.navProdukte }}
           <svg class="menu-caret w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
@@ -82,9 +83,13 @@
     </button>
   </div>
 
-  {# Mega-Menü: drei Cluster-Spalten + Case-Study-Teaser (§ 4) #}
+  {# Mega-Menü Umsetzung: Einleitungszeile (das Fundament unter den Produkten) + drei Cluster-Spalten #}
   <div id="megaPanel" class="menu-panel" aria-label="{{ t.leistungenAriaLabel }}">
-    <div class="max-w-6xl mx-auto px-5 py-9 grid grid-cols-3 gap-8">
+    <div class="max-w-6xl mx-auto px-5 pt-7 flex items-baseline justify-between gap-6">
+      <p class="text-sm text-ink-muted">{{ t.navUmsetzungIntro }}</p>
+      <a href="{{ t.urlLeistungen }}" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors whitespace-nowrap">{{ t.navUmsetzungAlle }} →</a>
+    </div>
+    <div class="max-w-6xl mx-auto px-5 pt-6 pb-9 grid grid-cols-3 gap-8">
       {% for cluster in clusters %}
       <div>
         <span class="eyebrow eyebrow-muted mb-3 text-[11px]">0{{ loop.index }}</span>

@@ -1,9 +1,9 @@
 ---
 layout: layouts/base.njk
 lang: en
-title: aivance — AI products that cite their source
-metaTitle: aivance — AI products that cite their source
-metaDescription: Four AI products for telephony, documents, onboarding and public tenders. Every answer carries its source. GDPR-compliant, data held in the EU.
+title: "aivance | We automate the processes that slow your team down"
+metaTitle: "aivance | We automate the processes that slow your team down"
+metaDescription: "Calls, bookings, documents, onboarding, tenders: our AI products handle the routine. At one restaurant, 90% of all bookings run through our system. Data held in the EU."
 deUrl: /
 breadcrumb: English
 permalink: /en/
@@ -39,14 +39,14 @@ permalink: /en/
   "automatisierung": { title: "Automation", claim: "Processes and data", bullets: ["Process automation", "KPIs & reporting", "Integrations & API"] }
 } %}
 {% set enIndustries = {
-  "medizin": { title: "Medical practices", hero: "Digitalization for medical practices", teaser: "Less phone-ringing at the front desk, less paperwork — and patient data stays where it belongs." },
-  "steuer-finanzberatung": { title: "Tax & financial advisors", hero: "Digitalization for tax firms", teaser: "Client mail sorts itself, routine questions answer themselves — your team works on cases, not filing." },
-  "gastronomie": { title: "Hospitality", hero: "Digitalization for hospitality", teaser: "Reservations, guest questions and your numbers run automatically — your team stays with the guests." },
-  "mittelstand": { title: "Trades & SMEs", hero: "Digitalization for trades & SMEs", teaser: "Quotes, staffing and knowledge: we digitize the workflows that strain growing businesses first." }
+  "medizin": { title: "Medical practices", hero: "AI products for medical practices", teaser: "Less phone-ringing at the front desk, less paperwork — and patient data stays where it belongs." },
+  "steuer-finanzberatung": { title: "Tax & financial advisors", hero: "AI products for tax firms", teaser: "Client mail sorts itself, routine questions answer themselves — your team works on cases, not filing." },
+  "gastronomie": { title: "Hospitality", hero: "AI products for hospitality", teaser: "Reservations, guest questions and your numbers run automatically — your team stays with the guests." },
+  "mittelstand": { title: "Trades & SMEs", hero: "AI products for trades & SMEs", teaser: "Quotes, staffing and knowledge: we digitize the workflows that strain growing businesses first." }
 } %}
 {% set enProjects = {
-  "gastronomie-chatbot": { zahl: "78 %", zahlLabel: "fewer manual inquiries per week", text: "A restaurant now answers reservations and guest questions automatically — via WhatsApp and its website." },
-  "onboarding-mittelstand": { zahl: "50 %", zahlLabel: "less onboarding time", text: "New hires get answers instantly — instead of tying up the HR team with the same questions." }
+  "gastronomie-chatbot": { zahl: "90%", zahlLabel: "of all bookings run through our system", text: "A restaurant now answers reservations and guest questions automatically — via WhatsApp and its website." },
+  "onboarding-mittelstand": { zahl: "50%", zahlLabel: "less onboarding time", text: "New hires get answers instantly — instead of tying up the HR team with the same questions." }
 } %}
 
 <!-- ═══ HERO ═══ -->
@@ -57,19 +57,20 @@ permalink: /en/
   <div class="hero-inner">
   <div class="hero-left">
     <h1 class="headline">
-      <span>AI products that<br>cite their source.</span>
+      <span>We automate the processes that slow your team down every day.</span>
       <span class="headline-accent">
         <span class="cycling-wrapper" id="cycling-wrapper">
-          <span class="cycling-text active">Echo.</span>
-          <span class="cycling-text">Iris.</span>
-          <span class="cycling-text">Boarding.</span>
-          <span class="cycling-text">Radar.</span>
+          <span class="cycling-text active">Calls.</span>
+          <span class="cycling-text">Bookings.</span>
+          <span class="cycling-text">Documents.</span>
+          <span class="cycling-text">Onboarding.</span>
+          <span class="cycling-text">Tenders.</span>
         </span>
       </span>
     </h1>
 
     <p class="hero-subtext">
-      We build four products on one shared foundation: telephony, documents, onboarding, public tenders. Every answer names the document and the passage it came from — verifiable, not plausibly guessed.
+      Calls, bookings, documents, onboarding, tenders: our products handle the routine, so your team can focus on the work that matters. One example from hospitality: 90% of all bookings run through our system.
     </p>
 
     <div class="hero-cta-row">
@@ -77,76 +78,87 @@ permalink: /en/
       <a href="/en/produkte/" class="btn-ghost">View products</a>
     </div>
 
+    {# Every figure links its source #}
     <div class="stats-row">
-      <div class="stat">
-        <span class="stat-value">4</span>
-        <span class="stat-label">Products of our own</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">4</span>
-        <span class="stat-label">Industries in focus</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">EU</span>
-        <span class="stat-label">Data residency</span>
-      </div>
+      <a class="stat" href="/en/projekte/gastronomie-chatbot/">
+        <span class="stat-value">90%</span>
+        <span class="stat-label">Bookings through our system</span>
+      </a>
+      <a class="stat" href="/en/projekte/onboarding-mittelstand/">
+        <span class="stat-value">−50%</span>
+        <span class="stat-label">Onboarding time</span>
+      </a>
+      <a class="stat" href="/en/leistungen/wissenssysteme/">
+        <span class="stat-value">17 days</span>
+        <span class="stat-label">Avg. to go-live</span>
+      </a>
     </div>
   </div>
 
   <div class="hero-right" aria-hidden="true">
-    <div class="phone-wrap" style="position:relative;">
-      <div class="float-badge float-badge-1" id="hero-badge1">
-        <span class="badge-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-        </span>
-        <span class="badge-text-group">
-          <span class="badge-title">Every answer sourced</span>
-          <span class="badge-sub">document and passage</span>
-        </span>
-      </div>
-      <div class="float-badge float-badge-2" id="hero-badge2">
-        <span class="badge-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </span>
-        <span class="badge-text-group">
-          <span class="badge-title">Reply within 24 hours</span>
-          <span class="badge-sub">on weekdays, from a co-founder</span>
-        </span>
-      </div>
-
-      <div class="phone">
-        <div class="phone-inner">
-          <div class="notch"></div>
-          <div class="status-bar">
-            <span>9:41</span>
-            <div class="status-icons">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
-            </div>
-          </div>
-          <div class="chat-header">
-            <svg class="chat-avatar" viewBox="0 0 30 30" aria-hidden="true">
-              <text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
-              <text class="signet-mark" x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="#9C4B00">1</text>
-              <path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
-              <path class="signet-trace" d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="20.5"/>
-            </svg>
-            <div class="chat-header-info">
-              <div class="chat-header-name">aivance</div>
-              <div class="online-indicator">
-                <span class="online-dot"></span> Online
+    {# Bühne: statisches Rendering des Geräts (ohne JS, Touch, Reduced Motion),
+       darüber der echte Chat. /js/hero-3d.js ersetzt das Bild auf Desktop durch
+       die 3D-Bühne und hält den Chat per matrix3d auf der Front. #}
+    <div class="phone-stage" data-mode="static">
+      <div class="phone-float">
+        {% set renderLayer = "body" %}{% include "partials/hero-device-render.njk" %}
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-inner">
+              <div class="notch"></div>
+              <div class="status-bar">
+                <span>9:41</span>
+                <div class="status-icons">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                </div>
+              </div>
+              <div class="chat-header">
+                <svg class="chat-avatar" viewBox="0 0 30 30" aria-hidden="true">
+                  <text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
+                  <text class="signet-mark" x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="#9C4B00">1</text>
+                  <path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
+                  <path class="signet-trace" d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="20.5"/>
+                </svg>
+                <div class="chat-header-info">
+                  <div class="chat-header-name">aivance</div>
+                  <div class="online-indicator">
+                    <span class="online-dot"></span> Online
+                  </div>
+                </div>
+              </div>
+              <div class="chat-messages" id="hero-chat-messages" data-mockup
+                   data-mockup-start="1000" data-mockup-restart="17000">
+                {{ mock.schritte(mockups.hero.en) }}
+              </div>
+              <div class="chat-input-row">
+                <div class="chat-input-bar">Ask us anything …</div>
+                <div class="chat-send">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFF7EC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
               </div>
             </div>
           </div>
-          <div class="chat-messages" id="hero-chat-messages" data-mockup
-               data-mockup-start="1000" data-mockup-restart="17000">
-            {{ mock.schritte(mockups.hero.en) }}
+        </div>
+        {% set renderLayer = "glass" %}{% include "partials/hero-device-render.njk" %}
+        <div class="phone-badges">
+          <div class="float-badge float-badge-1" id="hero-badge1">
+            <span class="badge-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="badge-text-group">
+              <span class="badge-title">Every answer sourced</span>
+              <span class="badge-sub">document and passage</span>
+            </span>
           </div>
-          <div class="chat-input-row">
-            <div class="chat-input-bar">Ask us anything …</div>
-            <div class="chat-send">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFF7EC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </div>
+          <div class="float-badge float-badge-2" id="hero-badge2">
+            <span class="badge-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </span>
+            <span class="badge-text-group">
+              <span class="badge-title">Reply within 24 hours</span>
+              <span class="badge-sub">on weekdays, from a co-founder</span>
+            </span>
           </div>
         </div>
       </div>
@@ -163,14 +175,14 @@ permalink: /en/
   <div class="max-w-6xl mx-auto px-5">
     <div class="section-head">
       <span class="eyebrow">01 / The problem</span>
-      <span class="eyebrow eyebrow-muted">Why AI fails in practice</span>
+      <span class="eyebrow eyebrow-muted">Where time gets lost every day</span>
     </div>
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-      <h2 data-reveal-stagger class="section-h2 reveal">AI that sounds convincing<br/>and is still wrong.</h2>
+      <h2 data-reveal-stagger class="section-h2 reveal">Routine eats the time<br/>your team needs for customers.</h2>
       <div class="reveal reveal-1 space-y-4 max-w-xl">
-        <p class="lede">Most AI tools answer fluently but without evidence. Anyone who wants to check the answer has to go find the source themselves.</p>
-        <p class="lede">In a medical practice, a law firm or an accounts department that isn't a time saving, it's a liability: nobody can stand behind a statement whose origin they don't know.</p>
-        <p class="evidence text-[17px] leading-snug">So we build products where the evidence is part of the answer — document, page, passage.</p>
+        <p class="lede">The phone rings in the middle of an appointment. Bookings arrive by email, WhatsApp and phone. Documents end up in the wrong folder, new hires ask the same questions again and again, and the right tenders are found too late.</p>
+        <p class="lede">Each of these takes only a few minutes. Together they slow the whole business down.</p>
+        <p class="evidence text-[17px] leading-snug">So we build products that take over this routine. <a href="/en/projekte/gastronomie-chatbot/" class="underline underline-offset-4">At one restaurant, 90% of all bookings now run through our system.</a></p>
       </div>
     </div>
   </div>
@@ -190,8 +202,8 @@ permalink: /en/
     <!-- Produkt-Schaukasten (Modul C + F): ein Mockup zur Zeit, Punktleiste mit
          Laufbalken. Die Schritte stehen als Markup im Dokument. -->
     {% set schaukasten = [
-      { k: "echo", name: "aivance Echo", was: "Telefonassistent" },
-      { k: "iris", name: "aivance Iris", was: "Dokumente" },
+      { k: "echo", name: "aivance Echo", was: "Phone assistant" },
+      { k: "iris", name: "aivance Iris", was: "Documents" },
       { k: "boarding", name: "aivance Boarding", was: "Onboarding" }
     ] %}
     <div class="showcase mb-14 reveal" data-showcase data-showcase-interval="9000">
@@ -323,14 +335,9 @@ permalink: /en/
               <span class="chain-question">“We tell you exactly when your system goes live.”</span>
             </div>
             <div class="chain-thread" aria-hidden="true"><span></span></div>
-            <div class="chain-row" data-stage="2">
-              <span class="chain-label">Check</span>
-              <span class="chain-bar" aria-hidden="true"><span></span></span>
-              <span class="chain-meta">3 / 3 projects</span>
-            </div>
             <div class="chain-row top" data-stage="3">
               <span class="chain-label is-amber">Proven</span>
-              <span class="chain-answer evidence">Knowledge systems have gone live in 17 days on average.</span>
+              <span class="chain-answer evidence">Knowledge systems go live in 17 days on average.</span>
             </div>
             <div class="chain-row top" data-stage="4">
               <span class="chain-label">Sources</span>
@@ -356,8 +363,13 @@ permalink: /en/
         </div>
       </div>
     </div>
-    <div class="grid md:grid-cols-3 border border-line reveal">
-      <div class="p-7 border-b md:border-b-0 md:border-r border-line flex flex-col">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 border border-line reveal">
+      <div class="p-7 border-b md:border-r lg:border-b-0 border-line flex flex-col">
+        <span class="eyebrow mb-5 text-[11px]">Proof, not promises</span>
+        <p class="text-sm text-ink-muted leading-relaxed mb-5">Every answer from our products names the document and the passage it came from. No source, no answer.</p>
+        <a href="/en/produkte/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors mt-auto">View products →</a>
+      </div>
+      <div class="p-7 border-b lg:border-b-0 lg:border-r border-line flex flex-col">
         <span class="eyebrow mb-5 text-[11px]">Data protection</span>
         <p class="text-sm text-ink-muted leading-relaxed mb-5">Hosting in Germany and the EU, DPA under Art. 28 GDPR, no model training on your data. Also built for professionals bound by confidentiality law.</p>
         <a href="/en/data-security/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors mt-auto">See all evidence →</a>
@@ -369,7 +381,7 @@ permalink: /en/
       </div>
       <div class="p-7 flex flex-col">
         <span class="eyebrow mb-5 text-[11px]">Speed</span>
-        <p class="text-sm text-ink-muted leading-relaxed mb-5">Every service has its own honest timeline — knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks.</p>
+        <p class="text-sm text-ink-muted leading-relaxed mb-5">Every service has its own honest timeline: knowledge systems go live in 17 days on average, a website realistically takes 4–6 weeks.</p>
         <a href="/en/leistungen/" class="mono text-[11px] tracking-widest uppercase text-ink hover:text-amber transition-colors mt-auto">Timelines per service →</a>
       </div>
     </div>
@@ -422,7 +434,7 @@ permalink: /en/
       <span class="eyebrow">06 / Case studies</span>
       <span class="eyebrow eyebrow-muted">Numbers, not adjectives</span>
     </div>
-    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">Real results for real businesses</h2>
+    <h2 data-reveal-stagger class="section-h2 mb-12 max-w-2xl reveal">Selected work</h2>
     <div class="gallery mb-10" data-gallery>
       <div class="gallery-track">
       {% for projekt in projects %}
@@ -430,7 +442,7 @@ permalink: /en/
       <a href="/en/projekte/{{ projekt.slug }}/" class="card gallery-card reveal reveal-{{ loop.index }} block p-7" data-card>
         <span class="eyebrow eyebrow-muted mb-6 text-[11px]">{{ projekt.en.brancheLabel or projekt.brancheLabel }}</span>
         <p class="text-[clamp(34px,3.8vw,50px)] font-semibold tracking-tighter leading-none counter-num"
-           data-target="{{ ep.zahl | replace(" %", "") | replace("%", "") }}" data-suffix=" %">{{ ep.zahl }}</p>
+           data-target="{{ ep.zahl | replace(" %", "") | replace("%", "") }}" data-suffix="%">{{ ep.zahl }}</p>
         <p class="mono text-[11px] tracking-widest uppercase text-amber mt-3 mb-5">{{ ep.zahlLabel }}</p>
         <p class="text-sm text-ink-muted leading-relaxed mb-6">{{ ep.text }}</p>
         <span class="mono text-[11px] tracking-widest uppercase text-ink">View case study →</span>
@@ -497,7 +509,7 @@ permalink: /en/
       {% set team = [
         { img: "profileayman.jpeg", name: "Ayman Karim", rolle: "Co-Founder · Strategy & client projects", rolleKurz: "Co-Founder", text: "Designs the product architecture: components, data model and interfaces.", mail: "ayman.karim@ai-vance.de" },
         { img: "profileajay.jpeg", name: "Ajay Nagulendran", rolle: "Co-Founder · Engineering & operations", rolleKurz: "Co-Founder", text: "Owns infrastructure and operations — hosting in Germany and the EU, security and data protection.", mail: "ajay.nagulendran@ai-vance.de" },
-        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-Founder · Product development & partnerships", rolleKurz: "Co-Founder", text: "Stays your contact through the project and develops our own products and the partner programmes.", mail: "cyrus.lang@ai-vance.de" }
+        { img: "profilecyrus.jpg", name: "Cyrus Lang", rolle: "Co-Founder · Growth & Solutions Engineering", rolleKurz: "Co-Founder", text: "Owns growth and the technical delivery of client projects — from first requirement to shipped system.", mail: "cyrus.lang@ai-vance.de" }
       ] %}
       {% for person in team %}
       <div class="card overflow-hidden flex flex-col">
@@ -521,7 +533,7 @@ permalink: /en/
   { q: "Is aivance an agency?", a: "No. We build our own products — Echo for telephony, Iris for documents, Boarding for onboarding, Radar for public tenders — and develop them for every customer at once. To make a product run in your business we set up the surroundings: data, interfaces, public presence. That implementation work is a precondition, not our business model." },
   { q: "What do I gain from you building a product rather than a one-off solution?", a: "A product running in several businesses improves with every piece of feedback — you receive improvements you never paid for. A bespoke build stays frozen at its acceptance date and starts ageing from day one." },
   { q: "What does it cost to run one of your products?", a: "It depends on the product and the setup — connecting Radar to a search profile costs differently than fitting Iris to your existing filing. What's fixed: the introductory call and process review are free, after that you get a fixed-price offer for one clearly scoped first step. No open-ended hourly billing." },
-  { q: "How long does implementation take?", a: "That varies by service, and we state it per service: knowledge systems have gone live in 17 days on average, a website realistically takes 4–6 weeks, a voice agent pilot 2–4 weeks. You get the concrete date in the first project week." },
+  { q: "How long does implementation take?", a: "That varies by service, and we state it per service: knowledge systems go live in 17 days on average, a website realistically takes 4–6 weeks, a voice agent pilot 2–4 weeks. You get the concrete date in the first project week." },
   { q: "Where is my data stored and who has access?", a: "On servers in Germany (Hetzner) or the EU (AWS eu-central-1) — for US-based clients, on US servers. Access is governed by a data processing agreement under Art. 28 GDPR, and your data is never used for AI model training. Full details on our Data Security page." },
   { q: "Do you work with professionals bound by confidentiality law (doctors, tax advisors)?", a: "Yes. For medical practices and tax firms, specific confidentiality statutes apply — we bring the written confidentiality commitment and data processing agreement, and document safeguards for your own compliance obligations." },
   { q: "What happens after go-live?", a: "The product keeps running and keeps being developed — improvements reach you without you commissioning a new project. For operation and response times we agree fixed commitments; the alternative is a one-time handover with documentation." }
@@ -563,7 +575,8 @@ permalink: /en/
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
       <div class="reveal">
         <h2 data-reveal-stagger class="section-h2 mb-5">Tell us<br/>where it hurts.</h2>
-        <p class="lede mb-10 max-w-sm">No sales pitch: we listen, ask questions, and tell you honestly whether and how we can help.</p>
+        <p class="lede mb-5 max-w-sm">No sales pitch: we listen, ask questions, and tell you honestly whether and how we can help.</p>
+        <p class="text-sm text-ink mb-10 max-w-sm">Know a business with an annoying process? Introduce us.</p>
         <div class="border-t border-line">
           <a href="mailto:{{ site.email }}" class="flex items-center justify-between gap-4 py-4 border-b border-line group">
             <span class="mono text-[11px] tracking-widest uppercase text-ink-muted">Email</span>

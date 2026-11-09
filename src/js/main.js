@@ -274,7 +274,7 @@
     function showError(isEn) {
       var errorEl = document.getElementById("formError");
       var f = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ""; };
-      var subject = isEn ? "Enquiry via ai-vance.de" : "Anfrage über ai-vance.de";
+      var subject = isEn ? "Inquiry via ai-vance.de" : "Anfrage über ai-vance.de";
       var body = [
         (isEn ? "Name: " : "Name: ") + f("name"),
         (isEn ? "Company: " : "Unternehmen: ") + f("company"),

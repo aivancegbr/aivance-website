@@ -214,54 +214,37 @@ var heroReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
    → partials/mockup.njk) und wird von /js/mockup.js abgespielt. Hier bleibt
    nichts zu tun — der Inhalt ist damit auch ohne JS lesbar. */
 
-/* ─── 3D-NEIGUNG DES TELEFONS ─── */
+/* ─── TELEFON: 3D NUR AUF DESKTOP MIT MAUS ───────────────────────────────────
+   Ohne JS, auf Touch-Geräten, schwacher Hardware und bei Reduced Motion steht
+   das statische Rendering desselben Geräts (Schweben per CSS, bei Reduced
+   Motion still). Die 3D-Bühne (/js/hero-3d.js, three.js) wird erst geladen,
+   wenn die Seite steht, der Hero sichtbar ist und der Browser Luft hat. */
 (function () {
-  const wrap = document.querySelector(".phone-wrap");
-  const hero = document.querySelector(".hero");
-  if (!wrap || !hero) return;
+  const stage = document.querySelector(".phone-stage");
+  if (!stage || heroReducedMotion || !window.WebGL2RenderingContext) return;
+  const desktop = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 900px)").matches;
+  const conn = navigator.connection || {};
+  const lowEnd = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4 || conn.saveData;
+  if (!desktop || lowEnd) return;
 
-  const isMobile = window.innerWidth < 768;
-  const baseY = isMobile ? -14 : -20, baseX = isMobile ? 6 : 7, baseZ = -2;
-  const scalePrefix = isMobile ? "scale(0.68) " : "";
-
-  if (heroReducedMotion) {
-    wrap.style.transform = isMobile
-      ? "scale(0.68) rotateY(" + baseY + "deg) rotateX(" + baseX + "deg) rotateZ(" + baseZ + "deg)"
-      : "none";
-    return;
+  function load() {
+    const s = document.createElement("script");
+    s.type = "module";
+    s.src = "/js/hero-3d.js";
+    document.head.appendChild(s);
   }
-
-  let rotY = baseY, rotX = baseX, rotZ = baseZ;
-  let currentRotY = rotY, currentRotX = rotX, currentRotZ = rotZ;
-  let targetMouseX = 0, targetMouseY = 0;
-
-  document.addEventListener("mousemove", function (e) {
-    const rect = hero.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    targetMouseX = ((e.clientX - cx) / rect.width) * 6;
-    targetMouseY = ((e.clientY - cy) / rect.height) * -4;
-  });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  window.addEventListener("scroll", function () {
-    const heroH = hero.offsetHeight;
-    const progress = Math.min(window.scrollY / (heroH * 0.6), 1);
-    const eased = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-    rotY = lerp(baseY, 0, eased);
-    rotX = lerp(baseX, 0, eased);
-    rotZ = lerp(baseZ, 0, eased);
-  }, { passive: true });
-
-  (function animate() {
-    currentRotY = lerp(currentRotY, rotY + targetMouseX, 0.06);
-    currentRotX = lerp(currentRotX, rotX + targetMouseY, 0.06);
-    currentRotZ = lerp(currentRotZ, rotZ, 0.06);
-    wrap.style.transform =
-      scalePrefix + "rotateY(" + currentRotY + "deg) rotateX(" + currentRotX + "deg) rotateZ(" + currentRotZ + "deg)";
-    requestAnimationFrame(animate);
-  })();
+  const idle = window.requestIdleCallback || function (fn) { return setTimeout(fn, 200); };
+  function whenVisible() {
+    if (!("IntersectionObserver" in window)) { idle(load, { timeout: 2000 }); return; }
+    const io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      idle(load, { timeout: 2000 });
+    });
+    io.observe(stage);
+  }
+  if (document.readyState === "complete") whenVisible();
+  else window.addEventListener("load", whenVisible, { once: true });
 })();
 
 /* ─── SCHWEBENDE BELEG-BADGES ─── */

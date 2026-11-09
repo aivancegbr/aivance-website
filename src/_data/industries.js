@@ -8,7 +8,7 @@ module.exports = [
     slug: "medizin",
     title: "Medizin & Gesundheitswesen",
     kurz: "Praxen",
-    hero: "Digitalisierung für Praxen",
+    hero: "KI-Produkte für Praxen",
     heroSatz: "Weniger Telefonklingeln an der Rezeption, weniger Zettelwirtschaft — und Patientendaten bleiben dort, wo sie hingehören.",
     schmerzpunkte: [
       {
@@ -61,7 +61,7 @@ module.exports = [
     en: {
       title: "Medical & Healthcare",
       kurz: "Practices",
-      hero: "Digitalization for medical practices",
+      hero: "AI products for medical practices",
       heroSatz: "Less phone-ringing at the front desk, less paperwork — and patient data stays where it belongs.",
       schmerzpunkte: [
         {
@@ -115,7 +115,7 @@ module.exports = [
     slug: "steuer-finanzberatung",
     title: "Steuer- & Finanzberatung",
     kurz: "Kanzleien",
-    hero: "Digitalisierung für Kanzleien",
+    hero: "KI-Produkte für Kanzleien",
     heroSatz: "Mandantenpost sortiert sich selbst, Standardfragen beantworten sich selbst — Ihr Team arbeitet an Fällen statt an Ablage.",
     schmerzpunkte: [
       {
@@ -164,7 +164,7 @@ module.exports = [
     en: {
       title: "Tax & Financial Advisory",
       kurz: "Firms",
-      hero: "Digitalization for tax firms",
+      hero: "AI products for tax firms",
       heroSatz: "Client mail sorts itself, routine questions answer themselves — your team works on cases instead of filing.",
       schmerzpunkte: [
         {
@@ -214,7 +214,7 @@ module.exports = [
     slug: "gastronomie",
     title: "Gastronomie",
     kurz: "Gastronomie",
-    hero: "Digitalisierung für Gastronomie",
+    hero: "KI-Produkte für die Gastronomie",
     heroSatz: "Reservierungen, Gästefragen und Ihre Zahlen laufen automatisch — Ihr Team bleibt bei den Gästen.",
     schmerzpunkte: [
       {
@@ -244,7 +244,7 @@ module.exports = [
     faq: [
       {
         q: "Unsere Gäste sind gemischt — nimmt eine KI ältere Anrufer mit?",
-        a: "Der Assistent spricht natürliche Sprache und leitet jederzeit an Ihr Team weiter, wenn der Anrufer das möchte. Im Referenzprojekt sank die Zahl manuell bearbeiteter Anfragen um 78 % — ohne Beschwerden über den Kanal."
+        a: "Der Assistent spricht natürliche Sprache und leitet jederzeit an Ihr Team weiter, wenn der Anrufer das möchte. In der Gastronomie sank die Zahl manuell bearbeiteter Anfragen um 78 %, ohne Beschwerden über den Kanal."
       },
       {
         q: "Was bringt mir das an einem vollen Samstagabend konkret?",
@@ -258,7 +258,7 @@ module.exports = [
     en: {
       title: "Hospitality",
       kurz: "Hospitality",
-      hero: "Digitalization for hospitality",
+      hero: "AI products for hospitality",
       heroSatz: "Reservations, guest questions and your numbers run automatically — your team stays with the guests.",
       schmerzpunkte: [
         {
@@ -286,7 +286,7 @@ module.exports = [
       faq: [
         {
           q: "Our guests are a mixed crowd — does an AI work for older callers?",
-          a: "The assistant speaks natural language and hands over to your team at any time if the caller wants that. In our reference project, manually handled inquiries dropped by 78% — with no complaints about the channel."
+          a: "The assistant speaks natural language and hands over to your team at any time if the caller wants that. In hospitality, manually handled inquiries dropped by 78%, with no complaints about the channel."
         },
         {
           q: "What does this concretely do for me on a packed Saturday night?",
@@ -303,7 +303,7 @@ module.exports = [
     slug: "mittelstand",
     title: "Handwerk & Mittelstand",
     kurz: "Mittelstand",
-    hero: "Digitalisierung für Handwerk & Mittelstand",
+    hero: "KI-Produkte für Handwerk & Mittelstand",
     heroSatz: "Angebote, Personal und Wissen: Wir digitalisieren die Abläufe, die in wachsenden Betrieben zuerst knirschen.",
     schmerzpunkte: [
       {
@@ -351,7 +351,7 @@ module.exports = [
     en: {
       title: "Trades & SMBs",
       kurz: "SMBs",
-      hero: "Digitalization for trades & SMBs",
+      hero: "AI products for trades & SMBs",
       heroSatz: "Quotes, staffing and knowledge: we digitize the workflows that strain growing businesses first.",
       schmerzpunkte: [
         {

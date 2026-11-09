@@ -17,6 +17,8 @@ module.exports = function (eleventyConfig) {
   // Assets nur kopieren, nicht als Templates verarbeiten (z. B. README.md im Logo-Ordner)
   eleventyConfig.ignores.add("src/images/**");
   eleventyConfig.ignores.add("src/js/**");
+  // Entwürfe (z. B. Artikel) nur im lokalen Dev-Server, nie im Produktions-Build
+  if (process.env.ELEVENTY_RUN_MODE !== "serve") eleventyConfig.ignores.add("src/entwurf/**");
 
   eleventyConfig.addFilter("findBySlug", (arr, slug) =>
     (arr || []).find((item) => item.slug === slug)

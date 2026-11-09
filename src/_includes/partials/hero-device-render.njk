@@ -1,0 +1,17 @@
+{# Statisches Rendering des Hero-Geräts, gebacken aus derselben 3D-Szene
+   (npm run bake:hero3d). renderLayer: "body" liegt hinter dem Chat (Rahmen,
+   Front, Schatten), "glass" darüber (Spiegelung, Glaskante). Mobil steht das
+   Gerät etwas flacher, daher eigene Bilder. Maße = Canvas-Ausschnitte in
+   src/js3d/phone-scene.js (BOX_BODY, BOX_GLASS).
+   Laden: Mobil ist der Körper das LCP-Element, deshalb ohne lazy (lazy kostete
+   gedrosselt ~1 s LCP). Das Glas folgt lazy mit niedriger Priorität, damit es
+   dem Körper keine Bandbreite nimmt. #}
+{% set rw = 500 if renderLayer == "body" else 380 %}
+{% set rh = 840 if renderLayer == "body" else 700 %}
+{% set rb = "/images/hero-device/" + renderLayer %}
+<picture class="phone-render phone-render-{{ renderLayer }}">
+  <source media="(max-width: 767px)" srcset="{{ rb }}-mobile.webp 1x, {{ rb }}-mobile@2x.webp 2x">
+  <img src="{{ rb }}-desktop.webp" srcset="{{ rb }}-desktop.webp 1x, {{ rb }}-desktop@2x.webp 2x"
+       width="{{ rw }}" height="{{ rh }}" alt="" decoding="async"
+       {%- if renderLayer == "glass" %} loading="lazy" fetchpriority="low"{% endif %}>
+</picture>
