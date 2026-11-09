@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+title: Mitmachen | aivance
+metaTitle: Mitmachen bei aivance
+metaDescription: "Sie entwickeln, verkaufen oder gestalten und möchten Produkte bauen, die Betrieben Routine abnehmen? Schreiben Sie uns. Keine ausgeschriebenen Stellen, ehrlich gesagt."
+breadcrumb: Mitmachen
+permalink: /mitmachen/
+enUrl: /en/join/
+---
+{# Ehrlich statt Stellenbörse: keine erfundenen Jobs, keine Gehaltsangaben.
+   Kontakt nur per E-Mail (mailto) und LinkedIn, kein Formular. #}
+{% set betreff = "Mitmachen bei aivance" %}
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">Mitmachen</p>
+    <h1 class="max-w-3xl text-5xl font-black text-slate-900 mb-4">Bauen Sie mit uns Produkte, die Betrieben Arbeit abnehmen.</h1>
+    <p class="max-w-2xl text-slate-500 leading-relaxed">aivance ist ein kleines Team im Rhein-Main-Gebiet. Gerade haben wir keine ausgeschriebenen Stellen. Wenn Sie trotzdem mitmachen möchten, schreiben Sie uns.</p>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="text-2xl font-black text-slate-900 mb-8 reveal">Wen wir suchen</h2>
+    <div class="grid md:grid-cols-3 border border-line reveal">
+      <div class="p-7 border-b md:border-b-0 md:border-r border-line">
+        <span class="eyebrow mb-4 text-[11px]">Entwickeln</span>
+        <p class="text-sm text-ink-muted leading-relaxed">Sie bauen gern Software, die im Alltag eines Betriebs läuft, nicht nur in der Demo.</p>
+      </div>
+      <div class="p-7 border-b md:border-b-0 md:border-r border-line">
+        <span class="eyebrow mb-4 text-[11px]">Verkaufen</span>
+        <p class="text-sm text-ink-muted leading-relaxed">Sie sprechen gern mit Praxen, Kanzleien, Restaurants und Mittelständlern und hören zu, wo es hakt.</p>
+      </div>
+      <div class="p-7">
+        <span class="eyebrow mb-4 text-[11px]">Gestalten</span>
+        <p class="text-sm text-ink-muted leading-relaxed">Sie machen aus komplizierten Abläufen etwas, das man auf einen Blick versteht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+    <div class="reveal">
+      <h2 class="text-2xl font-black text-slate-900 mb-4">So geht es los</h2>
+      <p class="text-slate-500 leading-relaxed mb-4">Schreiben Sie uns ein paar Sätze: was Sie können, was Sie interessiert und wie Sie arbeiten möchten. Ein Lebenslauf ist kein Muss, Links zu Ihren Arbeiten helfen mehr.</p>
+      <p class="text-slate-500 leading-relaxed">Ob und wie wir zusammenarbeiten, klären wir im Gespräch. Gehaltsangaben und Stellentitel finden Sie hier bewusst nicht.</p>
+    </div>
+    <div class="reveal reveal-1 border-t border-line">
+      <a href="mailto:{{ site.joinEmail }}?subject={{ betreff | urlencode }}" class="flex items-center justify-between gap-4 py-4 border-b border-line group">
+        <span class="mono text-[11px] tracking-widest uppercase text-ink-muted">E-Mail</span>
+        <span class="text-sm text-ink group-hover:text-amber transition-colors">{{ site.joinEmail }}</span>
+      </a>
+      <a href="{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-4 py-4 border-b border-line group"
+         aria-label="aivance auf LinkedIn (öffnet in neuem Tab)">
+        <span class="mono text-[11px] tracking-widest uppercase text-ink-muted">LinkedIn</span>
+        <span class="text-sm text-ink group-hover:text-amber transition-colors">linkedin.com/company/ai-vance</span>
+      </a>
+      <a href="mailto:{{ site.joinEmail }}?subject={{ betreff | urlencode }}" class="btn-primary mt-8">E-Mail schreiben</a>
+    </div>
+  </div>
+</section>

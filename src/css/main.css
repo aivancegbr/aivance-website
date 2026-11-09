@@ -397,6 +397,10 @@ button[aria-expanded="true"] .menu-caret { transform: rotate(180deg); }
   opacity: 0; animation: fadeSlideUp .7s .25s ease forwards;
 }
 .headline-accent { display: block; color: var(--ink); }
+/* Startseite zweispaltig: die Headline ist ein ganzer Satz, kein Zweizeiler —
+   kleiner gesetzt, damit sie in drei bis vier Zeilen bleibt und die
+   Kennzahlen über dem Falz stehen. Einspaltig gilt der Wert oben. */
+@media (min-width: 901px) { .hero .headline { font-size: clamp(38px, 4.1vw, 60px); } }
 
 /* Wechselnder Begriff mit Amber-Fußnotenlinie — dasselbe Zeichen wie im Signet. */
 .cycling-wrapper { display: inline-block; position: relative; overflow: hidden; height: 1.16em; vertical-align: bottom; }

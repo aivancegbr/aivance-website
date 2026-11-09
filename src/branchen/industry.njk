@@ -16,7 +16,7 @@ eleventyComputed:
 
 {# Template T3 — Branchenseite (§ 7), wichtigstes Template. Nur Sektion 3 (Rechtsrahmen) unterscheidet sich strukturell. #}
 
-<!-- 1 · Hero: Digitalisierung für [Branche], Ortsbezug in H1 (§ 11 Lokales SEO) -->
+<!-- 1 · Hero: KI-Produkte für [Branche]; Ortsbezug über die Zeile darüber (§ 11 Lokales SEO) -->
 <section class="py-16">
   <div class="max-w-6xl mx-auto px-5">
     <p class="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-3">{{ site.region }}</p>
@@ -117,7 +117,7 @@ eleventyComputed:
 </section>
 
 <!-- 7 · CTA-Block -->
-{% set ctaHeadline = "Digitalisierung für " + branche.kurz + "?" %}
+{% set ctaHeadline = "KI-Produkte für " + branche.kurz + "?" %}
 {% set ctaSecondaryUrl = "/branchen/" %}
 {% set ctaSecondaryLabel = "Andere Branchen ansehen" %}
 {% include "partials/cta.njk" %}

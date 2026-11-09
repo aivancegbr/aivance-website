@@ -178,7 +178,7 @@ module.exports = [
         },
         {
           titel: "Automatic filing",
-          text: "Iris recognises the document type and the matching client via OCR and files it in the right Google Drive folder automatically."
+          text: "Iris recognizes the document type and the matching client via OCR and files it in the right Google Drive folder automatically."
         },
         {
           titel: "Ask in plain language",
@@ -248,7 +248,7 @@ module.exports = [
       status: null,
       kurz: "Finds matching public tenders and delivers them by priority.",
       text:
-        "Maintains search profiles and finds publicly tendered contracts. Matching tenders are prioritised and delivered."
+        "Maintains search profiles and finds publicly tendered contracts. Matching tenders are prioritized and delivered."
     }
   }
 ];

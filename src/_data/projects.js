@@ -16,8 +16,8 @@ module.exports = [
     status: "Abgeschlossen",
     anonym: true,
     teaser: {
-      zahl: "78 %",
-      zahlLabel: "weniger manuelle Anfragen pro Woche",
+      zahl: "90 %",
+      zahlLabel: "aller Buchungen laufen über unser System",
       text: "Ein Restaurant beantwortet Reservierungen und Gästefragen automatisch — über WhatsApp und Website."
     },
     ausgangslage:
@@ -32,6 +32,7 @@ module.exports = [
     ],
     tech: ["RAG-System", "WhatsApp API", "n8n Automation", "OpenAI GPT-4o", "Vektor-Datenbank"],
     ergebnisse: [
+      { wert: "90 %", label: "aller Buchungen über unser System", detail: "per WhatsApp und Website" },
       { wert: "78 %", label: "weniger manuelle Anfragen", detail: "von 340 auf 75 pro Woche" },
       { wert: "95 %", label: "Gästezufriedenheit", detail: "basierend auf 48 Bewertungen" },
       { wert: "0,3 s", label: "Antwortzeit", detail: "vorher 2–6 Stunden manuell" }
@@ -45,8 +46,8 @@ module.exports = [
     bild: "/images/gastrodashboard.jpeg",
     bildAlt: "Manager-Dashboard des aivance-Gastronomie-Systems mit Auslastung und Umsatz in Echtzeit",
     meta: {
-      title: "Gastronomie: 78 % weniger manuelle Anfragen — aivance",
-      description: "Case Study: KI-Assistent für ein Restaurant im Rhein-Main-Gebiet — 78 % weniger manuelle Anfragen, Antwortzeit von Stunden auf 0,3 Sekunden."
+      title: "Gastronomie: 90 % aller Buchungen über unser System | aivance",
+      description: "Case Study: KI-Assistent für ein Restaurant im Rhein-Main-Gebiet. 90 % aller Buchungen laufen über unser System, 78 % weniger manuelle Anfragen, Antwortzeit 0,3 Sekunden."
     },
     en: {
       title: "Hospitality Chatbot & Customer Service",
@@ -54,8 +55,8 @@ module.exports = [
       brancheLabel: "Hospitality · Rhine-Main",
       status: "Completed",
       teaser: {
-        zahl: "78 %",
-        zahlLabel: "manual inquiries per week",
+        zahl: "90%",
+        zahlLabel: "of all bookings run through our system",
         text: "A restaurant answers reservations and guest questions automatically — via WhatsApp and its website."
       },
       ausgangslage:
@@ -70,8 +71,9 @@ module.exports = [
       ],
       tech: ["RAG system", "WhatsApp API", "n8n automation", "OpenAI GPT-4o", "Vector database"],
       ergebnisse: [
-        { wert: "78 %", label: "fewer manual inquiries", detail: "from 340 to 75 per week" },
-        { wert: "95 %", label: "guest satisfaction", detail: "based on 48 reviews" },
+        { wert: "90%", label: "of all bookings through our system", detail: "via WhatsApp and website" },
+        { wert: "78%", label: "fewer manual inquiries", detail: "from 340 to 75 per week" },
+        { wert: "95%", label: "guest satisfaction", detail: "based on 48 reviews" },
         { wert: "0.3 s", label: "response time", detail: "previously 2–6 hours manually" }
       ],
       ergebnisZeitraum: "Measurable results after 90 days",
@@ -82,8 +84,8 @@ module.exports = [
       },
       bildAlt: "Manager dashboard of the aivance hospitality system with real-time occupancy and revenue",
       meta: {
-        title: "Hospitality: 78 % Fewer Manual Inquiries — aivance",
-        description: "Case study: AI assistant for a restaurant in the Rhine-Main region — 78% fewer manual inquiries, response time down from hours to 0.3 seconds."
+        title: "Hospitality: 90% of All Bookings Run Through Our System | aivance",
+        description: "Case study: AI assistant for a restaurant in the Rhine-Main region. 90% of all bookings run through our system, 78% fewer manual inquiries, 0.3-second response time."
       }
     }
   },
@@ -136,7 +138,7 @@ module.exports = [
       brancheLabel: "SMB · Rhine-Main",
       status: "Completed",
       teaser: {
-        zahl: "50 %",
+        zahl: "50%",
         zahlLabel: "less onboarding time",
         text: "New hires get answers instantly — instead of tying up the HR team with the same questions."
       },
@@ -152,9 +154,9 @@ module.exports = [
       ],
       tech: ["RAG system", "Notion API", "Slack bot", "Claude", "n8n workflows"],
       ergebnisse: [
-        { wert: "80 %", label: "fewer HR inquiries", detail: "self-service via AI assistant" },
-        { wert: "50 %", label: "less onboarding time", detail: "ramp-up time per hire cut in half" },
-        { wert: "96 %", label: "satisfaction", detail: "feedback from new employees" }
+        { wert: "80%", label: "fewer HR inquiries", detail: "self-service via AI assistant" },
+        { wert: "50%", label: "less onboarding time", detail: "ramp-up time per hire cut in half" },
+        { wert: "96%", label: "satisfaction", detail: "feedback from new employees" }
       ],
       ergebnisZeitraum: "Measurable results after 60 days",
       zitat: {
@@ -163,7 +165,7 @@ module.exports = [
         ort: "Mid-sized company · Rhine-Main region"
       },
       meta: {
-        title: "SMB: Onboarding Time Cut by 3 Days — aivance",
+        title: "SMB: Onboarding Time Cut in Half | aivance",
         description: "Case study: onboarding knowledge system for a mid-sized company — 80% fewer HR inquiries, onboarding time cut in half."
       }
     }
@@ -237,7 +239,7 @@ module.exports = [
       brancheLabel: "Healthcare · USA",
       status: "Ongoing engagement",
       teaser: {
-        zahl: "128 %",
+        zahl: "128%",
         zahlLabel: "more clicks from Google Search",
         text: "A medical practice is finally found online the way its reputation deserves — more calls, more inquiries, more patients."
       },
@@ -253,9 +255,9 @@ module.exports = [
       ],
       tech: ["React", "Technical SEO", "FAQ schema", "Headless CMS", "Google Search Console"],
       ergebnisse: [
-        { wert: "128 %", label: "more Google clicks", detail: "organic search, month over month" },
-        { wert: "+32 %", label: "patient calls", detail: "via the Google Business Profile" },
-        { wert: "+233 %", label: "chat inquiries", detail: "inquiry rate per visitor doubled" }
+        { wert: "128%", label: "more Google clicks", detail: "organic search, month over month" },
+        { wert: "+32%", label: "patient calls", detail: "via the Google Business Profile" },
+        { wert: "+233%", label: "chat inquiries", detail: "inquiry rate per visitor doubled" }
       ],
       ergebnisZeitraum: "Measurable results within 3 months",
       sichtbarkeit: {
@@ -282,7 +284,7 @@ module.exports = [
         statement: "A strong website should not only represent a business. It should help the right people find it."
       },
       meta: {
-        title: "Healthcare Practice: +128 % Google Clicks — aivance",
+        title: "Healthcare Practice: +128% Google Clicks — aivance",
         description: "How aivance improved Google and AI-search visibility for a US healthcare practice: 128% more search clicks and 855% more impressions on a key service page."
       }
     }

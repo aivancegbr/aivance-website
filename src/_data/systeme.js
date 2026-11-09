@@ -31,7 +31,7 @@ module.exports = {
       tut: "In Google und KI-Suche gefunden werden",
       branche: "Gesundheitswesen",
       art: "Suchoptimierung, Sichtbarkeit in KI-Suche",
-      en: { tut: "Get found in Google and AI search", branche: "Healthcare", art: "Search optimisation, visibility in AI answers" }
+      en: { tut: "Get found in Google and AI search", branche: "Healthcare", art: "Search optimization, visibility in AI answers" }
     },
     {
       tut: "Außenauftritt als ein System",

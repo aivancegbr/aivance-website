@@ -5,11 +5,26 @@
 {% set urlBase = '/en' if isEnPage else '' %}
 <footer class="site-footer pt-16 pb-8">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="grid md:grid-cols-4 gap-10 mb-12">
+    {# Reihenfolge wie die Navigation: Produkte zuerst, Umsetzung als Fundament danach #}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
       <div>
         <div class="mb-4">{{ brand.lockup(28, '20px', 'dark', 'GROUNDED AI') }}</div>
         <p class="text-sm text-paper/55 leading-relaxed max-w-xs">{{ t.footerTagline }} {{ site.region }}.</p>
         <a href="mailto:{{ site.email }}" class="mono inline-block mt-5 text-[11px] tracking-widest text-paper/45 transition-colors">{{ site.email }}</a>
+        <a href="{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="footer-social mt-4 inline-flex items-center gap-2 text-sm text-paper/55 transition-colors"
+           aria-label="{{ t.footerLinkedIn }} ({{ t.newTab }})">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div>
+        <p class="footer-eyebrow mb-4">{{ t.footerProdukte }}</p>
+        <ul class="space-y-2.5 text-sm text-paper/55">
+          {% for produkt in products %}
+          <li><a href="{{ urlBase }}/produkte/{{ produkt.slug }}/" class="transition-colors">{{ produkt.name }}</a></li>
+          {% endfor %}
+          <li><a href="{{ t.urlProdukte }}" class="transition-colors">{{ t.footerAlleProdukte }}</a></li>
+        </ul>
       </div>
       <div>
         <p class="footer-eyebrow mb-4">{{ t.footerLeistungen }}</p>
@@ -31,9 +46,9 @@
       <div>
         <p class="footer-eyebrow mb-4">{{ t.footerUnternehmen }}</p>
         <ul class="space-y-2.5 text-sm text-paper/55">
-          <li><a href="{{ t.urlProdukte }}" class="transition-colors">{{ t.footerProdukte }}</a></li>
           <li><a href="{{ t.urlProjekte }}" class="transition-colors">{{ t.footerProjekte }}</a></li>
           <li><a href="{{ t.urlUeberUns }}" class="transition-colors">{{ t.footerUeberUns }}</a></li>
+          <li><a href="{{ t.urlMitmachen }}" class="transition-colors">{{ t.footerMitmachen }}</a></li>
           <li><a href="{{ t.urlKontakt }}" class="transition-colors">{{ t.footerKontakt }}</a></li>
           <li><a href="{{ t.urlDatensicherheit }}" class="transition-colors">{{ t.footerDatensicherheit }}</a></li>
           <li><a href="/datenschutz/" class="transition-colors">{{ t.footerDatenschutz }}</a></li>

@@ -320,7 +320,7 @@ module.exports = [
       ],
       umfang: [
         "Technical audit: indexing errors, load time, mobile usability, site structure",
-        "A dedicated, search-optimised page per core service instead of one catch-all page",
+        "A dedicated, search-optimized page per core service instead of one catch-all page",
         "Local visibility: business profile, opening hours, reviews, consistent address data",
         "Structured data (FAQ, LocalBusiness, services) — the basis AI systems quote from",
         "Content that answers a question completely, because that is what gets quoted",
@@ -459,7 +459,7 @@ module.exports = [
       { phase: "Aufbau & Indexierung", dauer: "Woche 2–3", text: "Anbindung der Quellen, Aufbau des Systems, erste Testfragen mit Ihrem Team." },
       { phase: "Test & Livegang", dauer: "Woche 3–4", text: "Ihr Team testet mit echten Fragen, wir justieren nach. Danach Go-Live und Einweisung." }
     ],
-    zeitrahmen: "Ø 17 Tage bis zum Go-Live in unseren bisherigen Projekten. Bei vielen Quellsystemen oder komplexem Rechtekonzept eher 4–6 Wochen — das sagen wir Ihnen nach dem Datencheck.",
+    zeitrahmen: "Ø 17 Tage bis zum Go-Live. Bei vielen Quellsystemen oder komplexem Rechtekonzept eher 4–6 Wochen — das sagen wir Ihnen nach dem Datencheck.",
     faq: [
       {
         q: "Was ist ein RAG-System?",
@@ -502,7 +502,7 @@ module.exports = [
         { phase: "Setup & indexing", dauer: "Weeks 2–3", text: "Connecting the sources, building the system, first test questions with your team." },
         { phase: "Testing & go-live", dauer: "Weeks 3–4", text: "Your team tests with real questions, we fine-tune. Then go-live and training." }
       ],
-      zeitrahmen: "17 days on average to go-live in our projects so far. With many source systems or a complex permissions concept, more like 4–6 weeks — we tell you after the data check.",
+      zeitrahmen: "17 days on average to go-live. With many source systems or a complex permissions concept, more like 4–6 weeks — we tell you after the data check.",
       faq: [
         {
           q: "What is a RAG system?",
