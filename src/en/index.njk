@@ -96,59 +96,69 @@ permalink: /en/
   </div>
 
   <div class="hero-right" aria-hidden="true">
-    <div class="phone-wrap" style="position:relative;">
-      <div class="float-badge float-badge-1" id="hero-badge1">
-        <span class="badge-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-        </span>
-        <span class="badge-text-group">
-          <span class="badge-title">Every answer sourced</span>
-          <span class="badge-sub">document and passage</span>
-        </span>
-      </div>
-      <div class="float-badge float-badge-2" id="hero-badge2">
-        <span class="badge-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </span>
-        <span class="badge-text-group">
-          <span class="badge-title">Reply within 24 hours</span>
-          <span class="badge-sub">on weekdays, from a co-founder</span>
-        </span>
-      </div>
-
-      <div class="phone">
-        <div class="phone-inner">
-          <div class="notch"></div>
-          <div class="status-bar">
-            <span>9:41</span>
-            <div class="status-icons">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
-            </div>
-          </div>
-          <div class="chat-header">
-            <svg class="chat-avatar" viewBox="0 0 30 30" aria-hidden="true">
-              <text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
-              <text class="signet-mark" x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="#9C4B00">1</text>
-              <path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
-              <path class="signet-trace" d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="20.5"/>
-            </svg>
-            <div class="chat-header-info">
-              <div class="chat-header-name">aivance</div>
-              <div class="online-indicator">
-                <span class="online-dot"></span> Online
+    {# Bühne: statisches Rendering des Geräts (ohne JS, Touch, Reduced Motion),
+       darüber der echte Chat. /js/hero-3d.js ersetzt das Bild auf Desktop durch
+       die 3D-Bühne und hält den Chat per matrix3d auf der Front. #}
+    <div class="phone-stage" data-mode="static">
+      <div class="phone-float">
+        {% set renderLayer = "body" %}{% include "partials/hero-device-render.njk" %}
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-inner">
+              <div class="notch"></div>
+              <div class="status-bar">
+                <span>9:41</span>
+                <div class="status-icons">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                </div>
+              </div>
+              <div class="chat-header">
+                <svg class="chat-avatar" viewBox="0 0 30 30" aria-hidden="true">
+                  <text x="2" y="23" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-1.2" fill="#161614">a</text>
+                  <text class="signet-mark" x="17.4" y="12" font-family="IBM Plex Mono, monospace" font-weight="500" font-size="10" fill="#9C4B00">1</text>
+                  <path d="M2 26.4h20.5" stroke="#C2C2BA" stroke-width="1.2" stroke-linecap="round"/>
+                  <path class="signet-trace" d="M2 26.4h20.5" stroke="#9C4B00" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="20.5"/>
+                </svg>
+                <div class="chat-header-info">
+                  <div class="chat-header-name">aivance</div>
+                  <div class="online-indicator">
+                    <span class="online-dot"></span> Online
+                  </div>
+                </div>
+              </div>
+              <div class="chat-messages" id="hero-chat-messages" data-mockup
+                   data-mockup-start="1000" data-mockup-restart="17000">
+                {{ mock.schritte(mockups.hero.en) }}
+              </div>
+              <div class="chat-input-row">
+                <div class="chat-input-bar">Ask us anything …</div>
+                <div class="chat-send">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFF7EC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
               </div>
             </div>
           </div>
-          <div class="chat-messages" id="hero-chat-messages" data-mockup
-               data-mockup-start="1000" data-mockup-restart="17000">
-            {{ mock.schritte(mockups.hero.en) }}
+        </div>
+        {% set renderLayer = "glass" %}{% include "partials/hero-device-render.njk" %}
+        <div class="phone-badges">
+          <div class="float-badge float-badge-1" id="hero-badge1">
+            <span class="badge-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="badge-text-group">
+              <span class="badge-title">Every answer sourced</span>
+              <span class="badge-sub">document and passage</span>
+            </span>
           </div>
-          <div class="chat-input-row">
-            <div class="chat-input-bar">Ask us anything …</div>
-            <div class="chat-send">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFF7EC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </div>
+          <div class="float-badge float-badge-2" id="hero-badge2">
+            <span class="badge-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </span>
+            <span class="badge-text-group">
+              <span class="badge-title">Reply within 24 hours</span>
+              <span class="badge-sub">on weekdays, from a co-founder</span>
+            </span>
           </div>
         </div>
       </div>
